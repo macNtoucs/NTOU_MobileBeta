@@ -1,0 +1,16 @@
+build/
+.DS_Store
+*~.nib
+*.mode1v3
+*.mode2v3
+*.pbxuser
+*.perspective
+*.perspectivev3
+xcuserdata/
+project.xcworkspace/
+
+Common/Secret.m
+
+Resources/mit150/*.mp4
+
+.idea/
