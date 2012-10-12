@@ -95,7 +95,7 @@
 
 
 - (void)refreshPropertyList{
-    self->lastRefresh = [NSDate date];
+    self.lastRefresh = [NSDate date];
     self.navigationItem.rightBarButtonItem.title = @"Refreshing";
     UIAlertView *  loadingAlertView = [[UIAlertView alloc]
                                        initWithTitle:nil message:@"\n\nDownloading\nPlease wait"
