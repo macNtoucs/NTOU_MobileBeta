@@ -299,8 +299,8 @@
                     [stopsLocation setlocation:location latitudeDelta:0.002 longitudeDelta:0.002];
                     break;
                 case 3:
-                    location.longitude = 121.775124;
-                    location.latitude = 25.15008;
+                    location.longitude = 121.775200;
+                    location.latitude = 25.149955;
                     [stopsLocation setlocation:location latitudeDelta:0.002 longitudeDelta:0.002];
                     break;
                 default:
@@ -311,17 +311,17 @@
         case 2:
          switch (indexPath.row) {
          case 1:
-         location.longitude = 121.513733;
+         location.longitude = 121.513700;
          location.latitude = 25.074764;
          [stopsLocation setlocation:location latitudeDelta:0.002 longitudeDelta:0.002];
          break;
          case 2:
          location.longitude = 121.514442;
-         location.latitude = 25.072043;
+         location.latitude = 25.072068;
          [stopsLocation setlocation:location latitudeDelta:0.002 longitudeDelta:0.002];
          break;
          case 3:
-         location.longitude = 121.524386;
+         location.longitude = 121.524336;
          location.latitude = 25.07318;
          [stopsLocation setlocation:location latitudeDelta:0.002 longitudeDelta:0.002];
          break;
@@ -331,8 +331,8 @@
          [stopsLocation setlocation:location latitudeDelta:0.002 longitudeDelta:0.002];
          break;
          case 5:
-         location.longitude = 121.520365;
-         location.latitude = 25.092906;
+         location.longitude = 121.520445;
+         location.latitude = 25.092986;
          [stopsLocation setlocation:location latitudeDelta:0.002 longitudeDelta:0.002];
          break;
          default:
@@ -345,36 +345,36 @@
             switch (indexPath.row) {
                 case 1:
                     location.longitude = 121.577064;
-                    location.latitude = 25.050059;
+                    location.latitude = 25.050164;
                     [stopsLocation setlocation:location latitudeDelta:0.002 longitudeDelta:0.002];
                     break;
                 case 2:
                     location.longitude = 121.571539;
-                    location.latitude = 25.049894;
+                    location.latitude = 25.050020;
                     [stopsLocation setlocation:location latitudeDelta:0.002 longitudeDelta:0.002];
                     break;
                 case 3:
-                    location.longitude = 121.563783;
+                    location.longitude = 121.563848;
                     location.latitude = 25.04898;
                     [stopsLocation setlocation:location latitudeDelta:0.002 longitudeDelta:0.002];
                     break;
                 case 4:
                     location.longitude = 121.559631;
-                    location.latitude = 25.048533;
+                    location.latitude = 25.048513;
                     [stopsLocation setlocation:location latitudeDelta:0.002 longitudeDelta:0.002];
                     break;
                 case 5:
                     location.longitude = 121.553902;
-                    location.latitude = 25.048349;
+                    location.latitude = 25.048269;
                     [stopsLocation setlocation:location latitudeDelta:0.002 longitudeDelta:0.002];
                     break;
                 case 6:
-                    location.longitude = 121.54592;
-                    location.latitude = 25.048426;
+                    location.longitude = 121.544913;
+                    location.latitude = 25.048350;
                     [stopsLocation setlocation:location latitudeDelta:0.002 longitudeDelta:0.002];
                     break;
                 case 7:
-                    location.longitude = 121.543603;
+                    location.longitude = 121.543593;
                     location.latitude = 25.042196;
                     [stopsLocation setlocation:location latitudeDelta:0.002 longitudeDelta:0.002];
                     break;
@@ -387,7 +387,7 @@
             break;
     }
     stopsLocation.view.hidden = NO;
-    stopsLocation.title = cell.textLabel.text;
+    stopsLocation.title = [cell.textLabel.text retain];
     [self.navigationController pushViewController:stopsLocation animated:YES];
     [stopsLocation release];
 

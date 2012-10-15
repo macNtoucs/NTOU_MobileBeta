@@ -13,6 +13,9 @@ CLLocationCoordinate2D location;
 MKCoordinateSpan span;
 MKMapView *mapView;
     UIBarButtonItem *switchButton;
+    UIToolbar *toolbar;
+
 }
 -(void) setlocation:(CLLocationCoordinate2D) inputloaction latitudeDelta:(double)latitude longitudeDelta:(double)longitude;
+@property (nonatomic, retain) UIToolbar *toolbar;
 @end
