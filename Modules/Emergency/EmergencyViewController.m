@@ -12,14 +12,14 @@
 
 @synthesize delegate, htmlString, infoWebView;
 @synthesize imagePicker;
-@synthesize controller;
+
 - (id)initWithStyle:(UITableViewStyle)style {
     // Override initWithStyle: if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
     self = [super initWithStyle:style];
     if (self) {
 		refreshButtonPressed = NO;
         infoWebView = nil;
-        controller = [[MFMailComposeViewController alloc] init];
+        
         self.title = @"Emergency Info";
     }
     return self;
@@ -276,29 +276,29 @@
     
     //執行取消發送電子郵件畫面的動畫
     [self dismissModalViewControllerAnimated:YES];
+   
+
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
   
+    
     UIImage *image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
     if ([MFMailComposeViewController canSendMail]) {
-    
-
-    controller.mailComposeDelegate = self;
-    
-    [controller setToRecipients:[NSArray arrayWithObjects:@"mac.ntoucs@gmail.com", nil]];
-    [controller setSubject:@"緊急事件"];
-    
-    [controller setMessageBody:@"[照片]" isHTML:NO];
-    
-    NSData *imageData = UIImagePNGRepresentation(image);
-    [controller addAttachmentData:imageData mimeType:@"image/png" fileName:@"image"];
-    
-    [picker presentModalViewController:controller animated:YES];
-    
-    [controller release];
+        MFMailComposeViewController *mailView = [[MFMailComposeViewController alloc] init];
+        mailView.mailComposeDelegate = self;
+        [mailView setToRecipients:[NSArray arrayWithObjects:@"mac.ntoucs@gmail.com", nil]];
+        [mailView setSubject:@"緊急事件"];
+        
+        [mailView setMessageBody:@"[照片]" isHTML:NO];
+        NSData *imageData = UIImagePNGRepresentation(image);
+        [mailView addAttachmentData:imageData mimeType:@"image/png" fileName:@"image"];
+        [self dismissModalViewControllerAnimated:NO];
+        [self presentModalViewController:mailView
+                                animated:YES];
+        
     }
-    [picker dismissModalViewControllerAnimated:YES];
+
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

@@ -42,21 +42,28 @@ static EmergencyData *sharedEmergencyData = nil;
 #pragma mark Initialization
 
 - (id) init {
+   
     self = [super init];
     if (self != nil) {
         // TODO: get primary numbers from m.mit.edu (it's unlikely, but numbers might change)
         primaryPhoneNumbers = [[NSArray arrayWithObjects:
-                                    [NSDictionary dictionaryWithObjectsAndKeys:
-                                     @"教官室(24H)", @"title", 
-                                     @"0224629976", @"phone",
-                                     @"衛生保健組", @"title",
-                                     @"0224622192#1071", @"phone",
-                                     @"警衛室", @"title",
-                                     @"0224622192#1132", @"phone",
-                                     @"八斗子派出所", @"title",
-                                     @"0224692077", @"phone",
-                                     nil],
-                                    nil] retain];
+                                [NSDictionary dictionaryWithObjectsAndKeys:
+                                 @"教官室(24H)", @"title",
+                                 @"0224629976", @"phone",
+                                 nil],
+                                [NSDictionary dictionaryWithObjectsAndKeys:
+                                 @"衛生保健組", @"title",
+                                 @"0224622192#1071", @"phone",
+                                 nil],
+                                [NSDictionary dictionaryWithObjectsAndKeys:
+                                 @"警衛室", @"title",
+                                 @"0224622192#1132", @"phone",
+                                 nil],
+                                [NSDictionary dictionaryWithObjectsAndKeys:
+                                 @"八斗子派出所", @"title",
+                                 @"0224692077", @"phone",
+                                 nil],
+                                nil] retain];
         [self fetchEmergencyInfo];
         [self fetchContacts];
         
@@ -64,7 +71,8 @@ static EmergencyData *sharedEmergencyData = nil;
         [self reloadContacts];
     }
     return self;
-}
+    
+   }
 
 - (void)fetchEmergencyInfo {
     info = [[[CoreDataManager fetchDataForAttribute:EmergencyInfoEntityName] lastObject] retain];

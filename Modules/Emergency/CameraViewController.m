@@ -31,24 +31,20 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
+    
     UIImage *image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
- 
-    MFMailComposeViewController *controller = [[MFMailComposeViewController alloc] init];
-    controller.mailComposeDelegate = self;
+    if ([MFMailComposeViewController canSendMail]) {
+        MFMailComposeViewController *mailView = [[MFMailComposeViewController alloc] init];
+        [mailView setToRecipients:[NSArray arrayWithObjects:@"mac.ntoucs@gmail.com", nil]];
+        [mailView setSubject:@"緊急事件"];
+        
+        [mailView setMessageBody:@"[照片]" isHTML:NO];
+        NSData *imageData = UIImagePNGRepresentation(image);
+        [mailView addAttachmentData:imageData mimeType:@"image/png" fileName:@"image"];
+        [self presentModalViewController:mailView
+                                animated:YES];
+    }
     
-    [controller setToRecipients:[NSArray arrayWithObjects:@"mac.ntoucs@gmail.com", nil]];
-    [controller setSubject:@"緊急事件"];
-    
-    [controller setMessageBody:@"[照片]" isHTML:NO];
-   
-    NSData *imageData = UIImagePNGRepresentation(image);
-    [controller addAttachmentData:imageData mimeType:@"image/png" fileName:@"image"];
-    
-    [self presentModalViewController:controller animated:YES];
-    
-    [controller release];
-
-    [picker dismissModalViewControllerAnimated:YES];
 }
 
 
