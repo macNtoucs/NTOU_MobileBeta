@@ -44,7 +44,7 @@
 						"</body>"
 						"</html>" retain];
 	
-	self.htmlString = [NSString stringWithFormat:htmlFormatString, @"目前無緊急事件"];
+	self.htmlString = [NSString stringWithFormat:htmlFormatString, @"工學院院館前北寧路發生落石"];
     
 	[self.tableView applyStandardColors];
 }
@@ -119,7 +119,7 @@
 - (void)infoDidFailToLoad:(NSNotification *)aNotification {
 	if ([[EmergencyData sharedData] hasNeverLoaded]) {
 		// Since emergency has never loaded successfully report failure
-		self.htmlString = [NSString stringWithFormat:htmlFormatString, @"Failed to load notice."];
+		self.htmlString = [NSString stringWithFormat:htmlFormatString, @"工學院院館前北寧路發生落石"];
 		[self.infoWebView loadHTMLString:self.htmlString baseURL:nil];
 	}
 	
@@ -169,9 +169,25 @@
 }
 #pragma mark -
 #pragma mark Table view methods
-
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    switch (section) {
+        case 0:
+            return @"緊急事件";
+            break;
+            
+        case 1:
+            return @"校內";
+            break;
+            
+        case 2:
+            return @"校外";
+            break;
+        default:
+            return @"其他";
+    }
+}
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    return 4;
 }
 
 
@@ -184,11 +200,15 @@
             num = 1;
             break;
         case 1: {
-            NSArray *numbers = [[EmergencyData sharedData] primaryPhoneNumbers];
-            if (numbers) {
-                num = [numbers count];
-                num++; // for More Emergency Contacts drilldown
-            }
+            num=3;
+            break;
+        }
+        case 2: {
+            num=3;
+            break;
+        }
+        case 3:{
+            num=1;
             break;
         }
     }
@@ -255,16 +275,44 @@
 			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 			
             NSArray *numbers = [[EmergencyData sharedData] primaryPhoneNumbers];
-            if (indexPath.row < [numbers count]) {
+           
                 NSDictionary *anEntry = [numbers objectAtIndex:indexPath.row];
 				cell.textLabel.text = [anEntry objectForKey:@"title"];
 				cell.secondaryTextLabel.text = [anEntry objectForKey:@"phone"];
                 cell.accessoryView = [UIImageView accessoryViewWithMITType:MITAccessoryViewPhone];
-            } else {
-                cell.textLabel.text = @"拍照＆寄往教官室";
-            }
+           
 			
 			return cell;
+		}
+        case 2:
+		{
+			SecondaryGroupedTableViewCell *cell = (SecondaryGroupedTableViewCell *)[tableView dequeueReusableCellWithIdentifier:SecondaryCellIdentifier];
+			if (cell == nil) {
+				cell = [[[SecondaryGroupedTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:SecondaryCellIdentifier] autorelease];
+			}
+			
+			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+			
+            NSArray *numbers = [[EmergencyData sharedData] primaryPhoneNumbers];
+            
+                NSDictionary *anEntry = [numbers objectAtIndex:indexPath.row+3];
+				cell.textLabel.text = [anEntry objectForKey:@"title"];
+				cell.secondaryTextLabel.text = [anEntry objectForKey:@"phone"];
+                cell.accessoryView = [UIImageView accessoryViewWithMITType:MITAccessoryViewPhone];
+           
+			
+			return cell;
+		}
+        case 3:
+		{
+			SecondaryGroupedTableViewCell *cell = (SecondaryGroupedTableViewCell *)[tableView dequeueReusableCellWithIdentifier:SecondaryCellIdentifier];
+			if (cell == nil) {
+				cell = [[[SecondaryGroupedTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:SecondaryCellIdentifier] autorelease];
+			}
+			
+			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+			cell.textLabel.text = @"拍照寄給教官室";
+            return cell;
 		}
     }
 	
@@ -303,41 +351,49 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+   
+    
     NSDictionary *anEntry;
     NSString *phoneNumber;
     NSURL *aURL;
     switch (indexPath.section) {
-        case 1: {
+        case 1:{
             NSArray *numbers = [[EmergencyData sharedData] primaryPhoneNumbers];
-            if (indexPath.row < [numbers count]) {
-                anEntry = [numbers objectAtIndex:indexPath.row];
-                phoneNumber = [[anEntry objectForKey:@"phone"] 
-                               stringByReplacingOccurrencesOfString:@"." 
-                               withString:@""];
-                aURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel://%@", phoneNumber]];
-                if ([[UIApplication sharedApplication] canOpenURL:aURL]) {
-                    [[UIApplication sharedApplication] openURL:aURL];
-                }
-            } else {
-                if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-                    break;
-                }
-                imagePicker = [UIImagePickerController new];
-                imagePicker.delegate = self;
-                imagePicker.sourceType=UIImagePickerControllerSourceTypeCamera;
-                [self presentModalViewController:imagePicker animated:YES];
-                
-                // show More Emergency Contact drilldown
-                // init its view controller
-               // CameraViewController *camera = [[CameraViewController alloc] init];
-                // push it onto the navigation stack
-                //[self.navigationController presentModalViewController:camera animated:YES];
-              //  [camera release];
+            
+            anEntry = [numbers objectAtIndex:indexPath.row];
+            phoneNumber = [[anEntry objectForKey:@"phone"]
+                           stringByReplacingOccurrencesOfString:@"."
+                           withString:@""];
+            aURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel://%@", phoneNumber]];
+            if ([[UIApplication sharedApplication] canOpenURL:aURL]) {
+                [[UIApplication sharedApplication] openURL:aURL];
+            }
+            break;
+         }
+        case 2:{
+            NSArray *numbers = [[EmergencyData sharedData] primaryPhoneNumbers];
+            
+            anEntry = [numbers objectAtIndex:indexPath.row+3];
+            phoneNumber = [[anEntry objectForKey:@"phone"]
+                           stringByReplacingOccurrencesOfString:@"."
+                           withString:@""];
+            aURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel://%@", phoneNumber]];
+            if ([[UIApplication sharedApplication] canOpenURL:aURL]) {
+                [[UIApplication sharedApplication] openURL:aURL];
             }
             break;
         }
+        case 3:{
+            if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+                break;
+            }
+            imagePicker = [UIImagePickerController new];
+            imagePicker.delegate = self;
+            imagePicker.sourceType=UIImagePickerControllerSourceTypeCamera;
+            [self presentModalViewController:imagePicker animated:YES];
+        
+        }
     }
-    
 }
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {

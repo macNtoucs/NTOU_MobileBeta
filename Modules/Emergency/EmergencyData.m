@@ -63,6 +63,14 @@ static EmergencyData *sharedEmergencyData = nil;
                                  @"八斗子派出所", @"title",
                                  @"0224692077", @"phone",
                                  nil],
+                                [NSDictionary dictionaryWithObjectsAndKeys:
+                                 @"正濱派出所", @"title",
+                                 @"0224621889", @"phone",
+                                 nil],
+                                [NSDictionary dictionaryWithObjectsAndKeys:
+                                 @"基隆市警察局", @"title",
+                                 @"0224248141", @"phone",
+                                 nil],
                                 nil] retain];
         [self fetchEmergencyInfo];
         [self fetchContacts];
