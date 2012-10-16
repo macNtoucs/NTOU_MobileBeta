@@ -229,6 +229,11 @@
 		C74878991627D3DA001D3390 /* EmergencyData.m in Sources */ = {isa = PBXBuildFile; fileRef = C74878911627D3DA001D3390 /* EmergencyData.m */; };
 		C748789A1627D3DA001D3390 /* EmergencyModule.m in Sources */ = {isa = PBXBuildFile; fileRef = C74878931627D3DA001D3390 /* EmergencyModule.m */; };
 		C748789B1627D3DA001D3390 /* EmergencyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C74878951627D3DA001D3390 /* EmergencyViewController.m */; };
+		C74878B5162D1F41001D3390 /* OutCampusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C74878B4162D1F41001D3390 /* OutCampusViewController.m */; };
+		C74878B9162D297C001D3390 /* NTOU_default_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C74878B8162D297C001D3390 /* NTOU_default_icon.png */; };
+		C74878BA162D2989001D3390 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = DE936CA3161CD28100B69F7C /* Default.png */; };
+		C74878BB162D2996001D3390 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE936CA5161CD28300B69F7C /* Default@2x.png */; };
+		C74878BD162D299C001D3390 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C74878BC162D299C001D3390 /* Default-568h@2x.png */; };
 		DE03763C1350F5080041DDBD /* MIT150Button.m in Sources */ = {isa = PBXBuildFile; fileRef = DE03763B1350F5080041DDBD /* MIT150Button.m */; };
 		DE0A62AC10CDAEA90058B2C2 /* MITBuildInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DE0A62AB10CDAEA90058B2C2 /* MITBuildInfo.m */; };
 		DE0F6B3411109BC500F064D6 /* AboutMITVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DE0F6B3311109BC500F064D6 /* AboutMITVC.m */; };
@@ -842,6 +847,10 @@
 		C74878931627D3DA001D3390 /* EmergencyModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmergencyModule.m; sourceTree = "<group>"; };
 		C74878941627D3DA001D3390 /* EmergencyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmergencyViewController.h; sourceTree = "<group>"; };
 		C74878951627D3DA001D3390 /* EmergencyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmergencyViewController.m; sourceTree = "<group>"; };
+		C74878B3162D1F41001D3390 /* OutCampusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutCampusViewController.h; sourceTree = "<group>"; };
+		C74878B4162D1F41001D3390 /* OutCampusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OutCampusViewController.m; sourceTree = "<group>"; };
+		C74878B8162D297C001D3390 /* NTOU_default_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NTOU_default_icon.png; sourceTree = "<group>"; };
+		C74878BC162D299C001D3390 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		DE03763A1350F5080041DDBD /* MIT150Button.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIT150Button.h; sourceTree = "<group>"; };
 		DE03763B1350F5080041DDBD /* MIT150Button.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIT150Button.m; sourceTree = "<group>"; };
 		DE0A62AA10CDAEA90058B2C2 /* MITBuildInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MITBuildInfo.h; sourceTree = "<group>"; };
@@ -1283,7 +1292,9 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				C74878BC162D299C001D3390 /* Default-568h@2x.png */,
 				DE936CA5161CD28300B69F7C /* Default@2x.png */,
+				C74878B8162D297C001D3390 /* NTOU_default_icon.png */,
 				DE936CA3161CD28100B69F7C /* Default.png */,
 				DE936CA1161CD1FF00B69F7C /* Icon@2x.png */,
 				DE936C9F161CD1FB00B69F7C /* Icon.png */,
@@ -2119,6 +2130,8 @@
 				C74878931627D3DA001D3390 /* EmergencyModule.m */,
 				C74878941627D3DA001D3390 /* EmergencyViewController.h */,
 				C74878951627D3DA001D3390 /* EmergencyViewController.m */,
+				C74878B3162D1F41001D3390 /* OutCampusViewController.h */,
+				C74878B4162D1F41001D3390 /* OutCampusViewController.m */,
 			);
 			path = Emergency;
 			sourceTree = "<group>";
@@ -2720,6 +2733,10 @@
 				DE936CA0161CD1FB00B69F7C /* Icon.png in Resources */,
 				DE936CA2161CD1FF00B69F7C /* Icon@2x.png in Resources */,
 				C74878841627D1D4001D3390 /* ShuttleRoutes.xib in Resources */,
+				C74878B9162D297C001D3390 /* NTOU_default_icon.png in Resources */,
+				C74878BA162D2989001D3390 /* Default.png in Resources */,
+				C74878BB162D2996001D3390 /* Default@2x.png in Resources */,
+				C74878BD162D299C001D3390 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3046,6 +3063,7 @@
 				C74878991627D3DA001D3390 /* EmergencyData.m in Sources */,
 				C748789A1627D3DA001D3390 /* EmergencyModule.m in Sources */,
 				C748789B1627D3DA001D3390 /* EmergencyViewController.m in Sources */,
+				C74878B5162D1F41001D3390 /* OutCampusViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

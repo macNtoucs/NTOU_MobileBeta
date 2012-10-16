@@ -29,7 +29,7 @@
     [super viewDidLoad];
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refreshInfo:)] autorelease];
 	
-	infoWebView = [[UIWebView alloc] initWithFrame:CGRectMake(10, 10, self.view.frame.size.width - 20 - 20, 32)];
+	infoWebView = [[UIWebView alloc] initWithFrame:CGRectMake(10, 10, self.view.frame.size.width - 20 - 20, 90)];
 	infoWebView.delegate = self;
 	infoWebView.dataDetectorTypes = UIDataDetectorTypeAll;
 	infoWebView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -180,16 +180,18 @@
             break;
             
         case 2:
-            return @"校外";
-            break;
-        default:
             return @"其他";
+            break;
+       
     }
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 4;
+    return 3;
 }
-
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 26.5;
+}
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -200,18 +202,14 @@
             num = 1;
             break;
         case 1: {
-            num=3;
+            num=4;
             break;
         }
         case 2: {
-            num=3;
-            break;
-        }
-        case 3:{
             num=1;
             break;
         }
-    }
+          }
     return num;
 }
 
@@ -272,7 +270,13 @@
 				cell = [[[SecondaryGroupedTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:SecondaryCellIdentifier] autorelease];
 			}
 			
-			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+			if (indexPath.row==3){
+                cell.accessoryView = [UIImageView accessoryViewWithMITType: MITAccessoryViewEmail];
+                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                cell.textLabel.text = @"拍照寄給教官";
+                return cell;
+            }
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 			
             NSArray *numbers = [[EmergencyData sharedData] primaryPhoneNumbers];
            
@@ -292,28 +296,18 @@
 			}
 			
 			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-			
-            NSArray *numbers = [[EmergencyData sharedData] primaryPhoneNumbers];
+			cell.textLabel.text = @"警察局";
+         /*   NSArray *numbers = [[EmergencyData sharedData] primaryPhoneNumbers];
             
                 NSDictionary *anEntry = [numbers objectAtIndex:indexPath.row+3];
 				cell.textLabel.text = [anEntry objectForKey:@"title"];
 				cell.secondaryTextLabel.text = [anEntry objectForKey:@"phone"];
                 cell.accessoryView = [UIImageView accessoryViewWithMITType:MITAccessoryViewPhone];
            
-			
+			*/
 			return cell;
 		}
-        case 3:
-		{
-			SecondaryGroupedTableViewCell *cell = (SecondaryGroupedTableViewCell *)[tableView dequeueReusableCellWithIdentifier:SecondaryCellIdentifier];
-			if (cell == nil) {
-				cell = [[[SecondaryGroupedTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:SecondaryCellIdentifier] autorelease];
-			}
-			
-			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-			cell.textLabel.text = @"拍照寄給教官室";
-            return cell;
-		}
+       
     }
 	
 	return nil;
@@ -358,6 +352,17 @@
     NSURL *aURL;
     switch (indexPath.section) {
         case 1:{
+            if (indexPath.row==3){
+                if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+                    break;
+                }
+                imagePicker = [UIImagePickerController new];
+                imagePicker.delegate = self;
+                imagePicker.sourceType=UIImagePickerControllerSourceTypeCamera;
+                [self presentModalViewController:imagePicker animated:YES];
+                break;
+
+            }
             NSArray *numbers = [[EmergencyData sharedData] primaryPhoneNumbers];
             
             anEntry = [numbers objectAtIndex:indexPath.row];
@@ -371,27 +376,20 @@
             break;
          }
         case 2:{
+            UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
             NSArray *numbers = [[EmergencyData sharedData] primaryPhoneNumbers];
-            
-            anEntry = [numbers objectAtIndex:indexPath.row+3];
+            OutCampusViewController *outCampus = [[OutCampusViewController alloc]initWithStyle:UITableViewStyleGrouped];
+            outCampus.title = cell.textLabel.text;
+            [self.navigationController pushViewController:outCampus animated:YES];
+          /*  anEntry = [numbers objectAtIndex:indexPath.row+3];
             phoneNumber = [[anEntry objectForKey:@"phone"]
                            stringByReplacingOccurrencesOfString:@"."
                            withString:@""];
             aURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel://%@", phoneNumber]];
             if ([[UIApplication sharedApplication] canOpenURL:aURL]) {
                 [[UIApplication sharedApplication] openURL:aURL];
-            }
+            }*/
             break;
-        }
-        case 3:{
-            if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-                break;
-            }
-            imagePicker = [UIImagePickerController new];
-            imagePicker.delegate = self;
-            imagePicker.sourceType=UIImagePickerControllerSourceTypeCamera;
-            [self presentModalViewController:imagePicker animated:YES];
-        
         }
     }
 }
