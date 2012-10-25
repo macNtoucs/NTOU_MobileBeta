@@ -7,7 +7,7 @@
 #import "StellarClassesTableController.h"
 #import "StellarCoursesTableController.h"
 #import "MITConstants.h"
-
+#import "ScheduleViewController.h"
 #import "MITModule+Protected.h"
 
 @implementation StellarModule
@@ -27,7 +27,7 @@
 
 - (void)loadModuleHomeController
 {
-    [self setModuleHomeController:[[[StellarMainTableController alloc] init] autorelease]];
+    [self setModuleHomeController:[[[ScheduleViewController alloc] init] autorelease]];
 }
 
 
