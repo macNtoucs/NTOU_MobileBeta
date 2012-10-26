@@ -9,8 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "WeekScheduleView.h"
 #import "WeekNameView.h"
+#import "LessonTimeView.h"
 @interface ScheduleViewController : UIViewController<UIScrollViewDelegate>{
     WeekNameView *TopWeekcontroller;
+    LessonTimeView *LeftViewController;
+    UIView *UpperleftView;
 }
-
+@property(nonatomic, retain) UIView *UpperleftView;
 @end
