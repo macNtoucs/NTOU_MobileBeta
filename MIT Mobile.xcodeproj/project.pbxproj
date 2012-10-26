@@ -198,6 +198,9 @@
 		569DC3421282ADCE00BA0794 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 569DC3411282ADCE00BA0794 /* libiconv.dylib */; settings = {ATTRIBUTES = (Required, ); }; };
 		56D7DF52128854DF00E9E5C9 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56D7DF51128854DF00E9E5C9 /* MapKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		A63DEE281353CF37001C52BF /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A63DEE271353CF37001C52BF /* EventKit.framework */; };
+		A64A0886163AEC2E0045A2CC /* threedays_LessonTimeView.m in Sources */ = {isa = PBXBuildFile; fileRef = A64A0881163AEC2E0045A2CC /* threedays_LessonTimeView.m */; };
+		A64A0887163AEC2E0045A2CC /* threedays_WeekNameView.m in Sources */ = {isa = PBXBuildFile; fileRef = A64A0883163AEC2E0045A2CC /* threedays_WeekNameView.m */; };
+		A64A0888163AEC2E0045A2CC /* threedays_WeekScheduleView.m in Sources */ = {isa = PBXBuildFile; fileRef = A64A0885163AEC2E0045A2CC /* threedays_WeekScheduleView.m */; };
 		A6930566144CEBFC0012EEFA /* ThankYouViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6930564144CEBFC0012EEFA /* ThankYouViewController.m */; };
 		A69826E51354A488004A8258 /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A69826E41354A488004A8258 /* EventKitUI.framework */; };
 		A6A82E38145624F20075EB28 /* LibraryTextElementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A82E37145624F20075EB28 /* LibraryTextElementViewController.m */; };
@@ -792,6 +795,12 @@
 		56D7DF51128854DF00E9E5C9 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = iphoneos4.0/System/Library/Frameworks/MapKit.framework; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* MIT_Mobile-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MIT_Mobile-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		A63DEE271353CF37001C52BF /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
+		A64A0880163AEC2E0045A2CC /* threedays_LessonTimeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = threedays_LessonTimeView.h; sourceTree = "<group>"; };
+		A64A0881163AEC2E0045A2CC /* threedays_LessonTimeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = threedays_LessonTimeView.m; sourceTree = "<group>"; };
+		A64A0882163AEC2E0045A2CC /* threedays_WeekNameView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = threedays_WeekNameView.h; sourceTree = "<group>"; };
+		A64A0883163AEC2E0045A2CC /* threedays_WeekNameView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = threedays_WeekNameView.m; sourceTree = "<group>"; };
+		A64A0884163AEC2E0045A2CC /* threedays_WeekScheduleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = threedays_WeekScheduleView.h; sourceTree = "<group>"; };
+		A64A0885163AEC2E0045A2CC /* threedays_WeekScheduleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = threedays_WeekScheduleView.m; sourceTree = "<group>"; };
 		A6930563144CEBFC0012EEFA /* ThankYouViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThankYouViewController.h; sourceTree = "<group>"; };
 		A6930564144CEBFC0012EEFA /* ThankYouViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThankYouViewController.m; sourceTree = "<group>"; };
 		A69826E41354A488004A8258 /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = System/Library/Frameworks/EventKitUI.framework; sourceTree = SDKROOT; };
@@ -2213,6 +2222,12 @@
 		DE71544A102FE468005E6111 /* Stellar */ = {
 			isa = PBXGroup;
 			children = (
+				A64A0880163AEC2E0045A2CC /* threedays_LessonTimeView.h */,
+				A64A0881163AEC2E0045A2CC /* threedays_LessonTimeView.m */,
+				A64A0882163AEC2E0045A2CC /* threedays_WeekNameView.h */,
+				A64A0883163AEC2E0045A2CC /* threedays_WeekNameView.m */,
+				A64A0884163AEC2E0045A2CC /* threedays_WeekScheduleView.h */,
+				A64A0885163AEC2E0045A2CC /* threedays_WeekScheduleView.m */,
 				C79A9BB6163A4E7E001FAF48 /* LessonTimeView.h */,
 				C79A9BB7163A4E80001FAF48 /* LessonTimeView.m */,
 				C79A9BA016390494001FAF48 /* WeekScheduleView.h */,
@@ -3088,6 +3103,9 @@
 				C79A9BA216390494001FAF48 /* WeekScheduleView.m in Sources */,
 				C79A9BAD1639464C001FAF48 /* WeekNameView.m in Sources */,
 				C79A9BB8163A4E80001FAF48 /* LessonTimeView.m in Sources */,
+				A64A0886163AEC2E0045A2CC /* threedays_LessonTimeView.m in Sources */,
+				A64A0887163AEC2E0045A2CC /* threedays_WeekNameView.m in Sources */,
+				A64A0888163AEC2E0045A2CC /* threedays_WeekScheduleView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -39,7 +39,7 @@
             label.textColor = [UIColor whiteColor];
         }
         label.layer.borderColor = [UIColor blackColor].CGColor;
-        label.textAlignment = NSTextAlignmentCenter;
+        label.textAlignment = UITextAlignmentCenter;
         label.font = [UIFont fontWithName:@"AppleGothic" size:10];
         label.layer.borderWidth = 2;
         label.numberOfLines=0;
