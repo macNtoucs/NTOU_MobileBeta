@@ -50,7 +50,9 @@
     }
 }
 
-
+UISwipeGestureRecognizer *slideGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:scrollView action:@selector(handleGesture:)];
+slideGesture.direction = UISwipeGestureRecognizerDirectionLeft;
+slideGesture.delegate = self;
 
 - (void)drawRect:(CGRect)rect
 {

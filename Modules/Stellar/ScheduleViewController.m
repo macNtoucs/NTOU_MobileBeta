@@ -36,11 +36,14 @@
     center.y=58.5;
     center.x=0;
     scrollView.contentOffset = center;
-       [self.view addSubview:scrollView];
+    [self.view addSubview:scrollView];
     [scrollView release];
+  
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }
+
+
 -(void)viewDidAppear:(BOOL)animated
 {
     [self.navigationController.view addSubview:TopWeekcontroller];
