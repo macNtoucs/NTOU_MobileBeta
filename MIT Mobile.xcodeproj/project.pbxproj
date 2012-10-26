@@ -237,6 +237,7 @@
 		C79A9B9E1638FDC4001FAF48 /* ScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C79A9B9D1638FDC4001FAF48 /* ScheduleViewController.m */; };
 		C79A9BA216390494001FAF48 /* WeekScheduleView.m in Sources */ = {isa = PBXBuildFile; fileRef = C79A9BA116390494001FAF48 /* WeekScheduleView.m */; };
 		C79A9BAD1639464C001FAF48 /* WeekNameView.m in Sources */ = {isa = PBXBuildFile; fileRef = C79A9BAC1639464C001FAF48 /* WeekNameView.m */; };
+		C79A9BB8163A4E80001FAF48 /* LessonTimeView.m in Sources */ = {isa = PBXBuildFile; fileRef = C79A9BB7163A4E80001FAF48 /* LessonTimeView.m */; };
 		DE03763C1350F5080041DDBD /* MIT150Button.m in Sources */ = {isa = PBXBuildFile; fileRef = DE03763B1350F5080041DDBD /* MIT150Button.m */; };
 		DE0A62AC10CDAEA90058B2C2 /* MITBuildInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DE0A62AB10CDAEA90058B2C2 /* MITBuildInfo.m */; };
 		DE0F6B3411109BC500F064D6 /* AboutMITVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DE0F6B3311109BC500F064D6 /* AboutMITVC.m */; };
@@ -860,6 +861,8 @@
 		C79A9BA116390494001FAF48 /* WeekScheduleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeekScheduleView.m; sourceTree = "<group>"; };
 		C79A9BAB1639464B001FAF48 /* WeekNameView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeekNameView.h; sourceTree = "<group>"; };
 		C79A9BAC1639464C001FAF48 /* WeekNameView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeekNameView.m; sourceTree = "<group>"; };
+		C79A9BB6163A4E7E001FAF48 /* LessonTimeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LessonTimeView.h; path = ../../LessonTimeView.h; sourceTree = "<group>"; };
+		C79A9BB7163A4E80001FAF48 /* LessonTimeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LessonTimeView.m; path = ../../LessonTimeView.m; sourceTree = "<group>"; };
 		DE03763A1350F5080041DDBD /* MIT150Button.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIT150Button.h; sourceTree = "<group>"; };
 		DE03763B1350F5080041DDBD /* MIT150Button.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIT150Button.m; sourceTree = "<group>"; };
 		DE0A62AA10CDAEA90058B2C2 /* MITBuildInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MITBuildInfo.h; sourceTree = "<group>"; };
@@ -2210,6 +2213,8 @@
 		DE71544A102FE468005E6111 /* Stellar */ = {
 			isa = PBXGroup;
 			children = (
+				C79A9BB6163A4E7E001FAF48 /* LessonTimeView.h */,
+				C79A9BB7163A4E80001FAF48 /* LessonTimeView.m */,
 				C79A9BA016390494001FAF48 /* WeekScheduleView.h */,
 				C79A9BA116390494001FAF48 /* WeekScheduleView.m */,
 				C79A9BAB1639464B001FAF48 /* WeekNameView.h */,
@@ -3082,6 +3087,7 @@
 				C79A9B9E1638FDC4001FAF48 /* ScheduleViewController.m in Sources */,
 				C79A9BA216390494001FAF48 /* WeekScheduleView.m in Sources */,
 				C79A9BAD1639464C001FAF48 /* WeekNameView.m in Sources */,
+				C79A9BB8163A4E80001FAF48 /* LessonTimeView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
