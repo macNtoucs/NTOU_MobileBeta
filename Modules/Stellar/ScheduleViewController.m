@@ -13,12 +13,18 @@
 @end
 
 @implementation ScheduleViewController
+@synthesize  UpperleftView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        TopWeekcontroller = [[WeekNameView alloc] initWithFrame:CGRectMake(0, 64, 320, 40)];
+        TopWeekcontroller = [[WeekNameView alloc] initWithFrame:CGRectMake(55, 64, 320, 40)];
+        LeftViewController  = [[LessonTimeView alloc]initWithFrame:CGRectMake(0, 104, 55, 740)];
+        UpperleftView = [[UIView alloc] initWithFrame:CGRectMake(0,64, 55, 40)];
+        UpperleftView.backgroundColor = [UIColor colorWithRed:105.0/255 green:105.0/255 blue:105.0/255 alpha:1];
+        UpperleftView.layer.borderWidth = 2.0f;
+        UpperleftView.layer.borderColor = [UIColor blackColor].CGColor;
         // Custom initialization
     }
     return self;
@@ -46,14 +52,17 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
+    [self.navigationController.view addSubview:LeftViewController];
     [self.navigationController.view addSubview:TopWeekcontroller];
+    [self.navigationController.view addSubview:UpperleftView];
     [super viewDidAppear:animated];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
 {
     [TopWeekcontroller removeFromSuperview];
-
+    [LeftViewController removeFromSuperview];
+    [UpperleftView removeFromSuperview];
     [super viewWillDisappear:animated];
 }
 
@@ -61,6 +70,14 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)dealloc
+{
+    [UpperleftView release];
+    [TopWeekcontroller release];
+    [LeftViewController removeFromSuperview];
+    [super dealloc];
 }
 
 @end

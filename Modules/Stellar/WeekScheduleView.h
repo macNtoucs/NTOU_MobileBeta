@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 typedef enum {Session,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday } ColumnName;
-@interface WeekScheduleView : UIView <UIViewConr>
+@interface WeekScheduleView : UIView 
 
 @end
