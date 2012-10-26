@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "WeekScheduleView.h"
-@interface ScheduleViewController : UIViewController
+#import "WeekNameView.h"
+@interface ScheduleViewController : UIViewController<UIScrollViewDelegate>{
+    WeekNameView *TopWeekcontroller;
+}
 
 @end
