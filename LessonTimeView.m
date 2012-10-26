@@ -30,7 +30,7 @@
     for (int i=0;i<14;i++) {
         
         CGRect labelFrame ;
-        labelFrame = CGRectMake( 0,55*i, 55, 57 );
+        labelFrame = CGRectMake( 0,55*i, 30, 57 );
         UILabel* label = [[[UILabel alloc] initWithFrame: labelFrame] autorelease];
         label.text = [content objectAtIndex:i];
         label.backgroundColor = [UIColor colorWithRed:220.0/255 green:220.0/255 blue:220.0/255 alpha:1];

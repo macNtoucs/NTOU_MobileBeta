@@ -24,7 +24,7 @@
     NSArray* Array = [NSArray arrayWithObjects:[NSString stringWithFormat:@"Mon"],[NSString stringWithFormat:@"Tue"],[NSString stringWithFormat:@"Wed"],[NSString stringWithFormat:@"Thu"],[NSString stringWithFormat:@"Fri"],[NSString stringWithFormat:@"Sat"],nil];
     for (int i=0;i<6;i++) {
         CGRect labelFrame ;
-        labelFrame = CGRectMake( i*88, 0, 90, 40 );
+        labelFrame = CGRectMake( i*58, 0, 60, 40 );
             //labelFrame = CGRectMake( 0, 0, 55, 40 );
         UILabel* label = [[[UILabel alloc] initWithFrame: labelFrame] autorelease];
         label.text = [Array objectAtIndex:i];

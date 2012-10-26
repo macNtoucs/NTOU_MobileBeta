@@ -16,6 +16,10 @@
     WeekNameView *TopWeekcontroller;
     LessonTimeView *LeftViewController;
     UIView *UpperleftView;
+    UIScrollView *scrollView;
+    CGPoint scrollView_position;
 }
 @property(nonatomic, retain) UIView *UpperleftView;
+@property(nonatomic, retain)  WeekNameView *TopWeekcontroller;
+@property (nonatomic, retain)  UIScrollView *scrollView;
 @end
