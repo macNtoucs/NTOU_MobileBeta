@@ -8,7 +8,7 @@ build/
 *.perspectivev3
 xcuserdata/
 project.xcworkspace/
-
+~/*.project.pbxproj
 
 Resources/mit150/*.mp4
 

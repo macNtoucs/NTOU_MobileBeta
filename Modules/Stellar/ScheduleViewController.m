@@ -7,7 +7,7 @@
 //
 
 #import "ScheduleViewController.h"
-
+#import "DefinePixel.h"
 @interface ScheduleViewController ()
 
 @end
@@ -25,13 +25,13 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        TopWeekcontroller = [[WeekNameView alloc] initWithFrame:CGRectMake(30, 64, 320, 40)];
-        threedays_topweekController = [[threedays_WeekNameView alloc] initWithFrame:CGRectMake(30, 64, 320, 40)];
-        LeftViewController  = [[LessonTimeView alloc]initWithFrame:CGRectMake(0, 49, 30, 740)];
-        threedays_leftView = [[threedays_LessonTimeView alloc]initWithFrame:CGRectMake(0, 49, 30, 740)];
-        UpperleftView = [[UIView alloc] initWithFrame:CGRectMake(0,64, 30, 40)];
+
+        TopWeekcontroller = [[WeekNameView alloc] initWithFrame:CGRectMake(LeftBaseline, NavigationAndStatusHeight, UpperViewWidth*WeekTimes, UpperBaseline)];
+        LeftViewController  = [[LessonTimeView alloc]initWithFrame:CGRectMake(0, NavigationAndStatusHeight+UpperBaseline, LeftBaseline,(LeftViewHeight-TextLabelborderWidth)*ClassSessionTimes)];
+        UpperleftView = [[UIView alloc] initWithFrame:CGRectMake(0,NavigationAndStatusHeight, LeftBaseline, UpperBaseline)];
+
         UpperleftView.backgroundColor = [UIColor colorWithRed:105.0/255 green:105.0/255 blue:105.0/255 alpha:1];
-        UpperleftView.layer.borderWidth = 2.0f;
+        UpperleftView.layer.borderWidth = TextLabelborderWidth;
         UpperleftView.layer.borderColor = [UIColor blackColor].CGColor;
         // Custom initialization
     }
@@ -49,19 +49,11 @@
     [scrollView addSubview:weekschedule];
     isWeekScheduleInScrowView = true;
     scrollView.delegate=self;
-    scrollView.contentSize = CGSizeMake(370, 940);
+    scrollView.contentSize = CGSizeMake(LeftBaseline+(UpperViewWidth-TextLabelborderWidth)*WeekTimes, NavigationAndStatusHeight+UpperBaseline+(LeftViewHeight-TextLabelborderWidth)*ClassSessionTimes);
     scrollView.bounces = NO;
-    CGPoint center ;
-    center.y=55;
-    center.x=0;
-    scrollView.contentOffset = scrollView_position = center;
+
     [self.view addSubview:scrollView];
-    UIPinchGestureRecognizer *pinchRecognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(scale:)];
-    [pinchRecognizer setDelegate:self];
-    [scrollView addGestureRecognizer:pinchRecognizer];
-    
-    [weekschedule retain];
-    [threedays_weekschedule retain];
+
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }
@@ -72,18 +64,12 @@
     static CGPoint movement;
     movement.x += scrollView.contentOffset.x - scrollView_position.x;
     movement.y += scrollView.contentOffset.y - scrollView_position.y;
-    if (isWeekScheduleInScrowView){
+
     scrollView_position.x = scrollView.contentOffset.x;
     scrollView_position.y = scrollView.contentOffset.y;
     LeftViewController.transform = CGAffineTransformMakeTranslation(0, -movement.y);
     TopWeekcontroller.transform = CGAffineTransformMakeTranslation(-movement.x, 0);
-    }
-    else{
-        scrollView_position.x = scrollView.contentOffset.x;
-        scrollView_position.y = scrollView.contentOffset.y;
-        threedays_leftView.transform = CGAffineTransformMakeTranslation(0, -movement.y);
-        threedays_topweekController.transform = CGAffineTransformMakeTranslation(-movement.x, 0);
-    }
+    
 }
 
 -(void)scale:(UIPinchGestureRecognizer *)gesture{
