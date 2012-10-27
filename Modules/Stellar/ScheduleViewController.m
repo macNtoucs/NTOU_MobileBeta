@@ -18,9 +18,7 @@
 @synthesize  TopWeekcontroller;
 @synthesize LeftViewController;
 @synthesize weekschedule;
-@synthesize threedays_leftView;
-@synthesize threedays_topweekController;
-@synthesize threedays_weekschedule;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -102,15 +100,15 @@
 	
 }
 
--(void)scrollViewDidScroll:(UIScrollView *)scrollView
+-(void)scrollViewDidScroll:(UIScrollView *)scroll
 {
     
     static CGPoint movement;
-    movement.x += scrollView.contentOffset.x - scrollView_position.x;
-    movement.y += scrollView.contentOffset.y - scrollView_position.y;
+    movement.x += scroll.contentOffset.x - scrollView_position.x;
+    movement.y += scroll.contentOffset.y - scrollView_position.y;
 
-    scrollView_position.x = scrollView.contentOffset.x;
-    scrollView_position.y = scrollView.contentOffset.y;
+    scrollView_position.x = scroll.contentOffset.x;
+    scrollView_position.y = scroll.contentOffset.y;
     LeftViewController.transform = CGAffineTransformMakeTranslation(0, -movement.y);
     TopWeekcontroller.transform = CGAffineTransformMakeTranslation(-movement.x, 0);
 
@@ -144,8 +142,6 @@
     [TopWeekcontroller removeFromSuperview];
     [LeftViewController removeFromSuperview];
     [UpperleftView removeFromSuperview];
-    [threedays_leftView removeFromSuperview];
-    [threedays_topweekController removeFromSuperview];
     [super viewWillDisappear:animated];
 }
 
