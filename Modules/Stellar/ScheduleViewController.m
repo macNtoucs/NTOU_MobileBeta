@@ -33,29 +33,73 @@
         UpperleftView.backgroundColor = [UIColor colorWithRed:105.0/255 green:105.0/255 blue:105.0/255 alpha:1];
         UpperleftView.layer.borderWidth = TextLabelborderWidth;
         UpperleftView.layer.borderColor = [UIColor blackColor].CGColor;
-        // Custom initialization
+        
+        
+        
     }
     return self;
 }
+-(void) addNavRightButton {
+    UIToolbar *tools = [[UIToolbar alloc]
+                        initWithFrame:CGRectMake(0.0f, 0.0f, 103.0f, 44.01f)]; // 44.01 shifts it up 1px for some reason
+    tools.clearsContextBeforeDrawing = NO;
+    tools.clipsToBounds = NO;
+    tools.tintColor = [UIColor colorWithWhite:0.305f alpha:0.0f]; // closest I could get by eye to black, translucent style.
+    // anyone know how to get it perfect?
+    tools.barStyle = -1; // clear background
+    NSMutableArray *buttons = [[NSMutableArray alloc] initWithCapacity:3];
+    
+    // Create a standard refresh button.
+    UIBarButtonItem *bi = [[UIBarButtonItem alloc]
+                           initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(refresh:)];
+    [buttons addObject:bi];
+    [bi release];
+    
+    bi = [[UIBarButtonItem alloc]
+           initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:@selector(refresh:)];
+    [buttons addObject:bi];
+    [bi release];
+    // Add profile button.
+    bi = [[UIBarButtonItem alloc]
+          initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(refresh:)];
+    [buttons addObject:bi];
+    [bi release];
 
+    
+    // Add buttons to toolbar and toolbar to nav bar.
+    [tools setItems:buttons animated:NO];
+    [buttons release];
+    UIBarButtonItem *twoButtons = [[UIBarButtonItem alloc] initWithCustomView:tools];
+    [tools release];
+    self.navigationItem.rightBarButtonItem = twoButtons;
+    [twoButtons release];
+}
 
 - (void)viewDidLoad
 {
+
     scrollView = [[[UIScrollView alloc] init]autorelease];
     weekschedule = [[[WeekScheduleView alloc]initWithFrame:CGRectMake(0, 0, 320, 480)] autorelease];
-    threedays_weekschedule = [[[threedays_WeekScheduleView alloc]initWithFrame:CGRectMake(0, 0, 320, 480)] autorelease];
-
+    
+    [self addNavRightButton]; 
+    scrollView = [[UIScrollView alloc] init];
+   
     [scrollView setFrame:[[UIApplication sharedApplication] keyWindow].frame];
     [scrollView addSubview:weekschedule];
     isWeekScheduleInScrowView = true;
     scrollView.delegate=self;
+
     scrollView.contentSize = CGSizeMake(LeftBaseline+(UpperViewWidth-TextLabelborderWidth)*WeekTimes, NavigationAndStatusHeight+UpperBaseline+(LeftViewHeight-TextLabelborderWidth)*ClassSessionTimes);
+
     scrollView.bounces = NO;
 
     [self.view addSubview:scrollView];
 
+    [scrollView release];
+
+
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+	
 }
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
@@ -69,78 +113,11 @@
     scrollView_position.y = scrollView.contentOffset.y;
     LeftViewController.transform = CGAffineTransformMakeTranslation(0, -movement.y);
     TopWeekcontroller.transform = CGAffineTransformMakeTranslation(-movement.x, 0);
+
     
 }
 
--(void)scale:(UIPinchGestureRecognizer *)gesture{
-    if([gesture state] == UIGestureRecognizerStateEnded) {
-         [self.navigationController setNavigationBarHidden:YES];
-         [self.navigationController setNavigationBarHidden:NO];
-        lastScale = 1.0;
-        return;
-    }
-    
-    CGFloat scale = 1.0 - (lastScale - [(UIPinchGestureRecognizer*)gesture scale]);
-    //NSLog(@"scale = %f ",scale);
-    if (scale < 1 && !isWeekScheduleInScrowView){
-        [threedays_leftView removeFromSuperview];
-        [threedays_topweekController removeFromSuperview];
-        [threedays_weekschedule removeFromSuperview];
-        
-        [self.navigationController.view  addSubview:TopWeekcontroller];
-        [self.navigationController.view  addSubview:LeftViewController];
-        [scrollView addSubview:weekschedule];
-        isWeekScheduleInScrowView = true;
-    }
-    else if (scale >1 && isWeekScheduleInScrowView){
-        [weekschedule removeFromSuperview];
-        [LeftViewController removeFromSuperview];
-        [TopWeekcontroller removeFromSuperview];
-        
-        [scrollView addSubview:threedays_weekschedule];
-        [self.navigationController.view addSubview:threedays_topweekController];
-        [self.navigationController.view  addSubview:threedays_leftView];
-        isWeekScheduleInScrowView = false;
-    
-    }
-    lastScale = [gesture scale];
 
-}
-
-/*
--(void)handleGesture:(UISwipeGestureRecognizer *)gesture{
-    
-    if (scrollView.contentOffset.y<350){
-        if (gesture.direction == UISwipeGestureRecognizerDirectionLeft){
-            scrollView.scrollEnabled = NO;
-            scrollView.contentOffset = CGPointMake(264,55);
-            }
-        if (gesture.direction == UISwipeGestureRecognizerDirectionRight ){
-            scrollView.scrollEnabled = NO;
-            scrollView.contentOffset = CGPointMake(0,55);
-            }
-        }
-    else{
-        if (gesture.direction == UISwipeGestureRecognizerDirectionLeft){
-            scrollView.scrollEnabled = NO;
-            scrollView.contentOffset = CGPointMake(264,440);
-        }
-        if (gesture.direction == UISwipeGestureRecognizerDirectionRight ){
-            scrollView.scrollEnabled = NO;
-            scrollView.contentOffset = CGPointMake(0,440);
-        }
-        
-    }
-     if (gesture.direction == UISwipeGestureRecognizerDirectionUp){
-     scrollView.contentOffset = CGPointMake(0,240);
-     }
-     if (gesture.direction == UISwipeGestureRecognizerDirectionLeft){
-     scrollView.contentOffset = CGPointMake(0,-240);
-     }
-    scrollView.scrollEnabled = YES;
-}
-
-*/
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
 {
