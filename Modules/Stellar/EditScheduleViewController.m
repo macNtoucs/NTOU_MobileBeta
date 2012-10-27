@@ -1,24 +1,24 @@
 //
-//  OutCampusViewController.m
+//  EditScheduleViewController.m
 //  MIT Mobile
 //
-//  Created by mac_hero on 12/10/16.
+//  Created by mac_hero on 12/10/27.
 //
 //
 
-#import "OutCampusViewController.h"
+#import "EditScheduleViewController.h"
 
-@interface OutCampusViewController ()
+@interface EditScheduleViewController ()
 
 @end
 
-@implementation OutCampusViewController
-@synthesize emergencyData;
+@implementation EditScheduleViewController
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
-        emergencyData =  [[EmergencyData sharedData] primaryPhoneNumbers];
+        self.view.backgroundColor = [UIColor clearColor];
     }
     return self;
 }
@@ -26,7 +26,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.tableView applyStandardColors];
+
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -53,26 +53,36 @@
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return [emergencyData count]-3;
+    return 3;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-   
-     static NSString *SecondaryCellIdentifier = @"SecondaryCell";
     
-    SecondaryGroupedTableViewCell *cell = (SecondaryGroupedTableViewCell *)[tableView dequeueReusableCellWithIdentifier:SecondaryCellIdentifier];
-    if (cell == nil) {
-        cell = [[[SecondaryGroupedTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:SecondaryCellIdentifier] autorelease];
+    
+    static NSString *CellIdentifier = @"Cell";
+    UITableViewCell *cell  = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
+    UISwitch *switchview = [[UISwitch alloc] initWithFrame:CGRectZero];
+    
+    switch (indexPath.row) {
+        case 0:
+            cell.textLabel.text = @"星期";
+            cell.detailTextLabel.text = @"周一 - 週六";
+            cell.detailTextLabel.textColor = [UIColor blueColor];
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            break;
+        case 1:
+            cell.textLabel.text = @"節次";
+            cell.detailTextLabel.text = @"14";
+            cell.detailTextLabel.textColor = [UIColor blueColor];
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            break;
+            case 2:
+          cell.accessoryView = switchview;
+            cell.textLabel.text = @"顯示課堂時間";
+            break;
     }
     
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    if ([self.title isEqualToString: @"警察局"]){
-        NSDictionary *anEntry = [emergencyData objectAtIndex:indexPath.row+3];
-        cell.textLabel.text = [anEntry objectForKey:@"title"];
-        cell.secondaryTextLabel.text = [anEntry objectForKey:@"phone"];
-        cell.accessoryView = [UIImageView accessoryViewWithMITType:MITAccessoryViewPhone];
-    }
     return cell;
 }
 
@@ -119,17 +129,14 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSDictionary *anEntry;
-    NSString *phoneNumber;
-    NSURL *aURL;
-    anEntry = [emergencyData objectAtIndex:indexPath.row+3];
-    phoneNumber = [[anEntry objectForKey:@"phone"]
-                   stringByReplacingOccurrencesOfString:@"."
-                   withString:@""];
-    aURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel://%@", phoneNumber]];
-    if ([[UIApplication sharedApplication] canOpenURL:aURL]) {
-        [[UIApplication sharedApplication] openURL:aURL];
-    }
+    // Navigation logic may go here. Create and push another view controller.
+    /*
+     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
+     // ...
+     // Pass the selected object to the new view controller.
+     [self.navigationController pushViewController:detailViewController animated:YES];
+     [detailViewController release];
+     */
 }
 
 @end

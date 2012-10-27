@@ -54,12 +54,12 @@
     [bi release];
     
     bi = [[UIBarButtonItem alloc]
-           initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:@selector(refresh:)];
+           initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
     [buttons addObject:bi];
     [bi release];
     // Add profile button.
     bi = [[UIBarButtonItem alloc]
-          initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(refresh:)];
+          initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(edit)];
     [buttons addObject:bi];
     [bi release];
 
@@ -71,6 +71,14 @@
     [tools release];
     self.navigationItem.rightBarButtonItem = twoButtons;
     [twoButtons release];
+}
+-(void)edit{
+    editSchedule = [[EditScheduleViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    UINavigationController* tempNavCon = [[UINavigationController alloc]    initWithRootViewController:editSchedule];
+    tempNavCon.navigationBar.tintColor = [UIColor blackColor];
+    [self presentModalViewController:tempNavCon animated:YES];
+    [tempNavCon release];
+    [editSchedule release];
 }
 
 - (void)viewDidLoad
