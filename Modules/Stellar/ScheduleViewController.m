@@ -83,7 +83,6 @@
 
 - (void)viewDidLoad
 {
-
     scrollView = [[[UIScrollView alloc] init]autorelease];
     weekschedule = [[[WeekScheduleView alloc]initWithFrame:CGRectMake(0, 0, 320, 480)] autorelease];
     
