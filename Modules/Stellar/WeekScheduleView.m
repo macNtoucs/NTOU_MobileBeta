@@ -7,7 +7,7 @@
 //
 
 #import "WeekScheduleView.h"
-#import "DefinePixel.h"
+#import "ClassDataBase.h"
 @implementation WeekScheduleView
 
 
@@ -31,7 +31,7 @@
 // An empty implementation adversely affects performance during animation.
 
 -(void)drawColumnTextLabelNumber:(NSInteger)number Content:(NSArray *)content {
-    for (int i=0;i<[content count] && i < ClassSessionTimes && number<=WeekTimes ;i++) {
+    for (int i=0;i<[content count] && i < [[ClassDataBase sharedData] FetchClassSessionTimes] && number<=[[ClassDataBase sharedData] FetchWeekTimes] ;i++) {
         int sameClass=i;
         while (1) {
             if (i+1<[content count] ) {
