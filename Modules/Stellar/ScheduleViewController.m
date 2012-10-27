@@ -96,7 +96,7 @@
     
     CGFloat scale = 1.0 - (lastScale - [(UIPinchGestureRecognizer*)gesture scale]);
     //NSLog(@"scale = %f ",scale);
-    if (scale > 1 && !isWeekScheduleInScrowView){
+    if (scale < 1 && !isWeekScheduleInScrowView){
         [threedays_leftView removeFromSuperview];
         [threedays_topweekController removeFromSuperview];
         [threedays_weekschedule removeFromSuperview];
@@ -106,7 +106,7 @@
         [scrollView addSubview:weekschedule];
         isWeekScheduleInScrowView = true;
     }
-    else if (scale <1 && isWeekScheduleInScrowView){
+    else if (scale >1 && isWeekScheduleInScrowView){
         [weekschedule removeFromSuperview];
         [LeftViewController removeFromSuperview];
         [TopWeekcontroller removeFromSuperview];
