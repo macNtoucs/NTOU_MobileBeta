@@ -26,50 +26,68 @@
         UpperleftView.backgroundColor = [UIColor colorWithRed:105.0/255 green:105.0/255 blue:105.0/255 alpha:1];
         UpperleftView.layer.borderWidth = 2.0f;
         UpperleftView.layer.borderColor = [UIColor blackColor].CGColor;
-        // Custom initialization
+        
+        
+        
     }
     return self;
 }
+-(void) addNavRightButton {
+    UIToolbar *tools = [[UIToolbar alloc]
+                        initWithFrame:CGRectMake(0.0f, 0.0f, 103.0f, 44.01f)]; // 44.01 shifts it up 1px for some reason
+    tools.clearsContextBeforeDrawing = NO;
+    tools.clipsToBounds = NO;
+    tools.tintColor = [UIColor colorWithWhite:0.305f alpha:0.0f]; // closest I could get by eye to black, translucent style.
+    // anyone know how to get it perfect?
+    tools.barStyle = -1; // clear background
+    NSMutableArray *buttons = [[NSMutableArray alloc] initWithCapacity:3];
+    
+    // Create a standard refresh button.
+    UIBarButtonItem *bi = [[UIBarButtonItem alloc]
+                           initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(refresh:)];
+    [buttons addObject:bi];
+    [bi release];
+    
+    bi = [[UIBarButtonItem alloc]
+           initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:@selector(refresh:)];
+    [buttons addObject:bi];
+    [bi release];
+    // Add profile button.
+    bi = [[UIBarButtonItem alloc]
+          initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(refresh:)];
+    [buttons addObject:bi];
+    [bi release];
 
+    
+    // Add buttons to toolbar and toolbar to nav bar.
+    [tools setItems:buttons animated:NO];
+    [buttons release];
+    UIBarButtonItem *twoButtons = [[UIBarButtonItem alloc] initWithCustomView:tools];
+    [tools release];
+    self.navigationItem.rightBarButtonItem = twoButtons;
+    [twoButtons release];
+}
 
 - (void)viewDidLoad
 {
+    
+    [self addNavRightButton]; 
     scrollView = [[UIScrollView alloc] init];
     //UISwipeGestureRecognizer *slideGesture ;
     [scrollView setFrame:[[UIApplication sharedApplication] keyWindow].frame];
     [scrollView addSubview:[[[WeekScheduleView alloc]initWithFrame:CGRectMake(0, 0, 320, 480)] autorelease]];
     scrollView.delegate=self;
-    scrollView.contentSize = CGSizeMake(370, 940);
+    scrollView.contentSize = CGSizeMake(378, 940);
     scrollView.bounces = NO;
     CGPoint center ;
     center.y=55;
     center.x=0;
     scrollView.contentOffset = scrollView_position = center;
-    [self.view addSubview:scrollView];/*
-    slideGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleGesture:)];
-    slideGesture.delegate=self;
-    scrollView.userInteractionEnabled = YES;
-    slideGesture.direction = UISwipeGestureRecognizerDirectionLeft;
-    [scrollView addGestureRecognizer:slideGesture];
-    
-    slideGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleGesture:)];
-    slideGesture.delegate=self;
-    slideGesture.direction = UISwipeGestureRecognizerDirectionRight;
-    [scrollView addGestureRecognizer:slideGesture];
-   
-    slideGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleGesture:)];
-    slideGesture.delegate=self;
-    slideGesture.direction = UISwipeGestureRecognizerDirectionUp;
-    [scrollView addGestureRecognizer:slideGesture];
-   
-    slideGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleGesture:)];
-    slideGesture.delegate=self;
-    slideGesture.direction = UISwipeGestureRecognizerDirectionDown;
-    [scrollView addGestureRecognizer:slideGesture];*/
-    
+    [self.view addSubview:scrollView];
+     
     [scrollView release];
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+	
 }
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
@@ -79,7 +97,6 @@
     
     movement.x += scrollView.contentOffset.x - scrollView_position.x;
     movement.y += scrollView.contentOffset.y - scrollView_position.y;
-    NSLog(@"%f,%f",movement.x,movement.y);
     scrollView_position.x = scrollView.contentOffset.x;
     
     scrollView_position.y = scrollView.contentOffset.y;
@@ -89,40 +106,7 @@
 }
 
 
-/*
--(void)handleGesture:(UISwipeGestureRecognizer *)gesture{
-    
-    if (scrollView.contentOffset.y<350){
-        if (gesture.direction == UISwipeGestureRecognizerDirectionLeft){
-            scrollView.scrollEnabled = NO;
-            scrollView.contentOffset = CGPointMake(264,55);
-            }
-        if (gesture.direction == UISwipeGestureRecognizerDirectionRight ){
-            scrollView.scrollEnabled = NO;
-            scrollView.contentOffset = CGPointMake(0,55);
-            }
-        }
-    else{
-        if (gesture.direction == UISwipeGestureRecognizerDirectionLeft){
-            scrollView.scrollEnabled = NO;
-            scrollView.contentOffset = CGPointMake(264,440);
-        }
-        if (gesture.direction == UISwipeGestureRecognizerDirectionRight ){
-            scrollView.scrollEnabled = NO;
-            scrollView.contentOffset = CGPointMake(0,440);
-        }
-        
-    }
-     if (gesture.direction == UISwipeGestureRecognizerDirectionUp){
-     scrollView.contentOffset = CGPointMake(0,240);
-     }
-     if (gesture.direction == UISwipeGestureRecognizerDirectionLeft){
-     scrollView.contentOffset = CGPointMake(0,-240);
-     }
-    scrollView.scrollEnabled = YES;
-}
 
-*/
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
 {
