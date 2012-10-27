@@ -7,7 +7,7 @@
 //
 
 #import "threedays_LessonTimeView.h"
-
+#import "DefinePixel.h"
 @implementation threedays_LessonTimeView
 
 - (id)initWithFrame:(CGRect)frame
