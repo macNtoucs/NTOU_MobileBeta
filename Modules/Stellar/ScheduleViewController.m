@@ -7,7 +7,7 @@
 //
 
 #import "ScheduleViewController.h"
-
+#import "DefinePixel.h"
 @interface ScheduleViewController ()
 
 @end
@@ -20,11 +20,11 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        TopWeekcontroller = [[WeekNameView alloc] initWithFrame:CGRectMake(30, 64, 320, 40)];
-        LeftViewController  = [[LessonTimeView alloc]initWithFrame:CGRectMake(0, 49, 30, 740)];
-        UpperleftView = [[UIView alloc] initWithFrame:CGRectMake(0,64, 30, 40)];
+        TopWeekcontroller = [[WeekNameView alloc] initWithFrame:CGRectMake(LeftBaseline, NavigationAndStatusHeight, UpperViewWidth*WeekTimes, UpperBaseline)];
+        LeftViewController  = [[LessonTimeView alloc]initWithFrame:CGRectMake(0, NavigationAndStatusHeight+UpperBaseline, LeftBaseline,(LeftViewHeight-TextLabelborderWidth)*ClassSessionTimes)];
+        UpperleftView = [[UIView alloc] initWithFrame:CGRectMake(0,NavigationAndStatusHeight, LeftBaseline, UpperBaseline)];
         UpperleftView.backgroundColor = [UIColor colorWithRed:105.0/255 green:105.0/255 blue:105.0/255 alpha:1];
-        UpperleftView.layer.borderWidth = 2.0f;
+        UpperleftView.layer.borderWidth = TextLabelborderWidth;
         UpperleftView.layer.borderColor = [UIColor blackColor].CGColor;
         // Custom initialization
     }
@@ -39,12 +39,8 @@
     [scrollView setFrame:[[UIApplication sharedApplication] keyWindow].frame];
     [scrollView addSubview:[[[WeekScheduleView alloc]initWithFrame:CGRectMake(0, 0, 320, 480)] autorelease]];
     scrollView.delegate=self;
-    scrollView.contentSize = CGSizeMake(370, 940);
+    scrollView.contentSize = CGSizeMake(LeftBaseline+(UpperViewWidth-TextLabelborderWidth)*WeekTimes, NavigationAndStatusHeight+UpperBaseline+(LeftViewHeight-TextLabelborderWidth)*ClassSessionTimes);
     scrollView.bounces = NO;
-    CGPoint center ;
-    center.y=55;
-    center.x=0;
-    scrollView.contentOffset = scrollView_position = center;
     [self.view addSubview:scrollView];/*
     slideGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleGesture:)];
     slideGesture.delegate=self;
@@ -79,7 +75,6 @@
     
     movement.x += scrollView.contentOffset.x - scrollView_position.x;
     movement.y += scrollView.contentOffset.y - scrollView_position.y;
-    NSLog(@"%f,%f",movement.x,movement.y);
     scrollView_position.x = scrollView.contentOffset.x;
     
     scrollView_position.y = scrollView.contentOffset.y;

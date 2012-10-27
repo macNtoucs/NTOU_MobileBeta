@@ -1,6 +1,5 @@
 #import "Secret.h"
 
-#error You must customize this file to your settings and comment out (or delete) this line
 
 NSString * const TwitterOAuthConsumerKey = @"twitterkey";
 NSString * const TwitterOAuthConsumerSecret = @"twittersecret";

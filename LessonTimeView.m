@@ -7,7 +7,7 @@
 //
 
 #import "LessonTimeView.h"
-
+#import "DefinePixel.h"
 @implementation LessonTimeView
 
 - (id)initWithFrame:(CGRect)frame
@@ -27,10 +27,10 @@
 {
     NSArray* content=[NSArray arrayWithObjects:[NSString stringWithFormat:@"8:20   1    9:10"],[NSString stringWithFormat:@"8:20   2    9:10"],[NSString stringWithFormat:@"3"],[NSString stringWithFormat:@"4"],[NSString stringWithFormat:@"5"],[NSString stringWithFormat:@"6"],[NSString stringWithFormat:@"7"],[NSString stringWithFormat:@"8"],[NSString stringWithFormat:@"9"],[NSString stringWithFormat:@"10"],[NSString stringWithFormat:@"11"],[NSString stringWithFormat:@"12"],[NSString stringWithFormat:@"13"],[NSString stringWithFormat:@"14"], nil];
     
-    for (int i=0;i<14;i++) {
+    for (int i=0;i<ClassSessionTimes;i++) {
         
         CGRect labelFrame ;
-        labelFrame = CGRectMake( 0,55*i, 30, 57 );
+        labelFrame = CGRectMake( 0,(LeftViewHeight-TextLabelborderWidth)*i, LeftBaseline, LeftViewHeight );
         UILabel* label = [[[UILabel alloc] initWithFrame: labelFrame] autorelease];
         label.text = [content objectAtIndex:i];
         label.backgroundColor = [UIColor colorWithRed:220.0/255 green:220.0/255 blue:220.0/255 alpha:1];
@@ -41,7 +41,7 @@
         label.layer.borderColor = [UIColor blackColor].CGColor;
         label.textAlignment = NSTextAlignmentCenter;
         label.font = [UIFont fontWithName:@"AppleGothic" size:10];
-        label.layer.borderWidth = 2;
+        label.layer.borderWidth = TextLabelborderWidth;
         label.numberOfLines=0;
         label.lineBreakMode = UILineBreakModeWordWrap;
         [self addSubview: label];

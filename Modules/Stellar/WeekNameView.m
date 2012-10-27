@@ -7,7 +7,7 @@
 //
 
 #import "WeekNameView.h"
-
+#import "DefinePixel.h"
 @implementation WeekNameView
 
 - (id)initWithFrame:(CGRect)frame
@@ -22,9 +22,9 @@
 
 -(void)drawRowWeekNameTextLabel{
     NSArray* Array = [NSArray arrayWithObjects:[NSString stringWithFormat:@"Mon"],[NSString stringWithFormat:@"Tue"],[NSString stringWithFormat:@"Wed"],[NSString stringWithFormat:@"Thu"],[NSString stringWithFormat:@"Fri"],[NSString stringWithFormat:@"Sat"],nil];
-    for (int i=0;i<6;i++) {
+    for (int i=0;i<WeekTimes;i++) {
         CGRect labelFrame ;
-        labelFrame = CGRectMake( i*58, 0, 60, 40 );
+        labelFrame = CGRectMake( i*(UpperViewWidth-TextLabelborderWidth), 0, UpperViewWidth,  UpperBaseline);
             //labelFrame = CGRectMake( 0, 0, 55, 40 );
         UILabel* label = [[[UILabel alloc] initWithFrame: labelFrame] autorelease];
         label.text = [Array objectAtIndex:i];
@@ -32,7 +32,7 @@
             //label.backgroundColor = [UIColor colorWithRed:105.0/255 green:105.0/255 blue:105.0/255 alpha:1];
         label.textAlignment = NSTextAlignmentCenter;
         label.layer.borderColor = [UIColor blackColor].CGColor;
-        label.layer.borderWidth = 2;
+        label.layer.borderWidth = TextLabelborderWidth;
         
         [self addSubview: label];
     }
