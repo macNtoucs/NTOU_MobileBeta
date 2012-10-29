@@ -7,7 +7,7 @@
 //
 
 #import "ScheduleViewController.h"
-#import "DefinePixel.h"
+#import "ClassDataBase.h"
 @interface ScheduleViewController ()
 
 @end
@@ -24,8 +24,8 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
 
-        TopWeekcontroller = [[WeekNameView alloc] initWithFrame:CGRectMake(LeftBaseline, NavigationAndStatusHeight, UpperViewWidth*WeekTimes, UpperBaseline)];
-        LeftViewController  = [[LessonTimeView alloc]initWithFrame:CGRectMake(0, NavigationAndStatusHeight+UpperBaseline, LeftBaseline,(LeftViewHeight-TextLabelborderWidth)*ClassSessionTimes)];
+        TopWeekcontroller = [[WeekNameView alloc] initWithFrame:CGRectMake(LeftBaseline, NavigationAndStatusHeight, UpperViewWidth*[[ClassDataBase sharedData] FetchWeekTimes], UpperBaseline)];
+        LeftViewController  = [[LessonTimeView alloc]initWithFrame:CGRectMake(0, NavigationAndStatusHeight+UpperBaseline, LeftBaseline,(LeftViewHeight-TextLabelborderWidth)*[[ClassDataBase sharedData] FetchClassSessionTimes])];
         UpperleftView = [[UIView alloc] initWithFrame:CGRectMake(0,NavigationAndStatusHeight, LeftBaseline, UpperBaseline)];
 
         UpperleftView.backgroundColor = [UIColor colorWithRed:105.0/255 green:105.0/255 blue:105.0/255 alpha:1];
@@ -37,6 +37,11 @@
     }
     return self;
 }
+
+-(IBAction)Add:(id)sender{
+    
+}
+
 -(void) addNavRightButton {
     UIToolbar *tools = [[UIToolbar alloc]
                         initWithFrame:CGRectMake(0.0f, 0.0f, 103.0f, 44.01f)]; // 44.01 shifts it up 1px for some reason
@@ -49,17 +54,17 @@
     
     // Create a standard refresh button.
     UIBarButtonItem *bi = [[UIBarButtonItem alloc]
-                           initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(refresh:)];
+                           initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(Add)];
     [buttons addObject:bi];
     [bi release];
     
     bi = [[UIBarButtonItem alloc]
-           initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:@selector(refresh:)];
+           initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
     [buttons addObject:bi];
     [bi release];
     // Add profile button.
     bi = [[UIBarButtonItem alloc]
-          initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(refresh:)];
+          initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(edit)];
     [buttons addObject:bi];
     [bi release];
 
@@ -72,10 +77,17 @@
     self.navigationItem.rightBarButtonItem = twoButtons;
     [twoButtons release];
 }
+-(void)edit{
+    editSchedule = [[EditScheduleViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    UINavigationController* tempNavCon = [[UINavigationController alloc]    initWithRootViewController:editSchedule];
+    tempNavCon.navigationBar.tintColor = [UIColor blackColor];
+    [self presentModalViewController:tempNavCon animated:YES];
+    [tempNavCon release];
+    [editSchedule release];
+}
 
 - (void)viewDidLoad
 {
-
     scrollView = [[[UIScrollView alloc] init]autorelease];
     weekschedule = [[[WeekScheduleView alloc]initWithFrame:CGRectMake(0, 0, 320, 480)] autorelease];
     
@@ -87,7 +99,7 @@
     isWeekScheduleInScrowView = true;
     scrollView.delegate=self;
 
-    scrollView.contentSize = CGSizeMake(LeftBaseline+(UpperViewWidth-TextLabelborderWidth)*WeekTimes, NavigationAndStatusHeight+UpperBaseline+(LeftViewHeight-TextLabelborderWidth)*ClassSessionTimes);
+    scrollView.contentSize = CGSizeMake(LeftBaseline+(UpperViewWidth-TextLabelborderWidth)*[[ClassDataBase sharedData] FetchWeekTimes], NavigationAndStatusHeight+UpperBaseline+(LeftViewHeight-TextLabelborderWidth)*[[ClassDataBase sharedData] FetchClassSessionTimes]);
 
     scrollView.bounces = NO;
 

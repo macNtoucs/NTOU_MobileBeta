@@ -7,7 +7,7 @@
 //
 
 #import "WeekNameView.h"
-#import "DefinePixel.h"
+#import "ClassDataBase.h"
 @implementation WeekNameView
 
 - (id)initWithFrame:(CGRect)frame
@@ -22,7 +22,7 @@
 
 -(void)drawRowWeekNameTextLabel{
     NSArray* Array = [NSArray arrayWithObjects:[NSString stringWithFormat:@"Mon"],[NSString stringWithFormat:@"Tue"],[NSString stringWithFormat:@"Wed"],[NSString stringWithFormat:@"Thu"],[NSString stringWithFormat:@"Fri"],[NSString stringWithFormat:@"Sat"],nil];
-    for (int i=0;i<WeekTimes;i++) {
+    for (int i=0;i<[[ClassDataBase sharedData] FetchWeekTimes];i++) {
         CGRect labelFrame ;
         labelFrame = CGRectMake( i*(UpperViewWidth-TextLabelborderWidth), 0, UpperViewWidth,  UpperBaseline);
             //labelFrame = CGRectMake( 0, 0, 55, 40 );

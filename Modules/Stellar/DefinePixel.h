@@ -18,7 +18,5 @@
 
 #define TextLabelborderWidth 2
 
-#define WeekTimes 6
-#define ClassSessionTimes 14
 
 #endif
