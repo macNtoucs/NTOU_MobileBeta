@@ -63,27 +63,40 @@
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell  = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
     UISwitch *switchview = [[UISwitch alloc] initWithFrame:CGRectZero];
-    
+    UISlider *sliderView = [[UISlider alloc]initWithFrame:CGRectMake(174,12,120,23)];
+    sliderView.maximumValue = 14;
+    sliderView.minimumValue = 1;
     switch (indexPath.row) {
         case 0:
-            cell.textLabel.text = @"星期";
-            cell.detailTextLabel.text = @"周一  - 週六";
+            cell.textLabel.text = @"一周上課天數";
+            cell.detailTextLabel.text = @"";
             cell.detailTextLabel.textColor = [UIColor blueColor];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             break;
         case 1:
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.textLabel.text = @"節次";
-            cell.detailTextLabel.text = @"14";
+             cell.accessoryView = sliderView;
+            [(UISlider *)cell.accessoryView addTarget:self action:@selector(sliderValueChange:) forControlEvents:UIControlEventValueChanged];
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%.0f",sliderView.value];
             cell.detailTextLabel.textColor = [UIColor blueColor];
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+           
             break;
-            case 2:
+        case 2:
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
           cell.accessoryView = switchview;
             cell.textLabel.text = @"顯示課堂時間";
             break;
     }
     
     return cell;
+}
+
+- (void)sliderValueChange:(id)sender{
+    UISlider *theSlider = (UISlider *)sender;
+    UITableViewCell *cell = (UITableViewCell *)theSlider.superview;
+   // UITableView *tableView = (UITableView *)cell.superview;
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%.0f",theSlider.value];
 }
 
 /*
