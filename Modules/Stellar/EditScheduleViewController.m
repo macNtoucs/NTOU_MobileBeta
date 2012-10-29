@@ -67,7 +67,7 @@
     switch (indexPath.row) {
         case 0:
             cell.textLabel.text = @"星期";
-            cell.detailTextLabel.text = @"周一 - 週六";
+            cell.detailTextLabel.text = @"周一  - 週六";
             cell.detailTextLabel.textColor = [UIColor blueColor];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             break;
