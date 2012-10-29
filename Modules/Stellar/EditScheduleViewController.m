@@ -84,7 +84,8 @@
             break;
         case 2:
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-          cell.accessoryView = switchview;
+              cell.accessoryView = switchview;
+            [(UISwitch *)cell.accessoryView addTarget:self action:@selector(switchValueChange:) forControlEvents:UIControlEventTouchUpInside];
             cell.textLabel.text = @"顯示課堂時間";
             break;
     }
@@ -92,10 +93,14 @@
     return cell;
 }
 
+-(void)switchValueChange:(id)sender{
+    UISwitch *theSwitch = (UISwitch *)sender;
+    willbeset_showClassTimes = theSwitch.on;
+}
 - (void)sliderValueChange:(id)sender{
     UISlider *theSlider = (UISlider *)sender;
     UITableViewCell *cell = (UITableViewCell *)theSlider.superview;
-   // UITableView *tableView = (UITableView *)cell.superview;
+    willbeset_ClassSessionTimes = theSlider.value;
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%.0f",theSlider.value];
 }
 

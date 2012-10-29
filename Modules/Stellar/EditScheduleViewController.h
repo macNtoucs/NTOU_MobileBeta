@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface EditScheduleViewController : UITableViewController 
+@interface EditScheduleViewController : UITableViewController {
+    int willbeset_WeekTimes;
+    int willbeset_ClassSessionTimes;
+    bool willbeset_showClassTimes;
+
+}
 
 @end
