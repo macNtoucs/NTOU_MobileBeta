@@ -39,7 +39,8 @@
 }
 
 -(IBAction)Add:(id)sender{
-    
+    ClassAdd* addView = [[ClassAdd alloc] initWithNibName:@"ClassAdd" bundle:nil];
+    [self.navigationController.view addSubview:addView.view];
 }
 
 -(void) addNavRightButton {
@@ -54,7 +55,7 @@
     
     // Create a standard refresh button.
     UIBarButtonItem *bi = [[UIBarButtonItem alloc]
-                           initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(Add)];
+                           initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(Add:)];
     [buttons addObject:bi];
     [bi release];
     
