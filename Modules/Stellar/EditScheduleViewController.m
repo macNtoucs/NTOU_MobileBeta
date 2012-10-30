@@ -23,8 +23,13 @@
     return self;
 }
 
+-(void) addNavRightButton {
+    UIBarButtonItem * right = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(finishSetting)];
+    [self.navigationItem setRightBarButtonItem:right animated:YES];
+}
 - (void)viewDidLoad
 {
+      [self addNavRightButton]; 
     [super viewDidLoad];
 
     // Uncomment the following line to preserve selection between presentations.
@@ -55,7 +60,9 @@
     // Return the number of rows in the section.
     return 3;
 }
-
+-(void) finishSetting {
+[self dismissModalViewControllerAnimated:YES];
+}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
@@ -147,14 +154,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     [detailViewController release];
-     */
+    if (indexPath.row==0){
+        SetWeekTimesViewController * setweek = [SetWeekTimesViewController new];
+        [self.navigationController pushViewController:setweek animated:YES];
+        setweek.title = @"設定一周天數";
+    }
+        
 }
 
 @end

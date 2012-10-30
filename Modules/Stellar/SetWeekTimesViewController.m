@@ -46,14 +46,14 @@
 {
 #warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return 7;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -63,8 +63,40 @@
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
-    
-    // Configure the cell...
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    switch (indexPath.row) {
+        case 0:
+            cell.textLabel.text = @"星期一";
+           // cell.accessoryType =UITableViewCellAccessoryCheckmark;
+           cell.accessoryType =  UITableViewCellAccessoryNone;
+            break;
+        case 1:
+            cell.textLabel.text = @"星期二";
+            cell.accessoryType =  UITableViewCellAccessoryNone;
+            break;
+        case 2:
+            cell.textLabel.text = @"星期三";
+            cell.accessoryType =  UITableViewCellAccessoryNone;
+            break;
+        case 3:
+            cell.textLabel.text = @"星期四";
+            cell.accessoryType =  UITableViewCellAccessoryNone;
+            break;
+        case 4:
+            cell.textLabel.text = @"星期五";
+            cell.accessoryType =  UITableViewCellAccessoryNone;
+            break;
+        case 5:
+            cell.textLabel.text = @"星期六";
+            cell.accessoryType =  UITableViewCellAccessoryNone;
+            break;
+        case 6:
+            cell.textLabel.text = @"星期日";
+            cell.accessoryType =  UITableViewCellAccessoryNone;
+            break;
+        default:
+            break;
+    }
     
     return cell;
 }
@@ -112,14 +144,59 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     [detailViewController release];
-     */
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    switch (indexPath.row) {
+        case 0:
+            if (cell.accessoryType == UITableViewCellAccessoryNone)
+            cell.accessoryType =UITableViewCellAccessoryCheckmark;
+            else
+                cell.accessoryType = UITableViewCellAccessoryNone;
+            break;
+        case 1:
+            if (cell.accessoryType == UITableViewCellAccessoryNone)
+                cell.accessoryType =UITableViewCellAccessoryCheckmark;
+            else
+                cell.accessoryType = UITableViewCellAccessoryNone;
+            break;
+
+        case 2:
+            if (cell.accessoryType == UITableViewCellAccessoryNone)
+                cell.accessoryType =UITableViewCellAccessoryCheckmark;
+            else
+                cell.accessoryType = UITableViewCellAccessoryNone;
+            break;
+
+        case 3:
+            if (cell.accessoryType == UITableViewCellAccessoryNone)
+                cell.accessoryType =UITableViewCellAccessoryCheckmark;
+            else
+                cell.accessoryType = UITableViewCellAccessoryNone;
+            break;
+
+        case 4:
+            if (cell.accessoryType == UITableViewCellAccessoryNone)
+                cell.accessoryType =UITableViewCellAccessoryCheckmark;
+            else
+                cell.accessoryType = UITableViewCellAccessoryNone;
+            break;
+
+        case 5:
+            if (cell.accessoryType == UITableViewCellAccessoryNone)
+                cell.accessoryType =UITableViewCellAccessoryCheckmark;
+            else
+                cell.accessoryType = UITableViewCellAccessoryNone;
+            break;
+
+        case 6:
+            if (cell.accessoryType == UITableViewCellAccessoryNone)
+                cell.accessoryType =UITableViewCellAccessoryCheckmark;
+            else
+                cell.accessoryType = UITableViewCellAccessoryNone;
+            break;
+
+        default:
+            break;
+    }
 }
 
 @end
