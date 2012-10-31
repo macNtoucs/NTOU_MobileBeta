@@ -17,15 +17,19 @@
     WeekNameView *TopWeekcontroller;
     LessonTimeView *LeftViewController;
     WeekScheduleView *weekschedule;
+    ClassInfoViewController *classInfo;
     UIView *UpperleftView;
     UIScrollView *scrollView;
     CGPoint scrollView_position;
     CGFloat lastScale;
     bool isWeekScheduleInScrowView; //if 3days then set to be false 
 }
++(void) showClassInfo;
+
 @property(nonatomic, retain) UIView *UpperleftView;
 @property(nonatomic, retain)  WeekNameView *TopWeekcontroller;
 @property (nonatomic, retain)  UIScrollView *scrollView;
 @property (nonatomic, retain) LessonTimeView *LeftViewController;
 @property (nonatomic, retain)WeekScheduleView *weekschedule;
+@property (nonatomic, retain) ClassInfoViewController *classInfo;
 @end

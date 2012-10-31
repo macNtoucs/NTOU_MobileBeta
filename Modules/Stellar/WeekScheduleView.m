@@ -10,8 +10,8 @@
 #import "ClassDataBase.h"
 @implementation WeekScheduleView
 @synthesize WhetherTapped;
-
-
+@synthesize parent_ViewController;
+@class ScheduleViewController;
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -23,6 +23,11 @@
    
     return self;
 }
+
+-(void)getParent_ViewController:(ScheduleViewController *)recieve{
+    parent_ViewController = recieve;
+}
+
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
     return YES;
@@ -44,6 +49,10 @@
             label.changeColor = YES;
         }
     }
+    else {
+        [parent_ViewController showClassInfo];
+    }
+    
 }
 
 -(void)drawColumnTextLabelNumber:(NSInteger)number Content:(NSArray *)content {
