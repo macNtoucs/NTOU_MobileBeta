@@ -1,7 +1,4 @@
 #import "Secret.h"
-
-
-
 NSString * const TwitterOAuthConsumerKey = @"twitterkey";
 NSString * const TwitterOAuthConsumerSecret = @"twittersecret";
 
