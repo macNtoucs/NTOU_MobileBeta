@@ -13,7 +13,7 @@
 @end
 
 @implementation ClassAdd
-
+@synthesize delegate;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -39,6 +39,7 @@
                          _bottomView.frame = basketBottomFrame;
                      }
                      completion:^(BOOL finished){
+                         [delegate changeTapEnable];
                          [self.view removeFromSuperview];
                      }];
     
@@ -49,22 +50,6 @@
     [super viewDidAppear:animated];
 }
 
-/*-(void)viewDidUnload:(BOOL)animated
-{
-    CGRect basketTopFrame = CGRectMake(basketTopFrame.origin.x, basketTopFrame.origin.y, basketTopFrame.size.width, -basketTopFrame.size.height);
-    CGRect basketBottomFrame = CGRectMake(basketBottomFrame.origin.x, self.view.bounds.size.height+22, basketBottomFrame.size.width, basketTopFrame.size.height);
-    [super viewDidUnload];
-    [UIView animateWithDuration:0.5
-                          delay:0.5
-                        options: UIViewAnimationCurveEaseOut
-                     animations:^{
-                         _topView.frame = basketTopFrame;
-                         _bottomView.frame = basketBottomFrame;
-                     }
-                     completion:^(BOOL finished){
-                         NSLog(@"Done!");
-                     }];
-}*/
 
 - (void)viewDidLoad
 {
@@ -89,6 +74,7 @@
                          _bottomView.frame = basketBottomFrame;
                      } 
                      completion:^(BOOL finished){
+                         [delegate changeTapEnable];
                      }];
     // Do any additional setup after loading the view from its nib.
 }

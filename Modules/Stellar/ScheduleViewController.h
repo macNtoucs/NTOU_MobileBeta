@@ -12,7 +12,7 @@
 #import "LessonTimeView.h"
 #import "EditScheduleViewController.h"
 #import "ClassAdd.h"
-@interface ScheduleViewController : UIViewController<UIScrollViewDelegate,UIGestureRecognizerDelegate>{
+@interface ScheduleViewController : UIViewController<UIScrollViewDelegate,UIGestureRecognizerDelegate,ClassAdddelegate>{
     EditScheduleViewController *editSchedule;
     WeekNameView *TopWeekcontroller;
     LessonTimeView *LeftViewController;

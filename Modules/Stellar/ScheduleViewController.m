@@ -38,8 +38,21 @@
     return self;
 }
 
+-(void)changeTapEnable
+{
+    static BOOL change = NO;
+    if (change) {
+        self.weekschedule.WhetherTapped = NO;
+        change = NO;
+    } else {
+        self.weekschedule.WhetherTapped = YES;
+        change = YES;
+    }
+}
+
 -(IBAction)Add:(id)sender{
     ClassAdd* addView = [[ClassAdd alloc] initWithNibName:@"ClassAdd" bundle:nil];
+    addView.delegate = self;
     [self.navigationController.view addSubview:addView.view];
 }
 
