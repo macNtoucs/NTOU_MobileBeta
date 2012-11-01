@@ -12,6 +12,7 @@
 #import "LessonTimeView.h"
 #import "EditScheduleViewController.h"
 #import "ClassAdd.h"
+
 @interface ScheduleViewController : UIViewController<UIScrollViewDelegate,UIGestureRecognizerDelegate,ClassAdddelegate>{
     EditScheduleViewController *editSchedule;
     WeekNameView *TopWeekcontroller;
@@ -24,7 +25,7 @@
     CGFloat lastScale;
     bool isWeekScheduleInScrowView; //if 3days then set to be false 
 }
-+(void) showClassInfo;
+-(void) showClassInfo:(ClassLabelBasis *)label;
 
 @property(nonatomic, retain) UIView *UpperleftView;
 @property(nonatomic, retain)  WeekNameView *TopWeekcontroller;

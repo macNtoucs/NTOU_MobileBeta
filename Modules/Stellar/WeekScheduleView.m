@@ -50,7 +50,7 @@
         }
     }
     else {
-        [parent_ViewController showClassInfo];
+        [parent_ViewController showClassInfo:label];
     }
     
 }

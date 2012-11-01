@@ -2,12 +2,12 @@
 //  ClassInfoViewController.h
 //  MIT Mobile
 //
-//  Created by MacAir on 12/11/1.
+//  Created by mac_hero on 12/11/1.
 //
 //
 
 #import <UIKit/UIKit.h>
-
-@interface ClassInfoViewController : UITableViewController
-
+#import "ClassLabelBasis.h"
+@interface ClassInfoViewController : UIViewController
+@property int tag;
 @end

@@ -40,11 +40,11 @@
     return self;
 }
 
--(void)showClassInfo{
-    classInfo = [[[ClassInfoViewController alloc]initWithStyle:UITableViewStyleGrouped]autorelease];
-    UINavigationController* tempNavCon = [[[UINavigationController alloc]    initWithRootViewController:classInfo]autorelease];
-     tempNavCon.navigationBar.tintColor = [UIColor blackColor];
-     [self presentModalViewController:tempNavCon animated:YES];
+-(void) showClassInfo:(ClassLabelBasis *)label{
+    classInfo = [[[ClassInfoViewController alloc] init]autorelease];
+    classInfo.title = label.text;
+    classInfo.tag = label.tag;
+    [self.navigationController pushViewController:classInfo animated:YES];
 }
 
 -(void)changeTapEnable
@@ -170,6 +170,11 @@
     [self.navigationController setNavigationBarHidden:NO];
     
     [super viewDidAppear:animated];
+}
+
+-(void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
