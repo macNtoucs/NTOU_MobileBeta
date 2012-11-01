@@ -201,7 +201,10 @@
 		91402E42163E749A00B04EE5 /* ClassAdd.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91402E3C163E749A00B04EE5 /* ClassAdd.xib */; };
 		91402E43163E749A00B04EE5 /* ClassDataBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 91402E3E163E749A00B04EE5 /* ClassDataBase.m */; };
 		91402E44163E749A00B04EE5 /* EditScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91402E40163E749A00B04EE5 /* EditScheduleViewController.m */; };
+		91402E4D163E96DD00B04EE5 /* SetWeekTimesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91402E4B163E96DC00B04EE5 /* SetWeekTimesViewController.m */; };
 		A63DEE281353CF37001C52BF /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A63DEE271353CF37001C52BF /* EventKit.framework */; };
+		A6894EFD16419BD200E98910 /* ClassAddBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = A6894EFA16419BD200E98910 /* ClassAddBackground.m */; };
+		A6894EFE16419BD200E98910 /* ClassLabelBasis.m in Sources */ = {isa = PBXBuildFile; fileRef = A6894EFC16419BD200E98910 /* ClassLabelBasis.m */; };
 		A6930566144CEBFC0012EEFA /* ThankYouViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6930564144CEBFC0012EEFA /* ThankYouViewController.m */; };
 		A69826E51354A488004A8258 /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A69826E41354A488004A8258 /* EventKitUI.framework */; };
 		A6A82E38145624F20075EB28 /* LibraryTextElementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A82E37145624F20075EB28 /* LibraryTextElementViewController.m */; };
@@ -803,7 +806,13 @@
 		91402E3E163E749A00B04EE5 /* ClassDataBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassDataBase.m; sourceTree = "<group>"; };
 		91402E3F163E749A00B04EE5 /* EditScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditScheduleViewController.h; sourceTree = "<group>"; };
 		91402E40163E749A00B04EE5 /* EditScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditScheduleViewController.m; sourceTree = "<group>"; };
+		91402E4A163E96DC00B04EE5 /* SetWeekTimesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetWeekTimesViewController.h; sourceTree = "<group>"; };
+		91402E4B163E96DC00B04EE5 /* SetWeekTimesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetWeekTimesViewController.m; sourceTree = "<group>"; };
 		A63DEE271353CF37001C52BF /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
+		A6894EF916419BD200E98910 /* ClassAddBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassAddBackground.h; sourceTree = "<group>"; };
+		A6894EFA16419BD200E98910 /* ClassAddBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassAddBackground.m; sourceTree = "<group>"; };
+		A6894EFB16419BD200E98910 /* ClassLabelBasis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassLabelBasis.h; sourceTree = "<group>"; };
+		A6894EFC16419BD200E98910 /* ClassLabelBasis.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassLabelBasis.m; sourceTree = "<group>"; };
 		A6930563144CEBFC0012EEFA /* ThankYouViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThankYouViewController.h; sourceTree = "<group>"; };
 		A6930564144CEBFC0012EEFA /* ThankYouViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThankYouViewController.m; sourceTree = "<group>"; };
 		A69826E41354A488004A8258 /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = System/Library/Frameworks/EventKitUI.framework; sourceTree = SDKROOT; };
@@ -2225,11 +2234,17 @@
 		DE71544A102FE468005E6111 /* Stellar */ = {
 			isa = PBXGroup;
 			children = (
+				A6894EF916419BD200E98910 /* ClassAddBackground.h */,
+				A6894EFA16419BD200E98910 /* ClassAddBackground.m */,
+				A6894EFB16419BD200E98910 /* ClassLabelBasis.h */,
+				A6894EFC16419BD200E98910 /* ClassLabelBasis.m */,
 				91402E3A163E749A00B04EE5 /* ClassAdd.h */,
 				91402E3B163E749A00B04EE5 /* ClassAdd.m */,
 				91402E3C163E749A00B04EE5 /* ClassAdd.xib */,
 				91402E3D163E749A00B04EE5 /* ClassDataBase.h */,
 				91402E3E163E749A00B04EE5 /* ClassDataBase.m */,
+				91402E4A163E96DC00B04EE5 /* SetWeekTimesViewController.h */,
+				91402E4B163E96DC00B04EE5 /* SetWeekTimesViewController.m */,
 				91402E3F163E749A00B04EE5 /* EditScheduleViewController.h */,
 				91402E40163E749A00B04EE5 /* EditScheduleViewController.m */,
 				910662EF163BCFD700D01C81 /* DefinePixel.h */,
@@ -3112,6 +3127,9 @@
 				91402E41163E749A00B04EE5 /* ClassAdd.m in Sources */,
 				91402E43163E749A00B04EE5 /* ClassDataBase.m in Sources */,
 				91402E44163E749A00B04EE5 /* EditScheduleViewController.m in Sources */,
+				91402E4D163E96DD00B04EE5 /* SetWeekTimesViewController.m in Sources */,
+				A6894EFD16419BD200E98910 /* ClassAddBackground.m in Sources */,
+				A6894EFE16419BD200E98910 /* ClassLabelBasis.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
