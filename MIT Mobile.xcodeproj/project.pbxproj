@@ -205,6 +205,7 @@
 		A63DEE281353CF37001C52BF /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A63DEE271353CF37001C52BF /* EventKit.framework */; };
 		A6894EFD16419BD200E98910 /* ClassAddBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = A6894EFA16419BD200E98910 /* ClassAddBackground.m */; };
 		A6894EFE16419BD200E98910 /* ClassLabelBasis.m in Sources */ = {isa = PBXBuildFile; fileRef = A6894EFC16419BD200E98910 /* ClassLabelBasis.m */; };
+		A6894F021641A05400E98910 /* ClassInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6894F011641A05400E98910 /* ClassInfoViewController.m */; };
 		A6930566144CEBFC0012EEFA /* ThankYouViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6930564144CEBFC0012EEFA /* ThankYouViewController.m */; };
 		A69826E51354A488004A8258 /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A69826E41354A488004A8258 /* EventKitUI.framework */; };
 		A6A82E38145624F20075EB28 /* LibraryTextElementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A82E37145624F20075EB28 /* LibraryTextElementViewController.m */; };
@@ -813,6 +814,8 @@
 		A6894EFA16419BD200E98910 /* ClassAddBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassAddBackground.m; sourceTree = "<group>"; };
 		A6894EFB16419BD200E98910 /* ClassLabelBasis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassLabelBasis.h; sourceTree = "<group>"; };
 		A6894EFC16419BD200E98910 /* ClassLabelBasis.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassLabelBasis.m; sourceTree = "<group>"; };
+		A6894F001641A05400E98910 /* ClassInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassInfoViewController.h; sourceTree = "<group>"; };
+		A6894F011641A05400E98910 /* ClassInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassInfoViewController.m; sourceTree = "<group>"; };
 		A6930563144CEBFC0012EEFA /* ThankYouViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThankYouViewController.h; sourceTree = "<group>"; };
 		A6930564144CEBFC0012EEFA /* ThankYouViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThankYouViewController.m; sourceTree = "<group>"; };
 		A69826E41354A488004A8258 /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = System/Library/Frameworks/EventKitUI.framework; sourceTree = SDKROOT; };
@@ -2234,6 +2237,8 @@
 		DE71544A102FE468005E6111 /* Stellar */ = {
 			isa = PBXGroup;
 			children = (
+				A6894F001641A05400E98910 /* ClassInfoViewController.h */,
+				A6894F011641A05400E98910 /* ClassInfoViewController.m */,
 				A6894EF916419BD200E98910 /* ClassAddBackground.h */,
 				A6894EFA16419BD200E98910 /* ClassAddBackground.m */,
 				A6894EFB16419BD200E98910 /* ClassLabelBasis.h */,
@@ -3130,6 +3135,7 @@
 				91402E4D163E96DD00B04EE5 /* SetWeekTimesViewController.m in Sources */,
 				A6894EFD16419BD200E98910 /* ClassAddBackground.m in Sources */,
 				A6894EFE16419BD200E98910 /* ClassLabelBasis.m in Sources */,
+				A6894F021641A05400E98910 /* ClassInfoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

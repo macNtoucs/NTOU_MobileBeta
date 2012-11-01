@@ -18,6 +18,8 @@
 @synthesize  TopWeekcontroller;
 @synthesize LeftViewController;
 @synthesize weekschedule;
+@synthesize classInfo;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -36,6 +38,13 @@
         
     }
     return self;
+}
+
+-(void)showClassInfo{
+    classInfo = [[[ClassInfoViewController alloc]initWithStyle:UITableViewStyleGrouped]autorelease];
+    UINavigationController* tempNavCon = [[[UINavigationController alloc]    initWithRootViewController:classInfo]autorelease];
+     tempNavCon.navigationBar.tintColor = [UIColor blackColor];
+     [self presentModalViewController:tempNavCon animated:YES];
 }
 
 -(void)changeTapEnable
@@ -104,7 +113,7 @@
 {
     scrollView = [[[UIScrollView alloc] init]autorelease];
     weekschedule = [[[WeekScheduleView alloc]initWithFrame:CGRectMake(0, 0, 320, 480)] autorelease];
-    
+    [weekschedule getParent_ViewController:self];
     [self addNavRightButton]; 
     scrollView = [[UIScrollView alloc] init];
    

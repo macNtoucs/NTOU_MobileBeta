@@ -1,24 +1,24 @@
 //
-//  EditScheduleViewController.m
+//  ClassInfoViewController.m
 //  MIT Mobile
 //
-//  Created by mac_hero on 12/10/27.
+//  Created by MacAir on 12/11/1.
 //
 //
 
-#import "EditScheduleViewController.h"
+#import "ClassInfoViewController.h"
 
-@interface EditScheduleViewController ()
+@interface ClassInfoViewController ()
 
 @end
 
-@implementation EditScheduleViewController
+@implementation ClassInfoViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
-        self.view.backgroundColor = [UIColor clearColor];
+        // Custom initialization
     }
     return self;
 }
@@ -27,9 +27,10 @@
     UIBarButtonItem * right = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(finishSetting)];
     [self.navigationItem setRightBarButtonItem:right animated:YES];
 }
+
 - (void)viewDidLoad
 {
-      [self addNavRightButton]; 
+   [self addNavRightButton];
     [super viewDidLoad];
 
     // Uncomment the following line to preserve selection between presentations.
@@ -37,6 +38,9 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+-(void) finishSetting {
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -51,64 +55,54 @@
 {
 #warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 3;
+    if (section==0)return 3;
+    else return 2;
 }
--(void) finishSetting {
-[self dismissModalViewControllerAnimated:YES];
-}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-     
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell  = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
-    UISwitch *switchview = [[UISwitch alloc] initWithFrame:CGRectZero];
-    UISlider *sliderView = [[UISlider alloc]initWithFrame:CGRectMake(174,12,120,23)];
-    sliderView.maximumValue = 14;
-    sliderView.minimumValue = 1;
+    
+    if (indexPath.section==0)
     switch (indexPath.row) {
         case 0:
-            cell.textLabel.text = @"一周上課天數";
-            cell.detailTextLabel.text = @"";
-            cell.detailTextLabel.textColor = [UIColor blueColor];
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            cell.textLabel.text = @"課堂:";
             break;
         case 1:
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.textLabel.text = @"節次";
-             cell.accessoryView = sliderView;
-            [(UISlider *)cell.accessoryView addTarget:self action:@selector(sliderValueChange:) forControlEvents:UIControlEventValueChanged];
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"%.0f",sliderView.value];
-            cell.detailTextLabel.textColor = [UIColor blueColor];
-           
+            cell.textLabel.text = @"教授:";
             break;
+
         case 2:
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-              cell.accessoryView = switchview;
-            [(UISwitch *)cell.accessoryView addTarget:self action:@selector(switchValueChange:) forControlEvents:UIControlEventTouchUpInside];
-            cell.textLabel.text = @"顯示課堂時間";
+            cell.textLabel.text = @"上課地點:";
             break;
+        default:
+            break;
+    }
+    else{
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        switch (indexPath.row) {
+            case 0:
+                cell.textLabel.text = @"公告事項";
+                break;
+            case 1:
+                cell.textLabel.text = @"筆記";
+                break;
+                
+            default:
+                break;
+        }
     }
     
     return cell;
-}
-
--(void)switchValueChange:(id)sender{
-    UISwitch *theSwitch = (UISwitch *)sender;
-    willbeset_showClassTimes = theSwitch.on;
-}
-- (void)sliderValueChange:(id)sender{
-    UISlider *theSlider = (UISlider *)sender;
-    UITableViewCell *cell = (UITableViewCell *)theSlider.superview;
-    willbeset_ClassSessionTimes = theSlider.value;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%.0f",theSlider.value];
 }
 
 /*
@@ -154,12 +148,14 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row==0){
-        SetWeekTimesViewController * setweek = [SetWeekTimesViewController new];
-        [self.navigationController pushViewController:setweek animated:YES];
-        setweek.title = @"設定一周天數";
-    }
-        
+    // Navigation logic may go here. Create and push another view controller.
+    /*
+     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
+     // ...
+     // Pass the selected object to the new view controller.
+     [self.navigationController pushViewController:detailViewController animated:YES];
+     [detailViewController release];
+     */
 }
 
 @end
