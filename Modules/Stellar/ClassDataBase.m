@@ -10,15 +10,15 @@
 
 @implementation ClassDataBase
 @synthesize ScheduleInfo;
-static ClassDataBase *sharedEmergencyData = nil;
+static ClassDataBase *sharedData = nil;
 
 + (ClassDataBase *)sharedData {
     @synchronized(self) {
-        if (sharedEmergencyData == nil) {
-            sharedEmergencyData = [[super allocWithZone:NULL] init]; 
+        if (sharedData == nil) {
+            sharedData = [[super allocWithZone:NULL] init]; 
         }
     }
-    return sharedEmergencyData;
+    return sharedData;
 }
 
 -(id)init

@@ -66,7 +66,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    
+     
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell  = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
     UISwitch *switchview = [[UISwitch alloc] initWithFrame:CGRectZero];

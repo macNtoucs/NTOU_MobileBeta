@@ -23,8 +23,14 @@
     return self;
 }
 
+-(void) addNavRightButton {
+    UIBarButtonItem * right = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(finishSetting)];
+    [self.navigationItem setRightBarButtonItem:right animated:YES];
+}
+
 - (void)viewDidLoad
 {
+   [self addNavRightButton];
     [super viewDidLoad];
 
     // Uncomment the following line to preserve selection between presentations.
@@ -32,6 +38,9 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+-(void) finishSetting {
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -46,22 +55,52 @@
 {
 #warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    if (section==0)return 3;
+    else return 2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    // Configure the cell...
+    static NSString *CellIdentifier = @"Cell";
+    UITableViewCell *cell  = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
+    
+    if (indexPath.section==0)
+    switch (indexPath.row) {
+        case 0:
+            cell.textLabel.text = @"課堂:";
+            break;
+        case 1:
+            cell.textLabel.text = @"教授:";
+            break;
+
+        case 2:
+            cell.textLabel.text = @"上課地點:";
+            break;
+        default:
+            break;
+    }
+    else{
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        switch (indexPath.row) {
+            case 0:
+                cell.textLabel.text = @"公告事項";
+                break;
+            case 1:
+                cell.textLabel.text = @"筆記";
+                break;
+                
+            default:
+                break;
+        }
+    }
     
     return cell;
 }
