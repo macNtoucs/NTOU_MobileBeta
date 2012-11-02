@@ -70,6 +70,8 @@
         case 1:
             headerTitle = @"市區公車";
             break;
+        case 2:
+            headerTitle=@"其它";
         default:
             break;
     }
@@ -79,7 +81,7 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 2;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -90,6 +92,9 @@
             break;
         case 1:
             return 2;
+            break;
+        case 2:
+            return 1;
             break;
         default:
             return 0;
@@ -128,12 +133,19 @@
         case 1:
             switch (indexPath.row) {
                 case 0:
-                    cell.textLabel.text = @"往市區";
+                    cell.textLabel.text = @"八斗子  → 海大  → 火車站";
                     break;
                 case 1:
-                    cell.textLabel.text = @"往八斗子";
+                    cell.textLabel.text = @"火車站  → 海大  → 八斗子";
                     break;
                 default:
+                    break;
+            }
+            break;
+        case 2:
+            switch (indexPath.row) {
+                case 0:
+                    cell.textLabel.text= @"基隆火車站";
                     break;
             }
         default:

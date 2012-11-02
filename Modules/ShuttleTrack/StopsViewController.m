@@ -61,7 +61,10 @@
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 4;
+     if (go)
+         return 4;
+    else
+         return 5;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -71,7 +74,7 @@
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
-    
+    if (go){
     switch (indexPath.row) {
         case 0:
             cell.textLabel.text = @"體育館";
@@ -87,6 +90,27 @@
             break;
         default:
             break;
+      }
+    }
+    else {
+        switch (indexPath.row) {
+            case 0:
+                cell.textLabel.text = @"體育館";
+                break;
+            case 1:
+                cell.textLabel.text = @"濱海校門";
+                break;
+            case 2:
+                cell.textLabel.text = @"祥豐校門";
+                break;
+            case 3:
+                cell.textLabel.text = @"中正校門";
+                break;
+            case 4:
+                cell.textLabel.text = @"火車站";
+                break;
+        }
+    
     }
     // Configure the cell...
     
