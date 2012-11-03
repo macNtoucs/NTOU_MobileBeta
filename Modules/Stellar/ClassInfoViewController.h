@@ -2,12 +2,17 @@
 //  ClassInfoViewController.h
 //  MIT Mobile
 //
-//  Created by mac_hero on 12/11/1.
+//  Created by mini server on 12/11/3.
 //
 //
 
 #import <UIKit/UIKit.h>
 #import "ClassLabelBasis.h"
-@interface ClassInfoViewController : UIViewController
+#import "ClassInfoView.h"
+@interface ClassInfoViewController : UITabBarController<UITabBarControllerDelegate>
+{
+    UIImageView* tabBarArrow;
+}
 @property int tag;
+@property (nonatomic, retain) UIImageView* tabBarArrow;
 @end

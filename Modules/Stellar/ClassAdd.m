@@ -69,19 +69,18 @@
     CGRect basketTopFrame = CGRectMake(_topView.frame.origin.x, -_topView.frame.origin.y, _topView.frame.size.width, _topView.frame.size.height);
     CGRect basketBottomFrame = CGRectMake(_bottomView.frame.origin.x, self.view.bounds.size.height+22, _bottomView.frame.size.width, _bottomView.frame.size.height);
     [UIView animateWithDuration:0.5
-                          delay:0.2
+                          delay:0
                         options: UIViewAnimationCurveEaseOut
                      animations:^{
                          _topView.frame = basketTopFrame;
                          _bottomView.frame = basketBottomFrame;
                      }
                      completion:^(BOOL finished){
-                         [delegate changeTapEnable];
                          [self.view removeFromSuperview];
                      }];
+    [delegate changeTapEnable];
     
 }
-
 
 -(void)viewDidAppear:(BOOL)animated
 {
@@ -112,8 +111,8 @@
                          _bottomView.frame = basketBottomFrame;
                      } 
                      completion:^(BOOL finished){
-                         [delegate changeTapEnable];
                      }];
+    [delegate changeTapEnable];
    /* [[NSNotificationCenter defaultCenter] addObserver:_classNameField
                                              selector:@selector(keyboardShowAndDismiss:)
                                                  name:UIKeyboardWillShowNotification
