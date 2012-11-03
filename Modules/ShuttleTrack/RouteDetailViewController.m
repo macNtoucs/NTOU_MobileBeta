@@ -20,6 +20,10 @@
 @synthesize waitTime2_103;
 @synthesize waitTime1_104;
 @synthesize waitTime2_104;
+@synthesize station_waitTime1_103;
+@synthesize station_waitTime1_104;
+@synthesize station_waitTime2_103;
+@synthesize station_waitTime2_104;
 @synthesize anotherButton;
 @synthesize refreshTimer;
 @synthesize lastRefresh;
@@ -50,6 +54,13 @@
     if (waitTime2_103) [ waitTime  addObject:waitTime2_103 ];
     [ waitTime  addObject:waitTime1_104 ];
     if (waitTime2_104) [ waitTime  addObject:waitTime2_104 ];
+}
+-(void) addStationURL:(NSString *)_103First and:(NSString *)_103Second and:(NSString *)_104First and:(NSString *)_104Second{
+    station_waitTime1_103 = [NSURL URLWithString:_103First];
+    station_waitTime2_103 = [NSURL URLWithString:_103Second];
+    station_waitTime1_104 = [NSURL URLWithString:_104First];
+    station_waitTime2_104 = [NSURL URLWithString:_104Second];
+    
 }
 
 -(void)goBackMode:(BOOL)go{
