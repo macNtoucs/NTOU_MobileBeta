@@ -13,7 +13,7 @@
 @end
 
 @implementation ClassAdd
-
+@synthesize delegate;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -29,17 +29,53 @@
 }
 
 -(IBAction)cancel:(id)sender{
-    [self.view removeFromSuperview];
+    CGRect basketTopFrame = CGRectMake(_topView.frame.origin.x, -_topView.frame.origin.y, _topView.frame.size.width, _topView.frame.size.height);
+    CGRect basketBottomFrame = CGRectMake(_bottomView.frame.origin.x, self.view.bounds.size.height+22, _bottomView.frame.size.width, _bottomView.frame.size.height);
+    [UIView animateWithDuration:0.5
+                          delay:0.2
+                        options: UIViewAnimationCurveEaseOut
+                     animations:^{
+                         _topView.frame = basketTopFrame;
+                         _bottomView.frame = basketBottomFrame;
+                     }
+                     completion:^(BOOL finished){
+                         [delegate changeTapEnable];
+                         [self.view removeFromSuperview];
+                     }];
+    
 }
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+}
+
 
 - (void)viewDidLoad
 {
+    
+    CGRect basketTopFrame = _topView.frame;
+    _topView.frame = CGRectMake(basketTopFrame.origin.x, -28, basketTopFrame.size.width, basketTopFrame.size.height);
+    CGRect basketBottomFrame = _bottomView.frame;
+    _bottomView.frame = CGRectMake(basketBottomFrame.origin.x, self.view.bounds.size.height+22, basketBottomFrame.size.width, basketTopFrame.size.height);
     [super viewDidLoad];
     [_topView addSubview:_cancelButton];
     [_topView addSubview:_addButton];
     [_bottomView addSubview:_classNameField];
     [_bottomView addSubview:_teacherNameField];
     [_bottomView addSubview:_roomNameField];
+    
+    
+    [UIView animateWithDuration:0.5
+                          delay:0.2
+                        options: UIViewAnimationCurveEaseOut
+                     animations:^{
+                         _topView.frame = basketTopFrame;
+                         _bottomView.frame = basketBottomFrame;
+                     } 
+                     completion:^(BOOL finished){
+                         [delegate changeTapEnable];
+                     }];
     // Do any additional setup after loading the view from its nib.
 }
 
