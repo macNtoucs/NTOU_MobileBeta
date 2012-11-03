@@ -63,7 +63,7 @@
     [waitTime addObject:station_waitTime1_103];
     [waitTime addObject:station_waitTime2_103];
     [waitTime addObject:station_waitTime1_104];
-   // [waitTime addObject:station_waitTime2_104];
+    [waitTime addObject:station_waitTime2_104];
 }
 
 -(void)goBackMode:(BOOL)go{
@@ -271,6 +271,7 @@
     
   
     cell.detailTextLabel.text =[item objectAtIndex:indexPath.row];
+    NSLog(@"%@",cell.detailTextLabel.text);
    // cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.textLabel.adjustsFontSizeToFitWidth = YES;
     cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16];
