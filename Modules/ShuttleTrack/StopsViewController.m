@@ -222,7 +222,7 @@
                              and: @"http://ebus.klcba.gov.tw/KLBusWeb/pda/estimate_result.jsp?rid=104202&sid=163"
              ];
         }
-        else{
+        else if (indexPath.row==3){
             //中正校門
             [detail addRoutesURL:@"http://ebus.klcba.gov.tw/KLBusWeb/pda/estimate_result.jsp?rid=103201&sid=102"
                              and: nil
@@ -232,7 +232,12 @@
         }
     
     
-    
+        else {
+            //火車站
+            [detail addStationURL:@"http://ebus.klcba.gov.tw/KLBusWeb/pda/estimate_result.jsp?" and:@"http://ebus.klcba.gov.tw/KLBusWeb/pda/estimate_result.jsp?rid=103202&sid=28" and:@"http://ebus.klcba.gov.tw/KLBusWeb/pda/estimate_stop.jsp?rid=104201"
+                and:@" http://ebus.klcba.gov.tw/KLBusWeb/pda/estimate_stop.jsp?rid=104202"];
+        }
+
     
     }
     [self.navigationController pushViewController:detail animated:YES];

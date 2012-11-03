@@ -46,21 +46,24 @@
 }
 
 -(void) addRoutesURL:(NSString *)_103First and:(NSString *)_103Second and:(NSString *)_104First and:(NSString *)_104Second{
-    waitTime1_103 = [NSURL URLWithString:_103First];
-    waitTime2_103 = [NSURL URLWithString:_103Second];
-    waitTime1_104 = [NSURL URLWithString:_104First];
-    waitTime2_104 = [NSURL URLWithString:_104Second];
+    waitTime1_103 = [[NSURL alloc ]initWithString:_103First ];
+    waitTime2_103 = [[NSURL alloc ]initWithString:_103Second];
+    waitTime1_104 = [[NSURL alloc ]initWithString:_104First];
+    waitTime2_104 = [[NSURL alloc ]initWithString:_104Second];
     [ waitTime  addObject:waitTime1_103 ];
     if (waitTime2_103) [ waitTime  addObject:waitTime2_103 ];
     [ waitTime  addObject:waitTime1_104 ];
     if (waitTime2_104) [ waitTime  addObject:waitTime2_104 ];
 }
 -(void) addStationURL:(NSString *)_103First and:(NSString *)_103Second and:(NSString *)_104First and:(NSString *)_104Second{
-    station_waitTime1_103 = [NSURL URLWithString:_103First];
-    station_waitTime2_103 = [NSURL URLWithString:_103Second];
-    station_waitTime1_104 = [NSURL URLWithString:_104First];
-    station_waitTime2_104 = [NSURL URLWithString:_104Second];
-    
+    station_waitTime1_103 = [[NSURL alloc]initWithString:_103First];
+    station_waitTime2_103 = [[NSURL alloc]initWithString:_103Second];
+    station_waitTime1_104 = [[NSURL alloc]initWithString:_104First];
+    station_waitTime2_104 = [[NSURL alloc]initWithString:_104Second];
+    [waitTime addObject:station_waitTime1_103];
+    [waitTime addObject:station_waitTime2_103];
+    [waitTime addObject:station_waitTime1_104];
+   // [waitTime addObject:station_waitTime2_104];
 }
 
 -(void)goBackMode:(BOOL)go{
