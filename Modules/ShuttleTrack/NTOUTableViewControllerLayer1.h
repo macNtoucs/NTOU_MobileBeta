@@ -10,6 +10,8 @@
 #import "NTOUTableViewControllerLayer2.h"
 #import "RouteDetailViewController.h"
 #import "StopsViewController.h"
+#import "StationInfoViewController.h"
+#import "SetStationInfoViewController.h"
 @interface NTOUTableViewControllerLayer1 : UITableViewController
 
 @end

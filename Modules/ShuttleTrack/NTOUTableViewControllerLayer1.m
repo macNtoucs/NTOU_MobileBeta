@@ -204,7 +204,7 @@
         [self.navigationController pushViewController:Layer2 animated:YES];
         [Layer2 release];
     }
-    else
+    else if (indexPath.row == 1)
     {
         UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
        
@@ -219,6 +219,13 @@
         }
        
         [stops release];
+    }
+    else {
+       // StationInfoViewController *stationInfo = [StationInfoViewController new];
+        //[self.navigationController pushViewController:stationInfo animated:YES];
+        SetStationInfoViewController *setStationInfo = [[SetStationInfoViewController alloc]initWithStyle:UITableViewStyleGrouped];
+        [self.navigationController pushViewController:setStationInfo animated:YES];
+    
     }
 }
 
