@@ -20,6 +20,7 @@
     self = [super initWithStyle:style];
     if (self) {
         stationName = [[NSMutableArray alloc]initWithObjects:@"台北",@"板橋", nil];
+        dir = false;
     }
     return self;
 }
@@ -55,8 +56,10 @@
             headerTitle = @"方向";
             break;
         case 1:
+           if (!dir) //北上
             headerTitle = @"乘車處";
-       
+            else //南下
+            headerTitle = @"下車處";
     }
 	return [UITableView groupedSectionHeaderWithTitle:headerTitle];
 }
@@ -84,25 +87,28 @@
     {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
-    
+    cell.accessoryType = UITableViewCellAccessoryNone;
+    cell.selectionStyle= UITableViewCellSelectionStyleNone;
     if (indexPath.section == 0 ){
         switch (indexPath.row) {
             case 0:
                 cell.textLabel.text = @"北上";
-                cell.accessoryType = UITableViewCellAccessoryCheckmark;
                 break;
                 
             case 1:
                 cell.textLabel.text = @"南下";
-                //cell.accessoryType = UITableViewCellAccessoryCheckmark;
                 break;
         }
+        if (indexPath.section==dirCurrentSelectSection && indexPath.row == dirCurrentSelectRow)
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
         
     }
-    else if (indexPath.section ==1 && dir){ //南下
+    else if (indexPath.section ==1 && !dir){ //南下
         cell.textLabel.text = [stationName objectAtIndex:indexPath.row];
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        if (indexPath.section==currentSelectSection && indexPath.row == currentSelectRow)
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
+   
     return cell;
 }
 
@@ -149,14 +155,19 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     [detailViewController release];
-     */
+    UITableViewCell * cell_selected = [tableView cellForRowAtIndexPath:indexPath];
+    
+    if (indexPath.section == 0 ){        dirCurrentSelectRow=indexPath.row;
+        dirCurrentSelectSection=indexPath.section;
+        if (indexPath.row == 0) dir=false;
+        else dir = true;
+        [tableView reloadData];
+    }
+    else{
+        currentSelectRow=indexPath.row;
+        currentSelectSection=indexPath.section;
+        [tableView reloadData];
+    }
 }
 
 @end

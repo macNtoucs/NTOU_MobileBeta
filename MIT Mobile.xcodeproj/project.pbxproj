@@ -203,6 +203,8 @@
 		91402E44163E749A00B04EE5 /* EditScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91402E40163E749A00B04EE5 /* EditScheduleViewController.m */; };
 		A60EF0E216455BC500AA1E59 /* StationInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A60EF0E116455BC500AA1E59 /* StationInfoViewController.m */; };
 		A621882D16457DD6003FC7EE /* SetStationInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A621882C16457DD6003FC7EE /* SetStationInfoViewController.m */; };
+		A6218833164586CD003FC7EE /* ClassAddBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = A6218830164586CD003FC7EE /* ClassAddBackground.m */; };
+		A6218834164586CD003FC7EE /* ClassLabelBasis.m in Sources */ = {isa = PBXBuildFile; fileRef = A6218832164586CD003FC7EE /* ClassLabelBasis.m */; };
 		A63DEE281353CF37001C52BF /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A63DEE271353CF37001C52BF /* EventKit.framework */; };
 		A6930566144CEBFC0012EEFA /* ThankYouViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6930564144CEBFC0012EEFA /* ThankYouViewController.m */; };
 		A69826E51354A488004A8258 /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A69826E41354A488004A8258 /* EventKitUI.framework */; };
@@ -809,6 +811,10 @@
 		A60EF0E116455BC500AA1E59 /* StationInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StationInfoViewController.m; sourceTree = "<group>"; };
 		A621882B16457DD6003FC7EE /* SetStationInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetStationInfoViewController.h; sourceTree = "<group>"; };
 		A621882C16457DD6003FC7EE /* SetStationInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetStationInfoViewController.m; sourceTree = "<group>"; };
+		A621882F164586CD003FC7EE /* ClassAddBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassAddBackground.h; sourceTree = "<group>"; };
+		A6218830164586CD003FC7EE /* ClassAddBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassAddBackground.m; sourceTree = "<group>"; };
+		A6218831164586CD003FC7EE /* ClassLabelBasis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassLabelBasis.h; sourceTree = "<group>"; };
+		A6218832164586CD003FC7EE /* ClassLabelBasis.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassLabelBasis.m; sourceTree = "<group>"; };
 		A63DEE271353CF37001C52BF /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		A6930563144CEBFC0012EEFA /* ThankYouViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThankYouViewController.h; sourceTree = "<group>"; };
 		A6930564144CEBFC0012EEFA /* ThankYouViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThankYouViewController.m; sourceTree = "<group>"; };
@@ -2235,6 +2241,10 @@
 		DE71544A102FE468005E6111 /* Stellar */ = {
 			isa = PBXGroup;
 			children = (
+				A621882F164586CD003FC7EE /* ClassAddBackground.h */,
+				A6218830164586CD003FC7EE /* ClassAddBackground.m */,
+				A6218831164586CD003FC7EE /* ClassLabelBasis.h */,
+				A6218832164586CD003FC7EE /* ClassLabelBasis.m */,
 				91402E3A163E749A00B04EE5 /* ClassAdd.h */,
 				91402E3B163E749A00B04EE5 /* ClassAdd.m */,
 				91402E3C163E749A00B04EE5 /* ClassAdd.xib */,
@@ -3124,6 +3134,8 @@
 				91402E44163E749A00B04EE5 /* EditScheduleViewController.m in Sources */,
 				A60EF0E216455BC500AA1E59 /* StationInfoViewController.m in Sources */,
 				A621882D16457DD6003FC7EE /* SetStationInfoViewController.m in Sources */,
+				A6218833164586CD003FC7EE /* ClassAddBackground.m in Sources */,
+				A6218834164586CD003FC7EE /* ClassLabelBasis.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
