@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "UIKit+MITAdditions.h"
-
+#import "StaionInfoTableViewController.h"
 @interface SetStationInfoViewController : UITableViewController{
     bool dir; //dir true 南下
     int currentSelectSection;

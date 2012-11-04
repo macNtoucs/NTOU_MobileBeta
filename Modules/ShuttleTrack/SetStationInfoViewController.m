@@ -60,6 +60,8 @@
             headerTitle = @"乘車處";
             else //南下
             headerTitle = @"下車處";
+        default:
+            headerTitle = @"";
     }
 	return [UITableView groupedSectionHeaderWithTitle:headerTitle];
 }
@@ -69,14 +71,23 @@
 {
 #warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 2;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return [stationName count];
+    switch (section) {
+        case 0:
+            return 2;
+            break;
+        case 2:
+            return 1;
+        default:
+            return [stationName count];
+            break;
+    } 
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -103,10 +114,15 @@
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
         
     }
-    else if (indexPath.section ==1 && !dir){ //南下
+    else if (indexPath.section ==1 ){ 
         cell.textLabel.text = [stationName objectAtIndex:indexPath.row];
         if (indexPath.section==currentSelectSection && indexPath.row == currentSelectRow)
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    }
+    else {
+    cell.textLabel.text = @"確認";
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    cell.selectionStyle = UITableViewCellSelectionStyleBlue;
     }
    
     return cell;
@@ -163,11 +179,17 @@
         else dir = true;
         [tableView reloadData];
     }
-    else{
+    else if (indexPath.section==1){
         currentSelectRow=indexPath.row;
         currentSelectSection=indexPath.section;
         [tableView reloadData];
     }
+    else {
+        StaionInfoTableViewController * stationInfo = [[StaionInfoTableViewController alloc]init];
+        [stationInfo recieveURL: [NSURL URLWithString:@"http://twtraffic.tra.gov.tw/twrail/SearchResult.aspx?searchtype=0&searchdate=2012/11/05&fromstation=1001&tostation=1008&trainclass=2&fromtime=0000&totime=2359"]];
+        [self.navigationController pushViewController:stationInfo animated:YES];
+    }
+    
 }
 
 @end
