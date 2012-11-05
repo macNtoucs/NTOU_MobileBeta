@@ -209,6 +209,12 @@
 		A6930566144CEBFC0012EEFA /* ThankYouViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6930564144CEBFC0012EEFA /* ThankYouViewController.m */; };
 		A69826E51354A488004A8258 /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A69826E41354A488004A8258 /* EventKitUI.framework */; };
 		A6A82E38145624F20075EB28 /* LibraryTextElementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A82E37145624F20075EB28 /* LibraryTextElementViewController.m */; };
+		A6CD75F5164820D500D1209C /* ClassInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CD75F1164820D500D1209C /* ClassInfoView.m */; };
+		A6CD75F6164820D500D1209C /* ClassInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CD75F3164820D500D1209C /* ClassInfoViewController.m */; };
+		A6CD75F7164820D500D1209C /* ClassInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A6CD75F4164820D500D1209C /* ClassInfoViewController.xib */; };
+		A6CD75FD164820FB00D1209C /* SetWeekTimesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CD75FA164820FB00D1209C /* SetWeekTimesViewController.m */; };
+		A6CD75FE164820FB00D1209C /* TabBarNipple.png in Resources */ = {isa = PBXBuildFile; fileRef = A6CD75FB164820FB00D1209C /* TabBarNipple.png */; };
+		A6CD75FF164820FB00D1209C /* TabBarNipple@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A6CD75FC164820FB00D1209C /* TabBarNipple@2x.png */; };
 		A6D7C8E81646D2B300CF5ABF /* StaionInfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D7C8E71646D2B300CF5ABF /* StaionInfoTableViewController.m */; };
 		B64B47081288502E002E2F1D /* DummyRotatingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B64B47061288502E002E2F1D /* DummyRotatingViewController.m */; };
 		BD1E9309103B5D60004429AA /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = BD1E92F6103B5D60004429AA /* NSObject+SBJSON.m */; };
@@ -822,6 +828,15 @@
 		A69826E41354A488004A8258 /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = System/Library/Frameworks/EventKitUI.framework; sourceTree = SDKROOT; };
 		A6A82E36145624F20075EB28 /* LibraryTextElementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryTextElementViewController.h; sourceTree = "<group>"; };
 		A6A82E37145624F20075EB28 /* LibraryTextElementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryTextElementViewController.m; sourceTree = "<group>"; };
+		A6CD75F0164820D500D1209C /* ClassInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassInfoView.h; sourceTree = "<group>"; };
+		A6CD75F1164820D500D1209C /* ClassInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassInfoView.m; sourceTree = "<group>"; };
+		A6CD75F2164820D500D1209C /* ClassInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassInfoViewController.h; sourceTree = "<group>"; };
+		A6CD75F3164820D500D1209C /* ClassInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassInfoViewController.m; sourceTree = "<group>"; };
+		A6CD75F4164820D500D1209C /* ClassInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClassInfoViewController.xib; sourceTree = "<group>"; };
+		A6CD75F9164820FB00D1209C /* SetWeekTimesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetWeekTimesViewController.h; sourceTree = "<group>"; };
+		A6CD75FA164820FB00D1209C /* SetWeekTimesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetWeekTimesViewController.m; sourceTree = "<group>"; };
+		A6CD75FB164820FB00D1209C /* TabBarNipple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TabBarNipple.png; sourceTree = "<group>"; };
+		A6CD75FC164820FB00D1209C /* TabBarNipple@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TabBarNipple@2x.png"; sourceTree = "<group>"; };
 		A6D7C8E61646D2B300CF5ABF /* StaionInfoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaionInfoTableViewController.h; sourceTree = "<group>"; };
 		A6D7C8E71646D2B300CF5ABF /* StaionInfoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaionInfoTableViewController.m; sourceTree = "<group>"; };
 		B64B47051288502E002E2F1D /* DummyRotatingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DummyRotatingViewController.h; sourceTree = "<group>"; };
@@ -2246,6 +2261,15 @@
 		DE71544A102FE468005E6111 /* Stellar */ = {
 			isa = PBXGroup;
 			children = (
+				A6CD75F9164820FB00D1209C /* SetWeekTimesViewController.h */,
+				A6CD75FA164820FB00D1209C /* SetWeekTimesViewController.m */,
+				A6CD75FB164820FB00D1209C /* TabBarNipple.png */,
+				A6CD75FC164820FB00D1209C /* TabBarNipple@2x.png */,
+				A6CD75F0164820D500D1209C /* ClassInfoView.h */,
+				A6CD75F1164820D500D1209C /* ClassInfoView.m */,
+				A6CD75F2164820D500D1209C /* ClassInfoViewController.h */,
+				A6CD75F3164820D500D1209C /* ClassInfoViewController.m */,
+				A6CD75F4164820D500D1209C /* ClassInfoViewController.xib */,
 				A621882F164586CD003FC7EE /* ClassAddBackground.h */,
 				A6218830164586CD003FC7EE /* ClassAddBackground.m */,
 				A6218831164586CD003FC7EE /* ClassLabelBasis.h */,
@@ -2803,6 +2827,9 @@
 				C74878BB162D2996001D3390 /* Default@2x.png in Resources */,
 				C74878BD162D299C001D3390 /* Default-568h@2x.png in Resources */,
 				91402E42163E749A00B04EE5 /* ClassAdd.xib in Resources */,
+				A6CD75F7164820D500D1209C /* ClassInfoViewController.xib in Resources */,
+				A6CD75FE164820FB00D1209C /* TabBarNipple.png in Resources */,
+				A6CD75FF164820FB00D1209C /* TabBarNipple@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3142,6 +3169,9 @@
 				A6218833164586CD003FC7EE /* ClassAddBackground.m in Sources */,
 				A6218834164586CD003FC7EE /* ClassLabelBasis.m in Sources */,
 				A6D7C8E81646D2B300CF5ABF /* StaionInfoTableViewController.m in Sources */,
+				A6CD75F5164820D500D1209C /* ClassInfoView.m in Sources */,
+				A6CD75F6164820D500D1209C /* ClassInfoViewController.m in Sources */,
+				A6CD75FD164820FB00D1209C /* SetWeekTimesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

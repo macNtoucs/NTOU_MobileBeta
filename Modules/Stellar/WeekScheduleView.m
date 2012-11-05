@@ -10,8 +10,8 @@
 #import "ClassDataBase.h"
 @implementation WeekScheduleView
 @synthesize WhetherTapped;
-
-
+@synthesize parent_ViewController;
+@class ScheduleViewController;
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -24,11 +24,17 @@
     return self;
 }
 
+-(void)getParent_ViewController:(ScheduleViewController *)recieve{
+    parent_ViewController = recieve;
+}
+
+
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
     return YES;
 }
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
+
 
 -(IBAction)labelTapped:(id)sender
 {
@@ -43,9 +49,14 @@
             label.changeColor = YES;
         }
     }
+    else {
+        [parent_ViewController showClassInfo:label];
+    }
+    
 }
 
 -(void)drawColumnTextLabelNumber:(NSInteger)number Content:(NSArray *)content {
+
     for (int i=0;i<[content count] && i < [[ClassDataBase sharedData] FetchClassSessionTimes] && number<=[[ClassDataBase sharedData] FetchWeekTimes] ;i++) {
         int sameClass=i;
         while (1) {
@@ -98,12 +109,14 @@
 {
     //[self drawRowWeekNameTextLabel];
     //[self drawColumnTextLabelNumber:Session Content:[NSArray arrayWithObjects:[NSString stringWithFormat:@"1"],[NSString stringWithFormat:@"2"],[NSString stringWithFormat:@"3"],[NSString stringWithFormat:@"4"],[NSString stringWithFormat:@"5"],[NSString stringWithFormat:@"6"],[NSString stringWithFormat:@"7"],[NSString stringWithFormat:@"8"],[NSString stringWithFormat:@"9"],[NSString stringWithFormat:@"10"],[NSString stringWithFormat:@"11"],[NSString stringWithFormat:@"12"],[NSString stringWithFormat:@"13"],[NSString stringWithFormat:@"14"], nil]];
-    [self drawColumnTextLabelNumber:Monday Content:[NSArray arrayWithObjects:[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@"資料庫"],[NSString stringWithFormat:@"資料庫"],[NSString stringWithFormat:@"資料庫"],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "], nil]];
-    [self drawColumnTextLabelNumber:Tuesday Content:[NSArray arrayWithObjects:[NSString stringWithFormat:@" "],[NSString stringWithFormat:@"圖論演算法"],[NSString stringWithFormat:@"圖論演算法"],[NSString stringWithFormat:@"圖論演算法"],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@"程式語言"],[NSString stringWithFormat:@"程式語言"],[NSString stringWithFormat:@"程式語言"],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "], nil]];
-    [self drawColumnTextLabelNumber:Wednesday Content:[NSArray arrayWithObjects:[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@"日文"],[NSString stringWithFormat:@"日文"],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "], nil]];
-    [self drawColumnTextLabelNumber:Thursday Content:[NSArray arrayWithObjects:[NSString stringWithFormat:@"性別平等與就業歧視"],[NSString stringWithFormat:@"性別平等與就業歧視"],[NSString stringWithFormat:@"現代藝術賞析"],[NSString stringWithFormat:@"現代藝術賞析"],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "], nil]];
-    [self drawColumnTextLabelNumber:Friday Content:[NSArray arrayWithObjects:[NSString stringWithFormat:@" "],[NSString stringWithFormat:@"作業系統"],[NSString stringWithFormat:@"作業系統"],[NSString stringWithFormat:@"作業系統"],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "], nil]];
-    [self drawColumnTextLabelNumber:Saturday Content:[NSArray arrayWithObjects:[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "], nil]];
+    NSDictionary * scheduleInfo = [[ClassDataBase sharedData] FetchScheduleInfo];
+    
+    [self drawColumnTextLabelNumber:Monday Content:[scheduleInfo objectForKey:@"Monday"]];
+    [self drawColumnTextLabelNumber:Tuesday Content:[scheduleInfo objectForKey:@"Tuesday"]];
+    [self drawColumnTextLabelNumber:Wednesday Content:[scheduleInfo objectForKey:@"Wednesday"]];
+    [self drawColumnTextLabelNumber:Thursday Content:[scheduleInfo objectForKey:@"Thursday"]];
+    [self drawColumnTextLabelNumber:Friday Content:[scheduleInfo objectForKey:@"Friday"]];
+    [self drawColumnTextLabelNumber:Saturday Content:[scheduleInfo objectForKey:@"Saturday"]];
     
     [super drawRect:rect];
 }

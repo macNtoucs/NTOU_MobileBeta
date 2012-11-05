@@ -18,6 +18,8 @@
 @synthesize  TopWeekcontroller;
 @synthesize LeftViewController;
 @synthesize weekschedule;
+@synthesize classInfo;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -36,6 +38,13 @@
         
     }
     return self;
+}
+
+-(void) showClassInfo:(ClassLabelBasis *)label{
+    classInfo = [[[ClassInfoViewController alloc] init]autorelease];
+    classInfo.title = label.text;
+    classInfo.tag = label.tag;
+    [self.navigationController pushViewController:classInfo animated:YES];
 }
 
 -(void)changeTapEnable
@@ -104,7 +113,7 @@
 {
     scrollView = [[[UIScrollView alloc] init]autorelease];
     weekschedule = [[[WeekScheduleView alloc]initWithFrame:CGRectMake(0, 0, 320, 480)] autorelease];
-    
+    [weekschedule getParent_ViewController:self];
     [self addNavRightButton]; 
     scrollView = [[UIScrollView alloc] init];
    
@@ -161,6 +170,11 @@
     [self.navigationController setNavigationBarHidden:NO];
     
     [super viewDidAppear:animated];
+}
+
+-(void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
 }
 
 -(void)viewWillDisappear:(BOOL)animated

@@ -28,20 +28,57 @@
     [super touchesBegan:touches withEvent: event];
 }
 
+/*-(IBAction)keyboardShowAndDismiss:(id)sender
+{
+    static BOOL set = NO;
+    if (bool) {
+        <#statements-if-true#>
+    } else {
+        <#statements-if-false#>
+    }
+}*/
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    [UIView animateWithDuration:0.25
+                          delay:0
+                        options: UIViewAnimationCurveEaseOut
+                     animations:^{
+                         _bottomView.frame = CGRectMake(_bottomView.frame.origin.x,
+                                                        _bottomView.frame.origin.y - 210,
+                                                        _bottomView.frame.size.width,
+                                                        _bottomView.frame.size.height);
+                     }
+                     completion:nil];
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    [UIView animateWithDuration:0.25
+                          delay:0
+                        options: UIViewAnimationCurveEaseOut
+                     animations:^{
+                         _bottomView.frame = CGRectMake(_bottomView.frame.origin.x,
+                                                        _bottomView.frame.origin.y + 210,
+                                                        _bottomView.frame.size.width,
+                                                        _bottomView.frame.size.height);
+                     }
+                     completion:nil];
+    
+}
+
 -(IBAction)cancel:(id)sender{
     CGRect basketTopFrame = CGRectMake(_topView.frame.origin.x, -_topView.frame.origin.y, _topView.frame.size.width, _topView.frame.size.height);
     CGRect basketBottomFrame = CGRectMake(_bottomView.frame.origin.x, self.view.bounds.size.height+22, _bottomView.frame.size.width, _bottomView.frame.size.height);
     [UIView animateWithDuration:0.5
-                          delay:0.2
+                          delay:0
                         options: UIViewAnimationCurveEaseOut
                      animations:^{
                          _topView.frame = basketTopFrame;
                          _bottomView.frame = basketBottomFrame;
                      }
                      completion:^(BOOL finished){
-                         [delegate changeTapEnable];
                          [self.view removeFromSuperview];
                      }];
+    [delegate changeTapEnable];
     
 }
 
@@ -74,8 +111,12 @@
                          _bottomView.frame = basketBottomFrame;
                      } 
                      completion:^(BOOL finished){
-                         [delegate changeTapEnable];
                      }];
+    [delegate changeTapEnable];
+   /* [[NSNotificationCenter defaultCenter] addObserver:_classNameField
+                                             selector:@selector(keyboardShowAndDismiss:)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:nil];*/
     // Do any additional setup after loading the view from its nib.
 }
 

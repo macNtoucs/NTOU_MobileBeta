@@ -3,6 +3,7 @@ build/
 *.mode1v3
 *.mode2v3
 *.pbxuser
+~/project.pbxproj
 *.perspective
 *.perspectivev3
 xcuserdata/
