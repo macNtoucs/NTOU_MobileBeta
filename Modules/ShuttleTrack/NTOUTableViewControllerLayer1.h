@@ -12,6 +12,7 @@
 #import "StopsViewController.h"
 #import "StationInfoViewController.h"
 #import "SetStationInfoViewController.h"
+#import "SetStationViewController.h"
 @interface NTOUTableViewControllerLayer1 : UITableViewController
 
 @end

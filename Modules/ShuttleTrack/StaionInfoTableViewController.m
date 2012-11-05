@@ -46,7 +46,7 @@
             NSArray * stops = [context children];
             [StartAndTerminalstops addObject: [[stops objectAtIndex:0]content] ];
         }
-        else if (i%10 == 4){
+        else if (i%10 == 4){    
             TFHppleElement * attributeElement = [tableData_td objectAtIndex:i];
             NSArray * contextArr = [attributeElement children];
             TFHppleElement * context = [contextArr objectAtIndex:0];

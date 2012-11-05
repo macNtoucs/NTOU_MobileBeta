@@ -223,9 +223,9 @@
     else {
        // StationInfoViewController *stationInfo = [StationInfoViewController new];
         //[self.navigationController pushViewController:stationInfo animated:YES];
-        SetStationInfoViewController *setStationInfo = [[SetStationInfoViewController alloc]initWithStyle:UITableViewStyleGrouped];
-        [self.navigationController pushViewController:setStationInfo animated:YES];
-    
+        SetStationViewController *setStationView = [[SetStationViewController alloc]init];
+        [self.navigationController pushViewController:setStationView animated:YES];
+        [setStationView release];
     }
 }
 
