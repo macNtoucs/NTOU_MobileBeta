@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/CAAnimation.h>
 #import <QuartzCore/CAMediaTimingFunction.h>
+#import <QuartzCore/QuartzCore.h>
 #import "UIKit+MITAdditions.h"
 #import "MITUIConstants.h"
 #define type1 @"起站"

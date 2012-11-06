@@ -202,10 +202,12 @@
 		91402E43163E749A00B04EE5 /* ClassDataBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 91402E3E163E749A00B04EE5 /* ClassDataBase.m */; };
 		91402E44163E749A00B04EE5 /* EditScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91402E40163E749A00B04EE5 /* EditScheduleViewController.m */; };
 		A60EF0E216455BC500AA1E59 /* StationInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A60EF0E116455BC500AA1E59 /* StationInfoViewController.m */; };
-		A621882D16457DD6003FC7EE /* SetStationInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A621882C16457DD6003FC7EE /* SetStationInfoViewController.m */; };
 		A6218833164586CD003FC7EE /* ClassAddBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = A6218830164586CD003FC7EE /* ClassAddBackground.m */; };
 		A6218834164586CD003FC7EE /* ClassLabelBasis.m in Sources */ = {isa = PBXBuildFile; fileRef = A6218832164586CD003FC7EE /* ClassLabelBasis.m */; };
 		A63DEE281353CF37001C52BF /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A63DEE271353CF37001C52BF /* EventKit.framework */; };
+		A65E39F416495F63000E6782 /* StationPickerPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A65E39ED16495F63000E6782 /* StationPickerPickerView.m */; };
+		A65E3A011649678C000E6782 /* StationPickerBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = A65E3A001649678C000E6782 /* StationPickerBackground.png */; };
+		A65E3A0416498D56000E6782 /* ThroughTap.m in Sources */ = {isa = PBXBuildFile; fileRef = A65E3A0316498D56000E6782 /* ThroughTap.m */; };
 		A6930566144CEBFC0012EEFA /* ThankYouViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6930564144CEBFC0012EEFA /* ThankYouViewController.m */; };
 		A69826E51354A488004A8258 /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A69826E41354A488004A8258 /* EventKitUI.framework */; };
 		A6A82E38145624F20075EB28 /* LibraryTextElementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A82E37145624F20075EB28 /* LibraryTextElementViewController.m */; };
@@ -217,7 +219,6 @@
 		A6CD75FF164820FB00D1209C /* TabBarNipple@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A6CD75FC164820FB00D1209C /* TabBarNipple@2x.png */; };
 		A6CD760216482F8900D1209C /* SetStationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CD760116482F8900D1209C /* SetStationViewController.m */; };
 		A6CD76051648333400D1209C /* StationView.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CD76041648333300D1209C /* StationView.m */; };
-		A6D7C8E81646D2B300CF5ABF /* StaionInfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D7C8E71646D2B300CF5ABF /* StaionInfoTableViewController.m */; };
 		B64B47081288502E002E2F1D /* DummyRotatingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B64B47061288502E002E2F1D /* DummyRotatingViewController.m */; };
 		BD1E9309103B5D60004429AA /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = BD1E92F6103B5D60004429AA /* NSObject+SBJSON.m */; };
 		BD1E930A103B5D60004429AA /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = BD1E92F8103B5D60004429AA /* NSString+SBJSON.m */; };
@@ -818,13 +819,16 @@
 		91402E40163E749A00B04EE5 /* EditScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditScheduleViewController.m; sourceTree = "<group>"; };
 		A60EF0E016455BC500AA1E59 /* StationInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StationInfoViewController.h; sourceTree = "<group>"; };
 		A60EF0E116455BC500AA1E59 /* StationInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StationInfoViewController.m; sourceTree = "<group>"; };
-		A621882B16457DD6003FC7EE /* SetStationInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetStationInfoViewController.h; sourceTree = "<group>"; };
-		A621882C16457DD6003FC7EE /* SetStationInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetStationInfoViewController.m; sourceTree = "<group>"; };
 		A621882F164586CD003FC7EE /* ClassAddBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassAddBackground.h; sourceTree = "<group>"; };
 		A6218830164586CD003FC7EE /* ClassAddBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassAddBackground.m; sourceTree = "<group>"; };
 		A6218831164586CD003FC7EE /* ClassLabelBasis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassLabelBasis.h; sourceTree = "<group>"; };
 		A6218832164586CD003FC7EE /* ClassLabelBasis.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassLabelBasis.m; sourceTree = "<group>"; };
 		A63DEE271353CF37001C52BF /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
+		A65E39EC16495F63000E6782 /* StationPickerPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StationPickerPickerView.h; sourceTree = "<group>"; };
+		A65E39ED16495F63000E6782 /* StationPickerPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StationPickerPickerView.m; sourceTree = "<group>"; };
+		A65E3A001649678C000E6782 /* StationPickerBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StationPickerBackground.png; sourceTree = "<group>"; };
+		A65E3A0216498D55000E6782 /* ThroughTap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThroughTap.h; sourceTree = "<group>"; };
+		A65E3A0316498D56000E6782 /* ThroughTap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThroughTap.m; sourceTree = "<group>"; };
 		A6930563144CEBFC0012EEFA /* ThankYouViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThankYouViewController.h; sourceTree = "<group>"; };
 		A6930564144CEBFC0012EEFA /* ThankYouViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThankYouViewController.m; sourceTree = "<group>"; };
 		A69826E41354A488004A8258 /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = System/Library/Frameworks/EventKitUI.framework; sourceTree = SDKROOT; };
@@ -843,8 +847,6 @@
 		A6CD760116482F8900D1209C /* SetStationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetStationViewController.m; sourceTree = "<group>"; };
 		A6CD76031648333300D1209C /* StationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StationView.h; sourceTree = "<group>"; };
 		A6CD76041648333300D1209C /* StationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StationView.m; sourceTree = "<group>"; };
-		A6D7C8E61646D2B300CF5ABF /* StaionInfoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaionInfoTableViewController.h; sourceTree = "<group>"; };
-		A6D7C8E71646D2B300CF5ABF /* StaionInfoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaionInfoTableViewController.m; sourceTree = "<group>"; };
 		B64B47051288502E002E2F1D /* DummyRotatingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DummyRotatingViewController.h; sourceTree = "<group>"; };
 		B64B47061288502E002E2F1D /* DummyRotatingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DummyRotatingViewController.m; sourceTree = "<group>"; };
 		BD1E92F4103B5D60004429AA /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
@@ -2015,6 +2017,16 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		A65E39EB16495F63000E6782 /* StationPicker */ = {
+			isa = PBXGroup;
+			children = (
+				A65E39EC16495F63000E6782 /* StationPickerPickerView.h */,
+				A65E39ED16495F63000E6782 /* StationPickerPickerView.m */,
+				A65E3A001649678C000E6782 /* StationPickerBackground.png */,
+			);
+			path = StationPicker;
+			sourceTree = "<group>";
+		};
 		BD1E92F3103B5D60004429AA /* JSON */ = {
 			isa = PBXGroup;
 			children = (
@@ -2199,6 +2211,7 @@
 		DE715449102FE468005E6111 /* ShuttleTrack */ = {
 			isa = PBXGroup;
 			children = (
+				A65E39EB16495F63000E6782 /* StationPicker */,
 				C748785C1627D1D4001D3390 /* Annotation.h */,
 				C748785D1627D1D4001D3390 /* Annotation.m */,
 				C748785E1627D1D4001D3390 /* DepatureViewController.h */,
@@ -2256,12 +2269,10 @@
 				29EB610A10FE47220085D32B /* ShuttleSubscriptionManager.m */,
 				A60EF0E016455BC500AA1E59 /* StationInfoViewController.h */,
 				A60EF0E116455BC500AA1E59 /* StationInfoViewController.m */,
-				A621882B16457DD6003FC7EE /* SetStationInfoViewController.h */,
-				A621882C16457DD6003FC7EE /* SetStationInfoViewController.m */,
-				A6D7C8E61646D2B300CF5ABF /* StaionInfoTableViewController.h */,
-				A6D7C8E71646D2B300CF5ABF /* StaionInfoTableViewController.m */,
 				A6CD760016482F8900D1209C /* SetStationViewController.h */,
 				A6CD760116482F8900D1209C /* SetStationViewController.m */,
+				A65E3A0216498D55000E6782 /* ThroughTap.h */,
+				A65E3A0316498D56000E6782 /* ThroughTap.m */,
 				A6CD76031648333300D1209C /* StationView.h */,
 				A6CD76041648333300D1209C /* StationView.m */,
 			);
@@ -2840,6 +2851,7 @@
 				A6CD75F7164820D500D1209C /* ClassInfoViewController.xib in Resources */,
 				A6CD75FE164820FB00D1209C /* TabBarNipple.png in Resources */,
 				A6CD75FF164820FB00D1209C /* TabBarNipple@2x.png in Resources */,
+				A65E3A011649678C000E6782 /* StationPickerBackground.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3175,15 +3187,15 @@
 				91402E43163E749A00B04EE5 /* ClassDataBase.m in Sources */,
 				91402E44163E749A00B04EE5 /* EditScheduleViewController.m in Sources */,
 				A60EF0E216455BC500AA1E59 /* StationInfoViewController.m in Sources */,
-				A621882D16457DD6003FC7EE /* SetStationInfoViewController.m in Sources */,
 				A6218833164586CD003FC7EE /* ClassAddBackground.m in Sources */,
 				A6218834164586CD003FC7EE /* ClassLabelBasis.m in Sources */,
-				A6D7C8E81646D2B300CF5ABF /* StaionInfoTableViewController.m in Sources */,
 				A6CD75F5164820D500D1209C /* ClassInfoView.m in Sources */,
 				A6CD75F6164820D500D1209C /* ClassInfoViewController.m in Sources */,
 				A6CD75FD164820FB00D1209C /* SetWeekTimesViewController.m in Sources */,
 				A6CD760216482F8900D1209C /* SetStationViewController.m in Sources */,
 				A6CD76051648333400D1209C /* StationView.m in Sources */,
+				A65E39F416495F63000E6782 /* StationPickerPickerView.m in Sources */,
+				A65E3A0416498D56000E6782 /* ThroughTap.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
