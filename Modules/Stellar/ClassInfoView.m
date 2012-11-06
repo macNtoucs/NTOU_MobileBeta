@@ -21,6 +21,7 @@
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
+        
     }
     return self;
 }
@@ -198,6 +199,40 @@
 
 #pragma mark - Table view delegate
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 1;
+}
+
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    NSString *sectionName=nil;
+    if (types ==6) {
+        switch (section)
+        {
+            case 0:
+                sectionName =@"11/02";
+                break;
+            case 1:
+                sectionName =@"10/30";
+                break;
+            case 2:
+                sectionName =@"10/23";
+                break;
+            case 3:
+                sectionName =@"10/08";
+                break;
+            case 4:
+                sectionName =@"09/24";
+                break;
+            default:
+                sectionName = @"";
+                break;
+        }
+    }
+    return sectionName;
+}
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -206,9 +241,9 @@
     else if (types == 2)
         return 280;
     else if (types == 3)
-        return 80;
+        return 70;
     else if (types == 4)
-        return 60;
+        return 50;
     else if (types == 5)
         return 280;
     return 280;
