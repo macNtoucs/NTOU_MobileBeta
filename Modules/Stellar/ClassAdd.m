@@ -77,6 +77,7 @@
                      }
                      completion:^(BOOL finished){
                          [self.view removeFromSuperview];
+                         [delegate NavigationBarShow];
                      }];
     [delegate changeTapEnable];
     

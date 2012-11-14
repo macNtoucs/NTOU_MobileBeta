@@ -72,13 +72,17 @@
                 break;
         }
         CGRect labelFrame ;
+        int x=0;
+        if ([parent_ViewController NavigationBarHidden]) {
+            x=44;
+        }
         if (number)
-            labelFrame = CGRectMake( LeftBaseline+(number-1)*(UpperViewWidth-TextLabelborderWidth), UpperBaseline+(LeftViewHeight-TextLabelborderWidth)*sameClass, UpperViewWidth, LeftViewHeight+(LeftViewHeight-TextLabelborderWidth)*(i-sameClass));
+            labelFrame = CGRectMake( LeftBaseline+(number-1)*(UpperViewWidth-TextLabelborderWidth), x+UpperBaseline+(LeftViewHeight-TextLabelborderWidth)*sameClass, UpperViewWidth, LeftViewHeight+(LeftViewHeight-TextLabelborderWidth)*(i-sameClass));
         else
-            labelFrame = CGRectMake( 0,(LeftViewHeight-TextLabelborderWidth)*i, LeftBaseline, LeftViewHeight );
+            labelFrame = CGRectMake( 0,x+(LeftViewHeight-TextLabelborderWidth)*i, LeftBaseline, LeftViewHeight );
         ClassLabelBasis* label = [[[ClassLabelBasis alloc] initWithFrame: labelFrame] autorelease];
         label.text = [content objectAtIndex:i];
-        label.backgroundColor = [color objectAtIndex:arc4random()%10];
+        label.backgroundColor = [color objectAtIndex:(number+i)%10];
         NSLog(@"%@",label.backgroundColor);
         if (!number)
             label.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0.4];
@@ -108,8 +112,10 @@
 
 - (void)drawRect:(CGRect)rect
 {
-    //[self drawRowWeekNameTextLabel];
-    //[self drawColumnTextLabelNumber:Session Content:[NSArray arrayWithObjects:[NSString stringWithFormat:@"1"],[NSString stringWithFormat:@"2"],[NSString stringWithFormat:@"3"],[NSString stringWithFormat:@"4"],[NSString stringWithFormat:@"5"],[NSString stringWithFormat:@"6"],[NSString stringWithFormat:@"7"],[NSString stringWithFormat:@"8"],[NSString stringWithFormat:@"9"],[NSString stringWithFormat:@"10"],[NSString stringWithFormat:@"11"],[NSString stringWithFormat:@"12"],[NSString stringWithFormat:@"13"],[NSString stringWithFormat:@"14"], nil]];
+    for(UIView *subview in [self subviews])
+    {
+        [subview removeFromSuperview];
+    }
     NSDictionary * scheduleInfo = [[ClassDataBase sharedData] FetchScheduleInfo];
     
     [self drawColumnTextLabelNumber:Monday Content:[scheduleInfo objectForKey:@"Monday"]];
