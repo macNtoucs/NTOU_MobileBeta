@@ -17,7 +17,7 @@
 @synthesize selectedRow = currentRow;
 @synthesize rowFont = _rowFont;
 @synthesize rowIndent = _rowIndent;
-
+@synthesize currentLabel;
 
 
 
@@ -37,11 +37,12 @@
 
 - (void)setRowFont:(UIFont *)rowFont
 {
-    _rowFont = rowFont;
+    _rowFont = [UIFont boldSystemFontOfSize:20];
     
-    for (UILabel *aLabel in visibleViews) 
+    for (UILabel *aLabel in visibleViews)
     {
         aLabel.font = _rowFont;
+        
     }
     
     for (UILabel *aLabel in recycledViews) 
@@ -86,7 +87,7 @@
     {
         // setup
         [self setup];
-        
+        isScrollingUp=false;
         // backgound
         UIImageView *bacground = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"StationPickerBackground.png"]];
         [self addSubview:bacground];
@@ -109,11 +110,7 @@
         UIImageView *shadows = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"StationPickerBackgroundShadows.png"]];
         [self addSubview:shadows];
         
-        // glass
-       /* UIImage *glassImage = [UIImage imageNamed:@"pickerGlass@2x.png"];
-        glassImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 76.0, glassImage.size.width, glassImage.size.height)];
-        glassImageView.image = glassImage;
-        [self addSubview:glassImageView];*/
+        currentLabel = [UILabel new];
     }
     return self;
 }
@@ -123,7 +120,7 @@
 
 - (void)setup
 {
-    _rowFont = [UIFont boldSystemFontOfSize:50.0];
+    _rowFont = [UIFont boldSystemFontOfSize:20.0];
     _rowIndent = 60;
     
     currentRow = 0;
@@ -156,7 +153,7 @@
     [contentView setContentOffset:CGPointMake(0.0, 0.0) animated:NO];
     contentView.contentSize =
     CGSizeMake(contentView.frame.size.width, (60 *rowsCount) + (4 * glassHeight));
-    NSLog(@"%f",contentView.contentSize.height);
+    //NSLog(@"%f",contentView.contentSize.height);
     [self tileViews];
 }
 
@@ -168,7 +165,7 @@
     CGFloat delta = contentView.contentOffset.y;
     int position = round(delta / glassHeight);
     currentRow = position;
-    [contentView setContentOffset:CGPointMake(0.0, glassHeight * position) animated:YES];
+    [contentView setContentOffset:CGPointMake(0.0, glassHeight * position - 17) animated:YES];
     [delegate pickerView:self didSelectRow:currentRow];
 }
 
@@ -191,7 +188,7 @@
     if (steps == 0 || steps > 2 || steps < -2)
         return;
     
-    [contentView setContentOffset:CGPointMake(0.0, glassHeight * currentRow) animated:NO];
+    [contentView setContentOffset:CGPointMake(0.0, glassHeight * currentRow-17) animated:NO];
     
     int newRow = currentRow + steps;
     if (newRow < 0 || newRow >= rowsCount)
@@ -205,8 +202,31 @@
     }
     
     currentRow = currentRow + steps;
-    [contentView setContentOffset:CGPointMake(0.0, glassHeight * currentRow) animated:YES];
-    [delegate pickerView:self didSelectRow:currentRow];
+    [contentView setContentOffset:CGPointMake(0.0, glassHeight * currentRow-17) animated:YES];
+      [delegate pickerView:self didSelectRow:currentRow];
+    isScrollingUp=true;
+    for (UILabel * invisible in visibleViews ){
+        invisible.textColor = RGBACOLOR(0.0, 0.0, 0.0, 0.75);
+        invisible.font = [UIFont boldSystemFontOfSize:20];
+    }
+    for ( UILabel *currentLabel_tmp in visibleViews){
+        if (isScrollingUp){
+            NSString * nowSelected = [dataSource pickerView:self nowSelected:currentRow];
+            if ([currentLabel_tmp.text isEqualToString: nowSelected]) {
+                currentLabel=currentLabel_tmp;
+                isScrollingUp = false;
+                currentLabel.font = [UIFont boldSystemFontOfSize:30];
+                currentLabel.textColor = RGBACOLOR(178,34,34, 1);
+                break;
+            }
+            else {
+                currentLabel_tmp.textColor = RGBACOLOR(0.0, 0.0, 0.0, 0.75);
+                currentLabel_tmp.font = [UIFont boldSystemFontOfSize:20];
+            }
+        }
+    }
+   
+ 
 }
 
 
@@ -247,13 +267,14 @@
 {
     // Calculate which pages are visible
     CGRect visibleBounds = contentView.bounds;
+    
     int firstNeededViewIndex = floorf(CGRectGetMinY(visibleBounds) / glassHeight) - 2;
     int lastNeededViewIndex  = floorf((CGRectGetMaxY(visibleBounds) / glassHeight)) - 2;
     firstNeededViewIndex = MAX(firstNeededViewIndex, 0);
     lastNeededViewIndex  = MIN(lastNeededViewIndex, rowsCount - 1);
 	
     // Recycle no-longer-visible pages 
-	for (UIView *aView in visibleViews) 
+	for (UIView *aView in visibleViews)
     {
         int viewIndex = aView.frame.origin.y / glassHeight - 2;
         if (viewIndex < firstNeededViewIndex || viewIndex > lastNeededViewIndex) 
@@ -261,8 +282,32 @@
             [recycledViews addObject:aView];
             [aView removeFromSuperview];
         }
-    }
+        
+     }
     
+   
+    for ( UILabel *currentLabel_tmp in visibleViews){
+        if (isScrollingUp){
+            NSString * nowSelected = [dataSource pickerView:self nowSelected:currentRow];
+            if ([currentLabel_tmp.text isEqualToString: nowSelected]) {
+                currentLabel=currentLabel_tmp;
+                isScrollingUp = false;
+                currentLabel.font = [UIFont boldSystemFontOfSize:30];
+                currentLabel.textColor = RGBACOLOR(178, 34, 34, 1);
+                break;
+               }
+            else {
+                currentLabel_tmp.textColor = RGBACOLOR(0.0, 0.0, 0.0, 0.75);
+                currentLabel_tmp.font = [UIFont boldSystemFontOfSize:20];
+            }
+        }
+       }
+    for (UILabel * invisible in recycledViews ){
+       invisible.textColor = RGBACOLOR(0.0, 0.0, 0.0, 0.75);
+        invisible.font = [UIFont boldSystemFontOfSize:20];
+    }
+   
+    //NSLog(@"%@",currentLabel);
     [visibleViews minusSet:recycledViews];
     
     // add missing pages
@@ -274,7 +319,7 @@
             
 			if (label == nil)
             {
-				label = [[UILabel alloc] initWithFrame:CGRectMake(_rowIndent, 0, self.frame.size.width - _rowIndent, glassHeight)];
+				label = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, self.frame.size.width - _rowIndent, glassHeight)];
                 label.backgroundColor = [UIColor clearColor];
                 label.font = _rowFont;
                 label.textColor = RGBACOLOR(0.0, 0.0, 0.0, 0.75);
@@ -314,8 +359,10 @@
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
-    if (!decelerate)
-        [self determineCurrentRow];
+   // lastContentOffset = scrollView.contentOffset.y;
+   // NSLog(@"........%f",lastContentOffset);
+    //if (!decelerate)
+       // [self determineCurrentRow];
 }
 
 
@@ -323,7 +370,11 @@
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
+    isScrollingUp=true;
     [self determineCurrentRow];
+   // isScrollingUp=false;
+    // lastContentOffset = scrollView.contentOffset.y;
+   // NSLog(@"%f",lastContentOffset);
 }
 
 @end

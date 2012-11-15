@@ -7,9 +7,25 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TFHpple.h"
 
-@interface StationInfoViewController : UIViewController{
-    UIWebView * stationInfo;
+@protocol StaionInfoDataSource;
+@interface StaionInfoTableViewController : UITableViewController{
+    __unsafe_unretained id <StaionInfoDataSource> dataSource;
+    NSURL * dataURL;
+    NSMutableArray * StartAndTerminalstops;
+    NSMutableArray * depatureTimes;
+    NSMutableArray *arrivalTimes;
 }
-@property (nonatomic ,retain)UIWebView * stationInfo;
+@property (nonatomic,retain) NSURL * dataURL;
+@property (nonatomic ,retain )NSMutableArray * StartAndTerminalstops;
+@property (nonatomic, retain) NSMutableArray * depatureTimes;
+@property (nonatomic, retain)NSMutableArray *arrivalTimes;
+@property (nonatomic, unsafe_unretained) id <StaionInfoDataSource> dataSource;
+-(void) recieveData;
+@end
+
+
+@protocol StaionInfoDataSource <NSObject>
+- (NSURL*)StationInfoURL:(StaionInfoTableViewController *)stationInfoTableView;
 @end

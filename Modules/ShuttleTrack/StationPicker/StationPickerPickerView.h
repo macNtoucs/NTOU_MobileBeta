@@ -33,6 +33,10 @@
     
     UIFont *_rowFont;
     CGFloat _rowIndent;
+    
+    UILabel * currentLabel;
+    float lastContentOffset;
+    bool isStopScroll;
 }
 
 @property (nonatomic, unsafe_unretained) id <StationPickerPickerViewDataSource> dataSource;
@@ -40,7 +44,7 @@
 @property (nonatomic, unsafe_unretained) int selectedRow;
 @property (nonatomic, strong) UIFont *rowFont;
 @property (nonatomic, unsafe_unretained) CGFloat rowIndent;
-
+@property (nonatomic ,strong) UILabel * currentLabel;
 
 - (void)setup;
 - (void)reloadData;
@@ -62,7 +66,7 @@
 
 - (NSInteger)numberOfRowsInPickerView:(StationPickerPickerView *)pickerView;
 - (NSString *)pickerView:(StationPickerPickerView *)pickerView titleForRow:(NSInteger)row;
-
+- (NSString *) pickerView : (StationPickerPickerView *) pickerView nowSelected:(NSInteger) row;
 @end
 
 
