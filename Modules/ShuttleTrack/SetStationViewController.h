@@ -13,7 +13,8 @@
 #import "ThroughTap.h"
 #import "TrainStyleViewController.h"
 #import "StationInfoViewController.h"
-@interface SetStationViewController : UITabBarController<UITabBarControllerDelegate,StationPickerPickerViewDataSource, StationPickerPickerViewDelegate,UIScrollViewDelegate,UITabBarControllerDelegate,StaionInfoDataSource>
+#import "SetOriginAndStationViewController.h"
+@interface SetStationViewController : UITabBarController<UITabBarControllerDelegate,StationPickerPickerViewDataSource, StationPickerPickerViewDelegate,UIScrollViewDelegate,UITabBarControllerDelegate,StaionInfoDataSource,SetOriginAndStationViewDelegate>
 {
     NSArray *viewControllers;
     NSArray * region;
@@ -23,7 +24,8 @@
     NSString * nowSelectedRegion;
     StaionInfoTableViewController*   view5;
     TrainStyleViewController *view4;
-    StationPickerPickerView *view1, *view2, *_view1, *_view2 ,*timeChoose_moth, *timeChoose_day;
+    StationPickerPickerView *timeChoose_moth, *timeChoose_day;
+    SetOriginAndStationViewController *view1, *view2, *_view1, *_view2 ;
     id delegate;
     int startStaion_origin;
     int depatureStation_origin;
