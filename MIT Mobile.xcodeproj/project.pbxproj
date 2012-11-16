@@ -197,6 +197,10 @@
 		569DC33F1282ADC000BA0794 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 569DC33E1282ADC000BA0794 /* CoreVideo.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		569DC3421282ADCE00BA0794 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 569DC3411282ADCE00BA0794 /* libiconv.dylib */; settings = {ATTRIBUTES = (Required, ); }; };
 		56D7DF52128854DF00E9E5C9 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56D7DF51128854DF00E9E5C9 /* MapKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		6D66D0B716564DA5005AEF8D /* OtherTrafficTrapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D66D0B616564DA5005AEF8D /* OtherTrafficTrapViewController.m */; };
+		6D66D0BB16564DDD005AEF8D /* KUO_KUANGViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D66D0BA16564DDD005AEF8D /* KUO_KUANGViewController.m */; };
+		6D66D0BE16565354005AEF8D /* K_RouteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D66D0BD16565354005AEF8D /* K_RouteViewController.m */; };
+		6D66D0C116565A84005AEF8D /* Kuo_Data.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D66D0C016565A83005AEF8D /* Kuo_Data.m */; };
 		91402E41163E749A00B04EE5 /* ClassAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 91402E3B163E749A00B04EE5 /* ClassAdd.m */; };
 		91402E42163E749A00B04EE5 /* ClassAdd.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91402E3C163E749A00B04EE5 /* ClassAdd.xib */; };
 		91402E43163E749A00B04EE5 /* ClassDataBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 91402E3E163E749A00B04EE5 /* ClassDataBase.m */; };
@@ -809,6 +813,14 @@
 		569DC3411282ADCE00BA0794 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = iphoneos4.0/usr/lib/libiconv.dylib; sourceTree = "<group>"; };
 		56D7D7BA12846C4100E9E5C9 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = iphoneos4.0/System/Library/Frameworks/MapKit.framework; sourceTree = "<group>"; };
 		56D7DF51128854DF00E9E5C9 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = iphoneos4.0/System/Library/Frameworks/MapKit.framework; sourceTree = "<group>"; };
+		6D66D0B516564DA5005AEF8D /* OtherTrafficTrapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OtherTrafficTrapViewController.h; sourceTree = "<group>"; };
+		6D66D0B616564DA5005AEF8D /* OtherTrafficTrapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OtherTrafficTrapViewController.m; sourceTree = "<group>"; };
+		6D66D0B916564DDD005AEF8D /* KUO_KUANGViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KUO_KUANGViewController.h; sourceTree = "<group>"; };
+		6D66D0BA16564DDD005AEF8D /* KUO_KUANGViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KUO_KUANGViewController.m; sourceTree = "<group>"; };
+		6D66D0BC16565353005AEF8D /* K_RouteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = K_RouteViewController.h; sourceTree = "<group>"; };
+		6D66D0BD16565354005AEF8D /* K_RouteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = K_RouteViewController.m; sourceTree = "<group>"; };
+		6D66D0BF16565A82005AEF8D /* Kuo_Data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Kuo_Data.h; sourceTree = "<group>"; };
+		6D66D0C016565A83005AEF8D /* Kuo_Data.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Kuo_Data.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* MIT_Mobile-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MIT_Mobile-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		910662EF163BCFD700D01C81 /* DefinePixel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefinePixel.h; sourceTree = "<group>"; };
 		91402E3A163E749A00B04EE5 /* ClassAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassAdd.h; sourceTree = "<group>"; };
@@ -2217,6 +2229,14 @@
 				A65E39EB16495F63000E6782 /* StationPicker */,
 				C748785C1627D1D4001D3390 /* Annotation.h */,
 				C748785D1627D1D4001D3390 /* Annotation.m */,
+				6D66D0BF16565A82005AEF8D /* Kuo_Data.h */,
+				6D66D0C016565A83005AEF8D /* Kuo_Data.m */,
+				6D66D0B516564DA5005AEF8D /* OtherTrafficTrapViewController.h */,
+				6D66D0B616564DA5005AEF8D /* OtherTrafficTrapViewController.m */,
+				6D66D0BC16565353005AEF8D /* K_RouteViewController.h */,
+				6D66D0BD16565354005AEF8D /* K_RouteViewController.m */,
+				6D66D0B916564DDD005AEF8D /* KUO_KUANGViewController.h */,
+				6D66D0BA16564DDD005AEF8D /* KUO_KUANGViewController.m */,
 				C748785E1627D1D4001D3390 /* DepatureViewController.h */,
 				C748785F1627D1D4001D3390 /* DepatureViewController.m */,
 				C74878601627D1D4001D3390 /* EGORefreshTableHeaderView.h */,
@@ -3202,6 +3222,10 @@
 				A65E39F416495F63000E6782 /* StationPickerPickerView.m in Sources */,
 				A65E3A0416498D56000E6782 /* ThroughTap.m in Sources */,
 				A61B643B165434A2007A382E /* TrainStyleViewController.m in Sources */,
+				6D66D0B716564DA5005AEF8D /* OtherTrafficTrapViewController.m in Sources */,
+				6D66D0BB16564DDD005AEF8D /* KUO_KUANGViewController.m in Sources */,
+				6D66D0BE16565354005AEF8D /* K_RouteViewController.m in Sources */,
+				6D66D0C116565A84005AEF8D /* Kuo_Data.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
