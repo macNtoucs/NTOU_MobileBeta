@@ -123,7 +123,7 @@
 -(void) createData{
     region = [[NSArray alloc] initWithObjects:@"台北", @"桃園",@"新竹",@"苗栗",@"台中",@"彰化",@"雲林",@"南投",@"嘉義",@"台南",@"高雄",@"屏東",@"台東",@"花蓮",@"宜蘭",nil];
     station = [[NSArray alloc]initWithObjects:
-                [NSArray arrayWithObjects:@"福隆",@"貢寮",@"雙溪",@"牡丹",@"三貂嶺",@"侯硐",@"瑞芳",@"台北",@"瑞芳",@"四腳亭",@"暖暖",@"基隆",@"三坑",@"吧堵",@"七堵",@"百福",@"五堵",@"汐止",@"汐科",@"南港",@"松山",@"台北",@"萬華",@"板橋",@"浮州",@"樹林",@"山佳",@"鶯歌",nil ],
+                [NSArray arrayWithObjects:@"福隆",@"貢寮",@"雙溪",@"牡丹",@"三貂嶺",@"侯硐",@"瑞芳",@"四腳亭",@"暖暖",@"基隆",@"三坑",@"八堵",@"七堵",@"百福",@"五堵",@"汐止",@"汐科",@"南港",@"松山",@"台北",@"萬華",@"板橋",@"浮州",@"樹林",@"山佳",@"鶯歌",nil ],
                [NSArray arrayWithObjects:@"桃園",@"內壢",@"中壢",@"埔心",@"楊梅",@"富岡",nil ],
                [NSArray arrayWithObjects:@"北湖",@"湖口",@"新豐",@"竹北",@"北新竹",@"新竹",@"香山",nil ],
                [NSArray arrayWithObjects:@"崎頂",@"竹南",@"談文",@"大山",@"後龍",@"龍港",@"白沙屯",@"新埔",@"通霄",@"苑里",@"豐富",@"苗栗",@"南勢",@"銅鑼",@"三義",nil ],
@@ -224,18 +224,18 @@
         NowStationRow = row;
         if (pickerView ==view1) {
             [_view1 reloadData];
-            [self viewDidLoad];
-        }
+          }
         else  {
             [_view2 reloadData];
-            [self viewDidLoad];
         }
     }
     else if (pickerView == _view1){
     startStaion = [[station objectAtIndex:NowStationRow]objectAtIndex:row];
+          [self viewDidLoad];
     }
     else if (pickerView == _view2){
      DepatureStation = [[station objectAtIndex:NowStationRow]objectAtIndex:row];
+          [self viewDidLoad];
     }
     
     else if (pickerView == timeChoose_moth){

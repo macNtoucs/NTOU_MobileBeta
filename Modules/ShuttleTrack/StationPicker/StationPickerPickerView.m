@@ -361,6 +361,8 @@
 {
    // lastContentOffset = scrollView.contentOffset.y;
    // NSLog(@"........%f",lastContentOffset);
+
+    isScrollingUp=true;
     if (!decelerate)
         [self determineCurrentRow];
 }
