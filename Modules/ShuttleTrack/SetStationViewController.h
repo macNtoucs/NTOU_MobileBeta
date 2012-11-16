@@ -25,7 +25,9 @@
     TrainStyleViewController *view4;
     StationPickerPickerView *view1, *view2, *_view1, *_view2 ,*timeChoose_moth, *timeChoose_day;
     id delegate;
-    int NowStationRow;
+    int startStaion_origin;
+    int depatureStation_origin;
+    int dateSelected;
     UIView *whiteView;
     UIView *blueView;
     NSString *startStaion;

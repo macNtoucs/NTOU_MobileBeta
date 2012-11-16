@@ -31,8 +31,8 @@
     dataURL = [self.dataSource StationInfoURL:self];
 }
 -(void)recieveData{
-    [self recieveURL];
-    [self fetchData];
+   // [self recieveURL];
+    //[self fetchData];
 }
 -(void)fetchData{
     StartAndTerminalstops = [NSMutableArray new];

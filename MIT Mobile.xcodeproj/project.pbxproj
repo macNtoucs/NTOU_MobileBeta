@@ -205,6 +205,7 @@
 		A61B643B165434A2007A382E /* TrainStyleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A61B643A165434A2007A382E /* TrainStyleViewController.m */; };
 		A6218833164586CD003FC7EE /* ClassAddBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = A6218830164586CD003FC7EE /* ClassAddBackground.m */; };
 		A6218834164586CD003FC7EE /* ClassLabelBasis.m in Sources */ = {isa = PBXBuildFile; fileRef = A6218832164586CD003FC7EE /* ClassLabelBasis.m */; };
+		A63DE9B616561E6100EF3192 /* StationPickerBackground1.png in Resources */ = {isa = PBXBuildFile; fileRef = A63DE9B516561E6100EF3192 /* StationPickerBackground1.png */; };
 		A63DEE281353CF37001C52BF /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A63DEE271353CF37001C52BF /* EventKit.framework */; };
 		A65E39F416495F63000E6782 /* StationPickerPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A65E39ED16495F63000E6782 /* StationPickerPickerView.m */; };
 		A65E3A011649678C000E6782 /* StationPickerBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = A65E3A001649678C000E6782 /* StationPickerBackground.png */; };
@@ -826,6 +827,7 @@
 		A6218830164586CD003FC7EE /* ClassAddBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassAddBackground.m; sourceTree = "<group>"; };
 		A6218831164586CD003FC7EE /* ClassLabelBasis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassLabelBasis.h; sourceTree = "<group>"; };
 		A6218832164586CD003FC7EE /* ClassLabelBasis.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassLabelBasis.m; sourceTree = "<group>"; };
+		A63DE9B516561E6100EF3192 /* StationPickerBackground1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StationPickerBackground1.png; sourceTree = "<group>"; };
 		A63DEE271353CF37001C52BF /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		A65E39EC16495F63000E6782 /* StationPickerPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StationPickerPickerView.h; sourceTree = "<group>"; };
 		A65E39ED16495F63000E6782 /* StationPickerPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StationPickerPickerView.m; sourceTree = "<group>"; };
@@ -2023,6 +2025,7 @@
 		A65E39EB16495F63000E6782 /* StationPicker */ = {
 			isa = PBXGroup;
 			children = (
+				A63DE9B516561E6100EF3192 /* StationPickerBackground1.png */,
 				A65E39EC16495F63000E6782 /* StationPickerPickerView.h */,
 				A65E39ED16495F63000E6782 /* StationPickerPickerView.m */,
 				A65E3A001649678C000E6782 /* StationPickerBackground.png */,
@@ -2857,6 +2860,7 @@
 				A6CD75FE164820FB00D1209C /* TabBarNipple.png in Resources */,
 				A6CD75FF164820FB00D1209C /* TabBarNipple@2x.png in Resources */,
 				A65E3A011649678C000E6782 /* StationPickerBackground.png in Resources */,
+				A63DE9B616561E6100EF3192 /* StationPickerBackground1.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

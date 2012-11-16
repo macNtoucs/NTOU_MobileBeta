@@ -24,11 +24,13 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         ThroughTap *bg = [[ThroughTap alloc]initWithFrame:CGRectMake(0,0,320,480)];
-        NowStationRow = 0;
+         startStaion_origin =0;
+         depatureStation_origin=0;
+         dateSelected=0;
         startStaion = [NSString new];
         DepatureStation = [NSString new];
         queryDate = [NSString new];
-      [self addSelectView];
+      //[self addSelectView];
         [self createData];
         UIViewController *setStartStationController,
                          *setdepatureStationviewController,
@@ -199,47 +201,52 @@
 {
     if (pickerView == view1 || pickerView == view2)
         return [region objectAtIndex:row];
-    else if (pickerView == _view1 || pickerView == _view2)
-        return [[station objectAtIndex:NowStationRow]objectAtIndex:row] ;
+    else if (pickerView == _view1 )
+        return [[station objectAtIndex:startStaion_origin]objectAtIndex:row];
+    else if (pickerView == _view2 )
+        return [[station objectAtIndex:depatureStation_origin]objectAtIndex:row];
     else if (pickerView == timeChoose_moth) return [moth objectAtIndex:row];
     else if (pickerView == timeChoose_day)
-        return [[day objectAtIndex:NowStationRow]objectAtIndex:row] ;
+        return [[day objectAtIndex:dateSelected]objectAtIndex:row] ;
 }
 
 - (NSInteger)numberOfRowsInPickerView:(StationPickerPickerView *)pickerView
 {
    if (pickerView == view1 || pickerView == view2)
         return [region count];
-     else if (pickerView == _view1 || pickerView == _view2)
-        return [[station objectAtIndex:NowStationRow]count];
+     else if (pickerView == _view1 )
+        return [[station objectAtIndex:startStaion_origin]count];
+     else if (pickerView == _view2 )
+         return [[station objectAtIndex:depatureStation_origin]count];
      else if (pickerView == timeChoose_moth) return [moth count];
      else if (pickerView == timeChoose_day)
-         return [[day objectAtIndex:NowStationRow]count] ;
+         return [[day objectAtIndex:dateSelected]count] ;
 }
 
 - (void)pickerView:(StationPickerPickerView *)pickerView didSelectRow:(NSInteger)row
 {
     if (pickerView == view1 || pickerView == view2){
-       // NSLog(@"%@",[region objectAtIndex:row]);
-        NowStationRow = row;
+        NSLog(@"%@",[region objectAtIndex:row]);
         if (pickerView ==view1) {
+            startStaion_origin = row;
             [_view1 reloadData];
           }
         else  {
+            depatureStation_origin = row;
             [_view2 reloadData];
         }
     }
     else if (pickerView == _view1){
-    startStaion = [[station objectAtIndex:NowStationRow]objectAtIndex:row];
+    startStaion = [[station objectAtIndex:startStaion_origin]objectAtIndex:row];
           [self viewDidLoad];
     }
     else if (pickerView == _view2){
-     DepatureStation = [[station objectAtIndex:NowStationRow]objectAtIndex:row];
+     DepatureStation = [[station objectAtIndex:depatureStation_origin]objectAtIndex:row];
           [self viewDidLoad];
     }
     
     else if (pickerView == timeChoose_moth){
-        NowStationRow = row;
+        dateSelected = row;
         [timeChoose_day reloadData];
     }
     /* else if (pickerView == _view1 || pickerView == _view2)
@@ -249,11 +256,13 @@
 - (NSString *) pickerView : (StationPickerPickerView *) pickerView nowSelected:(NSInteger) row{
    if (pickerView == view1 || pickerView == view2)
         return [region objectAtIndex:row];
-     else if (pickerView == _view1 || pickerView == _view2)
-        return [[station objectAtIndex:NowStationRow]objectAtIndex:row];
+     else if (pickerView == _view1 )
+        return [[station objectAtIndex:startStaion_origin]objectAtIndex:row];
+     else if (pickerView == _view2 )
+         return [[station objectAtIndex:depatureStation_origin]objectAtIndex:row];
      else if (pickerView == timeChoose_moth) return [moth objectAtIndex:row];
      else if (pickerView == timeChoose_day)
-         return [[day objectAtIndex:NowStationRow]objectAtIndex:row] ;
+         return [[day objectAtIndex:dateSelected]objectAtIndex:row] ;
 }
 
 

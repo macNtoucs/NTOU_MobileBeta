@@ -18,7 +18,7 @@
 @synthesize rowFont = _rowFont;
 @synthesize rowIndent = _rowIndent;
 @synthesize currentLabel;
-
+bool initailIndex = true;
 
 
 #pragma mark - Custom getters/setters
@@ -29,7 +29,7 @@
         return;
     
     currentRow = selectedRow;
-    [contentView setContentOffset:CGPointMake(0.0, glassHeight * currentRow) animated:NO];
+    [contentView setContentOffset:CGPointMake(0.0, glassHeight * currentRow-10) animated:NO];
 }
 
 
@@ -38,10 +38,10 @@
 - (void)setRowFont:(UIFont *)rowFont
 {
     _rowFont = [UIFont boldSystemFontOfSize:20];
-    
+   
     for (UILabel *aLabel in visibleViews)
     {
-        aLabel.font = _rowFont;
+         aLabel.font = _rowFont;
         
     }
     
@@ -61,7 +61,7 @@
     for (UILabel *aLabel in visibleViews) 
     {
         CGRect frame = aLabel.frame;
-        frame.origin.x = _rowIndent;
+        frame.origin.x = 53;
         frame.size.width = self.frame.size.width - _rowIndent;
         aLabel.frame = frame;
     }
@@ -69,7 +69,7 @@
     for (UILabel *aLabel in recycledViews) 
     {
         CGRect frame = aLabel.frame;
-        frame.origin.x = _rowIndent;
+        frame.origin.x = 53;
         frame.size.width = self.frame.size.width - _rowIndent;
         aLabel.frame = frame;
     }
@@ -89,7 +89,7 @@
         [self setup];
         isScrollingUp=false;
         // backgound
-        UIImageView *bacground = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"StationPickerBackground.png"]];
+        UIImageView *bacground = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"StationPickerBackground1.png"]];
         [self addSubview:bacground];
         
         // content
@@ -139,8 +139,8 @@
     // empry views
     currentRow = 0;
     rowsCount = 0;
-    
-    for (UIView *aView in visibleViews) 
+    isreload=true;
+    for (UIView *aView in visibleViews)
         [aView removeFromSuperview];
     
     for (UIView *aView in recycledViews)
@@ -152,9 +152,9 @@
     rowsCount = [dataSource numberOfRowsInPickerView:self];
     [contentView setContentOffset:CGPointMake(0.0, 0.0) animated:NO];
     contentView.contentSize =
-    CGSizeMake(contentView.frame.size.width, (60 *rowsCount) + (4 * glassHeight));
-    //NSLog(@"%f",contentView.contentSize.height);
+    CGSizeMake(contentView.frame.size.width, (glassHeight *rowsCount) + (4 * glassHeight));
     [self tileViews];
+    [self determineCurrentRow];
 }
 
 
@@ -164,8 +164,8 @@
 {
     CGFloat delta = contentView.contentOffset.y;
     int position = round(delta / glassHeight);
-    currentRow = position;
-    [contentView setContentOffset:CGPointMake(0.0, glassHeight * position - 17) animated:YES];
+    currentRow = position+1;
+    [contentView setContentOffset:CGPointMake(0.0, glassHeight * position - 10) animated:YES];
     [delegate pickerView:self didSelectRow:currentRow];
 }
 
@@ -176,7 +176,7 @@
 {
     UITapGestureRecognizer *tapRecognizer = (UITapGestureRecognizer *)sender;
     CGPoint point = [tapRecognizer locationInView:self];
-    int steps = floor(point.y / glassHeight) - 2;
+    int steps = floor(point.y / glassHeight) - 3;
     [self makeSteps:steps];
 }
 
@@ -185,10 +185,10 @@
 
 - (void)makeSteps:(int)steps
 {
-    if (steps == 0 || steps > 2 || steps < -2)
+    if (steps == 0 || steps > 3 || steps < -3)
         return;
     
-    [contentView setContentOffset:CGPointMake(0.0, glassHeight * currentRow-17) animated:NO];
+    [contentView setContentOffset:CGPointMake(0.0, glassHeight*(currentRow-1)-10) animated:NO];
     
     int newRow = currentRow + steps;
     if (newRow < 0 || newRow >= rowsCount)
@@ -202,7 +202,7 @@
     }
     
     currentRow = currentRow + steps;
-    [contentView setContentOffset:CGPointMake(0.0, glassHeight * currentRow-17) animated:YES];
+    [contentView setContentOffset:CGPointMake(0.0, glassHeight*(currentRow-1)-10) animated:YES];
       [delegate pickerView:self didSelectRow:currentRow];
     isScrollingUp=true;
     for (UILabel * invisible in visibleViews ){
@@ -215,8 +215,8 @@
             if ([currentLabel_tmp.text isEqualToString: nowSelected]) {
                 currentLabel=currentLabel_tmp;
                 isScrollingUp = false;
-                currentLabel.font = [UIFont boldSystemFontOfSize:30];
-                currentLabel.textColor = RGBACOLOR(178,34,34, 1);
+                currentLabel.font = [UIFont boldSystemFontOfSize:25];
+                currentLabel.textColor = RGBACOLOR(255,255,255, 1);
                 break;
             }
             else {
@@ -228,8 +228,6 @@
    
  
 }
-
-
 
 
 #pragma mark - recycle queue
@@ -292,9 +290,8 @@
             if ([currentLabel_tmp.text isEqualToString: nowSelected]) {
                 currentLabel=currentLabel_tmp;
                 isScrollingUp = false;
-                currentLabel.font = [UIFont boldSystemFontOfSize:30];
-                currentLabel.textColor = RGBACOLOR(178, 34, 34, 1);
-                break;
+                currentLabel.font = [UIFont boldSystemFontOfSize:25];
+                currentLabel.textColor = RGBACOLOR(255,255, 255, 1);
                }
             else {
                 currentLabel_tmp.textColor = RGBACOLOR(0.0, 0.0, 0.0, 0.75);
@@ -323,6 +320,11 @@
                 label.backgroundColor = [UIColor clearColor];
                 label.font = _rowFont;
                 label.textColor = RGBACOLOR(0.0, 0.0, 0.0, 0.75);
+                if (index==1 && isreload){
+                    label.font = [UIFont boldSystemFontOfSize:25];
+                    label.textColor = RGBACOLOR(255, 255,255,1);
+                    isreload = false;
+                }
             }
             
             [self configureView:label atIndex:index];
@@ -341,6 +343,7 @@
     label.text = [dataSource pickerView:self titleForRow:index];
     CGRect frame = label.frame;
     frame.origin.y = glassHeight * index + glassHeight*2;
+    frame.origin.x = 53;
     label.frame = frame;
 }
 
@@ -359,9 +362,6 @@
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
-   // lastContentOffset = scrollView.contentOffset.y;
-   // NSLog(@"........%f",lastContentOffset);
-
     isScrollingUp=true;
     if (!decelerate)
         [self determineCurrentRow];
@@ -374,9 +374,7 @@
 {
     isScrollingUp=true;
     [self determineCurrentRow];
-   // isScrollingUp=false;
-    // lastContentOffset = scrollView.contentOffset.y;
-   // NSLog(@"%f",lastContentOffset);
+   
 }
 
 @end
