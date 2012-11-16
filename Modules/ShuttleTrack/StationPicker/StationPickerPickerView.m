@@ -361,8 +361,8 @@
 {
    // lastContentOffset = scrollView.contentOffset.y;
    // NSLog(@"........%f",lastContentOffset);
-    //if (!decelerate)
-       // [self determineCurrentRow];
+    if (!decelerate)
+        [self determineCurrentRow];
 }
 
 
