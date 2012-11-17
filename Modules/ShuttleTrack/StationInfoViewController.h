@@ -16,6 +16,9 @@
     NSMutableArray * StartAndTerminalstops;
     NSMutableArray * depatureTimes;
     NSMutableArray *arrivalTimes;
+    NSMutableArray *trainStyle;
+    NSString *startStation;
+    NSString *depatureStation;
 }
 @property (nonatomic,retain) NSURL * dataURL;
 @property (nonatomic ,retain )NSMutableArray * StartAndTerminalstops;
@@ -28,4 +31,6 @@
 
 @protocol StaionInfoDataSource <NSObject>
 - (NSURL*)StationInfoURL:(StaionInfoTableViewController *)stationInfoTableView;
+- (NSString *)startStationTitile:(StaionInfoTableViewController *)stationInfoTableView;
+- (NSString *)depatureStationTitile:(StaionInfoTableViewController *)stationInfoTableView;
 @end

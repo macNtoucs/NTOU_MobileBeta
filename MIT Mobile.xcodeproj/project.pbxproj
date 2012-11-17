@@ -222,7 +222,8 @@
 		A6CD760216482F8900D1209C /* SetStationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CD760116482F8900D1209C /* SetStationViewController.m */; };
 		A6CD76051648333400D1209C /* StationView.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CD76041648333300D1209C /* StationView.m */; };
 		A6DCE34F165695C0009290D9 /* SetOriginAndStationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6DCE34E165695C0009290D9 /* SetOriginAndStationViewController.m */; };
-		A6DCE6D31656DE59009290D9 /* stationNum.txt in Resources */ = {isa = PBXBuildFile; fileRef = A6DCE6D21656DE59009290D9 /* stationNum.txt */; };
+		A6DCE6DE1657A305009290D9 /* stationNum.txt in Resources */ = {isa = PBXBuildFile; fileRef = A6DCE6DD1657A305009290D9 /* stationNum.txt */; };
+		A6DCE6E01657ECA6009290D9 /* stationNumber.plist in Resources */ = {isa = PBXBuildFile; fileRef = A6DCE6DF1657ECA6009290D9 /* stationNumber.plist */; };
 		B64B47081288502E002E2F1D /* DummyRotatingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B64B47061288502E002E2F1D /* DummyRotatingViewController.m */; };
 		BD1E9309103B5D60004429AA /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = BD1E92F6103B5D60004429AA /* NSObject+SBJSON.m */; };
 		BD1E930A103B5D60004429AA /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = BD1E92F8103B5D60004429AA /* NSString+SBJSON.m */; };
@@ -856,7 +857,8 @@
 		A6CD76041648333300D1209C /* StationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StationView.m; sourceTree = "<group>"; };
 		A6DCE34D165695C0009290D9 /* SetOriginAndStationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetOriginAndStationViewController.h; sourceTree = "<group>"; };
 		A6DCE34E165695C0009290D9 /* SetOriginAndStationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetOriginAndStationViewController.m; sourceTree = "<group>"; };
-		A6DCE6D21656DE59009290D9 /* stationNum.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = stationNum.txt; path = Resources/stationNum.txt; sourceTree = "<group>"; };
+		A6DCE6DD1657A305009290D9 /* stationNum.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = stationNum.txt; sourceTree = "<group>"; };
+		A6DCE6DF1657ECA6009290D9 /* stationNumber.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = stationNumber.plist; sourceTree = "<group>"; };
 		B64B47051288502E002E2F1D /* DummyRotatingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DummyRotatingViewController.h; sourceTree = "<group>"; };
 		B64B47061288502E002E2F1D /* DummyRotatingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DummyRotatingViewController.m; sourceTree = "<group>"; };
 		BD1E92F4103B5D60004429AA /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
@@ -1395,7 +1397,6 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				A6DCE6D21656DE59009290D9 /* stationNum.txt */,
 				2CD12D4E1360584F00A73ACA /* facilities */,
 				2CDF301E134DF504007C6813 /* qrreader */,
 				EB07B06912B8971D005D6A4C /* calendar */,
@@ -2223,6 +2224,8 @@
 		DE715449102FE468005E6111 /* ShuttleTrack */ = {
 			isa = PBXGroup;
 			children = (
+				A6DCE6DF1657ECA6009290D9 /* stationNumber.plist */,
+				A6DCE6DD1657A305009290D9 /* stationNum.txt */,
 				A65E39EB16495F63000E6782 /* StationPicker */,
 				C748785C1627D1D4001D3390 /* Annotation.h */,
 				C748785D1627D1D4001D3390 /* Annotation.m */,
@@ -2869,7 +2872,8 @@
 				A6CD75FF164820FB00D1209C /* TabBarNipple@2x.png in Resources */,
 				A65E3A011649678C000E6782 /* StationPickerBackground.png in Resources */,
 				A63DE9B616561E6100EF3192 /* StationPickerBackground1.png in Resources */,
-				A6DCE6D31656DE59009290D9 /* stationNum.txt in Resources */,
+				A6DCE6DE1657A305009290D9 /* stationNum.txt in Resources */,
+				A6DCE6E01657ECA6009290D9 /* stationNumber.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

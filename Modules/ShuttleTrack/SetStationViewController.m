@@ -50,14 +50,14 @@
        
         
         view1 = [[SetOriginAndStationViewController alloc] initWithStyle:UITableViewStyleGrouped];
-        view1.view.frame = CGRectMake(-15, 0, 345, 440);
+        view1.view.frame = CGRectMake(0, 0, 320, 440);
         [setStartStationController.view addSubview:view1.view];
         [setStartStationController.view addSubview:bg];
         setStartStationController.tabBarItem.tag=0;
         view1.delegate = self;
         ///////////////////////////////////////////////////////////
         view2 = [[SetOriginAndStationViewController alloc] initWithStyle:UITableViewStyleGrouped];
-         view2.view.frame = CGRectMake(-15, 0, 345, 440);
+         view2.view.frame = CGRectMake(0, 0, 320, 440);
         [setdepatureStationviewController.view addSubview:view2.view];
         [setdepatureStationviewController.view addSubview:bg];
        view2.delegate = self;
@@ -83,11 +83,15 @@
         [setTrainTypeviewController.view addSubview:view4.tableView];
         setTrainTypeviewController.tabBarItem.tag=3;
         //////////////////////////////////////////////////////////
-         
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *documentsDirectory = [paths objectAtIndex:0];
+        NSString *filePath = [documentsDirectory stringByAppendingString:@"/stationNumber.plist"];
+        stationNum = [[NSMutableDictionary alloc]initWithContentsOfFile:filePath];
         view5 = [[StaionInfoTableViewController alloc] init];
         view5.dataSource = self;
         view5.title = type5;
-        view5.view.frame = CGRectMake(0, 10, 320, 420);
+        view5.view.frame = CGRectMake(0, 10, 320, 425);
+        resultViewController.view.frame= CGRectMake(0, 10, 320, 425);
         [resultViewController.view addSubview:view5.tableView];
         resultViewController.tabBarItem.tag=4;
         [view5 recieveData];
@@ -97,12 +101,22 @@
        
       [self setViewControllers:viewControllers animated:YES];
         self.delegate=self;
-    
-        [self addTabBarArrow];
+       
     }
     self.tabBar.frame = CGRectMake(0, 480-self.tabBar.frame.size.height-20, self.tabBar.frame.size.width, self.tabBar.frame.size.height+20);
-   
+    
+    [self addTabBarArrow];
+    
     return self;
+}
+-(void)didSwipe:(id)sender{
+ UISwipeGestureRecognizer *swipeRecognizer = (UISwipeGestureRecognizer *)sender;
+    if(swipeRecognizer.direction == UISwipeGestureRecognizerDirectionLeft ||swipeRecognizer.direction == UISwipeGestureRecognizerDirectionRight ){
+        NSString * tmpForSwap = [[NSString alloc]initWithString:DepatureStation];
+        DepatureStation = [NSString stringWithString:startStaion];
+        startStaion = [NSString stringWithString:tmpForSwap];
+        [self viewDidLoad];
+    }
 }
 -(int)initialRow:(StationPickerPickerView *)pickerView{
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -206,6 +220,10 @@
         whiteView.hidden=YES;
         blueView.hidden=YES;
         [self viewDidLoad];
+        if (viewController.tabBarItem.tag==4){
+            [self StationInfoURL:stationInfoTableView_delegate];
+            [view5 recieveData];
+        }
     }
     else {
         whiteView.hidden=NO;
@@ -218,11 +236,19 @@
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor clearColor];
-    self.title = [NSString stringWithFormat: @"基隆 -> 台北"];
-    if (startStaion && DepatureStation)
+    self.title = [NSString stringWithFormat: @"基隆 -> 臺北"];
+    if ((startStaion && DepatureStation) &&![startStaion isEqualToString:@""])
      self.title = [NSString stringWithFormat: @"%@ -> %@",startStaion,DepatureStation];
+    UISwipeGestureRecognizer *swipeRecognizer_right = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(didSwipe:)];
+    [swipeRecognizer_right setDirection:UISwipeGestureRecognizerDirectionRight];
+    [self.view addGestureRecognizer:swipeRecognizer_right];
+    UISwipeGestureRecognizer *swipeRecognizer_left = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(didSwipe:)];
+    [swipeRecognizer_left setDirection:UISwipeGestureRecognizerDirectionLeft];
+    [self.view addGestureRecognizer:swipeRecognizer_left];
+  //  [swipeRecognizer release];
     
-       
+    
+    
 
     // Do any additional setup after loading the view from its nib.
 }
@@ -239,16 +265,82 @@
         DepatureStation = [[NSString stringWithFormat:@"%@", station ]retain];
     [self viewDidLoad];
 }
-- (NSURL*)StationInfoURL:(StaionInfoTableViewController *)stationInfoTableView{
-   
-    NSString *inFile;
-    inFile = [NSString
-              stringWithContentsOfFile:@"stationNum.txt"
-              encoding:NSUTF8StringEncoding
-              error:nil];
-    NSLog(@"%@", inFile);
+
+/*-(void)CreateStationNumPlist{
+    NSString* path = [[NSBundle mainBundle] pathForResource:@"stationNum"
+                                                     ofType:@"txt"];
+    NSString* content = [NSString stringWithContentsOfFile:path
+                                                  encoding:NSUTF8StringEncoding
+                                                     error:NULL];
+    NSArray * tmp_token = [content componentsSeparatedByString:@"\n"];
+    NSMutableArray * token = [NSMutableArray new];
+    int _switch=1;
+    NSMutableDictionary * stationNumberDic = [NSMutableDictionary new];
+    NSError *error;
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSFileManager * fileManager = nil;
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    for (NSString* objInTmp in tmp_token){
+        if (_switch==1)
+            [token addObject:objInTmp];
+        _switch*=-1;
+        
+    }
+    for (NSString * objInToken in token){
+        if (![stationNumberDic objectForKey:[objInToken substringToIndex:4]])
+           // NSLog(@"%@",[objInToken substringWithRange:NSMakeRange([objInToken length]-2, 1)] );
+            if ([[objInToken substringWithRange:NSMakeRange([objInToken length]-2, 1)] isEqualToString: @" "])
+                [stationNumberDic setObject:[objInToken substringToIndex:4] forKey:[objInToken substringWithRange:NSMakeRange(4, [objInToken length]-6)]];
+            else
+            [stationNumberDic setObject:[objInToken substringToIndex:4] forKey:[objInToken substringWithRange:NSMakeRange(4, [objInToken length]-5)]];
+    }
     
-    return [NSURL URLWithString:@"http://twtraffic.tra.gov.tw/twrail/SearchResult.aspx?searchtype=0&searchdate=2012%2F11%2F17&fromstation=1001&tostation=1008&trainclass=2&fromtime=0000&totime=2359"];
-   
+    NSString *plistPath = [documentsDirectory stringByAppendingPathComponent:@"stationNumber.plist"];
+    if (![fileManager fileExistsAtPath: path])
+    {
+        NSString *bundle = [[NSBundle mainBundle] pathForResource:@"stationNumber" ofType:@"plist"];
+        [fileManager copyItemAtPath:bundle toPath:path error:&error];
+    }
+    [stationNumberDic writeToFile:plistPath atomically: YES];
+ NSArray *arr= [stationNumberDic allKeys];
+
+}*/
+- (NSURL*)StationInfoURL:(StaionInfoTableViewController *)stationInfoTableView{
+   //[self CreateStationNumPlist];
+    stationInfoTableView_delegate = self;
+   if (![startStaion isEqualToString:@""] && ![DepatureStation isEqualToString:@""] ){
+        
+        NSString *StartStationID = [NSString stringWithFormat:@"%@",[stationNum valueForKey:startStaion]];
+        NSString *DepatureStationID= [NSString stringWithFormat:@"%@",[stationNum valueForKey:DepatureStation]];
+         NSArray *arr= [stationNum allKeys];
+        NSString * queryURL = [[NSString alloc]initWithString:@"http://twtraffic.tra.gov.tw/twrail/SearchResult.aspx?searchtype=0&searchdate=2012%2F"];
+       queryURL=[queryURL stringByAppendingString:[NSString stringWithFormat:@"%d",currentMonth]];
+       queryURL= [queryURL stringByAppendingString:@"%2F"];
+       queryURL= [queryURL stringByAppendingString:[NSString stringWithFormat:@"%d",currentDay]];
+       queryURL= [queryURL stringByAppendingString:[NSString stringWithFormat:@"&fromstation=%@&tostation=%@&trainclass=2&fromtime=0000&totime=2359",StartStationID,DepatureStationID]];
+     //  NSLog( @"%@",queryURL);
+      
+     return [NSURL URLWithString:queryURL];
+   }
+    
+    NSString * queryURL = [[NSString alloc]initWithString:@"http://twtraffic.tra.gov.tw/twrail/SearchResult.aspx?searchtype=0&searchdate=2012%2F"];
+    queryURL=[queryURL stringByAppendingString:[NSString stringWithFormat:@"%d",currentMonth]];
+    queryURL= [queryURL stringByAppendingString:@"%2F"];
+    queryURL= [queryURL stringByAppendingString:[NSString stringWithFormat:@"%d",currentDay]];
+    queryURL= [queryURL stringByAppendingString:@"&fromstation=1001&tostation=1008&trainclass=2&fromtime=0000&totime=2359"];
+   // NSLog( @"%@",queryURL);
+    
+   return [NSURL URLWithString:queryURL];
+}
+
+- (NSString *)startStationTitile:(StaionInfoTableViewController *)stationInfoTableView{
+    if (![startStaion isEqualToString:@""] && startStaion)
+    return startStaion;
+    else return @"基隆";
+}
+- (NSString *)depatureStationTitile:(StaionInfoTableViewController *)stationInfoTableView{
+     if (![DepatureStation isEqualToString:@""] && DepatureStation)
+         return DepatureStation;
+    else return @"臺北";
 }
 @end

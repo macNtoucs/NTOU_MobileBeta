@@ -30,19 +30,25 @@
     dataURL = [[NSURL alloc]init];
     dataURL = [self.dataSource StationInfoURL:self];
 }
+-(void) recieveStartAndDepature{
+    startStation =[[NSString alloc]initWithString:[self.dataSource startStationTitile:self]];
+    depatureStation =[[NSString alloc]initWithString:[self.dataSource depatureStationTitile:self]];
+}
 -(void)recieveData{
     [self recieveURL];
+    [self recieveStartAndDepature];
     [self fetchData];
+    [self.tableView reloadData];
 }
 -(void)fetchData{
     StartAndTerminalstops = [NSMutableArray new];
     depatureTimes = [NSMutableArray new];
     arrivalTimes = [NSMutableArray new];
+    trainStyle = [NSMutableArray new];
     NSError* error;
     NSData* data = [[NSString stringWithContentsOfURL:dataURL encoding:NSUTF8StringEncoding error:&error] dataUsingEncoding:NSUTF8StringEncoding];
     TFHpple* parser = [[TFHpple alloc] initWithHTMLData:data];
     NSArray *tableData_td  = [parser searchWithXPathQuery:@"//body//form//div//table//tbody//tr//td"];
-    NSLog(@"%u",[tableData_td count]);
     for (int i=3 ; i< [tableData_td count] ; ++i)
         if (i%10==3) {
             TFHppleElement * attributeElement = [tableData_td objectAtIndex:i];
@@ -66,6 +72,15 @@
             [arrivalTimes addObject: [[stops objectAtIndex:0]content] ];
             
         }
+     NSArray *tableData_trainStyle  = [parser searchWithXPathQuery:@"//body//form//div//table//tbody//tr//td//span"];
+    for (int i=0 ; i< [tableData_trainStyle count] ; ++i){
+        TFHppleElement * attributeElement = [tableData_trainStyle objectAtIndex:i];
+        NSArray * contextArr = [attributeElement children];
+        if (!(i%2))
+          [trainStyle addObject: [[contextArr objectAtIndex:0]content] ];
+        else continue;
+       }
+   
 }
 
 - (void)viewDidLoad
@@ -111,15 +126,16 @@
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
     }
     if (indexPath.row == 0 ) {
-        cell.textLabel.text = @"發車->終點";
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"出發時間     抵達%@時間",@"台北"];
+        cell.textLabel.text = @"車種";
+        cell.detailTextLabel.text = [NSString stringWithFormat:@" %@出發時間    抵達%@時間",startStation,depatureStation];
         cell.detailTextLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:12];
         cell.detailTextLabel.textColor = [UIColor brownColor];
         cell.textLabel.textColor = [UIColor brownColor];
     }
     else {
         NSString * detailString = [NSString stringWithFormat:@"%@         %@", [depatureTimes objectAtIndex:indexPath.row-1],[arrivalTimes objectAtIndex:indexPath.row-1] ] ;
-        cell.textLabel.text= [StartAndTerminalstops objectAtIndex:indexPath.row-1];
+        cell.textLabel.text=[NSString stringWithFormat:@"%@",[trainStyle objectAtIndex:indexPath.row-1]] ;
+        
         cell.detailTextLabel.text = detailString;
         cell.detailTextLabel.textColor = [UIColor blueColor];
     }

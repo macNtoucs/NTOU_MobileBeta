@@ -27,6 +27,7 @@
     StationPickerPickerView *timeChoose_moth, *timeChoose_day;
     SetOriginAndStationViewController *view1, *view2, *_view1, *_view2 ;
     id delegate;
+    id stationInfoTableView_delegate;
     int startStaion_origin;
     int depatureStation_origin;
     int dateSelected;
@@ -37,6 +38,7 @@
     NSString *queryDate;
     int currentMonth;
     int currentDay;
+    NSMutableDictionary * stationNum;
     
 }
 @property int tag;

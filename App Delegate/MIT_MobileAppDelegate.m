@@ -87,8 +87,26 @@
 		[[self moduleForTag:notification.moduleName] handleNotification:notification shouldOpen:YES];
 		DLog(@"Application opened in response to notification=%@", notification);
 	}
+    BOOL success;
+    NSError *error;
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *filePath = [documentsDirectory stringByAppendingString:@"/stationNumber.plist"];
+    
+    success = [fileManager fileExistsAtPath:filePath];
+    if (success) return YES;
+    
+    NSString *path = [[[NSBundle mainBundle] resourcePath] stringByAppendingFormat:@"/stationNumber.plist"];
+    success = [fileManager copyItemAtPath:path toPath:filePath error:&error];
+    
+    if (!success) {
+        NSAssert1(0, @"Failed to copy Plist. Error %@", [error localizedDescription]);
+    }
     
     return YES;
+    
 }
 
 // Because we implement -application:didFinishLaunchingWithOptions: this only gets called when an mitmobile:// URL is opened from within this app
