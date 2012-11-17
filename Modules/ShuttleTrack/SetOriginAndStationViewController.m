@@ -108,7 +108,7 @@
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     cell.textLabel.textColor = [UIColor whiteColor];
     if(indexPath.row % 2) cell.backgroundColor =RGBCOLOR(50,50,50);
-    else cell.backgroundColor =RGBCOLOR(100,100,100);
+    else cell.backgroundColor =RGBCOLOR(70,70,70);
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {

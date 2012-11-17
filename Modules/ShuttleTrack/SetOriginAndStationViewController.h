@@ -17,8 +17,8 @@
 
 @interface SetOriginAndStationViewController : UITableViewController{
    __unsafe_unretained id <SetOriginAndStationViewDelegate>delegate;
-    NSArray * region;
-    NSArray * station;
+   __unsafe_unretained NSArray * region;
+   __unsafe_unretained NSArray * station;
 }
 @property (nonatomic ,retain) NSArray * region;
 @property (nonatomic ,retain) NSArray * station;

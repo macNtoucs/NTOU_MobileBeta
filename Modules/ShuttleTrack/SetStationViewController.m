@@ -74,7 +74,7 @@
         timeChoose_day.delegate = self;
         timeChoose_day.dataSource = self;
         [timeChoose_day reloadData];
-        setTimeviewController.tabBarItem.tag=2;
+       
         //////////////////////////////////////////////////////////
         
         view4 = [[TrainStyleViewController alloc] initWithStyle:UITableViewStyleGrouped];
@@ -104,7 +104,20 @@
    
     return self;
 }
-
+-(int)initialRow:(StationPickerPickerView *)pickerView{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    NSDate *date = [NSDate date];
+    [formatter setDateFormat:@"MM"];
+    currentMonth =  [[formatter stringFromDate:date]intValue];
+    [formatter setDateFormat:@"dd"];
+    currentDay =  [[formatter stringFromDate:date]intValue];
+    if (pickerView == timeChoose_moth){
+        return currentMonth;
+    }
+    else if (pickerView == timeChoose_day){
+        return currentDay;
+    }
+}
 -(void) createData{
     moth = [[NSArray alloc ]initWithObjects:@"一月",@"二月",@"三月",@"四月",@"五月",@"六月",@"七月",@"八月",@"九月",@"十月",@"十一月",@"十二月", nil ];
     day = [[NSMutableArray alloc]init];
@@ -129,38 +142,7 @@
     }
 }
 
--(void) addSelectView{
-    whiteView = [[UIView alloc] initWithFrame:CGRectMake(160,140, 160, 60)];
-    //sampleView.backgroundColor = [UIColor whiteColor];
-    whiteView.backgroundColor = [UIColor grayColor];
-    whiteView.alpha=0.1;
-    whiteView.layer.cornerRadius = 2.5; // 圓角的弧度
-    whiteView.layer.masksToBounds = YES;
-    whiteView.layer.shadowColor = [[UIColor blackColor] CGColor];
-    whiteView.layer.shadowOffset = CGSizeMake(3.0f, 3.0f); // [水平偏移, 垂直偏移]
-    whiteView.layer.shadowOpacity = 0.5f; // 0.0 ~ 1.0 的值
-    whiteView.layer.shadowRadius = 10.0f; // 陰影發散的程度
-    whiteView.layer.borderWidth = 1;
-    whiteView.layer.borderColor = [[UIColor blackColor] CGColor];
-    CAGradientLayer *gradient = [CAGradientLayer layer];
-    gradient.frame = whiteView.bounds;
-    gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor whiteColor] CGColor], (id)[[UIColor grayColor] CGColor], nil]; // 由上到下的漸層顏色
-    [whiteView.layer insertSublayer:gradient atIndex:0];
-    blueView = [[UIView alloc] initWithFrame:CGRectMake(8,140, 150, 60)];
-    blueView.backgroundColor = [UIColor colorWithRed:135/255 green:206/255 blue:235.0/255.0 alpha:0.05];
-    blueView.layer.cornerRadius = 2.5; // 圓角的弧度
-    blueView.layer.masksToBounds = YES;
-    blueView.layer.shadowColor = [[UIColor blackColor] CGColor];
-    blueView.layer.shadowOffset = CGSizeMake(3.0f, 3.0f); // [水平偏移, 垂直偏移]
-    blueView.layer.shadowOpacity = 0.5f; // 0.0 ~ 1.0 的值
-    blueView.layer.shadowRadius = 10.0f; // 陰影發散的程度
-    blueView.layer.borderWidth = 1;
-    blueView.layer.borderColor = [[UIColor blackColor] CGColor];
-    [self.view addSubview:whiteView];
-    [self.view addSubview:blueView];
-  
-    
-}
+
 - (NSString *)pickerView:(StationPickerPickerView *)pickerView titleForRow:(NSInteger)row
 {
      if (pickerView == timeChoose_moth) return [moth objectAtIndex:row];
@@ -188,9 +170,9 @@
     
 }
 - (NSString *) pickerView : (StationPickerPickerView *) pickerView nowSelected:(NSInteger) row{
-     if (pickerView == timeChoose_moth) return [moth objectAtIndex:row];
+     if (pickerView == timeChoose_moth) return [moth objectAtIndex:row-1];
      else if (pickerView == timeChoose_day)
-         return [[day objectAtIndex:dateSelected]objectAtIndex:row] ;
+         return [[day objectAtIndex:dateSelected]objectAtIndex:row-1] ;
 }
 
 
@@ -236,9 +218,12 @@
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor clearColor];
+    self.title = [NSString stringWithFormat: @"基隆 -> 台北"];
     if (startStaion && DepatureStation)
      self.title = [NSString stringWithFormat: @"%@ -> %@",startStaion,DepatureStation];
     
+       
+
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -256,7 +241,14 @@
 }
 - (NSURL*)StationInfoURL:(StaionInfoTableViewController *)stationInfoTableView{
    
-        return [NSURL URLWithString:@"http://twtraffic.tra.gov.tw/twrail/SearchResult.aspx?searchtype=0&searchdate=2012%2F11%2F15&fromstation=1008&tostation=1001&trainclass=2&fromtime=0000&totime=2359"];
+    NSString *inFile;
+    inFile = [NSString
+              stringWithContentsOfFile:@"stationNum.txt"
+              encoding:NSUTF8StringEncoding
+              error:nil];
+    NSLog(@"%@", inFile);
+    
+    return [NSURL URLWithString:@"http://twtraffic.tra.gov.tw/twrail/SearchResult.aspx?searchtype=0&searchdate=2012%2F11%2F17&fromstation=1001&tostation=1008&trainclass=2&fromtime=0000&totime=2359"];
    
 }
 @end

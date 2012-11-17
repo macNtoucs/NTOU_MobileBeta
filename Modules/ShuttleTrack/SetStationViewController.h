@@ -35,6 +35,8 @@
     NSString *startStaion;
     NSString *DepatureStation;
     NSString *queryDate;
+    int currentMonth;
+    int currentDay;
     
 }
 @property int tag;

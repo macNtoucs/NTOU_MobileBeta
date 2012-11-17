@@ -68,6 +68,7 @@
 - (NSInteger)numberOfRowsInPickerView:(StationPickerPickerView *)pickerView;
 - (NSString *)pickerView:(StationPickerPickerView *)pickerView titleForRow:(NSInteger)row;
 - (NSString *) pickerView : (StationPickerPickerView *) pickerView nowSelected:(NSInteger) row;
+-(int)initialRow: (StationPickerPickerView *) pickerView;
 @end
 
 

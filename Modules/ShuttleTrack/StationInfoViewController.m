@@ -31,8 +31,8 @@
     dataURL = [self.dataSource StationInfoURL:self];
 }
 -(void)recieveData{
-   // [self recieveURL];
-    //[self fetchData];
+    [self recieveURL];
+    [self fetchData];
 }
 -(void)fetchData{
     StartAndTerminalstops = [NSMutableArray new];
@@ -118,7 +118,7 @@
         cell.textLabel.textColor = [UIColor brownColor];
     }
     else {
-        NSString * detailString = [NSString stringWithFormat:@"%@         %@",[arrivalTimes objectAtIndex:indexPath.row-1] , [depatureTimes objectAtIndex:indexPath.row-1]];
+        NSString * detailString = [NSString stringWithFormat:@"%@         %@", [depatureTimes objectAtIndex:indexPath.row-1],[arrivalTimes objectAtIndex:indexPath.row-1] ] ;
         cell.textLabel.text= [StartAndTerminalstops objectAtIndex:indexPath.row-1];
         cell.detailTextLabel.text = detailString;
         cell.detailTextLabel.textColor = [UIColor blueColor];

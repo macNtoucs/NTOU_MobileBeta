@@ -29,7 +29,7 @@ bool initailIndex = true;
         return;
     
     currentRow = selectedRow;
-    [contentView setContentOffset:CGPointMake(0.0, glassHeight * currentRow-10) animated:NO];
+    [contentView setContentOffset:CGPointMake(0.0, glassHeight * (currentRow-2)-10) animated:NO];
 }
 
 
@@ -123,7 +123,7 @@ bool initailIndex = true;
     _rowFont = [UIFont boldSystemFontOfSize:20.0];
     _rowIndent = 60;
     
-    currentRow = 0;
+    currentRow = [dataSource initialRow:self];
     rowsCount = 0;
     visibleViews = [[NSMutableSet alloc] init];
     recycledViews = [[NSMutableSet alloc] init];
@@ -137,7 +137,7 @@ bool initailIndex = true;
 - (void)reloadData
 {
     // empry views
-    currentRow = 0;
+    currentRow = [dataSource initialRow:self];
     rowsCount = 0;
     isreload=true;
     for (UIView *aView in visibleViews)
@@ -150,11 +150,12 @@ bool initailIndex = true;
     recycledViews = [[NSMutableSet alloc] init];
     
     rowsCount = [dataSource numberOfRowsInPickerView:self];
-    [contentView setContentOffset:CGPointMake(0.0, 0.0) animated:NO];
+     [contentView setContentOffset:CGPointMake(0.0, glassHeight*(currentRow-2)-10) animated:NO];
     contentView.contentSize =
     CGSizeMake(contentView.frame.size.width, (glassHeight *rowsCount) + (4 * glassHeight));
+    isScrollingUp=true;
     [self tileViews];
-    [self determineCurrentRow];
+     
 }
 
 
@@ -165,7 +166,7 @@ bool initailIndex = true;
     CGFloat delta = contentView.contentOffset.y;
     int position = round(delta / glassHeight);
     currentRow = position+1;
-    [contentView setContentOffset:CGPointMake(0.0, glassHeight * position - 10) animated:YES];
+    [contentView setContentOffset:CGPointMake(0.0, glassHeight * (position-1) - 10) animated:YES];
     [delegate pickerView:self didSelectRow:currentRow];
 }
 
@@ -185,25 +186,13 @@ bool initailIndex = true;
 
 - (void)makeSteps:(int)steps
 {
-    if (steps == 0 || steps > 3 || steps < -3)
+    if (steps == 0 || steps > 4 || steps < -4)
         return;
     
-    [contentView setContentOffset:CGPointMake(0.0, glassHeight*(currentRow-1)-10) animated:NO];
-    
-    int newRow = currentRow + steps;
-    if (newRow < 0 || newRow >= rowsCount)
-    {
-        if (steps == -2)
-            [self makeSteps:-1];
-        else if (steps == 2)
-            [self makeSteps:1];
-        
-        return;
-    }
-    
+ 
     currentRow = currentRow + steps;
-    [contentView setContentOffset:CGPointMake(0.0, glassHeight*(currentRow-1)-10) animated:YES];
-      [delegate pickerView:self didSelectRow:currentRow];
+    [contentView setContentOffset:CGPointMake(0.0, glassHeight*(currentRow-2)-10) animated:YES];
+      [delegate pickerView:self didSelectRow:currentRow-1];
     isScrollingUp=true;
     for (UILabel * invisible in visibleViews ){
         invisible.textColor = RGBACOLOR(0.0, 0.0, 0.0, 0.75);
@@ -228,7 +217,9 @@ bool initailIndex = true;
    
  
 }
+-(void)nowSelectedChangeStyle{
 
+}
 
 #pragma mark - recycle queue
 
