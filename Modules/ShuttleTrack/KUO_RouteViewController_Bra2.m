@@ -10,6 +10,8 @@
 #import "UIKit+MITAdditions.h"
 @interface KUO_RouteViewController_Bra2 (){
     NSIndexPath *tabcIndexPath;
+    BOOL except;
+    BOOL direct;
 }
 @end
 
@@ -23,6 +25,8 @@
         inbound = [[data fetchInboundJourney] mutableCopy] ;
         outbound = [[data fetchOutboundJourney] mutableCopy] ;
         display = inbound;
+        except = FALSE;
+        direct = FALSE;
         // Custom initialization
     }
     return self;
@@ -30,15 +34,31 @@
 
 -(void)changeDirectType
 {
-    static BOOL direct = FALSE;
     if (direct) {
-        display = inbound;
-        direct = FALSE;
+        if (tabcIndexPath.row==exceptionIndex&&except==FALSE) {
+            except = TRUE;
+        }
+        else{
+            display = inbound;
+            direct = FALSE;
+            except = FALSE;
+        }
     } else {
         display = outbound;
         direct = TRUE;
     }
     [self.tableView reloadData];
+}
+
+-(NSArray *)checkExceptionArriveTime:(NSArray*) arr{
+    if (tabcIndexPath.row==exceptionIndex&&except==FALSE&&direct==TRUE) {
+        return [arr objectAtIndex:0];
+    }
+    else if (tabcIndexPath.row==exceptionIndex&&except==TRUE){
+        return [arr objectAtIndex:1];
+    }
+    else
+        return arr;
 }
 
 -(void)TimeViewControllerDirectChange
@@ -103,6 +123,8 @@
     {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.textLabel.lineBreakMode = UILineBreakModeWordWrap;
+        cell.textLabel.numberOfLines = 0;
     }
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.textLabel.text= [[display objectForKey:[[display allKeys] objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row*StationInformationCount];
@@ -111,23 +133,34 @@
 
 -(void)changeTabcTittle
 {
-    NSArray* Separated= [tabc.title componentsSeparatedByString:@"  →  "];
-    tabc.title = [[[Separated objectAtIndex:1] stringByAppendingString:@"  →  "] stringByAppendingString:[Separated objectAtIndex:0]];
+    if (tabcIndexPath.row==exceptionIndex&&except==FALSE&&direct==TRUE) {
+        tabc.title = [tabc.title stringByAppendingString:@"(平日班次)"];
+    }
+    else if (tabcIndexPath.row==exceptionIndex&&except==TRUE) {
+        tabc.title = [[tabc.title componentsSeparatedByString:@"(平日班次)"] objectAtIndex:0];
+        tabc.title = [tabc.title stringByAppendingString:@"(假日班次)"];
+    }
+    else{
+        tabc.title = [[tabc.title componentsSeparatedByString:@"(假日班次)"] objectAtIndex:0];
+        NSArray* Separated= [tabc.title componentsSeparatedByString:@"  →  "];
+        tabc.title = [[[Separated objectAtIndex:1] stringByAppendingString:@"  →  "] stringByAppendingString:[Separated objectAtIndex:0]];
+    }
+    
 }
 
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    tabcIndexPath = [indexPath retain];
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    tabc = [[KUO_TimeViewController alloc] init:[[display objectForKey:[[display allKeys] objectAtIndex:indexPath.section]] objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(indexPath.row*5, 5)]]];
+    tabc = [[KUO_TimeViewController alloc] init:[[display objectForKey:[[display allKeys] objectAtIndex:indexPath.section]] objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(indexPath.row*StationInformationCount, StationInformationCount)]]delegate:self];
     if (display==inbound) {
             tabc.title = [[[[display allKeys]objectAtIndex:indexPath.section] stringByAppendingString:@"  →  "] stringByAppendingString:cell.textLabel.text];
     } else {
             tabc.title = [[cell.textLabel.text stringByAppendingString:@"  →  "] stringByAppendingString:[[display allKeys]objectAtIndex:indexPath.section]];
     }
-    tabc.delegate2 = self;
-    tabcIndexPath = [indexPath retain];
+    except = FALSE;
     [self.navigationController pushViewController:tabc animated:YES];
     [tabc release];
 }

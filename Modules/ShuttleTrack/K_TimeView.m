@@ -22,6 +22,8 @@
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
+        data = [NSArray array];
+        data2 = [NSArray array];
     }
     return self;
 }
@@ -79,7 +81,9 @@
     if (cell == nil)
     {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-        
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.textLabel.lineBreakMode = UILineBreakModeWordWrap;
+        cell.textLabel.numberOfLines = 0;
     }
     // Configure the cell...
     if (indexPath.row==0) {

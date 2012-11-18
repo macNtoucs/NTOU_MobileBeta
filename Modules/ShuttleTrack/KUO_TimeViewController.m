@@ -32,7 +32,7 @@
         withFinishedUnselectedImage:[UIImage imageNamed:@"Time.png"]];
     view1.tabBarItem = item1;
     [item1 release];
-    view1.data = [[data objectAtIndex:1] mutableCopy];
+    view1.data = [delegate2 checkExceptionArriveTime:[[data objectAtIndex:1] mutableCopy]];
     view1.delegate = self;
     
     view2 = [[K_TimeView alloc] initWithStyle:UITableViewStyleGrouped];
@@ -60,7 +60,7 @@
     }
     [self setViewControllers:[NSArray arrayWithObjects:view1, view2,view3, nil] animated:YES];
 }
-- (id)init:(NSArray*)array
+- (id)init:(NSArray*)array delegate:(id)dele
 {
     self = [super init];
     if (self) {
@@ -69,6 +69,7 @@
                                                                        target:self
                                                                        action:@selector(changeDirect)];
         self.data = array;
+        self.delegate2 = dele;
         [self setView];
         [self.navigationItem setRightBarButtonItem:rightButton];
         self.delegate=self;

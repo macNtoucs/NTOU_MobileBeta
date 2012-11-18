@@ -8,6 +8,7 @@
 @protocol KUO_TimeViewControllerDelegate <NSObject>
 @required
 -(void)TimeViewControllerDirectChange;
+-(NSArray *)checkExceptionArriveTime:(NSArray*) arr;
 @end
 #import <UIKit/UIKit.h>
 #import "K_TimeView.h"
@@ -19,5 +20,5 @@
 @property(retain,nonatomic) UIImageView* tabBarArrow;
 @property(retain,nonatomic) NSArray* data;
 @property (nonatomic,assign) id delegate2;
-- (id)init:(NSArray*)array;
+- (id)init:(NSArray*)array delegate:(id)dele;
 @end
