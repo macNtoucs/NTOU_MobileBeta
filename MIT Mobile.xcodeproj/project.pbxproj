@@ -201,6 +201,11 @@
 		6D66D0BB16564DDD005AEF8D /* KUO_KUANGViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D66D0BA16564DDD005AEF8D /* KUO_KUANGViewController.m */; };
 		6D66D0BE16565354005AEF8D /* K_RouteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D66D0BD16565354005AEF8D /* K_RouteViewController.m */; };
 		6D66D0C116565A84005AEF8D /* Kuo_Data.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D66D0C016565A83005AEF8D /* Kuo_Data.m */; };
+		6D66D0C41657A74A005AEF8D /* KUO_RouteViewController_Bra2.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D66D0C31657A748005AEF8D /* KUO_RouteViewController_Bra2.m */; };
+		6D66D0CB1657AACB005AEF8D /* KUO_Data_Bra2.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D66D0CA1657AAC7005AEF8D /* KUO_Data_Bra2.m */; };
+		6D66D0D11657AC1B005AEF8D /* K_data.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6D66D0D01657AC19005AEF8D /* K_data.plist */; };
+		6D66D0D81657CCFF005AEF8D /* KUO_TimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D66D0D71657CCFC005AEF8D /* KUO_TimeViewController.m */; };
+		6D66D0DB1657CD3A005AEF8D /* K_TimeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D66D0DA1657CD37005AEF8D /* K_TimeView.m */; };
 		91402E41163E749A00B04EE5 /* ClassAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 91402E3B163E749A00B04EE5 /* ClassAdd.m */; };
 		91402E42163E749A00B04EE5 /* ClassAdd.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91402E3C163E749A00B04EE5 /* ClassAdd.xib */; };
 		91402E43163E749A00B04EE5 /* ClassDataBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 91402E3E163E749A00B04EE5 /* ClassDataBase.m */; };
@@ -821,6 +826,15 @@
 		6D66D0BD16565354005AEF8D /* K_RouteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = K_RouteViewController.m; sourceTree = "<group>"; };
 		6D66D0BF16565A82005AEF8D /* Kuo_Data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Kuo_Data.h; sourceTree = "<group>"; };
 		6D66D0C016565A83005AEF8D /* Kuo_Data.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Kuo_Data.m; sourceTree = "<group>"; };
+		6D66D0C21657A746005AEF8D /* KUO_RouteViewController_Bra2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KUO_RouteViewController_Bra2.h; sourceTree = "<group>"; };
+		6D66D0C31657A748005AEF8D /* KUO_RouteViewController_Bra2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KUO_RouteViewController_Bra2.m; sourceTree = "<group>"; };
+		6D66D0C91657AAC5005AEF8D /* KUO_Data_Bra2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KUO_Data_Bra2.h; sourceTree = "<group>"; };
+		6D66D0CA1657AAC7005AEF8D /* KUO_Data_Bra2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KUO_Data_Bra2.m; sourceTree = "<group>"; };
+		6D66D0D01657AC19005AEF8D /* K_data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = K_data.plist; sourceTree = SOURCE_ROOT; };
+		6D66D0D61657CCF9005AEF8D /* KUO_TimeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KUO_TimeViewController.h; sourceTree = "<group>"; };
+		6D66D0D71657CCFC005AEF8D /* KUO_TimeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KUO_TimeViewController.m; sourceTree = "<group>"; };
+		6D66D0D91657CD34005AEF8D /* K_TimeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = K_TimeView.h; sourceTree = "<group>"; };
+		6D66D0DA1657CD37005AEF8D /* K_TimeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = K_TimeView.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* MIT_Mobile-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MIT_Mobile-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		910662EF163BCFD700D01C81 /* DefinePixel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefinePixel.h; sourceTree = "<group>"; };
 		91402E3A163E749A00B04EE5 /* ClassAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassAdd.h; sourceTree = "<group>"; };
@@ -2231,12 +2245,21 @@
 				C748785D1627D1D4001D3390 /* Annotation.m */,
 				6D66D0BF16565A82005AEF8D /* Kuo_Data.h */,
 				6D66D0C016565A83005AEF8D /* Kuo_Data.m */,
-				6D66D0B516564DA5005AEF8D /* OtherTrafficTrapViewController.h */,
-				6D66D0B616564DA5005AEF8D /* OtherTrafficTrapViewController.m */,
 				6D66D0BC16565353005AEF8D /* K_RouteViewController.h */,
 				6D66D0BD16565354005AEF8D /* K_RouteViewController.m */,
 				6D66D0B916564DDD005AEF8D /* KUO_KUANGViewController.h */,
 				6D66D0BA16564DDD005AEF8D /* KUO_KUANGViewController.m */,
+				6D66D0D01657AC19005AEF8D /* K_data.plist */,
+				6D66D0C91657AAC5005AEF8D /* KUO_Data_Bra2.h */,
+				6D66D0CA1657AAC7005AEF8D /* KUO_Data_Bra2.m */,
+				6D66D0C21657A746005AEF8D /* KUO_RouteViewController_Bra2.h */,
+				6D66D0C31657A748005AEF8D /* KUO_RouteViewController_Bra2.m */,
+				6D66D0D61657CCF9005AEF8D /* KUO_TimeViewController.h */,
+				6D66D0D71657CCFC005AEF8D /* KUO_TimeViewController.m */,
+				6D66D0D91657CD34005AEF8D /* K_TimeView.h */,
+				6D66D0DA1657CD37005AEF8D /* K_TimeView.m */,
+				6D66D0B516564DA5005AEF8D /* OtherTrafficTrapViewController.h */,
+				6D66D0B616564DA5005AEF8D /* OtherTrafficTrapViewController.m */,
 				C748785E1627D1D4001D3390 /* DepatureViewController.h */,
 				C748785F1627D1D4001D3390 /* DepatureViewController.m */,
 				C74878601627D1D4001D3390 /* EGORefreshTableHeaderView.h */,
@@ -2877,6 +2900,7 @@
 				A6CD75FE164820FB00D1209C /* TabBarNipple.png in Resources */,
 				A6CD75FF164820FB00D1209C /* TabBarNipple@2x.png in Resources */,
 				A65E3A011649678C000E6782 /* StationPickerBackground.png in Resources */,
+				6D66D0D11657AC1B005AEF8D /* K_data.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3226,6 +3250,10 @@
 				6D66D0BB16564DDD005AEF8D /* KUO_KUANGViewController.m in Sources */,
 				6D66D0BE16565354005AEF8D /* K_RouteViewController.m in Sources */,
 				6D66D0C116565A84005AEF8D /* Kuo_Data.m in Sources */,
+				6D66D0C41657A74A005AEF8D /* KUO_RouteViewController_Bra2.m in Sources */,
+				6D66D0CB1657AACB005AEF8D /* KUO_Data_Bra2.m in Sources */,
+				6D66D0D81657CCFF005AEF8D /* KUO_TimeViewController.m in Sources */,
+				6D66D0DB1657CD3A005AEF8D /* K_TimeView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

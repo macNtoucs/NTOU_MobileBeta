@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>去程</key>
+	<dict>
+		<key> 基隆</key>
+		<array>
+			<string>南投
+</string>
+			<array>
+				<string>18:30</string>
+			</array>
+			<array>
+				<string>基隆站</string>
+			</array>
+			<array>
+				<string>朝馬站:310元</string>
+				<string>草屯站:385元</string>
+				<string>老君廟</string>
+				<string>富林路口</string>
+				<string>帝爺廟</string>
+				<string>佑民醫院</string>
+				<string>中興站:395元</string>
+				<string>內轆橋</string>
+				<string>光明里</string>
+				<string>中興國中</string>
+				<string>軍功里</string>
+				<string>民族路</string>
+				<string>平和里</string>
+				<string>南投站:420元</string>
+			</array>
+			<array>
+				<string>全票 : 420元</string>
+				<string>半票 : 220元</string>
+				<string>來回票 : 760元</string>
+				<string>軍優票 : 380元</string>
+				<string>優惠時段票 : 390元</string>
+			</array>
+		</array>
+	</dict>
+	<key>回程</key>
+	<dict>
+		<key> 基隆</key>
+		<array>
+			<string>南投</string>
+			<array>
+				<string>13:50</string>
+			</array>
+			<array>
+				<string>南投站</string>
+				<string>中興國中</string>
+				<string>光明里</string>
+				<string>內轆橋</string>
+				<string>中興站</string>
+				<string>草屯站</string>
+				<string>朝馬站</string>
+			</array>
+			<array>
+				<string>基隆站:420元</string>
+			</array>
+			<array>
+				<string>全票 : 420元</string>
+				<string>半票 : 220元</string>
+				<string>軍優票 : 380元</string>
+				<string>來回票 : 760元</string>
+				<string>優惠時段票 : 390元</string>
+			</array>
+		</array>
+	</dict>
+</dict>
+</plist>
