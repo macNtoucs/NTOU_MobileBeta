@@ -12,7 +12,7 @@
 typedef enum {Session,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday } ColumnName;
 @class ScheduleViewController;
 @interface WeekScheduleView : UIView <UIGestureRecognizerDelegate>{
-
+    NSArray *color;
     ScheduleViewController *parent_ViewController;
 }
 

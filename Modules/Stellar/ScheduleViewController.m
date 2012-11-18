@@ -47,6 +47,12 @@
     [self.navigationController pushViewController:classInfo animated:YES];
 }
 
+-(BOOL)NavigationBarHidden
+{
+    NSLog(@"------%d",self.navigationController.navigationBarHidden);
+    return self.navigationController.navigationBarHidden;
+}
+
 -(void)changeTapEnable
 {
     static BOOL change = NO;
@@ -59,10 +65,18 @@
     }
 }
 
+-(void)NavigationBarShow
+{
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
+    [self.weekschedule drawRect:self.view.bounds];
+}
+
 -(IBAction)Add:(id)sender{
     ClassAdd* addView = [[ClassAdd alloc] initWithNibName:@"ClassAdd" bundle:nil];
     addView.delegate = self;
     [self.navigationController.view addSubview:addView.view];
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
+    [self.weekschedule drawRect:self.view.bounds];
 }
 
 -(void) addNavRightButton {

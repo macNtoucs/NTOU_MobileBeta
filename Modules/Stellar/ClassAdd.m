@@ -68,7 +68,7 @@
 -(IBAction)cancel:(id)sender{
     CGRect basketTopFrame = CGRectMake(_topView.frame.origin.x, -_topView.frame.origin.y, _topView.frame.size.width, _topView.frame.size.height);
     CGRect basketBottomFrame = CGRectMake(_bottomView.frame.origin.x, self.view.bounds.size.height+22, _bottomView.frame.size.width, _bottomView.frame.size.height);
-    [UIView animateWithDuration:0.5
+    [UIView animateWithDuration:0.25
                           delay:0
                         options: UIViewAnimationCurveEaseOut
                      animations:^{
@@ -77,6 +77,7 @@
                      }
                      completion:^(BOOL finished){
                          [self.view removeFromSuperview];
+                         [delegate NavigationBarShow];
                      }];
     [delegate changeTapEnable];
     
@@ -103,8 +104,8 @@
     [_bottomView addSubview:_roomNameField];
     
     
-    [UIView animateWithDuration:0.5
-                          delay:0.2
+    [UIView animateWithDuration:0.25
+                          delay:0.0
                         options: UIViewAnimationCurveEaseOut
                      animations:^{
                          _topView.frame = basketTopFrame;

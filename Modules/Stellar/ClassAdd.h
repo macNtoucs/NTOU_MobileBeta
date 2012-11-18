@@ -8,6 +8,7 @@
 @protocol ClassAdddelegate <NSObject>
 @required
 -(void) changeTapEnable;
+-(void) NavigationBarShow;
 @end
 #import <UIKit/UIKit.h>
 

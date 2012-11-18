@@ -115,17 +115,20 @@
                                        initWithTitle:nil message:@"\n\nDownloading\nPlease wait"
                                        delegate:nil cancelButtonTitle:nil
                                        otherButtonTitles: nil];
-    NSThread*thread = [[NSThread alloc]initWithTarget:self selector:@selector(AlertStart:) object:loadingAlertView];
+    [self performSelectorOnMainThread:@selector(AlertStart:)
+                                 withObject:loadingAlertView
+                              waitUntilDone:YES];
+    /*NSThread*thread = [[NSThread alloc]initWithTarget:self selector:@selector(AlertStart:) object:loadingAlertView];
     [thread start];
     while (true) {
         if ([thread isFinished]) {
             break;
         }
-    }
+    }*/
     [self CatchData];
     [loadingAlertView dismissWithClickedButtonIndex:0 animated:NO];
     [loadingAlertView release];
-    [thread release];
+    //[thread release];
 }
 
 - (void)startTimer
@@ -220,11 +223,11 @@
 
 -(void)stopTimer
 {
-	if (self->refreshTimer !=nil)
+	if (self.refreshTimer !=nil)
 	{
-		[self->refreshTimer invalidate];
-		self->refreshTimer = nil;
-		self->anotherButton.title = @"Refresh";
+		[self.refreshTimer invalidate];
+		self.refreshTimer = nil;
+		self.anotherButton.title = @"Refresh";
 	}
 }
 
