@@ -108,16 +108,25 @@
     self.tabBar.frame = CGRectMake(0, 480-self.tabBar.frame.size.height-20, self.tabBar.frame.size.width, self.tabBar.frame.size.height+20);
     
     [self addTabBarArrow];
-    
+    [self navAddRightButton];
     return self;
 }
+
+-(void)navAddRightButton{
+    UIBarButtonItem * swapStation = [[UIBarButtonItem alloc]initWithTitle:@"回程" style:UIBarButtonItemStylePlain target:self action:@selector(SwapStation)];
+    self.navigationItem.rightBarButtonItem = swapStation;
+}
+-(void)SwapStation{
+    NSString * tmpForSwap = [[NSString alloc]initWithString:DepatureStation];
+    DepatureStation = [NSString stringWithString:startStaion];
+    startStaion = [NSString stringWithString:tmpForSwap];
+    [self viewDidLoad];
+}
+
 -(void)didSwipe:(id)sender{
  UISwipeGestureRecognizer *swipeRecognizer = (UISwipeGestureRecognizer *)sender;
     if(swipeRecognizer.direction == UISwipeGestureRecognizerDirectionLeft ||swipeRecognizer.direction == UISwipeGestureRecognizerDirectionRight ){
-        NSString * tmpForSwap = [[NSString alloc]initWithString:DepatureStation];
-        DepatureStation = [NSString stringWithString:startStaion];
-        startStaion = [NSString stringWithString:tmpForSwap];
-        [self viewDidLoad];
+        [self SwapStation];
     }
 }
 -(int)initialRow:(StationPickerPickerView *)pickerView{
