@@ -4,10 +4,9 @@
 <dict>
 	<key>去程</key>
 	<dict>
-		<key> 基隆</key>
+		<key>基隆</key>
 		<array>
-			<string>南投
-</string>
+			<string>南投</string>
 			<array>
 				<string>18:30</string>
 			</array>
@@ -31,17 +30,16 @@
 				<string>南投站:420元</string>
 			</array>
 			<array>
-				<string>全票 : 420元</string>
-				<string>半票 : 220元</string>
+				<string>全票    : 420元</string>
+				<string>半票    : 220元</string>
 				<string>來回票 : 760元</string>
 				<string>軍優票 : 380元</string>
-				<string>優惠時段票 : 390元</string>
 			</array>
 		</array>
 	</dict>
 	<key>回程</key>
 	<dict>
-		<key> 基隆</key>
+		<key>基隆</key>
 		<array>
 			<string>南投</string>
 			<array>
@@ -60,11 +58,10 @@
 				<string>基隆站:420元</string>
 			</array>
 			<array>
-				<string>全票 : 420元</string>
-				<string>半票 : 220元</string>
-				<string>軍優票 : 380元</string>
+				<string>全票    : 420元</string>
+				<string>半票    : 220元</string>
 				<string>來回票 : 760元</string>
-				<string>優惠時段票 : 390元</string>
+				<string>軍優票 : 380元</string>
 			</array>
 		</array>
 	</dict>

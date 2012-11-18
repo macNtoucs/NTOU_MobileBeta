@@ -206,6 +206,9 @@
 		6D66D0D11657AC1B005AEF8D /* K_data.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6D66D0D01657AC19005AEF8D /* K_data.plist */; };
 		6D66D0D81657CCFF005AEF8D /* KUO_TimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D66D0D71657CCFC005AEF8D /* KUO_TimeViewController.m */; };
 		6D66D0DB1657CD3A005AEF8D /* K_TimeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D66D0DA1657CD37005AEF8D /* K_TimeView.m */; };
+		6D66D0E11659258D005AEF8D /* money-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D66D0E01659258A005AEF8D /* money-icon.png */; };
+		6D66D0E516592B05005AEF8D /* Time.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D66D0E416592B02005AEF8D /* Time.png */; };
+		6D66D0E916592DBF005AEF8D /* Info.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D66D0E816592DB1005AEF8D /* Info.png */; };
 		91402E41163E749A00B04EE5 /* ClassAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 91402E3B163E749A00B04EE5 /* ClassAdd.m */; };
 		91402E42163E749A00B04EE5 /* ClassAdd.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91402E3C163E749A00B04EE5 /* ClassAdd.xib */; };
 		91402E43163E749A00B04EE5 /* ClassDataBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 91402E3E163E749A00B04EE5 /* ClassDataBase.m */; };
@@ -835,6 +838,9 @@
 		6D66D0D71657CCFC005AEF8D /* KUO_TimeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KUO_TimeViewController.m; sourceTree = "<group>"; };
 		6D66D0D91657CD34005AEF8D /* K_TimeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = K_TimeView.h; sourceTree = "<group>"; };
 		6D66D0DA1657CD37005AEF8D /* K_TimeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = K_TimeView.m; sourceTree = "<group>"; };
+		6D66D0E01659258A005AEF8D /* money-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "money-icon.png"; sourceTree = "<group>"; };
+		6D66D0E416592B02005AEF8D /* Time.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Time.png; sourceTree = "<group>"; };
+		6D66D0E816592DB1005AEF8D /* Info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Info.png; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* MIT_Mobile-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MIT_Mobile-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		910662EF163BCFD700D01C81 /* DefinePixel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefinePixel.h; sourceTree = "<group>"; };
 		91402E3A163E749A00B04EE5 /* ClassAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassAdd.h; sourceTree = "<group>"; };
@@ -2250,6 +2256,9 @@
 				6D66D0B916564DDD005AEF8D /* KUO_KUANGViewController.h */,
 				6D66D0BA16564DDD005AEF8D /* KUO_KUANGViewController.m */,
 				6D66D0D01657AC19005AEF8D /* K_data.plist */,
+				6D66D0E01659258A005AEF8D /* money-icon.png */,
+				6D66D0E416592B02005AEF8D /* Time.png */,
+				6D66D0E816592DB1005AEF8D /* Info.png */,
 				6D66D0C91657AAC5005AEF8D /* KUO_Data_Bra2.h */,
 				6D66D0CA1657AAC7005AEF8D /* KUO_Data_Bra2.m */,
 				6D66D0C21657A746005AEF8D /* KUO_RouteViewController_Bra2.h */,
@@ -2901,6 +2910,9 @@
 				A6CD75FF164820FB00D1209C /* TabBarNipple@2x.png in Resources */,
 				A65E3A011649678C000E6782 /* StationPickerBackground.png in Resources */,
 				6D66D0D11657AC1B005AEF8D /* K_data.plist in Resources */,
+				6D66D0E11659258D005AEF8D /* money-icon.png in Resources */,
+				6D66D0E516592B05005AEF8D /* Time.png in Resources */,
+				6D66D0E916592DBF005AEF8D /* Info.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

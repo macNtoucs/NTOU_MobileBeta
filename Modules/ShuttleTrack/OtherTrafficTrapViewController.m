@@ -160,7 +160,7 @@
         [self.navigationController pushViewController:tab_c animated:YES];
         [tab_c release];*/
         KUO_RouteViewController_Bra2* route = [[KUO_RouteViewController_Bra2 alloc] initWithStyle:UITableViewStyleGrouped];
-        route.title = @"去程";
+        route.title = @"路線";
         [self.navigationController pushViewController:route animated:YES];
         [route release];
     }

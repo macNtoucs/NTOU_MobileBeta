@@ -14,6 +14,7 @@
 @end
 
 @implementation K_TimeView
+@synthesize delegate;
 @synthesize data;
 @synthesize data2;
 - (id)initWithStyle:(UITableViewStyle)style
@@ -23,6 +24,11 @@
         // Custom initialization
     }
     return self;
+}
+
+-(void)changeDirect
+{
+    [delegate changeDirect];
 }
 
 - (void)viewDidLoad
@@ -35,6 +41,12 @@
         type=2;
     else if (self.title == K_TimeViewtype3)
         type=3;
+    UISwipeGestureRecognizer *swipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self                                                                                                 action:@selector(changeDirect)];
+    swipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionLeft|UISwipeGestureRecognizerDirectionRight;
+    
+    [self.tableView addGestureRecognizer:swipeGestureRecognizer];
+    
+    [swipeGestureRecognizer release];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  

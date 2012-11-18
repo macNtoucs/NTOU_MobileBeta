@@ -8,8 +8,9 @@
 
 #import "KUO_RouteViewController_Bra2.h"
 #import "UIKit+MITAdditions.h"
-@interface KUO_RouteViewController_Bra2 ()
-
+@interface KUO_RouteViewController_Bra2 (){
+    NSIndexPath *tabcIndexPath;
+}
 @end
 
 @implementation KUO_RouteViewController_Bra2
@@ -31,21 +32,31 @@
 {
     static BOOL direct = FALSE;
     if (direct) {
-        self.title = @"去程";
         display = inbound;
         direct = FALSE;
     } else {
-        self.title = @"回程";
         display = outbound;
         direct = TRUE;
     }
     [self.tableView reloadData];
 }
 
+-(void)TimeViewControllerDirectChange
+{
+    [self changeDirectType];
+    [self changeTabcTittle];
+    tabc.data = [[display objectForKey:[[display allKeys] objectAtIndex:tabcIndexPath.section]] objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(tabcIndexPath.row*5, 5)]];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self.tableView applyStandardColors];
+    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"往返切換"
+                                                                    style:UIBarButtonItemStyleBordered
+                                                                   target:self
+                                                                   action:@selector(changeDirectType)];
+    [self.navigationItem setRightBarButtonItem:rightButton];
     UISwipeGestureRecognizer *swipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self                                                                                                 action:@selector(changeDirectType)];
     swipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionLeft|UISwipeGestureRecognizerDirectionRight;
 
@@ -98,56 +109,25 @@
     return cell;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+-(void)changeTabcTittle
 {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+    NSArray* Separated= [tabc.title componentsSeparatedByString:@"  →  "];
+    tabc.title = [[[Separated objectAtIndex:1] stringByAppendingString:@"  →  "] stringByAppendingString:[Separated objectAtIndex:0]];
 }
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    KUO_TimeViewController* tabc = [[KUO_TimeViewController alloc] init:[display objectForKey:[[display allKeys] objectAtIndex:indexPath.section]]];
+    tabc = [[KUO_TimeViewController alloc] init:[[display objectForKey:[[display allKeys] objectAtIndex:indexPath.section]] objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(indexPath.row*5, 5)]]];
     if (display==inbound) {
-            tabc.title = [[[[display allKeys]objectAtIndex:indexPath.section] stringByAppendingString:@"  → "] stringByAppendingString:cell.textLabel.text];
+            tabc.title = [[[[display allKeys]objectAtIndex:indexPath.section] stringByAppendingString:@"  →  "] stringByAppendingString:cell.textLabel.text];
     } else {
-            tabc.title = [[cell.textLabel.text stringByAppendingString:@"  → "] stringByAppendingString:[[display allKeys]objectAtIndex:indexPath.section]];
+            tabc.title = [[cell.textLabel.text stringByAppendingString:@"  →  "] stringByAppendingString:[[display allKeys]objectAtIndex:indexPath.section]];
     }
+    tabc.delegate2 = self;
+    tabcIndexPath = [indexPath retain];
     [self.navigationController pushViewController:tabc animated:YES];
     [tabc release];
 }
