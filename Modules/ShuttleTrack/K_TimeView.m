@@ -1,19 +1,21 @@
 //
-//  OtherTrafficTrapViewController.m
+//  K_TimeView.m
 //  MIT Mobile
 //
-//  Created by mini server on 12/11/16.
+//  Created by mini server on 12/11/17.
 //
 //
 
-#import "OtherTrafficTrapViewController.h"
-
-@interface OtherTrafficTrapViewController ()
+#import "K_TimeView.h"
+@interface K_TimeView (){
+    int type;
+}
 
 @end
 
-@implementation OtherTrafficTrapViewController
-
+@implementation K_TimeView
+@synthesize data;
+@synthesize data2;
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -27,6 +29,12 @@
 {
     [super viewDidLoad];
     [self.tableView applyStandardColors];
+    if (self.title == K_TimeViewtype1)
+        type=1;
+    else if (self.title == K_TimeViewtype2)
+        type=2;
+    else if (self.title == K_TimeViewtype3)
+        type=3;
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -44,14 +52,12 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of rows in the section.
-    return 3;
+    return 1+MAX([data count], [data2 count]);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -61,20 +67,30 @@
     if (cell == nil)
     {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        
     }
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    switch (indexPath.row)  {
-        case 0:
-            cell.textLabel.text = @"基隆火車站";
-            break;
-        case 1:
-            cell.textLabel.text = @"台鐵";
-            break;
-        case 2:
-            cell.textLabel.text = @"國光客運";
-            break;
-        default:
-            break;
+    // Configure the cell...
+    if (indexPath.row==0) {
+        cell.textLabel.text = self.title;
+        if (type==2) {
+            cell.textLabel.text = @"上客站	                   下客站";
+        }
+        cell.textLabel.textColor = [UIColor blueColor];
+    }
+    else{
+        if (type==2) {
+            if (indexPath.row<=[data count]&&indexPath.row<=[data2 count])
+                cell.textLabel.text = [[[data objectAtIndex:indexPath.row-1] stringByAppendingString:@"                   "]stringByAppendingString:[data2 objectAtIndex:indexPath.row-1]];
+            else if(indexPath.row>[data2 count])
+                cell.textLabel.text = [data objectAtIndex:indexPath.row-1];
+            else
+                cell.textLabel.text =[[NSString stringWithFormat:@"                              "]stringByAppendingString:[data2 objectAtIndex:indexPath.row-1]];
+        }
+        else
+            cell.textLabel.text = [data objectAtIndex:indexPath.row-1];
+    }
+    if (type==1||type==3) {
+        cell.textLabel.textAlignment = UITextAlignmentCenter;
     }
     return cell;
 }
@@ -122,48 +138,14 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row==0) {
-        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-        
-        StopsViewController * stops = [[StopsViewController alloc]initWithStyle:UITableViewStyleGrouped];
-        stops.title = cell.textLabel.text;
-        [stops setDirection:true];
-        [self.navigationController pushViewController:stops animated:YES];
-        [stops release];
-    }
-    else if (indexPath.row==1)
-    {
-        SetStationViewController *setStationView = [[SetStationViewController alloc]init];
-        [self.navigationController pushViewController:setStationView animated:YES];
-        [setStationView release];
-    }
-    else if (indexPath.row==2)
-    {
-        /*UITabBarController* tab_c = [[UITabBarController alloc] init];
-        K_RouteViewController* kuo_kuang1 = [[K_RouteViewController alloc] initWithStyle:UITableViewStyleGrouped];
-        kuo_kuang1.title = @"北部";
-        kuo_kuang1.region=1;
-        K_RouteViewController* kuo_kuang2 = [[K_RouteViewController alloc] initWithStyle:UITableViewStyleGrouped];
-        kuo_kuang2.title = @"中部";
-        kuo_kuang2.region=2;
-        K_RouteViewController* kuo_kuang3 = [[K_RouteViewController alloc] initWithStyle:UITableViewStyleGrouped];
-        kuo_kuang3.title = @"南部";
-        kuo_kuang3.region=3;
-        K_RouteViewController* kuo_kuang4 = [[K_RouteViewController alloc] initWithStyle:UITableViewStyleGrouped];
-        kuo_kuang4.title = @"東部";
-        kuo_kuang4.region=4;
-        tab_c.viewControllers = [NSArray arrayWithObjects:kuo_kuang1,kuo_kuang2,kuo_kuang3,kuo_kuang4, nil];
-        [kuo_kuang1 release];
-        [kuo_kuang2 release];
-        [kuo_kuang3 release];
-        [kuo_kuang4 release];
-        [self.navigationController pushViewController:tab_c animated:YES];
-        [tab_c release];*/
-        KUO_RouteViewController_Bra2* route = [[KUO_RouteViewController_Bra2 alloc] initWithStyle:UITableViewStyleGrouped];
-        route.title = @"去程";
-        [self.navigationController pushViewController:route animated:YES];
-        [route release];
-    }
+    // Navigation logic may go here. Create and push another view controller.
+    /*
+     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
+     // ...
+     // Pass the selected object to the new view controller.
+     [self.navigationController pushViewController:detailViewController animated:YES];
+     [detailViewController release];
+     */
 }
 
 @end
