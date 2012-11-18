@@ -13,12 +13,12 @@
 @end
 
 @implementation TrainStyleViewController
-
+@synthesize delegate;
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
-        // Custom initialization
+        currentSelectRow=2;
     }
     return self;
 }
@@ -115,7 +115,7 @@
 {
       if (indexPath.section==0){
         currentSelectRow=indexPath.row;
-       // currentSelectSection=indexPath.section;
+          [delegate TrainStyle:self nowSelectedRow:indexPath.row];
         [tableView reloadData];
     }
 }

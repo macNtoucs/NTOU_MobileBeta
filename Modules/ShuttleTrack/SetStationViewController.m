@@ -30,6 +30,7 @@
         startStaion = [[NSString alloc]initWithString:@"基隆"];
         DepatureStation = [[NSString alloc]initWithString:@"臺北"];
         queryDate = [NSString new];
+        trainStyle = [[NSString alloc]initWithString:@"2"];
       //[self addSelectView];
         [self createData];
         UIViewController *setStartStationController,
@@ -81,6 +82,7 @@
         view4.title = type4;
         view4.view.frame = CGRectMake(0, 10, 320, 420);
         [setTrainTypeviewController.view addSubview:view4.tableView];
+        view4.delegate = self;
         setTrainTypeviewController.tabBarItem.tag=3;
         //////////////////////////////////////////////////////////
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -317,13 +319,26 @@
        queryURL=[queryURL stringByAppendingString:[NSString stringWithFormat:@"%d",currentMonth]];
        queryURL= [queryURL stringByAppendingString:@"%2F"];
        queryURL= [queryURL stringByAppendingString:[NSString stringWithFormat:@"%d",currentDay]];
-       queryURL= [queryURL stringByAppendingString:[NSString stringWithFormat:@"&fromstation=%@&tostation=%@&trainclass=2&fromtime=0000&totime=2359",StartStationID,DepatureStationID]];
+       queryURL= [queryURL stringByAppendingString:[NSString stringWithFormat:@"&fromstation=%@&tostation=%@&",StartStationID,DepatureStationID]];
+       queryURL= [queryURL stringByAppendingString:[NSString stringWithFormat:@"trainclass=%@&fromtime=0000&totime=2359",trainStyle]];
      //  NSLog( @"%@",queryURL);
       
      return [NSURL URLWithString:queryURL];
    }
     
   
+}
+
+
+-(void)TrainStyle:(TrainStyleViewController *)tableView nowSelectedRow:(NSInteger)indexPath{
+    
+    switch(indexPath){
+        case 0 :
+            trainStyle = @"'1100'%2c'1101'%2c'1102'%2c'1110'%2c'1120'"; break;
+        case 1 : trainStyle = @"'1131'%2c'1132'%2c'1140'"; break;
+        case 2 : trainStyle = @"2"; break;
+    
+    }
 }
 
 - (NSString *)startStationTitile:(StaionInfoTableViewController *)stationInfoTableView{

@@ -14,7 +14,7 @@
 #import "TrainStyleViewController.h"
 #import "StationInfoViewController.h"
 #import "SetOriginAndStationViewController.h"
-@interface SetStationViewController : UITabBarController<UITabBarControllerDelegate,StationPickerPickerViewDataSource, StationPickerPickerViewDelegate,UIScrollViewDelegate,UITabBarControllerDelegate,StaionInfoDataSource,SetOriginAndStationViewDelegate>
+@interface SetStationViewController : UITabBarController<UITabBarControllerDelegate,StationPickerPickerViewDataSource, StationPickerPickerViewDelegate,UIScrollViewDelegate,UITabBarControllerDelegate,StaionInfoDataSource,SetOriginAndStationViewDelegate,TrainStyleViewControllerDelegate>
 {
     NSArray *viewControllers;
     NSArray * region;
@@ -39,6 +39,7 @@
     int currentMonth;
     int currentDay;
     NSMutableDictionary * stationNum;
+    NSString* trainStyle;
     
 }
 @property int tag;

@@ -191,6 +191,7 @@ bool initailIndex = true;
     
  
     currentRow = currentRow + steps;
+    if (currentRow>=rowsCount-1  || currentRow <=0)return;
     [contentView setContentOffset:CGPointMake(0.0, glassHeight*(currentRow-2)-10) animated:YES];
       [delegate pickerView:self didSelectRow:currentRow-1];
     isScrollingUp=true;
