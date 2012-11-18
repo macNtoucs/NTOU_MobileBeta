@@ -27,8 +27,8 @@
          startStaion_origin =0;
          depatureStation_origin=0;
          dateSelected=0;
-        startStaion = [NSString new];
-        DepatureStation = [NSString new];
+        startStaion = [[NSString alloc]initWithString:@"基隆"];
+        DepatureStation = [[NSString alloc]initWithString:@"臺北"];
         queryDate = [NSString new];
       //[self addSelectView];
         [self createData];
@@ -323,14 +323,7 @@
      return [NSURL URLWithString:queryURL];
    }
     
-    NSString * queryURL = [[NSString alloc]initWithString:@"http://twtraffic.tra.gov.tw/twrail/SearchResult.aspx?searchtype=0&searchdate=2012%2F"];
-    queryURL=[queryURL stringByAppendingString:[NSString stringWithFormat:@"%d",currentMonth]];
-    queryURL= [queryURL stringByAppendingString:@"%2F"];
-    queryURL= [queryURL stringByAppendingString:[NSString stringWithFormat:@"%d",currentDay]];
-    queryURL= [queryURL stringByAppendingString:@"&fromstation=1001&tostation=1008&trainclass=2&fromtime=0000&totime=2359"];
-   // NSLog( @"%@",queryURL);
-    
-   return [NSURL URLWithString:queryURL];
+  
 }
 
 - (NSString *)startStationTitile:(StaionInfoTableViewController *)stationInfoTableView{

@@ -134,7 +134,7 @@
     }
     else {
         NSString * detailString = [NSString stringWithFormat:@"%@         %@", [depatureTimes objectAtIndex:indexPath.row-1],[arrivalTimes objectAtIndex:indexPath.row-1] ] ;
-        cell.textLabel.text=[NSString stringWithFormat:@"%@",[trainStyle objectAtIndex:indexPath.row-1]] ;
+        cell.textLabel.text=[NSString stringWithFormat:@"%@<%@>",[StartAndTerminalstops objectAtIndex:indexPath.row-1],[trainStyle objectAtIndex:indexPath.row-1]] ;
         
         cell.detailTextLabel.text = detailString;
         cell.detailTextLabel.textColor = [UIColor blueColor];
