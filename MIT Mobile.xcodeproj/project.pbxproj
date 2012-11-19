@@ -261,6 +261,17 @@
 		C79A9BA216390494001FAF48 /* WeekScheduleView.m in Sources */ = {isa = PBXBuildFile; fileRef = C79A9BA116390494001FAF48 /* WeekScheduleView.m */; };
 		C79A9BAD1639464C001FAF48 /* WeekNameView.m in Sources */ = {isa = PBXBuildFile; fileRef = C79A9BAC1639464C001FAF48 /* WeekNameView.m */; };
 		C79A9BB8163A4E80001FAF48 /* LessonTimeView.m in Sources */ = {isa = PBXBuildFile; fileRef = C79A9BB7163A4E80001FAF48 /* LessonTimeView.m */; };
+		C7AFEDF71659EBDD005FF1DB /* OtherTrafficTrapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7AFEDF51659EBDD005FF1DB /* OtherTrafficTrapViewController.m */; };
+		C7AFEE0A1659EC0A005FF1DB /* money-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C7AFEDF91659EC09005FF1DB /* money-icon.png */; };
+		C7AFEE0B1659EC0A005FF1DB /* KUO_TimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7AFEDFA1659EC09005FF1DB /* KUO_TimeViewController.m */; };
+		C7AFEE0C1659EC0A005FF1DB /* KUO_RouteViewController_Bra2.m in Sources */ = {isa = PBXBuildFile; fileRef = C7AFEDFC1659EC09005FF1DB /* KUO_RouteViewController_Bra2.m */; };
+		C7AFEE0D1659EC0A005FF1DB /* KUO_KUANGViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7AFEDFE1659EC09005FF1DB /* KUO_KUANGViewController.m */; };
+		C7AFEE0E1659EC0A005FF1DB /* Kuo_Data.m in Sources */ = {isa = PBXBuildFile; fileRef = C7AFEE001659EC0A005FF1DB /* Kuo_Data.m */; };
+		C7AFEE0F1659EC0A005FF1DB /* KUO_Data_Bra2.m in Sources */ = {isa = PBXBuildFile; fileRef = C7AFEE021659EC0A005FF1DB /* KUO_Data_Bra2.m */; };
+		C7AFEE101659EC0A005FF1DB /* K_TimeView.m in Sources */ = {isa = PBXBuildFile; fileRef = C7AFEE041659EC0A005FF1DB /* K_TimeView.m */; };
+		C7AFEE111659EC0A005FF1DB /* K_RouteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7AFEE061659EC0A005FF1DB /* K_RouteViewController.m */; };
+		C7AFEE121659EC0A005FF1DB /* K_data.plist in Resources */ = {isa = PBXBuildFile; fileRef = C7AFEE081659EC0A005FF1DB /* K_data.plist */; };
+		C7AFEE131659EC0A005FF1DB /* Info.png in Resources */ = {isa = PBXBuildFile; fileRef = C7AFEE091659EC0A005FF1DB /* Info.png */; };
 		DE03763C1350F5080041DDBD /* MIT150Button.m in Sources */ = {isa = PBXBuildFile; fileRef = DE03763B1350F5080041DDBD /* MIT150Button.m */; };
 		DE0A62AC10CDAEA90058B2C2 /* MITBuildInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DE0A62AB10CDAEA90058B2C2 /* MITBuildInfo.m */; };
 		DE0F6B3411109BC500F064D6 /* AboutMITVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DE0F6B3311109BC500F064D6 /* AboutMITVC.m */; };
@@ -925,6 +936,25 @@
 		C79A9BAC1639464C001FAF48 /* WeekNameView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeekNameView.m; sourceTree = "<group>"; };
 		C79A9BB6163A4E7E001FAF48 /* LessonTimeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LessonTimeView.h; path = ../../LessonTimeView.h; sourceTree = "<group>"; };
 		C79A9BB7163A4E80001FAF48 /* LessonTimeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LessonTimeView.m; path = ../../LessonTimeView.m; sourceTree = "<group>"; };
+		C7AFEDF51659EBDD005FF1DB /* OtherTrafficTrapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OtherTrafficTrapViewController.m; sourceTree = "<group>"; };
+		C7AFEDF61659EBDD005FF1DB /* OtherTrafficTrapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OtherTrafficTrapViewController.h; sourceTree = "<group>"; };
+		C7AFEDF91659EC09005FF1DB /* money-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "money-icon.png"; sourceTree = "<group>"; };
+		C7AFEDFA1659EC09005FF1DB /* KUO_TimeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KUO_TimeViewController.m; sourceTree = "<group>"; };
+		C7AFEDFB1659EC09005FF1DB /* KUO_TimeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KUO_TimeViewController.h; sourceTree = "<group>"; };
+		C7AFEDFC1659EC09005FF1DB /* KUO_RouteViewController_Bra2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KUO_RouteViewController_Bra2.m; sourceTree = "<group>"; };
+		C7AFEDFD1659EC09005FF1DB /* KUO_RouteViewController_Bra2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KUO_RouteViewController_Bra2.h; sourceTree = "<group>"; };
+		C7AFEDFE1659EC09005FF1DB /* KUO_KUANGViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KUO_KUANGViewController.m; sourceTree = "<group>"; };
+		C7AFEDFF1659EC0A005FF1DB /* KUO_KUANGViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KUO_KUANGViewController.h; sourceTree = "<group>"; };
+		C7AFEE001659EC0A005FF1DB /* Kuo_Data.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Kuo_Data.m; sourceTree = "<group>"; };
+		C7AFEE011659EC0A005FF1DB /* Kuo_Data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Kuo_Data.h; sourceTree = "<group>"; };
+		C7AFEE021659EC0A005FF1DB /* KUO_Data_Bra2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KUO_Data_Bra2.m; sourceTree = "<group>"; };
+		C7AFEE031659EC0A005FF1DB /* KUO_Data_Bra2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KUO_Data_Bra2.h; sourceTree = "<group>"; };
+		C7AFEE041659EC0A005FF1DB /* K_TimeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = K_TimeView.m; sourceTree = "<group>"; };
+		C7AFEE051659EC0A005FF1DB /* K_TimeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = K_TimeView.h; sourceTree = "<group>"; };
+		C7AFEE061659EC0A005FF1DB /* K_RouteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = K_RouteViewController.m; sourceTree = "<group>"; };
+		C7AFEE071659EC0A005FF1DB /* K_RouteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = K_RouteViewController.h; sourceTree = "<group>"; };
+		C7AFEE081659EC0A005FF1DB /* K_data.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = K_data.plist; sourceTree = "<group>"; };
+		C7AFEE091659EC0A005FF1DB /* Info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Info.png; sourceTree = "<group>"; };
 		DE03763A1350F5080041DDBD /* MIT150Button.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIT150Button.h; sourceTree = "<group>"; };
 		DE03763B1350F5080041DDBD /* MIT150Button.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIT150Button.m; sourceTree = "<group>"; };
 		DE0A62AA10CDAEA90058B2C2 /* MITBuildInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MITBuildInfo.h; sourceTree = "<group>"; };
@@ -2224,6 +2254,25 @@
 		DE715449102FE468005E6111 /* ShuttleTrack */ = {
 			isa = PBXGroup;
 			children = (
+				C7AFEDF91659EC09005FF1DB /* money-icon.png */,
+				C7AFEDFA1659EC09005FF1DB /* KUO_TimeViewController.m */,
+				C7AFEDFB1659EC09005FF1DB /* KUO_TimeViewController.h */,
+				C7AFEDFC1659EC09005FF1DB /* KUO_RouteViewController_Bra2.m */,
+				C7AFEDFD1659EC09005FF1DB /* KUO_RouteViewController_Bra2.h */,
+				C7AFEDFE1659EC09005FF1DB /* KUO_KUANGViewController.m */,
+				C7AFEDFF1659EC0A005FF1DB /* KUO_KUANGViewController.h */,
+				C7AFEE001659EC0A005FF1DB /* Kuo_Data.m */,
+				C7AFEE011659EC0A005FF1DB /* Kuo_Data.h */,
+				C7AFEE021659EC0A005FF1DB /* KUO_Data_Bra2.m */,
+				C7AFEE031659EC0A005FF1DB /* KUO_Data_Bra2.h */,
+				C7AFEE041659EC0A005FF1DB /* K_TimeView.m */,
+				C7AFEE051659EC0A005FF1DB /* K_TimeView.h */,
+				C7AFEE061659EC0A005FF1DB /* K_RouteViewController.m */,
+				C7AFEE071659EC0A005FF1DB /* K_RouteViewController.h */,
+				C7AFEE081659EC0A005FF1DB /* K_data.plist */,
+				C7AFEE091659EC0A005FF1DB /* Info.png */,
+				C7AFEDF51659EBDD005FF1DB /* OtherTrafficTrapViewController.m */,
+				C7AFEDF61659EBDD005FF1DB /* OtherTrafficTrapViewController.h */,
 				A6DCE6DF1657ECA6009290D9 /* stationNumber.plist */,
 				A6DCE6DD1657A305009290D9 /* stationNum.txt */,
 				A65E39EB16495F63000E6782 /* StationPicker */,
@@ -2874,6 +2923,9 @@
 				A63DE9B616561E6100EF3192 /* StationPickerBackground1.png in Resources */,
 				A6DCE6DE1657A305009290D9 /* stationNum.txt in Resources */,
 				A6DCE6E01657ECA6009290D9 /* stationNumber.plist in Resources */,
+				C7AFEE0A1659EC0A005FF1DB /* money-icon.png in Resources */,
+				C7AFEE121659EC0A005FF1DB /* K_data.plist in Resources */,
+				C7AFEE131659EC0A005FF1DB /* Info.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3220,6 +3272,14 @@
 				A65E3A0416498D56000E6782 /* ThroughTap.m in Sources */,
 				A61B643B165434A2007A382E /* TrainStyleViewController.m in Sources */,
 				A6DCE34F165695C0009290D9 /* SetOriginAndStationViewController.m in Sources */,
+				C7AFEDF71659EBDD005FF1DB /* OtherTrafficTrapViewController.m in Sources */,
+				C7AFEE0B1659EC0A005FF1DB /* KUO_TimeViewController.m in Sources */,
+				C7AFEE0C1659EC0A005FF1DB /* KUO_RouteViewController_Bra2.m in Sources */,
+				C7AFEE0D1659EC0A005FF1DB /* KUO_KUANGViewController.m in Sources */,
+				C7AFEE0E1659EC0A005FF1DB /* Kuo_Data.m in Sources */,
+				C7AFEE0F1659EC0A005FF1DB /* KUO_Data_Bra2.m in Sources */,
+				C7AFEE101659EC0A005FF1DB /* K_TimeView.m in Sources */,
+				C7AFEE111659EC0A005FF1DB /* K_RouteViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

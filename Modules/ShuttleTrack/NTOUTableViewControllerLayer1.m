@@ -58,7 +58,10 @@
 #pragma mark - Table view data source
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    return @"1";
+    if (section==2) {
+        return nil;
+    }
+    return @" ";
 }
 
 - (UIView *) tableView: (UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
@@ -71,7 +74,8 @@
             headerTitle = @"市區公車";
             break;
         case 2:
-            headerTitle=@"其它";
+            return nil;
+            break;
         default:
             break;
     }
@@ -221,11 +225,10 @@
         [stops release];
     }
     else {
-       // StationInfoViewController *stationInfo = [StationInfoViewController new];
-        //[self.navigationController pushViewController:stationInfo animated:YES];
-        SetStationViewController *setStationView = [[SetStationViewController alloc]init];
-        [self.navigationController pushViewController:setStationView animated:YES];
-        [setStationView release];
+
+        OtherTrafficTrapViewController *other = [[OtherTrafficTrapViewController alloc ]initWithStyle:UITableViewStyleGrouped];
+        [self.navigationController pushViewController:other animated:YES];
+        [other release];
     }
 }
 
