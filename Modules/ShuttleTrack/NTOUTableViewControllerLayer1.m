@@ -63,6 +63,10 @@
     }
     return @" ";
 }
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 25.5;
+}
 
 - (UIView *) tableView: (UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
 	NSString *headerTitle;
@@ -74,7 +78,7 @@
             headerTitle = @"市區公車";
             break;
         case 2:
-            return nil;
+             headerTitle = @"其他";
             break;
         default:
             break;

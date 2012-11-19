@@ -32,6 +32,7 @@
         DepatureStation = [[NSString alloc]initWithString:@"臺北"];
         queryDate = [NSString new];
         trainStyle = [[NSString alloc]initWithString:@"2"];
+        isinitData = true;
       //[self addSelectView];
         [self createData];
         UIViewController *setStartStationController,
@@ -320,11 +321,16 @@
 - (NSURL*)StationInfoURL:(StaionInfoTableViewController *)stationInfoTableView{
    //[self CreateStationNumPlist];
     stationInfoTableView_delegate = self;
+
+    if(isinitData) {
+        isinitData = false;
+        return [NSURL URLWithString:@""];
+    }
    if (![startStaion isEqualToString:@""] && ![DepatureStation isEqualToString:@""] ){
         
         NSString *StartStationID = [NSString stringWithFormat:@"%@",[stationNum valueForKey:startStaion]];
         NSString *DepatureStationID= [NSString stringWithFormat:@"%@",[stationNum valueForKey:DepatureStation]];
-         NSArray *arr= [stationNum allKeys];
+        // NSArray *arr= [stationNum allKeys];
         NSString * queryURL = [[NSString alloc]initWithString:@"http://twtraffic.tra.gov.tw/twrail/SearchResult.aspx?searchtype=0&searchdate=2012%2F"];
        queryURL=[queryURL stringByAppendingString:[NSString stringWithFormat:@"%d",currentMonth]];
        queryURL= [queryURL stringByAppendingString:@"%2F"];

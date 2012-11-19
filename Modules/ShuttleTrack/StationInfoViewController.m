@@ -37,9 +37,11 @@
 }
 -(void)recieveData{
     [self recieveURL];
-    [self recieveStartAndDepature];
-    [self fetchData];
-    [self.tableView reloadData];
+    if (![[dataURL absoluteString] isEqualToString:@""]){
+        [self recieveStartAndDepature];
+        [self fetchData];
+        [self.tableView reloadData];
+    }
 }
 -(void)fetchData{
     StartAndTerminalstops = [NSMutableArray new];
