@@ -9,6 +9,8 @@
 @required
 -(void)TimeViewControllerDirectChange;
 -(NSArray *)checkExceptionArriveTime:(NSArray*) arr;
+@optional
+-(NSString*)changeTimeViewTittle:(NSString*) name;
 @end
 #import <UIKit/UIKit.h>
 #import "K_TimeView.h"

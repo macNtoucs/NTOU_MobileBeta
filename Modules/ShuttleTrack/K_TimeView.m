@@ -37,11 +37,11 @@
 {
     [super viewDidLoad];
     [self.tableView applyStandardColors];
-    if (self.title == K_TimeViewtype1)
+    if ([self.title rangeOfString: K_TimeViewtype1].location != NSNotFound)
         type=1;
-    else if (self.title == K_TimeViewtype2)
+    if ([self.title rangeOfString: K_TimeViewtype2].location != NSNotFound)
         type=2;
-    else if (self.title == K_TimeViewtype3)
+    else if ([self.title rangeOfString: K_TimeViewtype3].location != NSNotFound)
         type=3;
     UISwipeGestureRecognizer *swipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self                                                                                                 action:@selector(changeDirect)];
     swipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionLeft|UISwipeGestureRecognizerDirectionRight;
@@ -63,6 +63,14 @@
 }
 
 #pragma mark - Table view data source
+
+-(float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (MAX([data count], [data2 count])==1&&indexPath.row==1) {
+        return 50;
+    }
+    return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -89,18 +97,24 @@
     if (indexPath.row==0) {
         cell.textLabel.text = self.title;
         if (type==2) {
-            cell.textLabel.text = @"上客站	                   下客站";
+            cell.textLabel.text = @"上客站                      下客站";
         }
         cell.textLabel.textColor = [UIColor blueColor];
     }
     else{
         if (type==2) {
-            if (indexPath.row<=[data count]&&indexPath.row<=[data2 count])
-                cell.textLabel.text = [[[data objectAtIndex:indexPath.row-1] stringByAppendingString:@"                   "]stringByAppendingString:[data2 objectAtIndex:indexPath.row-1]];
+            if (indexPath.row<=[data count]&&indexPath.row<=[data2 count]){
+                NSString* space = [data objectAtIndex:indexPath.row-1];
+                for (int i=0;i<(27-[[data objectAtIndex:indexPath.row-1] length]*(11.0/3));i++) {
+                    space = [space stringByAppendingString:@" "];
+                    
+                }
+                cell.textLabel.text = [space stringByAppendingString:[data2 objectAtIndex:indexPath.row-1]];
+            }
             else if(indexPath.row>[data2 count])
                 cell.textLabel.text = [data objectAtIndex:indexPath.row-1];
             else
-                cell.textLabel.text =[[NSString stringWithFormat:@"                              "]stringByAppendingString:[data2 objectAtIndex:indexPath.row-1]];
+                cell.textLabel.text =[[NSString stringWithFormat:@"                           "]stringByAppendingString:[data2 objectAtIndex:indexPath.row-1]];
         }
         else
             cell.textLabel.text = [data objectAtIndex:indexPath.row-1];

@@ -26,7 +26,7 @@
 {
     K_TimeView* view1,*view2,*view3;
     view1 = [[K_TimeView alloc] initWithStyle:UITableViewStyleGrouped];
-    view1.title = K_TimeViewtype1;
+    view1.title = [delegate2 changeTimeViewTittle:K_TimeViewtype1];
     UITabBarItem *item1 = [[UITabBarItem alloc] initWithTitle:K_TimeViewtype1 image:[UIImage imageNamed:@"Time.png"] tag:1];
     [item1 setFinishedSelectedImage:[UIImage imageNamed:@"Time.png"]
         withFinishedUnselectedImage:[UIImage imageNamed:@"Time.png"]];
@@ -36,7 +36,7 @@
     view1.delegate = self;
     
     view2 = [[K_TimeView alloc] initWithStyle:UITableViewStyleGrouped];
-    view2.title = K_TimeViewtype2;
+    view2.title = [delegate2 changeTimeViewTittle:K_TimeViewtype2];;
     UITabBarItem *item2 = [[UITabBarItem alloc] initWithTitle:K_TimeViewtype2 image:[UIImage imageNamed:@"Info.png"] tag:2];
     [item2 setFinishedSelectedImage:[UIImage imageNamed:@"Info.png"]
         withFinishedUnselectedImage:[UIImage imageNamed:@"Info.png"]];
@@ -47,7 +47,7 @@
     view2.delegate = self;
     
     view3 = [[K_TimeView alloc] initWithStyle:UITableViewStyleGrouped];
-    view3.title = K_TimeViewtype3;
+    view3.title = [delegate2 changeTimeViewTittle:K_TimeViewtype3];;
     UITabBarItem *item3 = [[UITabBarItem alloc] initWithTitle:K_TimeViewtype3 image:[UIImage imageNamed:@"money-icon.png"] tag:3];
     [item3 setFinishedSelectedImage:[UIImage imageNamed:@"money-icon.png"]
         withFinishedUnselectedImage:[UIImage imageNamed:@"money-icon.png"]];
