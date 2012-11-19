@@ -43,9 +43,11 @@
             direct = FALSE;
             except = FALSE;
         }
+        self.title = [NSString stringWithFormat:@"路線  →"];
     } else {
         display = outbound;
         direct = TRUE;
+        self.title = [NSString stringWithFormat:@"→  路線"];
     }
     [self.tableView reloadData];
 }
@@ -132,6 +134,9 @@
 }
 
 -(void)changeTabcTittle{
+    if (tabcIndexPath.row==exceptionIndex&&except==TRUE) {
+        return;
+    }
     NSArray* Separated= [tabc.title componentsSeparatedByString:@"  →  "];
     tabc.title = [[[Separated objectAtIndex:1] stringByAppendingString:@"  →  "] stringByAppendingString:[Separated objectAtIndex:0]];
 }
@@ -165,6 +170,7 @@
             tabc.title = [[cell.textLabel.text stringByAppendingString:@"  →  "] stringByAppendingString:[[display allKeys]objectAtIndex:indexPath.section]];
     }
     except = FALSE;
+    
     [self.navigationController pushViewController:tabc animated:YES];
     [tabc release];
 }
