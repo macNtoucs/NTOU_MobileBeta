@@ -40,6 +40,7 @@
     int currentDay;
     NSMutableDictionary * stationNum;
     NSString* trainStyle;
+   
     
 }
 @property int tag;

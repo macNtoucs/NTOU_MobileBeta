@@ -47,9 +47,9 @@
 
 -(void) addRoutesURL:(NSString *)_103First and:(NSString *)_103Second and:(NSString *)_104First and:(NSString *)_104Second{
     waitTime1_103 = [[NSURL alloc ]initWithString:_103First ];
-    waitTime2_103 = [[NSURL alloc ]initWithString:_103Second];
+    if (_103Second)  waitTime2_103 = [[NSURL alloc ]initWithString:_103Second];
     waitTime1_104 = [[NSURL alloc ]initWithString:_104First];
-    waitTime2_104 = [[NSURL alloc ]initWithString:_104Second];
+   if (_104Second) waitTime2_104 = [[NSURL alloc ]initWithString:_104Second];
     [ waitTime  addObject:waitTime1_103 ];
     if (waitTime2_103) [ waitTime  addObject:waitTime2_103 ];
     [ waitTime  addObject:waitTime1_104 ];

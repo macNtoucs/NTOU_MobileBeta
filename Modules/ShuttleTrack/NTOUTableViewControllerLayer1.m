@@ -208,7 +208,7 @@
         [self.navigationController pushViewController:Layer2 animated:YES];
         [Layer2 release];
     }
-    else if (indexPath.row == 1)
+    else if (indexPath.section == 1)
     {
         UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
        

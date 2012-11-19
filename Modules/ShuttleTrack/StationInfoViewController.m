@@ -29,6 +29,7 @@
 -(void) recieveURL{
     dataURL = [[NSURL alloc]init];
     dataURL = [self.dataSource StationInfoURL:self];
+   
 }
 -(void) recieveStartAndDepature{
     startStation =[[NSString alloc]initWithString:[self.dataSource startStationTitile:self]];
