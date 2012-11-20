@@ -43,9 +43,11 @@
             direct = FALSE;
             except = FALSE;
         }
+        self.title = [NSString stringWithFormat:@"路線  →"];
     } else {
         display = outbound;
         direct = TRUE;
+        self.title = [NSString stringWithFormat:@"→  路線"];
     }
     [self.tableView reloadData];
 }
@@ -131,21 +133,28 @@
     return cell;
 }
 
--(void)changeTabcTittle
+-(void)changeTabcTittle{
+    if (tabcIndexPath.row==exceptionIndex&&except==TRUE) {
+        return;
+    }
+    NSArray* Separated= [tabc.title componentsSeparatedByString:@"  →  "];
+    tabc.title = [[[Separated objectAtIndex:1] stringByAppendingString:@"  →  "] stringByAppendingString:[Separated objectAtIndex:0]];
+}
+
+-(NSString*)changeTimeViewTittle:(NSString*) name
 {
     if (tabcIndexPath.row==exceptionIndex&&except==FALSE&&direct==TRUE) {
-        tabc.title = [tabc.title stringByAppendingString:@"(平日班次)"];
+        name = [name stringByAppendingString:@"(平日班次)"];
     }
     else if (tabcIndexPath.row==exceptionIndex&&except==TRUE) {
-        tabc.title = [[tabc.title componentsSeparatedByString:@"(平日班次)"] objectAtIndex:0];
-        tabc.title = [tabc.title stringByAppendingString:@"(假日班次)"];
+        name = [[name componentsSeparatedByString:@"(平日班次)"] objectAtIndex:0];
+        name = [name stringByAppendingString:@"(假日班次)"];
     }
     else{
-        tabc.title = [[tabc.title componentsSeparatedByString:@"(假日班次)"] objectAtIndex:0];
-        NSArray* Separated= [tabc.title componentsSeparatedByString:@"  →  "];
-        tabc.title = [[[Separated objectAtIndex:1] stringByAppendingString:@"  →  "] stringByAppendingString:[Separated objectAtIndex:0]];
+        name = [[name componentsSeparatedByString:@"(假日班次)"] objectAtIndex:0];
     }
-    
+    return name;
+
 }
 
 #pragma mark - Table view delegate
@@ -161,6 +170,7 @@
             tabc.title = [[cell.textLabel.text stringByAppendingString:@"  →  "] stringByAppendingString:[[display allKeys]objectAtIndex:indexPath.section]];
     }
     except = FALSE;
+    
     [self.navigationController pushViewController:tabc animated:YES];
     [tabc release];
 }

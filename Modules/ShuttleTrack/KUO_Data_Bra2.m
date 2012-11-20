@@ -32,8 +32,12 @@ static KUO_Data_Bra2 *sharedData = nil;
         NSString *filePath = [paths objectAtIndex:0];
         filePath = [filePath stringByAppendingString:@"/K_data.plist"];
         success = [fileManager fileExistsAtPath:filePath];
+        NSString *path = [[[NSBundle mainBundle] resourcePath] stringByAppendingFormat:@"/K_data.plist"];
+        if (![fileManager contentsEqualAtPath:filePath andPath:path]) {
+            [fileManager removeItemAtPath:filePath error:&error];
+            success = NO;
+        }
         if (!success){
-            NSString *path = [[[NSBundle mainBundle] resourcePath] stringByAppendingFormat:@"/K_data.plist"];
             success = [fileManager copyItemAtPath:path toPath:filePath error:&error];
         }
         if (!success) {
