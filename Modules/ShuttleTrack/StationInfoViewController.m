@@ -18,14 +18,16 @@
 @synthesize depatureTimes;
 @synthesize arrivalTimes;
 @synthesize dataSource;
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
-        // Custom initialization
+        
     }
     return self;
 }
+
 -(void) recieveURL{
     dataURL = [[NSURL alloc]init];
     dataURL = [self.dataSource StationInfoURL:self];
@@ -40,10 +42,21 @@
     if (![[dataURL absoluteString] isEqualToString:@""]){
         [self recieveStartAndDepature];
         [self fetchData];
-        [self.tableView reloadData];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
     }
+    
 }
+
+
 -(void)fetchData{
+  
+    downloadView = [DownloadingView new];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [downloadView AlertViewStart];
+    });
+
     StartAndTerminalstops = [NSMutableArray new];
     depatureTimes = [NSMutableArray new];
     arrivalTimes = [NSMutableArray new];
@@ -83,19 +96,15 @@
           [trainStyle addObject: [[contextArr objectAtIndex:0]content] ];
         else continue;
        }
-   
+    [downloadView AlertViewEnd];
 }
 
 - (void)viewDidLoad
 {
     
     [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+   
+  
 }
 
 - (void)didReceiveMemoryWarning
@@ -105,6 +114,9 @@
 }
 
 #pragma mark - Table view data source
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -129,16 +141,23 @@
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
     }
     if (indexPath.row == 0 ) {
-        cell.textLabel.text = @"車種";
-        cell.detailTextLabel.text = [NSString stringWithFormat:@" %@出發時間    抵達%@時間",startStation,depatureStation];
+        cell.textLabel.text = [NSString stringWithFormat:@"車種                            %@           %@",startStation,depatureStation];
         cell.detailTextLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:12];
         cell.detailTextLabel.textColor = [UIColor brownColor];
         cell.textLabel.textColor = [UIColor brownColor];
     }
+    else if (indexPath==0 && [StartAndTerminalstops count]==0){
+        cell.textLabel.text = [NSString stringWithFormat:@"無資料"];
+    }
     else {
         NSString * detailString = [NSString stringWithFormat:@"%@         %@", [depatureTimes objectAtIndex:indexPath.row-1],[arrivalTimes objectAtIndex:indexPath.row-1] ] ;
-        cell.textLabel.text=[NSString stringWithFormat:@"%@<%@>",[StartAndTerminalstops objectAtIndex:indexPath.row-1],[trainStyle objectAtIndex:indexPath.row-1]] ;
-        
+        cell.textLabel.text=[NSString stringWithFormat:@"%@",[StartAndTerminalstops objectAtIndex:indexPath.row-1]] ;
+        if ([[trainStyle objectAtIndex:indexPath.row-1] isEqualToString: @"區間車"])
+            cell.imageView.image = [UIImage imageNamed:@"local_train.png"];
+        if ([[trainStyle objectAtIndex:indexPath.row-1]isEqualToString: @"自強"])
+            cell.imageView.image = [UIImage imageNamed:@"speed_train.png"];
+        if ([[trainStyle objectAtIndex:indexPath.row-1]isEqualToString: @"莒光"])
+            cell.imageView.image = [UIImage imageNamed:@"gigoung_train.png"];
         cell.detailTextLabel.text = detailString;
         cell.detailTextLabel.textColor = [UIColor blueColor];
     }

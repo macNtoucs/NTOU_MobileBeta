@@ -221,6 +221,15 @@
 		A6CD75FF164820FB00D1209C /* TabBarNipple@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A6CD75FC164820FB00D1209C /* TabBarNipple@2x.png */; };
 		A6CD760216482F8900D1209C /* SetStationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CD760116482F8900D1209C /* SetStationViewController.m */; };
 		A6CD76051648333400D1209C /* StationView.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CD76041648333300D1209C /* StationView.m */; };
+		A6CE289E165B51A800C3FE81 /* DownloadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CE289D165B51A800C3FE81 /* DownloadingView.m */; };
+		A6CE28AD165BAA7C00C3FE81 /* bank.png in Resources */ = {isa = PBXBuildFile; fileRef = A6CE28A5165BAA7C00C3FE81 /* bank.png */; };
+		A6CE28AE165BAA7C00C3FE81 /* gigoung_train.png in Resources */ = {isa = PBXBuildFile; fileRef = A6CE28A6165BAA7C00C3FE81 /* gigoung_train.png */; };
+		A6CE28AF165BAA7C00C3FE81 /* local_speed_train.png in Resources */ = {isa = PBXBuildFile; fileRef = A6CE28A7165BAA7C00C3FE81 /* local_speed_train.png */; };
+		A6CE28B0165BAA7C00C3FE81 /* local_train.png in Resources */ = {isa = PBXBuildFile; fileRef = A6CE28A8165BAA7C00C3FE81 /* local_train.png */; };
+		A6CE28B1165BAA7C00C3FE81 /* magnify.png in Resources */ = {isa = PBXBuildFile; fileRef = A6CE28A9165BAA7C00C3FE81 /* magnify.png */; };
+		A6CE28B2165BAA7C00C3FE81 /* speed_train.png in Resources */ = {isa = PBXBuildFile; fileRef = A6CE28AA165BAA7C00C3FE81 /* speed_train.png */; };
+		A6CE28B3165BAA7C00C3FE81 /* TimeDrive.png in Resources */ = {isa = PBXBuildFile; fileRef = A6CE28AB165BAA7C00C3FE81 /* TimeDrive.png */; };
+		A6CE28B4165BAA7C00C3FE81 /* train.png in Resources */ = {isa = PBXBuildFile; fileRef = A6CE28AC165BAA7C00C3FE81 /* train.png */; };
 		A6DCE34F165695C0009290D9 /* SetOriginAndStationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6DCE34E165695C0009290D9 /* SetOriginAndStationViewController.m */; };
 		A6DCE6DE1657A305009290D9 /* stationNum.txt in Resources */ = {isa = PBXBuildFile; fileRef = A6DCE6DD1657A305009290D9 /* stationNum.txt */; };
 		A6DCE6E01657ECA6009290D9 /* stationNumber.plist in Resources */ = {isa = PBXBuildFile; fileRef = A6DCE6DF1657ECA6009290D9 /* stationNumber.plist */; };
@@ -866,6 +875,16 @@
 		A6CD760116482F8900D1209C /* SetStationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetStationViewController.m; sourceTree = "<group>"; };
 		A6CD76031648333300D1209C /* StationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StationView.h; sourceTree = "<group>"; };
 		A6CD76041648333300D1209C /* StationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StationView.m; sourceTree = "<group>"; };
+		A6CE289C165B51A800C3FE81 /* DownloadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadingView.h; sourceTree = "<group>"; };
+		A6CE289D165B51A800C3FE81 /* DownloadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadingView.m; sourceTree = "<group>"; };
+		A6CE28A5165BAA7C00C3FE81 /* bank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bank.png; sourceTree = "<group>"; };
+		A6CE28A6165BAA7C00C3FE81 /* gigoung_train.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gigoung_train.png; sourceTree = "<group>"; };
+		A6CE28A7165BAA7C00C3FE81 /* local_speed_train.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = local_speed_train.png; sourceTree = "<group>"; };
+		A6CE28A8165BAA7C00C3FE81 /* local_train.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = local_train.png; sourceTree = "<group>"; };
+		A6CE28A9165BAA7C00C3FE81 /* magnify.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = magnify.png; sourceTree = "<group>"; };
+		A6CE28AA165BAA7C00C3FE81 /* speed_train.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = speed_train.png; sourceTree = "<group>"; };
+		A6CE28AB165BAA7C00C3FE81 /* TimeDrive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TimeDrive.png; sourceTree = "<group>"; };
+		A6CE28AC165BAA7C00C3FE81 /* train.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = train.png; sourceTree = "<group>"; };
 		A6DCE34D165695C0009290D9 /* SetOriginAndStationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetOriginAndStationViewController.h; sourceTree = "<group>"; };
 		A6DCE34E165695C0009290D9 /* SetOriginAndStationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetOriginAndStationViewController.m; sourceTree = "<group>"; };
 		A6DCE6DD1657A305009290D9 /* stationNum.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = stationNum.txt; sourceTree = "<group>"; };
@@ -2070,6 +2089,21 @@
 			path = StationPicker;
 			sourceTree = "<group>";
 		};
+		A6CE28A4165BAA7C00C3FE81 /* resource */ = {
+			isa = PBXGroup;
+			children = (
+				A6CE28A5165BAA7C00C3FE81 /* bank.png */,
+				A6CE28A6165BAA7C00C3FE81 /* gigoung_train.png */,
+				A6CE28A7165BAA7C00C3FE81 /* local_speed_train.png */,
+				A6CE28A8165BAA7C00C3FE81 /* local_train.png */,
+				A6CE28A9165BAA7C00C3FE81 /* magnify.png */,
+				A6CE28AA165BAA7C00C3FE81 /* speed_train.png */,
+				A6CE28AB165BAA7C00C3FE81 /* TimeDrive.png */,
+				A6CE28AC165BAA7C00C3FE81 /* train.png */,
+			);
+			path = resource;
+			sourceTree = "<group>";
+		};
 		BD1E92F3103B5D60004429AA /* JSON */ = {
 			isa = PBXGroup;
 			children = (
@@ -2254,6 +2288,7 @@
 		DE715449102FE468005E6111 /* ShuttleTrack */ = {
 			isa = PBXGroup;
 			children = (
+				A6CE28A4165BAA7C00C3FE81 /* resource */,
 				C7AFEDF91659EC09005FF1DB /* money-icon.png */,
 				C7AFEDFA1659EC09005FF1DB /* KUO_TimeViewController.m */,
 				C7AFEDFB1659EC09005FF1DB /* KUO_TimeViewController.h */,
@@ -2343,6 +2378,8 @@
 				A6CD76041648333300D1209C /* StationView.m */,
 				A61B6439165434A1007A382E /* TrainStyleViewController.h */,
 				A61B643A165434A2007A382E /* TrainStyleViewController.m */,
+				A6CE289C165B51A800C3FE81 /* DownloadingView.h */,
+				A6CE289D165B51A800C3FE81 /* DownloadingView.m */,
 			);
 			path = ShuttleTrack;
 			sourceTree = "<group>";
@@ -2926,6 +2963,14 @@
 				C7AFEE0A1659EC0A005FF1DB /* money-icon.png in Resources */,
 				C7AFEE121659EC0A005FF1DB /* K_data.plist in Resources */,
 				C7AFEE131659EC0A005FF1DB /* Info.png in Resources */,
+				A6CE28AD165BAA7C00C3FE81 /* bank.png in Resources */,
+				A6CE28AE165BAA7C00C3FE81 /* gigoung_train.png in Resources */,
+				A6CE28AF165BAA7C00C3FE81 /* local_speed_train.png in Resources */,
+				A6CE28B0165BAA7C00C3FE81 /* local_train.png in Resources */,
+				A6CE28B1165BAA7C00C3FE81 /* magnify.png in Resources */,
+				A6CE28B2165BAA7C00C3FE81 /* speed_train.png in Resources */,
+				A6CE28B3165BAA7C00C3FE81 /* TimeDrive.png in Resources */,
+				A6CE28B4165BAA7C00C3FE81 /* train.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3280,6 +3325,7 @@
 				C7AFEE0F1659EC0A005FF1DB /* KUO_Data_Bra2.m in Sources */,
 				C7AFEE101659EC0A005FF1DB /* K_TimeView.m in Sources */,
 				C7AFEE111659EC0A005FF1DB /* K_RouteViewController.m in Sources */,
+				A6CE289E165B51A800C3FE81 /* DownloadingView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
