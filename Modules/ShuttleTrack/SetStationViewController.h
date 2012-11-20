@@ -14,6 +14,7 @@
 #import "TrainStyleViewController.h"
 #import "StationInfoViewController.h"
 #import "SetOriginAndStationViewController.h"
+#import "DownloadingView.h"
 @interface SetStationViewController : UITabBarController<UITabBarControllerDelegate,StationPickerPickerViewDataSource, StationPickerPickerViewDelegate,UIScrollViewDelegate,UITabBarControllerDelegate,StaionInfoDataSource,SetOriginAndStationViewDelegate,TrainStyleViewControllerDelegate>
 {
     NSArray *viewControllers;
@@ -31,8 +32,6 @@
     int startStaion_origin;
     int depatureStation_origin;
     int dateSelected;
-    UIView *whiteView;
-    UIView *blueView;
     NSString *startStaion;
     NSString *DepatureStation;
     NSString *queryDate;
@@ -41,6 +40,7 @@
     NSMutableDictionary * stationNum;
     NSString* trainStyle;
     bool isinitData;
+    DownloadingView * downloadView;
     
 }
 @property int tag;

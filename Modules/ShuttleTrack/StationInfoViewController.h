@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "TFHpple.h"
-
+#import "DownloadingView.h"
 @protocol StaionInfoDataSource;
 @interface StaionInfoTableViewController : UITableViewController{
     __unsafe_unretained id <StaionInfoDataSource> dataSource;
@@ -19,6 +19,8 @@
     NSMutableArray *trainStyle;
     NSString *startStation;
     NSString *depatureStation;
+    DownloadingView *downloadView;
+   
 }
 @property (nonatomic,retain) NSURL * dataURL;
 @property (nonatomic ,retain )NSMutableArray * StartAndTerminalstops;
@@ -26,6 +28,7 @@
 @property (nonatomic, retain)NSMutableArray *arrivalTimes;
 @property (nonatomic, unsafe_unretained) id <StaionInfoDataSource> dataSource;
 -(void) recieveData;
+
 @end
 
 

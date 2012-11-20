@@ -33,6 +33,9 @@
         queryDate = [NSString new];
         trainStyle = [[NSString alloc]initWithString:@"2"];
         isinitData = true;
+        downloadView = [DownloadingView new];
+        dispatch_queue_t aQueue =
+        dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
       //[self addSelectView];
         [self createData];
         UIViewController *setStartStationController,
@@ -58,6 +61,7 @@
         [setStartStationController.view addSubview:bg];
         setStartStationController.tabBarItem.tag=0;
         view1.delegate = self;
+        setStartStationController.tabBarItem.image = [UIImage imageNamed:@"bank.png"];
         ///////////////////////////////////////////////////////////
         view2 = [[SetOriginAndStationViewController alloc] initWithStyle:UITableViewStyleGrouped];
          view2.view.frame = CGRectMake(0, 0, 320, 440);
@@ -65,6 +69,7 @@
         [setdepatureStationviewController.view addSubview:bg];
        view2.delegate = self;
         setdepatureStationviewController.tabBarItem.tag=1;
+        setdepatureStationviewController.tabBarItem.image = [UIImage imageNamed:@"bank.png"];
         ///////////////////////////////////////////////////////////
         timeChoose_moth = [[StationPickerPickerView alloc] initWithFrame:CGRectMake(2.5, 5, 160, 320)];
         timeChoose_day = [[StationPickerPickerView alloc] initWithFrame:CGRectMake(157.5, 5, 160, 320)];
@@ -77,7 +82,7 @@
         timeChoose_day.delegate = self;
         timeChoose_day.dataSource = self;
         [timeChoose_day reloadData];
-       
+        setTimeviewController.tabBarItem.image = [UIImage imageNamed:@"TimeDrive.png"];
         //////////////////////////////////////////////////////////
         
         view4 = [[TrainStyleViewController alloc] initWithStyle:UITableViewStyleGrouped];
@@ -86,6 +91,7 @@
         [setTrainTypeviewController.view addSubview:view4.tableView];
         view4.delegate = self;
         setTrainTypeviewController.tabBarItem.tag=3;
+        setTrainTypeviewController.tabBarItem.image = [UIImage imageNamed:@"train.png"];
         //////////////////////////////////////////////////////////
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         NSString *documentsDirectory = [paths objectAtIndex:0];
@@ -98,6 +104,7 @@
         resultViewController.view.frame= CGRectMake(0, 10, 320, 425);
         [resultViewController.view addSubview:view5.tableView];
         resultViewController.tabBarItem.tag=4;
+        resultViewController.tabBarItem.image = [UIImage imageNamed:@"magnify.png"];
         [view5 recieveData];
          //////////////////////////////////////////////////////////
         viewControllers = [[NSArray alloc]initWithObjects:setStartStationController, setdepatureStationviewController,setTimeviewController,setTrainTypeviewController ,resultViewController,nil];
@@ -115,7 +122,7 @@
 }
 
 -(void)navAddRightButton{
-    UIBarButtonItem * swapStation = [[UIBarButtonItem alloc]initWithTitle:@"回程" style:UIBarButtonItemStylePlain target:self action:@selector(SwapStation)];
+    UIBarButtonItem * swapStation = [[UIBarButtonItem alloc]initWithTitle:@"往返切換" style:UIBarButtonItemStylePlain target:self action:@selector(SwapStation)];
     self.navigationItem.rightBarButtonItem = swapStation;
 }
 -(void)SwapStation{
@@ -123,6 +130,7 @@
     DepatureStation = [NSString stringWithString:startStaion];
     startStaion = [NSString stringWithString:tmpForSwap];
     [self viewDidLoad];
+    [view5 recieveData];
 }
 
 -(void)didSwipe:(id)sender{
@@ -229,29 +237,31 @@
     tabBarArrow.frame = frame;
     [UIView commitAnimations];
     NSLog(@"%d", viewController.tabBarItem.tag);
-    if (viewController.tabBarItem.tag==3 || viewController.tabBarItem.tag==4){
-        whiteView.hidden=YES;
-        blueView.hidden=YES;
-        [self viewDidLoad];
         if (viewController.tabBarItem.tag==4){
-            [self StationInfoURL:stationInfoTableView_delegate];
-            [view5 recieveData];
+           // dispatch_sync( dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                //[downloadView AlertViewStart];
+            //});
+            dispatch_async( dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                [view5 recieveData];
+                dispatch_suspend(dispatch_get_current_queue());
+            });
+            
+           // [downloadView AlertViewEnd];
         }
-    }
-    else {
-        whiteView.hidden=NO;
-        blueView.hidden=NO;
-    }
-        
+    
+}
+- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController{
+
+
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor clearColor];
-    self.title = [NSString stringWithFormat: @"基隆 -> 臺北"];
+    self.title = [NSString stringWithFormat: @" 基隆 → 臺北"];
     if ((startStaion && DepatureStation) &&![startStaion isEqualToString:@""])
-     self.title = [NSString stringWithFormat: @"%@ -> %@",startStaion,DepatureStation];
+     self.title = [NSString stringWithFormat: @" %@ → %@",startStaion,DepatureStation];
     UISwipeGestureRecognizer *swipeRecognizer_right = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(didSwipe:)];
     [swipeRecognizer_right setDirection:UISwipeGestureRecognizerDirectionRight];
     [self.view addGestureRecognizer:swipeRecognizer_right];
