@@ -57,15 +57,27 @@
 
 #pragma mark - Table view data source
 
--(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    if (section==2) {
-        return nil;
-    }
-    return @" ";
-}
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+-(float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 25.5;
+    CGFloat rowHeight = 0;
+    UIFont *cellFont = [UIFont fontWithName:@"Helvetica" size:14.0];
+    CGSize constraintSize = CGSizeMake(270.0f, 2009.0f);
+    NSString *cellText = nil;
+    
+    cellText = @"A"; // just something to guarantee one line
+    CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
+    rowHeight = labelSize.height + 20.0f;
+    
+    return rowHeight;
+}
+
+-(float)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 32;
+}
+
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    return @" ";
 }
 
 - (UIView *) tableView: (UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
@@ -83,7 +95,22 @@
         default:
             break;
     }
-	return [UITableView groupedSectionHeaderWithTitle:headerTitle];
+    UIFont *font = [UIFont boldSystemFontOfSize:STANDARD_CONTENT_FONT_SIZE];
+	CGSize size = [headerTitle sizeWithFont:font];
+	CGRect appFrame = [[UIScreen mainScreen] applicationFrame];
+	UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(19.0, 3.0, appFrame.size.width - 19.0, size.height)];
+	
+	label.text = headerTitle;
+	label.textColor = GROUPED_SECTION_FONT_COLOR;
+	label.font = font;
+	label.backgroundColor = [UIColor clearColor];
+	
+	UIView *labelContainer = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, appFrame.size.width, GROUPED_SECTION_HEADER_HEIGHT)] autorelease];
+	labelContainer.backgroundColor = [UIColor clearColor];
+	
+	[labelContainer addSubview:label];
+	[label release];
+	return labelContainer;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -112,10 +139,10 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *CellIdentifier = [NSString stringWithFormat:@"Cell%d%d",indexPath.section,indexPath.row];
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    SecondaryGroupedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil)
     {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[SecondaryGroupedTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     switch (indexPath.section)  {
@@ -214,7 +241,7 @@
     }
     else if (indexPath.section == 1)
     {
-        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        SecondaryGroupedTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
        
         StopsViewController * stops = [[StopsViewController alloc]initWithStyle:UITableViewStyleGrouped];
         stops.title = cell.textLabel.text;
@@ -231,6 +258,7 @@
     else {
 
         OtherTrafficTrapViewController *other = [[OtherTrafficTrapViewController alloc ]initWithStyle:UITableViewStyleGrouped];
+        other.title = @"搭乘工具";
         [self.navigationController pushViewController:other animated:YES];
         [other release];
     }
