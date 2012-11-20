@@ -86,41 +86,71 @@
 {
     NSString *CellIdentifier = [NSString stringWithFormat:@"Cell%d%d",indexPath.section,indexPath.row];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    UILabel *label = nil;
+    UILabel *detailLabel;
+    
     if (cell == nil)
     {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.textLabel.lineBreakMode = UILineBreakModeWordWrap;
-        cell.textLabel.numberOfLines = 0;
+        label = [[[UILabel alloc] initWithFrame:CGRectMake(20, 13, 300, 20)] autorelease];
+        label.backgroundColor = [UIColor clearColor];
+        label.lineBreakMode = UILineBreakModeWordWrap;
+        label.numberOfLines = 0;
+        label.font = [UIFont boldSystemFontOfSize:18.0];
+        label.tag=25;
+        
+        //make Your alignments to this detail label
+        detailLabel = [[[UILabel alloc] initWithFrame:CGRectMake(220, 15, 130, 17)] autorelease];
+        detailLabel.font = [UIFont systemFontOfSize:15.0];
+        detailLabel.backgroundColor = [UIColor clearColor];
+        detailLabel.tag=30;
+        [cell.contentView addSubview:label];
+        [cell.contentView addSubview:detailLabel];
+
+    }
+    else
+    {
+        label = (UILabel *)[cell.contentView viewWithTag:25];
+        detailLabel = (UILabel *)[cell.contentView viewWithTag:30];
     }
     // Configure the cell...
     if (indexPath.row==0) {
-        cell.textLabel.text = self.title;
+        label.text = self.title;
         if (type==2) {
-            cell.textLabel.text = @"上客站                      下客站";
+            label.text = @"上客站                      下客站";
         }
-        cell.textLabel.textColor = [UIColor blueColor];
+        label.textColor = [UIColor blueColor];
     }
     else{
-        if (type==2) {
+        if (type==1) {
+            NSString* space = [data objectAtIndex:indexPath.row-1];
+            NSArray* array = [space componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@" "]];
+            if ([array count]==2) {
+                detailLabel.text = [array objectAtIndex:1];
+            }
+            label.text = [array objectAtIndex:0];
+        }
+        else if (type==2) {
+            
             if (indexPath.row<=[data count]&&indexPath.row<=[data2 count]){
                 NSString* space = [data objectAtIndex:indexPath.row-1];
-                for (int i=0;i<(27-[[data objectAtIndex:indexPath.row-1] length]*(11.0/3));i++) {
+                for (int i=0;i<(27-[[data objectAtIndex:indexPath.row-1] length]*3);i++) {
                     space = [space stringByAppendingString:@" "];
                     
                 }
-                cell.textLabel.text = [space stringByAppendingString:[data2 objectAtIndex:indexPath.row-1]];
+                label.text = [space stringByAppendingString:[data2 objectAtIndex:indexPath.row-1]];
             }
             else if(indexPath.row>[data2 count])
-                cell.textLabel.text = [data objectAtIndex:indexPath.row-1];
+                label.text = [data objectAtIndex:indexPath.row-1];
             else
-                cell.textLabel.text =[[NSString stringWithFormat:@"                           "]stringByAppendingString:[data2 objectAtIndex:indexPath.row-1]];
+                label.text =[[NSString stringWithFormat:@"                             "]stringByAppendingString:[data2 objectAtIndex:indexPath.row-1]];
         }
         else
-            cell.textLabel.text = [data objectAtIndex:indexPath.row-1];
+            label.text = [data objectAtIndex:indexPath.row-1];
     }
     if (type==1||type==3) {
-        cell.textLabel.textAlignment = UITextAlignmentCenter;
+        label.textAlignment = UITextAlignmentCenter;
     }
     return cell;
 }

@@ -272,6 +272,7 @@
 		C7AFEE111659EC0A005FF1DB /* K_RouteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7AFEE061659EC0A005FF1DB /* K_RouteViewController.m */; };
 		C7AFEE121659EC0A005FF1DB /* K_data.plist in Resources */ = {isa = PBXBuildFile; fileRef = C7AFEE081659EC0A005FF1DB /* K_data.plist */; };
 		C7AFEE131659EC0A005FF1DB /* Info.png in Resources */ = {isa = PBXBuildFile; fileRef = C7AFEE091659EC0A005FF1DB /* Info.png */; };
+		C7AFEE1D165B4648005FF1DB /* Time.png in Resources */ = {isa = PBXBuildFile; fileRef = C7AFEE1C165B4647005FF1DB /* Time.png */; };
 		DE03763C1350F5080041DDBD /* MIT150Button.m in Sources */ = {isa = PBXBuildFile; fileRef = DE03763B1350F5080041DDBD /* MIT150Button.m */; };
 		DE0A62AC10CDAEA90058B2C2 /* MITBuildInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DE0A62AB10CDAEA90058B2C2 /* MITBuildInfo.m */; };
 		DE0F6B3411109BC500F064D6 /* AboutMITVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DE0F6B3311109BC500F064D6 /* AboutMITVC.m */; };
@@ -955,6 +956,7 @@
 		C7AFEE071659EC0A005FF1DB /* K_RouteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = K_RouteViewController.h; sourceTree = "<group>"; };
 		C7AFEE081659EC0A005FF1DB /* K_data.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = K_data.plist; sourceTree = "<group>"; };
 		C7AFEE091659EC0A005FF1DB /* Info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Info.png; sourceTree = "<group>"; };
+		C7AFEE1C165B4647005FF1DB /* Time.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Time.png; sourceTree = "<group>"; };
 		DE03763A1350F5080041DDBD /* MIT150Button.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIT150Button.h; sourceTree = "<group>"; };
 		DE03763B1350F5080041DDBD /* MIT150Button.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIT150Button.m; sourceTree = "<group>"; };
 		DE0A62AA10CDAEA90058B2C2 /* MITBuildInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MITBuildInfo.h; sourceTree = "<group>"; };
@@ -2255,6 +2257,7 @@
 			isa = PBXGroup;
 			children = (
 				C7AFEDF91659EC09005FF1DB /* money-icon.png */,
+				C7AFEE1C165B4647005FF1DB /* Time.png */,
 				C7AFEDFA1659EC09005FF1DB /* KUO_TimeViewController.m */,
 				C7AFEDFB1659EC09005FF1DB /* KUO_TimeViewController.h */,
 				C7AFEDFC1659EC09005FF1DB /* KUO_RouteViewController_Bra2.m */,
@@ -2926,6 +2929,7 @@
 				C7AFEE0A1659EC0A005FF1DB /* money-icon.png in Resources */,
 				C7AFEE121659EC0A005FF1DB /* K_data.plist in Resources */,
 				C7AFEE131659EC0A005FF1DB /* Info.png in Resources */,
+				C7AFEE1D165B4648005FF1DB /* Time.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
