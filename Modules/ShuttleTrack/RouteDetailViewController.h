@@ -28,7 +28,7 @@
     UIBarButtonItem *anotherButton;
     NSTimer * refreshTimer;
     NSDate * lastRefresh;
-    
+    UIAlertView *  loadingAlertView;
 }
 
 - (void) getURL:(NSString* ) inputURL;

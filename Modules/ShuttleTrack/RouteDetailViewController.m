@@ -87,6 +87,14 @@
         NSData* data = [[NSString stringWithContentsOfURL:obj encoding:big5 error:&error] dataUsingEncoding:big5];
         TFHpple* parser = [[TFHpple alloc] initWithHTMLData:data];
         NSArray *waittime_tmp  = [parser searchWithXPathQuery:@"//body//div//table//tr//td"]; // get the title
+        if ([waittime_tmp count]==0) {
+            UIAlertView *  loadingAlertView = [[UIAlertView alloc]
+                                               initWithTitle:nil message:@"無法連接伺服器\n或無網路連線"
+                                               delegate:nil cancelButtonTitle:@"確定"
+                                               otherButtonTitles: nil];
+            [loadingAlertView show];
+            break;
+        }
         TFHppleElement* T_ptr2 = [waittime_tmp objectAtIndex:2];
         NSArray *child2 = [T_ptr2 children];
         TFHppleElement* buf2 = [child2 objectAtIndex:0];
@@ -206,12 +214,21 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [self CatchData];
     [super viewWillAppear:animated];
+    loadingAlertView = [[UIAlertView alloc]
+                                       initWithTitle:nil message:@"\n\nDownloading\nPlease wait"
+                                       delegate:nil cancelButtonTitle:nil
+                                       otherButtonTitles: nil];
+    [self performSelectorOnMainThread:@selector(AlertStart:)
+                           withObject:loadingAlertView
+                        waitUntilDone:YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    [self CatchData];
+    [loadingAlertView dismissWithClickedButtonIndex:0 animated:NO];
+    [loadingAlertView release];
     [self startTimer];
     [super viewDidAppear:animated];
 }
