@@ -65,34 +65,34 @@
     NSData* data = [[NSString stringWithContentsOfURL:dataURL encoding:NSUTF8StringEncoding error:&error] dataUsingEncoding:NSUTF8StringEncoding];
     TFHpple* parser = [[TFHpple alloc] initWithHTMLData:data];
     NSArray *tableData_td  = [parser searchWithXPathQuery:@"//body//form//div//table//tbody//tr//td"];
-    for (int i=3 ; i< [tableData_td count] ; ++i)
-        if (i%10==3) {
+    for (int i=3 ; i< [tableData_td count] ; ++i){
+        if (i%11==3) {
             TFHppleElement * attributeElement = [tableData_td objectAtIndex:i];
             NSArray * contextArr = [attributeElement children];
             TFHppleElement * context = [contextArr objectAtIndex:0];
             NSArray * stops = [context children];
             [StartAndTerminalstops addObject: [[stops objectAtIndex:0]content] ];
         }
-        else if (i%10 == 4){
+        else if (i%11 == 4){
             TFHppleElement * attributeElement = [tableData_td objectAtIndex:i];
             NSArray * contextArr = [attributeElement children];
             TFHppleElement * context = [contextArr objectAtIndex:0];
             NSArray * stops = [context children];
             [depatureTimes addObject: [[stops objectAtIndex:0]content] ];
         }
-        else if (i%10 == 5){
+        else if (i%11 == 5){
             TFHppleElement * attributeElement = [tableData_td objectAtIndex:i];
             NSArray * contextArr = [attributeElement children];
             TFHppleElement * context = [contextArr objectAtIndex:0];
             NSArray * stops = [context children];
             [arrivalTimes addObject: [[stops objectAtIndex:0]content] ];
-            
         }
+    }
      NSArray *tableData_trainStyle  = [parser searchWithXPathQuery:@"//body//form//div//table//tbody//tr//td//span"];
     for (int i=0 ; i< [tableData_trainStyle count] ; ++i){
         TFHppleElement * attributeElement = [tableData_trainStyle objectAtIndex:i];
         NSArray * contextArr = [attributeElement children];
-        if (!(i%2))
+        if (!(i%3))
           [trainStyle addObject: [[contextArr objectAtIndex:0]content] ];
         else continue;
        }
