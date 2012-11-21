@@ -7,6 +7,7 @@
 //
 
 #import "K_TimeView.h"
+#import "MITUIConstants.h"
 @interface K_TimeView (){
     int type;
 }
@@ -66,10 +67,16 @@
 
 -(float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (MAX([data count], [data2 count])==1&&indexPath.row==1) {
-        return 50;
-    }
-    return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+    CGFloat rowHeight = 0;
+    UIFont *cellFont = [UIFont fontWithName:@"Helvetica" size:14.0];
+    CGSize constraintSize = CGSizeMake(270.0f, 2009.0f);
+    NSString *cellText = nil;
+    
+    cellText = @"A"; // just something to guarantee one line
+    CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
+    rowHeight = labelSize.height + 20.0f;
+    
+    return rowHeight;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -93,18 +100,23 @@
     {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        label = [[[UILabel alloc] initWithFrame:CGRectMake(20, 13, 300, 20)] autorelease];
+        cell.backgroundColor = SECONDARY_GROUP_BACKGROUND_COLOR;
+        label = [[[UILabel alloc] initWithFrame:CGRectMake(20, 8, 260, 22)] autorelease];
         label.backgroundColor = [UIColor clearColor];
         label.lineBreakMode = UILineBreakModeWordWrap;
         label.numberOfLines = 0;
-        label.font = [UIFont boldSystemFontOfSize:18.0];
         label.tag=25;
+        label.font = [UIFont fontWithName:BOLD_FONT size:17.0];
+        label.textColor = CELL_STANDARD_FONT_COLOR;
         
-        //make Your alignments to this detail label
-        detailLabel = [[[UILabel alloc] initWithFrame:CGRectMake(220, 15, 130, 17)] autorelease];
+        detailLabel = [[[UILabel alloc] initWithFrame:CGRectMake(210, 12, 150, 17)] autorelease];
         detailLabel.font = [UIFont systemFontOfSize:15.0];
         detailLabel.backgroundColor = [UIColor clearColor];
         detailLabel.tag=30;
+        detailLabel.font = [UIFont fontWithName:STANDARD_FONT size:13.0];
+		detailLabel.textColor = CELL_DETAIL_FONT_COLOR;
+        detailLabel.highlightedTextColor = [UIColor whiteColor];
+		detailLabel.backgroundColor = [UIColor clearColor];
         [cell.contentView addSubview:label];
         [cell.contentView addSubview:detailLabel];
 
@@ -118,7 +130,7 @@
     if (indexPath.row==0) {
         label.text = self.title;
         if (type==2) {
-            label.text = @"上客站                      下客站";
+            label.text = @"上客站                    下客站";
         }
         label.textColor = [UIColor blueColor];
     }
@@ -132,19 +144,25 @@
             label.text = [array objectAtIndex:0];
         }
         else if (type==2) {
-            
+            label.frame = CGRectMake(15, 8, 135, 22);
+            detailLabel.frame = CGRectMake(150, 8, 150, 22);
+            detailLabel.font = [UIFont fontWithName:BOLD_FONT size:17.0];
+            detailLabel.textColor = CELL_STANDARD_FONT_COLOR;
             if (indexPath.row<=[data count]&&indexPath.row<=[data2 count]){
-                NSString* space = [data objectAtIndex:indexPath.row-1];
-                for (int i=0;i<(27-[[data objectAtIndex:indexPath.row-1] length]*3);i++) {
+                /*NSString* space = [data objectAtIndex:indexPath.row-1];
+                for (int i=0;i<(27-[[data objectAtIndex:indexPath.row-1] length]*(10.0/3));i++) {
                     space = [space stringByAppendingString:@" "];
                     
                 }
-                label.text = [space stringByAppendingString:[data2 objectAtIndex:indexPath.row-1]];
+                label.text = [space stringByAppendingString:[data2 objectAtIndex:indexPath.row-1]];*/
+                label.text = [data objectAtIndex:indexPath.row-1];
+                detailLabel.text =  [data2 objectAtIndex:indexPath.row-1];
             }
             else if(indexPath.row>[data2 count])
                 label.text = [data objectAtIndex:indexPath.row-1];
             else
-                label.text =[[NSString stringWithFormat:@"                             "]stringByAppendingString:[data2 objectAtIndex:indexPath.row-1]];
+                //label.text =[[NSString stringWithFormat:@"                             "]stringByAppendingString:[data2 objectAtIndex:indexPath.row-1]];
+                detailLabel.text =  [data2 objectAtIndex:indexPath.row-1];
         }
         else
             label.text = [data objectAtIndex:indexPath.row-1];

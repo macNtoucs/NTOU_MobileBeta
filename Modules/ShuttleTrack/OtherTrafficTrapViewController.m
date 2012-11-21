@@ -51,26 +51,23 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 3;
+    return 2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *CellIdentifier = [NSString stringWithFormat:@"Cell%d%d",indexPath.section,indexPath.row];
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    SecondaryGroupedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil)
     {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[SecondaryGroupedTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     switch (indexPath.row)  {
         case 0:
-            cell.textLabel.text = @"基隆火車站";
-            break;
-        case 1:
             cell.textLabel.text = @"台鐵";
             break;
-        case 2:
+        case 1:
             cell.textLabel.text = @"國光客運";
             break;
         default:
@@ -118,26 +115,31 @@
 }
 */
 
+-(float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    CGFloat rowHeight = 0;
+    UIFont *cellFont = [UIFont fontWithName:@"Helvetica" size:14.0];
+    CGSize constraintSize = CGSizeMake(270.0f, 2009.0f);
+    NSString *cellText = nil;
+    
+    cellText = @"A"; // just something to guarantee one line
+    CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
+    rowHeight = labelSize.height + 20.0f;
+    
+    return rowHeight;
+}
+
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row==0) {
-        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-        
-        StopsViewController * stops = [[StopsViewController alloc]initWithStyle:UITableViewStyleGrouped];
-        stops.title = cell.textLabel.text;
-        [stops setDirection:true];
-        [self.navigationController pushViewController:stops animated:YES];
-        [stops release];
-    }
-    else if (indexPath.row==1)
+    if (indexPath.row==0)
     {
         SetStationViewController *setStationView = [[SetStationViewController alloc]init];
         [self.navigationController pushViewController:setStationView animated:YES];
         [setStationView release];
     }
-    else if (indexPath.row==2)
+    else if (indexPath.row==1)
     {
         /*UITabBarController* tab_c = [[UITabBarController alloc] init];
         K_RouteViewController* kuo_kuang1 = [[K_RouteViewController alloc] initWithStyle:UITableViewStyleGrouped];
@@ -160,7 +162,7 @@
         [self.navigationController pushViewController:tab_c animated:YES];
         [tab_c release];*/
         KUO_RouteViewController_Bra2* route = [[KUO_RouteViewController_Bra2 alloc] initWithStyle:UITableViewStyleGrouped];
-        route.title = @"路線  →";
+        route.title = @"路線";
         [self.navigationController pushViewController:route animated:YES];
         [route release];
     }

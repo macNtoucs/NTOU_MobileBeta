@@ -43,11 +43,11 @@
             direct = FALSE;
             except = FALSE;
         }
-        self.title = [NSString stringWithFormat:@"路線  →"];
+        //self.title = [NSString stringWithFormat:@"路線  →"];
     } else {
         display = outbound;
         direct = TRUE;
-        self.title = [NSString stringWithFormat:@"→  路線"];
+        //self.title = [NSString stringWithFormat:@"→  路線"];
     }
     [self.tableView reloadData];
 }
@@ -74,11 +74,11 @@
 {
     [super viewDidLoad];
     [self.tableView applyStandardColors];
-    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"往返切換"
+    /*UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"往返切換"
                                                                     style:UIBarButtonItemStyleBordered
                                                                    target:self
                                                                    action:@selector(changeDirectType)];
-    [self.navigationItem setRightBarButtonItem:rightButton];
+    [self.navigationItem setRightBarButtonItem:rightButton];*/
     UISwipeGestureRecognizer *swipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self                                                                                                 action:@selector(changeDirectType)];
     swipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionLeft|UISwipeGestureRecognizerDirectionRight;
 
@@ -94,6 +94,19 @@
 }
 
 #pragma mark - Table view data source
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    CGFloat rowHeight = 0;
+    UIFont *cellFont = [UIFont fontWithName:@"Helvetica" size:14.0];
+    CGSize constraintSize = CGSizeMake(270.0f, 2009.0f);
+    NSString *cellText = nil;
+    
+    cellText = @"A"; // just something to guarantee one line
+    CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
+    rowHeight = labelSize.height + 20.0f;
+    
+    return rowHeight;
+}
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
     return @" ";
@@ -120,10 +133,10 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *CellIdentifier = [NSString stringWithFormat:@"Cell%d%d",indexPath.section,indexPath.row];
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    SecondaryGroupedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil)
     {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[SecondaryGroupedTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.textLabel.lineBreakMode = UILineBreakModeWordWrap;
         cell.textLabel.numberOfLines = 0;
@@ -162,7 +175,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     tabcIndexPath = [indexPath retain];
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    SecondaryGroupedTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     tabc = [[KUO_TimeViewController alloc] init:[[display objectForKey:[[display allKeys] objectAtIndex:indexPath.section]] objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(indexPath.row*StationInformationCount, StationInformationCount)]]delegate:self];
     if (display==inbound) {
             tabc.title = [[[[display allKeys]objectAtIndex:indexPath.section] stringByAppendingString:@"  →  "] stringByAppendingString:cell.textLabel.text];
