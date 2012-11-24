@@ -68,6 +68,9 @@
             label.changeColor = NO;
         } else {
             if ([TapAddCourse count]==0) {
+                if (label.tag>=0) {
+                    [parent_ViewController DisplayUITextField:[NSArray arrayWithObjects:label.text, nil]];
+                }
                 for (ClassLabelBasis* courselabel in course) {
                     if (courselabel.tag!=label.tag) {
                         courselabel.backgroundColor = [UIColor colorWithRed:211.0/255 green:211.0/255 blue:211.0/255 alpha:1];

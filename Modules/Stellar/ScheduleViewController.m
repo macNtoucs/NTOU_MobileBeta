@@ -25,11 +25,10 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-
+        self.title = @"功課表";
         TopWeekcontroller = [[WeekNameView alloc] initWithFrame:CGRectMake(LeftBaseline, NavigationAndStatusHeight, UpperViewWidth*[[ClassDataBase sharedData] FetchWeekTimes], UpperBaseline)];
         LeftViewController  = [[LessonTimeView alloc]initWithFrame:CGRectMake(0, NavigationAndStatusHeight+UpperBaseline, LeftBaseline,(LeftViewHeight-TextLabelborderWidth)*[[ClassDataBase sharedData] FetchClassSessionTimes])];
         UpperleftView = [[UIView alloc] initWithFrame:CGRectMake(0,NavigationAndStatusHeight, LeftBaseline, UpperBaseline)];
-
         UpperleftView.backgroundColor = [UIColor colorWithRed:105.0/255 green:105.0/255 blue:105.0/255 alpha:1];
         UpperleftView.layer.borderWidth = TextLabelborderWidth;
         UpperleftView.layer.borderColor = [UIColor blackColor].CGColor;
@@ -44,6 +43,12 @@
     classInfo.title = label.text;
     classInfo.tag = label.tag;
     [self.navigationController pushViewController:classInfo animated:YES];
+}
+
+
+-(void) DisplayUITextField:(NSArray *)info
+{
+    addView.classNameField.text = [info objectAtIndex:0];
 }
 
 -(void)ChangeDisplayView
@@ -81,7 +86,7 @@
 }
 
 -(IBAction)Add:(id)sender{
-    ClassAdd* addView = [[ClassAdd alloc] initWithNibName:@"ClassAdd" bundle:nil];
+    addView = [[ClassAdd alloc] initWithNibName:@"ClassAdd" bundle:nil];
     addView.delegate = self;
     [self.navigationController.view addSubview:addView.view];
     [self.navigationController setNavigationBarHidden:YES animated:NO];

@@ -23,8 +23,12 @@
 @property (retain, nonatomic) IBOutlet UIButton *cancelButton;
 @property (retain, nonatomic) IBOutlet UIButton *addButton;
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
+@property (retain, nonatomic) IBOutlet UIButton *cleanInfo;
+@property (retain, nonatomic) IBOutlet UIButton *modifyInfo;
 
 -(IBAction)cancel:(id)sender;
+- (IBAction)clean:(UIButton *)sender;
+- (IBAction)modify:(UIButton *)sender;
 @property (nonatomic,assign) id delegate;
 
 
