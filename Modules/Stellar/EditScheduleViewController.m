@@ -8,7 +8,9 @@
 
 #import "EditScheduleViewController.h"
 
-@interface EditScheduleViewController ()
+@interface EditScheduleViewController (){
+    SetWeekTimesViewController * setweek;
+}
 
 @end
 
@@ -19,6 +21,7 @@
     self = [super initWithStyle:style];
     if (self) {
         self.view.backgroundColor = [UIColor clearColor];
+        [ClassDataBase sharedData].EditScheduleDelegate = self;
     }
     return self;
 }
@@ -31,7 +34,7 @@
 {
       [self addNavRightButton]; 
     [super viewDidLoad];
-
+    [self.tableView applyStandardColors];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -39,11 +42,32 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [[ClassDataBase sharedData].ScheduleViewDelegate ChangeDisplayView];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+-(float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    CGFloat rowHeight = 0;
+    UIFont *cellFont = [UIFont fontWithName:@"Helvetica" size:14.0];
+    CGSize constraintSize = CGSizeMake(270.0f, 2009.0f);
+    NSString *cellText = nil;
+    
+    cellText = @"A"; // just something to guarantee one line
+    CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
+    rowHeight = labelSize.height + 20.0f;
+    
+    return rowHeight;
+}
+
 
 #pragma mark - Table view data source
 
@@ -68,11 +92,13 @@
     
      
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell  = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
+    SecondaryGroupedTableViewCell *cell  = [[[SecondaryGroupedTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
     UISwitch *switchview = [[UISwitch alloc] initWithFrame:CGRectZero];
+    switchview.on = [[ClassDataBase sharedData] FetchshowClassTimes];
     UISlider *sliderView = [[UISlider alloc]initWithFrame:CGRectMake(174,12,120,23)];
     sliderView.maximumValue = 14;
-    sliderView.minimumValue = 1;
+    sliderView.minimumValue = 8;
+    sliderView.value = [[ClassDataBase sharedData] FetchClassSessionTimes];
     switch (indexPath.row) {
         case 0:
             cell.textLabel.text = @"一周上課天數";
@@ -87,7 +113,7 @@
             [(UISlider *)cell.accessoryView addTarget:self action:@selector(sliderValueChange:) forControlEvents:UIControlEventValueChanged];
             cell.detailTextLabel.text = [NSString stringWithFormat:@"%.0f",sliderView.value];
             cell.detailTextLabel.textColor = [UIColor blueColor];
-           
+            cell.detailTextLabel.backgroundColor = [UIColor clearColor];
             break;
         case 2:
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -103,12 +129,19 @@
 -(void)switchValueChange:(id)sender{
     UISwitch *theSwitch = (UISwitch *)sender;
     willbeset_showClassTimes = theSwitch.on;
+    [[ClassDataBase sharedData] SetShowClassTimes:willbeset_showClassTimes];
 }
 - (void)sliderValueChange:(id)sender{
     UISlider *theSlider = (UISlider *)sender;
-    UITableViewCell *cell = (UITableViewCell *)theSlider.superview;
+    SecondaryGroupedTableViewCell *cell = (SecondaryGroupedTableViewCell *)theSlider.superview;
     willbeset_ClassSessionTimes = theSlider.value;
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%.0f",theSlider.value];
+    [[ClassDataBase sharedData] SetClassSessionTimes:[cell.detailTextLabel.text intValue]];
+}
+
+-(void)ReloadSetWeek
+{
+    [setweek.tableView reloadData];
 }
 
 /*
@@ -155,7 +188,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row==0){
-        SetWeekTimesViewController * setweek = [SetWeekTimesViewController new];
+        setweek = [SetWeekTimesViewController new];
         [self.navigationController pushViewController:setweek animated:YES];
         setweek.title = @"設定一周天數";
     }

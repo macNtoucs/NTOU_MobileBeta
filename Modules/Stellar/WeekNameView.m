@@ -21,10 +21,13 @@
 }
 
 -(void)drawRowWeekNameTextLabel{
-    NSArray* Array = [NSArray arrayWithObjects:[NSString stringWithFormat:@"Mon"],[NSString stringWithFormat:@"Tue"],[NSString stringWithFormat:@"Wed"],[NSString stringWithFormat:@"Thu"],[NSString stringWithFormat:@"Fri"],[NSString stringWithFormat:@"Sat"],nil];
-    for (int i=0;i<[[ClassDataBase sharedData] FetchWeekTimes];i++) {
+    NSArray* Array = [NSArray arrayWithObjects:[NSString stringWithFormat:@"Mon"],[NSString stringWithFormat:@"Tue"],[NSString stringWithFormat:@"Wed"],[NSString stringWithFormat:@"Thu"],[NSString stringWithFormat:@"Fri"],[NSString stringWithFormat:@"Sat"],[NSString stringWithFormat:@"Sun"],nil];
+    for (int i=0,j=0;i<7;i++) {
+        if (![[ClassDataBase sharedData] displayWeekDays:i]) {
+            continue;
+        }
         CGRect labelFrame ;
-        labelFrame = CGRectMake( i*(UpperViewWidth-TextLabelborderWidth), 0, UpperViewWidth,  UpperBaseline);
+        labelFrame = CGRectMake( j++*(UpperViewWidth-TextLabelborderWidth), 0, UpperViewWidth,  UpperBaseline);
             //labelFrame = CGRectMake( 0, 0, 55, 40 );
         UILabel* label = [[[UILabel alloc] initWithFrame: labelFrame] autorelease];
         label.text = [Array objectAtIndex:i];
@@ -42,6 +45,10 @@
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
+    for(UIView *subview in [self subviews])
+    {
+        [subview removeFromSuperview];
+    }
     [self drawRowWeekNameTextLabel];
     [super drawRect:rect];
     // Drawing code

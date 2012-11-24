@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "SetWeekTimesViewController.h"
-@interface EditScheduleViewController : UITableViewController {
+@interface EditScheduleViewController : UITableViewController<EditDataBaseDelegate> {
     int willbeset_WeekTimes;
     int willbeset_ClassSessionTimes;
     bool willbeset_showClassTimes;

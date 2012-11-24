@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ClassDataBase.h"
+#import "SecondaryGroupedTableViewCell.h"
+#import "UIKit+MITAdditions.h"
 @interface SetWeekTimesViewController : UITableViewController
 
 @end

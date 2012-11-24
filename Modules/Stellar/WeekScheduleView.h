@@ -7,9 +7,9 @@
 //
 #import "ClassLabelBasis.h"
 #import "ClassInfoViewController.h"
+#import "ClassDataBase.h"
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
-typedef enum {Session,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday } ColumnName;
 @class ScheduleViewController;
 @interface WeekScheduleView : UIView <UIGestureRecognizerDelegate>{
     NSArray *color;
