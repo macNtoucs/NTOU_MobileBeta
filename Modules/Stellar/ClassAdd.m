@@ -135,6 +135,7 @@
     [_roomNameField release];
     [_cancelButton release];
     [_addButton release];
+    [_titleLabel release];
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -145,6 +146,7 @@
     [self setRoomNameField:nil];
     [self setCancelButton:nil];
     [self setAddButton:nil];
+    [self setTitleLabel:nil];
     [super viewDidUnload];
 }
 @end

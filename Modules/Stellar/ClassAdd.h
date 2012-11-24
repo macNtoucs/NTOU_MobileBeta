@@ -22,6 +22,7 @@
 @property (retain, nonatomic) IBOutlet UITextField *roomNameField;
 @property (retain, nonatomic) IBOutlet UIButton *cancelButton;
 @property (retain, nonatomic) IBOutlet UIButton *addButton;
+@property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 
 -(IBAction)cancel:(id)sender;
 @property (nonatomic,assign) id delegate;

@@ -14,10 +14,13 @@
 @interface WeekScheduleView : UIView <UIGestureRecognizerDelegate>{
     NSArray *color;
     ScheduleViewController *parent_ViewController;
+    NSMutableArray* course;
+    NSMutableArray* TapAddCourse;
 }
 
 @property bool WhetherTapped;
-@property (nonatomic, retain)ScheduleViewController *parent_ViewController;
+@property (nonatomic, retain) NSMutableArray* TapAddCourse;
+@property (nonatomic, assign)ScheduleViewController *parent_ViewController;
 
 -(void) getParent_ViewController:(ScheduleViewController *)recieve;
 @end

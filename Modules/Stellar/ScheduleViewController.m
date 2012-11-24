@@ -63,6 +63,7 @@
 {
     static BOOL change = NO;
     if (change) {
+        [self.weekschedule.TapAddCourse removeAllObjects];
         self.weekschedule.WhetherTapped = NO;
         self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, self.scrollView.contentSize.height-120);
         change = NO;
