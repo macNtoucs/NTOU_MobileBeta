@@ -11,17 +11,29 @@
 #import "MITUIConstants.h"
 @interface ClassInfoView (){
     int types;
+    BOOL edit;
 }
 @end
 
 @implementation ClassInfoView
-
+@synthesize textView;
+@synthesize delegatetype5;
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
+        self.textView = [[UITextView alloc] init];
+        self.textView.textColor = CELL_STANDARD_FONT_COLOR;
+        self.textView.font = [UIFont fontWithName:STANDARD_FONT size:CELL_STANDARD_FONT_SIZE];
+        self.textView.delegate = self;
+        self.textView.backgroundColor = [UIColor clearColor];
+        self.textView.text = @"Now is the time for all good developers tocome to serve their country.\n\nNow is the time for all good developers to cometo serve their country.";
+        self.textView.returnKeyType = UIReturnKeyDefault;
+        self.textView.keyboardType = UIKeyboardTypeDefault;
+        self.textView.scrollEnabled = YES;
         
+        edit = NO;
     }
     return self;
 }
@@ -303,7 +315,7 @@
     else if (types == 2)
         switch (indexPath.row) {
             case 0:
-                return @"         作業                           繳交期限";
+                return @"         作業                          繳交期限";
                 break; 
             case 1:
                 return @"  Homework1                         10/11";
@@ -409,8 +421,6 @@
         }
 
     }
-    else if (types == 5)
-        return @"霧裡看花";
     else if (types == 6){
         if (indexPath.row == 4) {
             return @"2010期末考";
@@ -457,7 +467,15 @@
 	cell.textLabel.font = [UIFont fontWithName:STANDARD_FONT size:CELL_STANDARD_FONT_SIZE];
 	cell.textLabel.textColor = CELL_STANDARD_FONT_COLOR;
 	cell.textLabel.backgroundColor = [UIColor clearColor];
-    if (types==6||(types==1&&indexPath.section==3)) {
+    if (types==5) {
+        if (edit) {
+            textView.frame = CGRectMake(0, 5, 300, 150);
+        } else {
+            textView.frame = CGRectMake(0, 5, 300, 300);
+        }
+        [cell.contentView addSubview:self.textView];
+    }
+    else if (types==6||(types==1&&indexPath.section==3)) {
         cell.textLabel.textAlignment = NSTextAlignmentCenter;
         if (types==1&&indexPath.section==3){
             cell.textLabel.textColor = [UIColor blueColor];
@@ -516,6 +534,26 @@
     return YES;
 }
 */
+
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView{
+    edit = YES;
+    [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:[NSIndexPath indexPathForRow:0 inSection:0], nil] withRowAnimation:UITableViewRowAnimationLeft];
+    return YES;
+}
+
+- (void)textViewDidBeginEditing:(UITextView *)textView {
+    [delegatetype5 rightBarButtonItemOn];
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView {
+    [delegatetype5 rightBarButtonItemOff];
+    edit = NO;
+    [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:[NSIndexPath indexPathForRow:0 inSection:0], nil] withRowAnimation:UITableViewRowAnimationLeft];
+}
+
+- (void)textViewDidChange:(UITextView *)textView{
+    
+}
 
 #pragma mark - Table view delegate
 
@@ -579,14 +617,19 @@
 -(float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CGFloat rowHeight = 0;
-    UIFont *cellFont = [UIFont fontWithName:@"Helvetica" size:14.0];
+    UIFont *cellFont = [UIFont fontWithName:@"Helvetica" size:CELL_STANDARD_FONT_SIZE];
     CGSize constraintSize = CGSizeMake(270.0f, 2009.0f);
-    NSString *cellText = nil;
-    
+    NSString *cellText = @" ";
     cellText = [self textLabeltext:indexPath]; // just something to guarantee one line
     CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
     rowHeight = labelSize.height + 20.0f;
-    
+    if (edit) {
+        return 160;
+    }
+    else if (types==5) {
+        return 320;
+    }
+    else
     return rowHeight;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

@@ -84,7 +84,7 @@
         }
     }
     else {
-        if (label.tag>=0) {
+        if (label.tag>=0&&[label.text isEqualToString:@"演算法"]) {
             [parent_ViewController showClassInfo:label];
         }
     }

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ClassLabelBasis.h"
 #import "ClassInfoView.h"
-@interface ClassInfoViewController : UITabBarController<UITabBarControllerDelegate>
+@interface ClassInfoViewController : UITabBarController<UITabBarControllerDelegate,ClassInfoViewDelegate>
 {
     UIImageView* tabBarArrow;
 }

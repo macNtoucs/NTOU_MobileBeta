@@ -5,6 +5,12 @@
 //  Created by mini server on 12/11/3.
 //
 //
+@protocol ClassInfoViewDelegate <NSObject>
+
+@required
+-(void)rightBarButtonItemOn;
+-(void)rightBarButtonItemOff;
+@end
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/CAAnimation.h>
@@ -16,6 +22,11 @@
 #define type4 @"講義"
 #define type5 @"筆記"
 #define type6 @"考古題"
-@interface ClassInfoView : UITableViewController
-
+@interface ClassInfoView : UITableViewController<UITextViewDelegate>
+{
+    UITextView *textView;
+    id delegatetype5;
+}
+@property (nonatomic, retain) UITextView *textView;
+@property (nonatomic,assign) id delegatetype5;
 @end
