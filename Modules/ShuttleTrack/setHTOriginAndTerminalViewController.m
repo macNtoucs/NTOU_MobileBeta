@@ -22,25 +22,19 @@
 {
     self = [super initWithStyle:style];
     if (self) {
-        // Custom initialization
+       
     }
     return self;
 }
--(void) createData{
-    //region = [[NSArray alloc] initWithObjects:@"臺北", @"桃園",@"新竹",@"苗栗",@"臺中",@"彰化",@"雲林",@"南投",@"嘉義",@"臺南",@"高雄",@"屏東",@"臺東",@"花蓮",@"宜蘭",nil];
-    station = [[NSArray alloc]initWithObjects:
+-(void) createData{    station = [[NSArray alloc]initWithObjects:
                 @"台北",@"板橋",@"桃園",@"新竹",@"台中",@"嘉義",@"台南",@"左營"
                , nil];
 }
 - (void)viewDidLoad
 {
+    
     [super viewDidLoad];
     [self createData];
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning

@@ -17,7 +17,8 @@
 #import "DownloadingView.h"
 #import "SecondaryGroupedTableViewCell.h"
 #import "setHTOriginAndTerminalViewController.h"
-@interface SetStationViewController : UITabBarController<UITabBarControllerDelegate,StationPickerPickerViewDataSource, StationPickerPickerViewDelegate,UIScrollViewDelegate,UITabBarControllerDelegate,StaionInfoDataSource,SetOriginAndStationViewDelegate,TrainStyleViewControllerDelegate,SetHTOriginAndStationViewDelegate>
+#import "HTSearchResultViewController.h"
+@interface SetStationViewController : UITabBarController<UITabBarControllerDelegate,StationPickerPickerViewDataSource, StationPickerPickerViewDelegate,UIScrollViewDelegate,UITabBarControllerDelegate,StaionInfoDataSource,SetOriginAndStationViewDelegate,TrainStyleViewControllerDelegate,SetHTOriginAndStationViewDelegate,HTStaionInfoDataSource>
 {
     NSArray *viewControllers;
     NSArray * region;
@@ -28,8 +29,9 @@
     StaionInfoTableViewController*   view5;
     TrainStyleViewController *view4;
     StationPickerPickerView *timeChoose_moth, *timeChoose_day;
-    SetOriginAndStationViewController *view1, *view2, *_view1, *_view2 ;
+    SetOriginAndStationViewController *view1, *view2 ;
     setHTOriginAndTerminalViewController *HTView_origin, *HTView_terminal;
+    HTSearchResultViewController *ht_searchResult;
     UIViewController *setStartStationController,
     *setdepatureStationviewController,
     *setTimeviewController,

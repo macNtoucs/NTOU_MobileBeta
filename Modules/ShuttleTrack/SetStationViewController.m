@@ -53,8 +53,8 @@
         ///////////////////////////////////////////////////////////
     }
     else{
-        startStaion = [[NSString alloc]initWithString:@""];
-        DepatureStation = [[NSString alloc]initWithString:@""];
+        startStaion = [[NSString alloc]initWithString:@"台北"];
+        DepatureStation = [[NSString alloc]initWithString:@"左營"];
         HTView_origin = [[setHTOriginAndTerminalViewController alloc] initWithStyle:UITableViewStyleGrouped];
         HTView_origin.view.frame = CGRectMake(0, 0, 320, 440);
         [setStartStationController.view addSubview:HTView_origin.view];
@@ -95,6 +95,7 @@
     setTrainTypeviewController.tabBarItem.tag=3;
     setTrainTypeviewController.tabBarItem.image = [UIImage imageNamed:@"train.png"];
     //////////////////////////////////////////////////////////
+if (!isHighSpeedTrain){
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSString *filePath = [documentsDirectory stringByAppendingString:@"/stationNumber.plist"];
@@ -108,6 +109,18 @@
     resultViewController.tabBarItem.tag=4;
     resultViewController.tabBarItem.image = [UIImage imageNamed:@"magnify.png"];
     [view5 recieveData];
+}
+else {
+    ht_searchResult = [[HTSearchResultViewController alloc]init];
+    ht_searchResult.dataSource = self;
+    ht_searchResult.view.frame = CGRectMake(0, 10, 320, 425);
+    resultViewController.view.frame= CGRectMake(0, 10, 320, 425);
+    [resultViewController.view addSubview:ht_searchResult.tableView];
+    resultViewController.tabBarItem.tag=4;
+    resultViewController.tabBarItem.image = [UIImage imageNamed:@"magnify.png"];
+    downloadView = [DownloadingView new];
+    [ht_searchResult recieveData];
+}
     //////////////////////////////////////////////////////////
     if(!isHighSpeedTrain)
         viewControllers = [[NSArray alloc]initWithObjects:setStartStationController, setdepatureStationviewController,setTimeviewController,setTrainTypeviewController ,resultViewController,nil];
@@ -268,6 +281,7 @@ self.tabBar.frame = CGRectMake(0, 480-self.tabBar.frame.size.height-20, self.tab
             //});
             dispatch_async( dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 [view5 recieveData];
+                [ht_searchResult recieveData];
                 dispatch_suspend(dispatch_get_current_queue());
             });
             
@@ -283,10 +297,11 @@ self.tabBar.frame = CGRectMake(0, 480-self.tabBar.frame.size.height-20, self.tab
     self.view.backgroundColor = [UIColor clearColor];
     if(!_isHightSpeedTrain)
        self.title = [NSString stringWithFormat: @" 基隆 → 臺北"];
-    else self.title = [NSString stringWithFormat: @""];
+    else self.title = [NSString stringWithFormat: @" 台北 → 左營"];
    
-    if (((startStaion && DepatureStation) &&![startStaion isEqualToString:@""] )||_isHightSpeedTrain )
+    if (((startStaion && DepatureStation) &&![startStaion isEqualToString:@""] ))
      self.title = [NSString stringWithFormat: @" %@ → %@",startStaion,DepatureStation];
+    
     
     UISwipeGestureRecognizer *swipeRecognizer_right = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(didSwipe:)];
     [swipeRecognizer_right setDirection:UISwipeGestureRecognizerDirectionRight];
@@ -410,5 +425,22 @@ self.tabBar.frame = CGRectMake(0, 480-self.tabBar.frame.size.height-20, self.tab
      if (![DepatureStation isEqualToString:@""] && DepatureStation)
          return DepatureStation;
     else return @"臺北";
+}
+
+
+- (NSURL*)HTStationInfoURL:(HTSearchResultViewController *)stationInfoTableView{
+    NSString * URL = [NSString stringWithFormat:@"http://www.thsrc.com.tw/tc/ticket/tic_time_pop_summary.asp?sdate=2012/%d/%d",currentMonth,currentDay];
+   NSURL * queryURL = [[NSURL alloc]initWithString:URL];
+   return queryURL;
+}
+- (NSString *)HTstartStationTitile:(HTSearchResultViewController *)stationInfoTableView{
+    if (![startStaion isEqualToString:@""] && startStaion)
+        return startStaion;
+    else return @"台北";
+}
+- (NSString *)HTdepatureStationTitile:(HTSearchResultViewController *)stationInfoTableView{
+    if (![DepatureStation isEqualToString:@""] && DepatureStation)
+        return DepatureStation;
+    else return @"左營";
 }
 @end

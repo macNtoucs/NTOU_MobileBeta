@@ -172,9 +172,11 @@
     }
     else if(indexPath.row==2)
     {
+        DownloadingView* downloadView = [DownloadingView new];
+       
         SetStationViewController *setStationView = [[SetStationViewController alloc]init];
         [setStationView initIsHighSpeedTrain:true];
-        [self.navigationController pushViewController:setStationView animated:YES];
+       [self.navigationController pushViewController:setStationView animated:YES];
         [setStationView release];
     }
 }
