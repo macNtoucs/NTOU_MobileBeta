@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "TFHpple.h"
 #import "DownloadingView.h"
+#import "SecondaryGroupedTableViewCell.h"
 @protocol StaionInfoDataSource;
 @interface StaionInfoTableViewController : UITableViewController{
     __unsafe_unretained id <StaionInfoDataSource> dataSource;

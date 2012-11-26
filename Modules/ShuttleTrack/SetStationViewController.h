@@ -15,6 +15,7 @@
 #import "StationInfoViewController.h"
 #import "SetOriginAndStationViewController.h"
 #import "DownloadingView.h"
+#import "SecondaryGroupedTableViewCell.h"
 @interface SetStationViewController : UITabBarController<UITabBarControllerDelegate,StationPickerPickerViewDataSource, StationPickerPickerViewDelegate,UIScrollViewDelegate,UITabBarControllerDelegate,StaionInfoDataSource,SetOriginAndStationViewDelegate,TrainStyleViewControllerDelegate>
 {
     NSArray *viewControllers;

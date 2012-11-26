@@ -2106,6 +2106,25 @@
 			path = resource;
 			sourceTree = "<group>";
 		};
+		A6D4DAF416632C3A001B9B52 /* train */ = {
+			isa = PBXGroup;
+			children = (
+				A60EF0E016455BC500AA1E59 /* StationInfoViewController.h */,
+				A60EF0E116455BC500AA1E59 /* StationInfoViewController.m */,
+				A6CD760016482F8900D1209C /* SetStationViewController.h */,
+				A6CD760116482F8900D1209C /* SetStationViewController.m */,
+				A6DCE34D165695C0009290D9 /* SetOriginAndStationViewController.h */,
+				A6DCE34E165695C0009290D9 /* SetOriginAndStationViewController.m */,
+				A65E3A0216498D55000E6782 /* ThroughTap.h */,
+				A65E3A0316498D56000E6782 /* ThroughTap.m */,
+				A6CD76031648333300D1209C /* StationView.h */,
+				A6CD76041648333300D1209C /* StationView.m */,
+				A61B6439165434A1007A382E /* TrainStyleViewController.h */,
+				A61B643A165434A2007A382E /* TrainStyleViewController.m */,
+			);
+			name = train;
+			sourceTree = "<group>";
+		};
 		BD1E92F3103B5D60004429AA /* JSON */ = {
 			isa = PBXGroup;
 			children = (
@@ -2371,18 +2390,7 @@
 				442C1CA210F4FE8900CB44EC /* ShuttleLocation.m */,
 				29EB610910FE47220085D32B /* ShuttleSubscriptionManager.h */,
 				29EB610A10FE47220085D32B /* ShuttleSubscriptionManager.m */,
-				A60EF0E016455BC500AA1E59 /* StationInfoViewController.h */,
-				A60EF0E116455BC500AA1E59 /* StationInfoViewController.m */,
-				A6CD760016482F8900D1209C /* SetStationViewController.h */,
-				A6CD760116482F8900D1209C /* SetStationViewController.m */,
-				A6DCE34D165695C0009290D9 /* SetOriginAndStationViewController.h */,
-				A6DCE34E165695C0009290D9 /* SetOriginAndStationViewController.m */,
-				A65E3A0216498D55000E6782 /* ThroughTap.h */,
-				A65E3A0316498D56000E6782 /* ThroughTap.m */,
-				A6CD76031648333300D1209C /* StationView.h */,
-				A6CD76041648333300D1209C /* StationView.m */,
-				A61B6439165434A1007A382E /* TrainStyleViewController.h */,
-				A61B643A165434A2007A382E /* TrainStyleViewController.m */,
+				A6D4DAF416632C3A001B9B52 /* train */,
 			);
 			path = ShuttleTrack;
 			sourceTree = "<group>";
