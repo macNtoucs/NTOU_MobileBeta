@@ -201,6 +201,7 @@
 		91402E42163E749A00B04EE5 /* ClassAdd.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91402E3C163E749A00B04EE5 /* ClassAdd.xib */; };
 		91402E43163E749A00B04EE5 /* ClassDataBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 91402E3E163E749A00B04EE5 /* ClassDataBase.m */; };
 		91402E44163E749A00B04EE5 /* EditScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91402E40163E749A00B04EE5 /* EditScheduleViewController.m */; };
+		91EC76C81663616500E4E134 /* setHTOriginAndTerminalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91EC76C61663616500E4E134 /* setHTOriginAndTerminalViewController.m */; };
 		A60EF0E216455BC500AA1E59 /* StationInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A60EF0E116455BC500AA1E59 /* StationInfoViewController.m */; };
 		A61B643B165434A2007A382E /* TrainStyleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A61B643A165434A2007A382E /* TrainStyleViewController.m */; };
 		A6218833164586CD003FC7EE /* ClassAddBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = A6218830164586CD003FC7EE /* ClassAddBackground.m */; };
@@ -843,6 +844,8 @@
 		91402E3E163E749A00B04EE5 /* ClassDataBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassDataBase.m; sourceTree = "<group>"; };
 		91402E3F163E749A00B04EE5 /* EditScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditScheduleViewController.h; sourceTree = "<group>"; };
 		91402E40163E749A00B04EE5 /* EditScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditScheduleViewController.m; sourceTree = "<group>"; };
+		91EC76C51663616500E4E134 /* setHTOriginAndTerminalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = setHTOriginAndTerminalViewController.h; sourceTree = "<group>"; };
+		91EC76C61663616500E4E134 /* setHTOriginAndTerminalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = setHTOriginAndTerminalViewController.m; sourceTree = "<group>"; };
 		A60EF0E016455BC500AA1E59 /* StationInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StationInfoViewController.h; sourceTree = "<group>"; };
 		A60EF0E116455BC500AA1E59 /* StationInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StationInfoViewController.m; sourceTree = "<group>"; };
 		A61B6439165434A1007A382E /* TrainStyleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrainStyleViewController.h; sourceTree = "<group>"; };
@@ -2080,6 +2083,15 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		91EC75FF166360B300E4E134 /* HighSpeedTrain */ = {
+			isa = PBXGroup;
+			children = (
+				91EC76C51663616500E4E134 /* setHTOriginAndTerminalViewController.h */,
+				91EC76C61663616500E4E134 /* setHTOriginAndTerminalViewController.m */,
+			);
+			name = HighSpeedTrain;
+			sourceTree = "<group>";
+		};
 		A65E39EB16495F63000E6782 /* StationPicker */ = {
 			isa = PBXGroup;
 			children = (
@@ -2309,6 +2321,7 @@
 		DE715449102FE468005E6111 /* ShuttleTrack */ = {
 			isa = PBXGroup;
 			children = (
+				91EC75FF166360B300E4E134 /* HighSpeedTrain */,
 				A6CE2908165C86C100C3FE81 /* DownloadingView.h */,
 				A6CE2909165C86C200C3FE81 /* DownloadingView.m */,
 				A6CE290A165C86C200C3FE81 /* resource */,
@@ -3338,6 +3351,7 @@
 				C7AFEE101659EC0A005FF1DB /* K_TimeView.m in Sources */,
 				C7AFEE111659EC0A005FF1DB /* K_RouteViewController.m in Sources */,
 				A6CE2913165C86C200C3FE81 /* DownloadingView.m in Sources */,
+				91EC76C81663616500E4E134 /* setHTOriginAndTerminalViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

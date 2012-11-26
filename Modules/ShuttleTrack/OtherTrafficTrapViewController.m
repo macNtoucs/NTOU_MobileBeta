@@ -51,7 +51,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 2;
+    return 3;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -69,6 +69,9 @@
             break;
         case 1:
             cell.textLabel.text = @"國光客運";
+            break;
+        case 2:
+            cell.textLabel.text=@"高鐵";
             break;
         default:
             break;
@@ -136,6 +139,7 @@
     if (indexPath.row==0)
     {
         SetStationViewController *setStationView = [[SetStationViewController alloc]init];
+        [setStationView initIsHighSpeedTrain:false];
         [self.navigationController pushViewController:setStationView animated:YES];
         [setStationView release];
     }
@@ -165,6 +169,13 @@
         route.title = @"路線";
         [self.navigationController pushViewController:route animated:YES];
         [route release];
+    }
+    else if(indexPath.row==2)
+    {
+        SetStationViewController *setStationView = [[SetStationViewController alloc]init];
+        [setStationView initIsHighSpeedTrain:true];
+        [self.navigationController pushViewController:setStationView animated:YES];
+        [setStationView release];
     }
 }
 
