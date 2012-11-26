@@ -8,7 +8,9 @@
 
 #import "ClassInfoViewController.h"
 
-@interface ClassInfoViewController ()
+@interface ClassInfoViewController (){
+    ClassLabelBasis * classinfo;
+}
 
 @end
 
@@ -20,39 +22,40 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        ClassLabelBasis * classinfo = [[[ClassLabelBasis alloc] initWithFrame:CGRectMake(100, 0, 320, 40)] autorelease];
+        classinfo = [[[ClassLabelBasis alloc] initWithFrame:CGRectMake(0, 0, 320, 40)] autorelease];
         classinfo.backgroundColor = [UIColor clearColor];
-        classinfo.text = [NSString stringWithFormat:@"教授名稱：林清池\n教室地點：CS301"];
-        classinfo.font = [UIFont fontWithName:@"AppleGothic" size:15];
+        classinfo.text = [NSString stringWithFormat:@"教授名稱：林清池 \n教室地點：CS301"];
+        classinfo.textAlignment = NSTextAlignmentCenter;
+        classinfo.font = [UIFont fontWithName:BOLD_FONT size:15];
         classinfo.lineBreakMode = UILineBreakModeWordWrap;
         classinfo.numberOfLines = 0;
         [self.view addSubview:classinfo];
         UIViewController *viewController1, *viewController2, *viewController3, *viewController4, *viewController5;
         viewController1 = [[UIViewController alloc] init];
-        viewController1.title = type1;
+        viewController1.title = type3;
         viewController2 = [[UIViewController alloc] init];
-        viewController2.title = type2;
+        viewController2.title = type4;
         viewController3 = [[UIViewController alloc] init];
-        viewController3.title = type3;
+        viewController3.title = type2;
         viewController4 = [[UIViewController alloc] init];
-        viewController4.title = type4;
+        viewController4.title = type1;
         viewController5 = [[UIViewController alloc] init];
         viewController5.title = type5;
         ClassInfoView *view1, *view2, *view3, *view4, *view5;
         view1 = [[ClassInfoView alloc] initWithStyle:UITableViewStyleGrouped];
-        view1.title = type1;
+        view1.title = type3;
         view1.view.frame = CGRectMake(0, 40, 320, 420);
         [viewController1.view addSubview:view1.tableView];
         view2 = [[ClassInfoView alloc] initWithStyle:UITableViewStyleGrouped];
-        view2.title = type2;
+        view2.title = type4;
         view2.view.frame = CGRectMake(0, 40, 320, 420);
         [viewController2.view addSubview:view2.tableView];
         view3 = [[ClassInfoView alloc] initWithStyle:UITableViewStyleGrouped];
-        view3.title = type3;
+        view3.title = type2;
         view3.view.frame = CGRectMake(0, 40, 320, 420);
         [viewController3.view addSubview:view3.tableView];
         view4 = [[ClassInfoView alloc] initWithStyle:UITableViewStyleGrouped];
-        view4.title = type4;
+        view4.title = type1;
         view4.view.frame = CGRectMake(0, 40, 320, 420);
         [viewController4.view addSubview:view4.tableView];
         view5 = [[ClassInfoView alloc] initWithStyle:UITableViewStyleGrouped];
@@ -89,6 +92,26 @@
     [self.view addSubview:tabBarArrow];
 }
 
+-(void)changeType{
+    UIViewController *viewController = [self.viewControllers objectAtIndex:1];
+    [viewController.view removeAllSubviews];
+    ClassInfoView *view = [[ClassInfoView alloc] initWithStyle:UITableViewStyleGrouped];
+    if (self.navigationItem.rightBarButtonItem.title == type6) {
+        self.navigationItem.rightBarButtonItem.title = @"上課講義";
+        view.title = type6;
+        viewController.title = type6;
+        classinfo.text = type6;
+    }
+    else{
+        self.navigationItem.rightBarButtonItem.title = type6;
+        view.title = type4;
+        viewController.title = type4;
+        classinfo.text = @"上課講義";
+    }
+    view.view.frame = CGRectMake(0, 40, 320, 420);
+    [viewController.view addSubview:view.tableView];
+}
+
 - (void)tabBarController:(UITabBarController *)theTabBarController didSelectViewController:(UIViewController *)viewController
 {
     [UIView beginAnimations:nil context:nil];
@@ -97,6 +120,30 @@
     frame.origin.x = [self horizontalLocationFor:self.selectedIndex];
     tabBarArrow.frame = frame;
     [UIView commitAnimations];
+    if (self.selectedIndex==1) {
+        UIBarButtonItem *rightButton;
+        classinfo.font = [UIFont fontWithName:BOLD_FONT size:20];
+        if ([[self.viewControllers objectAtIndex:1] title]==type6) {
+            classinfo.text = [NSString stringWithFormat:type6];
+            rightButton= [[UIBarButtonItem alloc] initWithTitle:@"上課講義"
+                                               style:UIBarButtonItemStyleBordered
+                                              target:self
+                                                         action:@selector(changeType)];
+        } else {
+            classinfo.text = [NSString stringWithFormat:@"上課講義"];
+            rightButton= [[UIBarButtonItem alloc] initWithTitle:type6
+                                                          style:UIBarButtonItemStyleBordered
+                                                         target:self
+                                                         action:@selector(changeType)];
+        }
+        [self.navigationItem setRightBarButtonItem:rightButton];
+    }
+    else{
+        [self.navigationItem setRightBarButtonItem:nil];
+        classinfo.font = [UIFont fontWithName:BOLD_FONT size:15];
+        classinfo.text = [NSString stringWithFormat:@"教授名稱：林清池\n教室地點：CS301"];
+    }
+    
 }
 
 - (void)viewDidLoad
