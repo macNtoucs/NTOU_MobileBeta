@@ -46,7 +46,7 @@
     NSMutableArray * shouldDisplay_to;
     NSMutableArray * shouldDisplay_from;
     NSMutableArray * shouldDisplay_ID;
-    
+    bool isFirstTime;
 }
 
 @property (nonatomic,retain) NSURL * dataURL;

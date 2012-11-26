@@ -45,6 +45,7 @@
         south_tainanStation= [NSMutableArray new];
         south_zhouyingStation= [NSMutableArray new];
         station = [[NSArray alloc]initWithObjects:@"台北",@"板橋",@"桃園",@"新竹",@"台中",@"嘉義",@"台南",@"左營", nil];
+        isFirstTime = true;
     }
     return self;
 }
@@ -63,12 +64,12 @@
     if (![[dataURL absoluteString] isEqualToString:@""]){
         [self recieveStartAndDepature];
         downloadView = [DownloadingView new];
-       [self fetchData];
+      if( isFirstTime) [self fetchData];
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
         });
     }
-   
+    isFirstTime =false;
 }
 
 
@@ -134,7 +135,7 @@
     
     
     }
-    for (int i = southTrainNumber+11 ; i< [tableData_td count]; ++i){
+    for (int i = southTrainNumber+10 ; i< [tableData_td count]; ++i){
         NSString* input;
         TFHppleElement * attributeElement = [tableData_td objectAtIndex:i];
         NSArray * contextArr = [attributeElement children];
@@ -212,17 +213,25 @@
 -(void)determinDisplay{
     shouldDisplay_to = [NSMutableArray new];
     shouldDisplay_from= [NSMutableArray new];
-     shouldDisplay_ID= [NSMutableArray new];
-    for (id obj in [[direction objectForKey:[self determindir] ]objectForKey:startStation]){
-        if (![obj isEqualToString:@""]) [shouldDisplay_from addObject:obj];
+    shouldDisplay_ID= [NSMutableArray new];
+    for (int i = 0 ; i < [[[direction objectForKey:[self determindir] ]objectForKey:@"車次"]count] ; ++i){
+        if (![[[[direction objectForKey:[self determindir] ]objectForKey:startStation] objectAtIndex:i] isEqualToString:@""] &&
+            ![[[[direction objectForKey:[self determindir] ]objectForKey:depatureStation] objectAtIndex:i] isEqualToString:@""] &&
+            ![[[[direction objectForKey:[self determindir] ]objectForKey:@"車次"] objectAtIndex:i] isEqualToString:@""] ){
+        if([[self determindir] isEqualToString:@"南下"]){
+            [shouldDisplay_from addObject:[[[direction objectForKey:[self determindir] ]objectForKey:startStation] objectAtIndex:i]];
+            [shouldDisplay_to addObject:[[[direction objectForKey:[self determindir] ]objectForKey:depatureStation] objectAtIndex:i]];
+            [shouldDisplay_ID addObject:[[[direction objectForKey:[self determindir] ]objectForKey:@"車次"] objectAtIndex:i]];
+        }
+        else {
+            [shouldDisplay_to addObject:[[[direction objectForKey:[self determindir] ]objectForKey:startStation] objectAtIndex:i]];
+            [shouldDisplay_from addObject:[[[direction objectForKey:[self determindir] ]objectForKey:depatureStation] objectAtIndex:i]];
+            [shouldDisplay_ID addObject:[[[direction objectForKey:[self determindir] ]objectForKey:@"車次"] objectAtIndex:i]];
+        
+        }
+        }
     }
-    for (id obj in [[direction objectForKey:[self determindir] ]objectForKey:depatureStation]){
-        if (![obj isEqualToString:@""]) [shouldDisplay_to addObject:obj];
-    }
-    for (id obj in [[direction objectForKey:[self determindir] ]objectForKey:@"車次"]){
-        if (![obj isEqualToString:@""]) [shouldDisplay_ID addObject:obj];
-    }
-
+ 
 }
 #pragma mark - Table view data source
 
@@ -239,7 +248,7 @@
     
     [self determinDisplay];
     NSLog(@"%d,%d,%d",[shouldDisplay_ID count],[shouldDisplay_to count],[shouldDisplay_from count]);
-    return MIN([shouldDisplay_to count], [shouldDisplay_from count]);
+    return MIN([shouldDisplay_to count], [shouldDisplay_from count])+2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -249,6 +258,9 @@
    
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
+    }
+    if (MIN([shouldDisplay_to count], [shouldDisplay_from count])<indexPath.row){
+        return cell;
     }
     if (indexPath.row == 0 ) {
         cell.textLabel.text = [NSString stringWithFormat:@"車次                            %@           %@",startStation,depatureStation];
