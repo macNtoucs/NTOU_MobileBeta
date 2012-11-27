@@ -25,16 +25,14 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-
+        self.title = @"功課表";
         TopWeekcontroller = [[WeekNameView alloc] initWithFrame:CGRectMake(LeftBaseline, NavigationAndStatusHeight, UpperViewWidth*[[ClassDataBase sharedData] FetchWeekTimes], UpperBaseline)];
         LeftViewController  = [[LessonTimeView alloc]initWithFrame:CGRectMake(0, NavigationAndStatusHeight+UpperBaseline, LeftBaseline,(LeftViewHeight-TextLabelborderWidth)*[[ClassDataBase sharedData] FetchClassSessionTimes])];
         UpperleftView = [[UIView alloc] initWithFrame:CGRectMake(0,NavigationAndStatusHeight, LeftBaseline, UpperBaseline)];
-
         UpperleftView.backgroundColor = [UIColor colorWithRed:105.0/255 green:105.0/255 blue:105.0/255 alpha:1];
         UpperleftView.layer.borderWidth = TextLabelborderWidth;
         UpperleftView.layer.borderColor = [UIColor blackColor].CGColor;
-        
-        
+        [ClassDataBase sharedData].ScheduleViewDelegate = self;
         
     }
     return self;
@@ -47,9 +45,22 @@
     [self.navigationController pushViewController:classInfo animated:YES];
 }
 
+
+-(void) DisplayUITextField:(NSArray *)info
+{
+    addView.classNameField.text = [info objectAtIndex:0];
+}
+
+-(void)ChangeDisplayView
+{
+    [LeftViewController drawRect:CGRectZero];
+    [TopWeekcontroller drawRect:CGRectZero];
+    [weekschedule drawRect:CGRectZero];
+    scrollView.contentSize = [self scrollContentSize];
+}
+
 -(BOOL)NavigationBarHidden
 {
-    NSLog(@"------%d",self.navigationController.navigationBarHidden);
     return self.navigationController.navigationBarHidden;
 }
 
@@ -57,10 +68,13 @@
 {
     static BOOL change = NO;
     if (change) {
+        [self.weekschedule.TapAddCourse removeAllObjects];
         self.weekschedule.WhetherTapped = NO;
+        self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, self.scrollView.contentSize.height-120);
         change = NO;
     } else {
         self.weekschedule.WhetherTapped = YES;
+        self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, self.scrollView.contentSize.height+120);
         change = YES;
     }
 }
@@ -72,7 +86,7 @@
 }
 
 -(IBAction)Add:(id)sender{
-    ClassAdd* addView = [[ClassAdd alloc] initWithNibName:@"ClassAdd" bundle:nil];
+    addView = [[ClassAdd alloc] initWithNibName:@"ClassAdd" bundle:nil];
     addView.delegate = self;
     [self.navigationController.view addSubview:addView.view];
     [self.navigationController setNavigationBarHidden:YES animated:NO];
@@ -123,6 +137,11 @@
     [editSchedule release];
 }
 
+-(CGSize)scrollContentSize
+{
+    return CGSizeMake(LeftBaseline+(UpperViewWidth-TextLabelborderWidth)*[[ClassDataBase sharedData] FetchWeekTimes], NavigationAndStatusHeight+UpperBaseline+(LeftViewHeight-TextLabelborderWidth)*[[ClassDataBase sharedData] FetchClassSessionTimes]);
+}
+
 - (void)viewDidLoad
 {
     scrollView = [[[UIScrollView alloc] init]autorelease];
@@ -136,7 +155,7 @@
     isWeekScheduleInScrowView = true;
     scrollView.delegate=self;
 
-    scrollView.contentSize = CGSizeMake(LeftBaseline+(UpperViewWidth-TextLabelborderWidth)*[[ClassDataBase sharedData] FetchWeekTimes], NavigationAndStatusHeight+UpperBaseline+(LeftViewHeight-TextLabelborderWidth)*[[ClassDataBase sharedData] FetchClassSessionTimes]);
+    scrollView.contentSize = [self scrollContentSize];
 
     scrollView.bounces = NO;
 

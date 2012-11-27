@@ -56,43 +56,55 @@
     return 7;
 }
 
+-(float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    CGFloat rowHeight = 0;
+    UIFont *cellFont = [UIFont fontWithName:@"Helvetica" size:14.0];
+    CGSize constraintSize = CGSizeMake(270.0f, 2009.0f);
+    NSString *cellText = nil;
+    
+    cellText = @"A"; // just something to guarantee one line
+    CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
+    rowHeight = labelSize.height + 20.0f;
+    
+    return rowHeight;
+}
+
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    SecondaryGroupedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[SecondaryGroupedTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    if ([[ClassDataBase sharedData] displayWeekDays:indexPath.row]) {
+        cell.accessoryType =UITableViewCellAccessoryCheckmark;
+    } else {
+        cell.accessoryType =  UITableViewCellAccessoryNone;
+    }
     switch (indexPath.row) {
         case 0:
             cell.textLabel.text = @"星期一";
-           // cell.accessoryType =UITableViewCellAccessoryCheckmark;
-           cell.accessoryType =  UITableViewCellAccessoryNone;
             break;
         case 1:
             cell.textLabel.text = @"星期二";
-            cell.accessoryType =  UITableViewCellAccessoryNone;
             break;
         case 2:
             cell.textLabel.text = @"星期三";
-            cell.accessoryType =  UITableViewCellAccessoryNone;
             break;
         case 3:
             cell.textLabel.text = @"星期四";
-            cell.accessoryType =  UITableViewCellAccessoryNone;
             break;
         case 4:
             cell.textLabel.text = @"星期五";
-            cell.accessoryType =  UITableViewCellAccessoryNone;
             break;
         case 5:
             cell.textLabel.text = @"星期六";
-            cell.accessoryType =  UITableViewCellAccessoryNone;
             break;
         case 6:
             cell.textLabel.text = @"星期日";
-            cell.accessoryType =  UITableViewCellAccessoryNone;
             break;
         default:
             break;
@@ -145,6 +157,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    [[ClassDataBase sharedData] SetWeekDays:indexPath.row];
     switch (indexPath.row) {
         case 0:
             if (cell.accessoryType == UITableViewCellAccessoryNone)

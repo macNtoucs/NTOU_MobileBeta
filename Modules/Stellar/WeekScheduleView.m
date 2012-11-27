@@ -8,8 +8,10 @@
 
 #import "WeekScheduleView.h"
 #import "ClassDataBase.h"
+
 @implementation WeekScheduleView
 @synthesize WhetherTapped;
+@synthesize TapAddCourse;
 @synthesize parent_ViewController;
 @class ScheduleViewController;
 - (id)initWithFrame:(CGRect)frame
@@ -19,6 +21,8 @@
         // Initialization code
         self.backgroundColor = [UIColor clearColor];
         self.userInteractionEnabled = YES;
+        TapAddCourse = [[NSMutableArray alloc] init];
+        course = [[NSMutableArray alloc] init];
         color = [[NSArray arrayWithObjects:[UIColor colorWithRed:193.0/255 green:255.0/255 blue:193.0/255 alpha:1],[UIColor colorWithRed:248.0/255 green:248.0/255 blue:255.0/255 alpha:1],[UIColor colorWithRed:255.0/255 green:248.0/255 blue:220.0/255 alpha:1],[UIColor colorWithRed:245.0/255 green:255.0/255 blue:250.0/255 alpha:1],[UIColor colorWithRed:255.0/255 green:255.0/255 blue:224.0/255 alpha:1],[UIColor colorWithRed:255.0/255 green:246.0/255 blue:143.0/255 alpha:1],[UIColor colorWithRed:255.0/255 green:181.0/255 blue:197.0/255 alpha:1],[UIColor colorWithRed:255.0/255 green:187.0/255 blue:255.0/255 alpha:1],[UIColor colorWithRed:224.0/255 green:255.0/255 blue:255.0/255 alpha:1],[UIColor colorWithRed:135.0/255 green:226.0/255 blue:255.0/255 alpha:1], nil] retain];
 }
    
@@ -43,22 +47,53 @@
     ClassLabelBasis*label = (ClassLabelBasis*)[self viewWithTag:tapGesture.view.tag];
     if (WhetherTapped) {
         if (label.changeColor) {
+            if (label.tag>=0) {
+                for (ClassLabelBasis* courselabel in TapAddCourse){
+                    courselabel.backgroundColor = courselabel.tempBackground;
+                    courselabel.changeColor = NO;
+                }
+                [TapAddCourse removeAllObjects];
+            }
+            else
+                [TapAddCourse removeObject:label];
+            if ([TapAddCourse count]==0) {
+                for (ClassLabelBasis* courselabel in course) {
+                    if (courselabel.tag!=label.tag) {
+                        courselabel.backgroundColor = courselabel.tempBackground;
+                        courselabel.userInteractionEnabled = YES;
+                    }
+                }
+            }
             label.backgroundColor = label.tempBackground;
             label.changeColor = NO;
         } else {
+            if ([TapAddCourse count]==0) {
+                if (label.tag>=0) {
+                    [parent_ViewController DisplayUITextField:[NSArray arrayWithObjects:label.text, nil]];
+                }
+                for (ClassLabelBasis* courselabel in course) {
+                    if (courselabel.tag!=label.tag) {
+                        courselabel.backgroundColor = [UIColor colorWithRed:211.0/255 green:211.0/255 blue:211.0/255 alpha:1];
+                        courselabel.userInteractionEnabled = NO;
+                    }
+                }
+            }
+            [TapAddCourse addObject:label];
             label.backgroundColor = [UIColor colorWithRed:187.0/255 green:255.0/255 blue:255.0/255 alpha:1];
             label.changeColor = YES;
         }
     }
     else {
-        [parent_ViewController showClassInfo:label];
+        if (label.tag>=0&&[label.text isEqualToString:@"演算法"]) {
+            [parent_ViewController showClassInfo:label];
+        }
     }
     
 }
 
 -(void)drawColumnTextLabelNumber:(NSInteger)number Content:(NSArray *)content {
 
-    for (int i=0;i<[content count] && i < [[ClassDataBase sharedData] FetchClassSessionTimes] && number<=[[ClassDataBase sharedData] FetchWeekTimes] ;i++) {
+    for (int i=0;i<[content count] && i < [[ClassDataBase sharedData] FetchClassSessionTimes] && number<[[ClassDataBase sharedData]FetchWeekTimes];i++) {
         int sameClass=i;
         while (1) {
             if (i+1<[content count] ) {
@@ -76,31 +111,29 @@
         if ([parent_ViewController NavigationBarHidden]) {
             x=44;
         }
-        if (number)
-            labelFrame = CGRectMake( LeftBaseline+(number-1)*(UpperViewWidth-TextLabelborderWidth), x+UpperBaseline+(LeftViewHeight-TextLabelborderWidth)*sameClass, UpperViewWidth, LeftViewHeight+(LeftViewHeight-TextLabelborderWidth)*(i-sameClass));
-        else
-            labelFrame = CGRectMake( 0,x+(LeftViewHeight-TextLabelborderWidth)*i, LeftBaseline, LeftViewHeight );
+        labelFrame = CGRectMake( LeftBaseline+number*(UpperViewWidth-TextLabelborderWidth), x+UpperBaseline+(LeftViewHeight-TextLabelborderWidth)*sameClass, UpperViewWidth, LeftViewHeight+(LeftViewHeight-TextLabelborderWidth)*(i-sameClass));
         ClassLabelBasis* label = [[[ClassLabelBasis alloc] initWithFrame: labelFrame] autorelease];
         label.text = [content objectAtIndex:i];
-        label.backgroundColor = [color objectAtIndex:(number+i)%10];
-        NSLog(@"%@",label.backgroundColor);
-        if (!number)
-            label.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0.4];
-        else if ([[content objectAtIndex:i] isEqualToString:@" "]){
+        label.tag = -((number*100+sameClass)*100+i-sameClass+1);
+        if (![[content objectAtIndex:i] isEqualToString:@" "]){
+            label.backgroundColor = [color objectAtIndex:(number+i)%10];
+            label.tag = -label.tag;
+            [course addObject:label];
+        }
+        else if (i==4&&[[content objectAtIndex:i]isEqualToString:@" "])
+            label.backgroundColor = [UIColor colorWithRed:105.0/255 green:105.0/255 blue:105.0/255 alpha:1];
+        else{
             label.backgroundColor = [UIColor clearColor];
         }
-        if (i==4&&[[content objectAtIndex:i]isEqualToString:@" "])
-            label.backgroundColor = [UIColor colorWithRed:105.0/255 green:105.0/255 blue:105.0/255 alpha:1];
         label.layer.borderColor = [UIColor blackColor].CGColor;
-        label.font = [UIFont fontWithName:@"AppleGothic" size:15];
-        label.tag = (number*100+sameClass)*100+i-sameClass+1;
+        label.font = [UIFont fontWithName:@"Helvetica" size:15];
         label.textAlignment = UITextAlignmentCenter;
         label.layer.borderWidth = TextLabelborderWidth;
         label.tempBackground = label.backgroundColor;
+        label.userInteractionEnabled = YES;
         UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(labelTapped:)];
         tapGestureRecognizer.numberOfTapsRequired = 1;
         [label addGestureRecognizer:tapGestureRecognizer];
-        label.userInteractionEnabled = YES;
         [tapGestureRecognizer release];
         label.numberOfLines=0;
         label.lineBreakMode = UILineBreakModeWordWrap;
@@ -117,14 +150,21 @@
         [subview removeFromSuperview];
     }
     NSDictionary * scheduleInfo = [[ClassDataBase sharedData] FetchScheduleInfo];
-    
-    [self drawColumnTextLabelNumber:Monday Content:[scheduleInfo objectForKey:@"Monday"]];
-    [self drawColumnTextLabelNumber:Tuesday Content:[scheduleInfo objectForKey:@"Tuesday"]];
-    [self drawColumnTextLabelNumber:Wednesday Content:[scheduleInfo objectForKey:@"Wednesday"]];
-    [self drawColumnTextLabelNumber:Thursday Content:[scheduleInfo objectForKey:@"Thursday"]];
-    [self drawColumnTextLabelNumber:Friday Content:[scheduleInfo objectForKey:@"Friday"]];
-    [self drawColumnTextLabelNumber:Saturday Content:[scheduleInfo objectForKey:@"Saturday"]];
-    
+    int ColumnNumber=0;
+    if ([[ClassDataBase sharedData] displayWeekDays:Monday])
+        [self drawColumnTextLabelNumber:ColumnNumber++ Content:[scheduleInfo objectForKey:@"Monday"]];
+    if ([[ClassDataBase sharedData] displayWeekDays:Tuesday])
+        [self drawColumnTextLabelNumber:ColumnNumber++ Content:[scheduleInfo objectForKey:@"Tuesday"]];
+    if ([[ClassDataBase sharedData] displayWeekDays:Wednesday])
+        [self drawColumnTextLabelNumber:ColumnNumber++ Content:[scheduleInfo objectForKey:@"Wednesday"]];
+    if ([[ClassDataBase sharedData] displayWeekDays:Thursday])
+        [self drawColumnTextLabelNumber:ColumnNumber++ Content:[scheduleInfo objectForKey:@"Thursday"]];
+    if ([[ClassDataBase sharedData] displayWeekDays:Friday])
+        [self drawColumnTextLabelNumber:ColumnNumber++ Content:[scheduleInfo objectForKey:@"Friday"]];
+    if ([[ClassDataBase sharedData] displayWeekDays:Saturday])
+        [self drawColumnTextLabelNumber:ColumnNumber++ Content:[scheduleInfo objectForKey:@"Saturday"]];
+    if ([[ClassDataBase sharedData] displayWeekDays:Sunday])
+        [self drawColumnTextLabelNumber:ColumnNumber++ Content:[scheduleInfo objectForKey:@"Sunday"]];
     [super drawRect:rect];
 }
 

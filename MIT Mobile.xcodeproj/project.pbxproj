@@ -197,6 +197,8 @@
 		569DC33F1282ADC000BA0794 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 569DC33E1282ADC000BA0794 /* CoreVideo.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		569DC3421282ADCE00BA0794 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 569DC3411282ADCE00BA0794 /* libiconv.dylib */; settings = {ATTRIBUTES = (Required, ); }; };
 		56D7DF52128854DF00E9E5C9 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56D7DF51128854DF00E9E5C9 /* MapKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		6D7E698B1660B865004F9D20 /* right.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D7E69891660B862004F9D20 /* right.png */; };
+		6D7E698C1660B865004F9D20 /* wrong.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D7E698A1660B863004F9D20 /* wrong.png */; };
 		91402E41163E749A00B04EE5 /* ClassAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 91402E3B163E749A00B04EE5 /* ClassAdd.m */; };
 		91402E42163E749A00B04EE5 /* ClassAdd.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91402E3C163E749A00B04EE5 /* ClassAdd.xib */; };
 		91402E43163E749A00B04EE5 /* ClassDataBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 91402E3E163E749A00B04EE5 /* ClassDataBase.m */; };
@@ -836,6 +838,8 @@
 		569DC3411282ADCE00BA0794 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = iphoneos4.0/usr/lib/libiconv.dylib; sourceTree = "<group>"; };
 		56D7D7BA12846C4100E9E5C9 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = iphoneos4.0/System/Library/Frameworks/MapKit.framework; sourceTree = "<group>"; };
 		56D7DF51128854DF00E9E5C9 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = iphoneos4.0/System/Library/Frameworks/MapKit.framework; sourceTree = "<group>"; };
+		6D7E69891660B862004F9D20 /* right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = right.png; sourceTree = "<group>"; };
+		6D7E698A1660B863004F9D20 /* wrong.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wrong.png; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* MIT_Mobile-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MIT_Mobile-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		910662EF163BCFD700D01C81 /* DefinePixel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefinePixel.h; sourceTree = "<group>"; };
 		91402E3A163E749A00B04EE5 /* ClassAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassAdd.h; sourceTree = "<group>"; };
@@ -2420,6 +2424,8 @@
 				A6CD75FA164820FB00D1209C /* SetWeekTimesViewController.m */,
 				A6CD75FB164820FB00D1209C /* TabBarNipple.png */,
 				A6CD75FC164820FB00D1209C /* TabBarNipple@2x.png */,
+				6D7E69891660B862004F9D20 /* right.png */,
+				6D7E698A1660B863004F9D20 /* wrong.png */,
 				A6CD75F0164820D500D1209C /* ClassInfoView.h */,
 				A6CD75F1164820D500D1209C /* ClassInfoView.m */,
 				A6CD75F2164820D500D1209C /* ClassInfoViewController.h */,
@@ -3001,6 +3007,8 @@
 				A6CE2919165C86C200C3FE81 /* speed_train.png in Resources */,
 				A6CE291A165C86C200C3FE81 /* TimeDrive.png in Resources */,
 				A6CE291B165C86C200C3FE81 /* train.png in Resources */,
+				6D7E698B1660B865004F9D20 /* right.png in Resources */,
+				6D7E698C1660B865004F9D20 /* wrong.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

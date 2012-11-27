@@ -83,6 +83,16 @@
     
 }
 
+- (IBAction)clean:(UIButton *)sender {
+    _classNameField.text = [NSString string];
+    _teacherNameField.text = [NSString string];
+    _roomNameField.text = [NSString string];
+}
+
+- (IBAction)modify:(UIButton *)sender {
+    
+}
+
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
@@ -135,6 +145,9 @@
     [_roomNameField release];
     [_cancelButton release];
     [_addButton release];
+    [_titleLabel release];
+    [_cleanInfo release];
+    [_modifyInfo release];
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -145,6 +158,9 @@
     [self setRoomNameField:nil];
     [self setCancelButton:nil];
     [self setAddButton:nil];
+    [self setTitleLabel:nil];
+    [self setCleanInfo:nil];
+    [self setModifyInfo:nil];
     [super viewDidUnload];
 }
 @end
