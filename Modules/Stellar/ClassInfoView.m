@@ -73,7 +73,7 @@
     else if (types == 2)
         return 1;
     else if (types == 3)
-        return 15;
+        return 14;
     else if (types == 4)
         return 1;
     else if (types == 5)
@@ -345,49 +345,49 @@
                 break;
         }
     else if (types == 3){
-        if (indexPath.section == 0) {
+        /*if (indexPath.section == 0) {
             return @"11/09	作業7、各作業解答、小考解答已上傳\n各項紀錄以及成績皆已登錄，如果有問題請記得通知助教\n另外提醒，\n11/14(三)的課輔，由於期中考週的關係暫停一次\n11/15(四)要繳交作業6！！！\n作業7將會在11/21(三)的課輔講解，但繳交期限仍為11/22(四)\n期中考資訊如下:\n時間：11/15(四) 09:20~12:00\n地點：B10、B12\n範圍：老師教過的部分\n可攜帶 8分之1 A4 紙張！！！\n另外提醒~請記得攜帶學生證！！！\n祝各位 期中考順利！！！";
-        }
-        else if (indexPath.section == 1) {
+        }*/
+        if (indexPath.section == 0) {
             return @"11/02	作業6、第8章講義-Quicksort 已上傳\n11/07(三)之前助教會將小考成績、作業成績、解答以及補強有到的名單放上\n小考及作業也會在當週發回\n另外提醒，11/07(三)晚上的補強記得將小考題目卷帶來，助教會講解";
         }
-        else if (indexPath.section == 2) {
+        else if (indexPath.section == 1) {
             return @"10/27	作業5、第7章講義-Quicksort 已上傳";
         }
-        else if (indexPath.section == 3) {
+        else if (indexPath.section == 2) {
             return @"10/23	作業一、作業二 成績、解答已上傳\n成績以及解答上如果有問題請找助教";
         }
-        else if (indexPath.section == 4) {
+        else if (indexPath.section == 3) {
             return @"10/19	教學網頁已有修改過\n請各位同學確認一下資料是否有誤\n如有錯誤或者疑問請至 LAB 505 找 陳揚升 助教\n或者寄 E-mail 至 10157004@ntou.edu.tw";
         }
-        else if (indexPath.section == 5) {
+        else if (indexPath.section == 4) {
             return @"10/19	作業4 已經上傳\n繳交期限為 11/01";
         }
-        else if (indexPath.section == 6) {
+        else if (indexPath.section == 5) {
             return @"10/18	10/25(四)會有隨堂小考\n範圍為 Ch1 ~ Ch 4\n請各位同學儘早準備！！！";
         }
-        else if (indexPath.section == 7) {
+        else if (indexPath.section == 6) {
             return @"10/5	10/10為國慶日放假, 改為下禮拜四的五點半課輔\n上課會提醒各位";
         }
-        else if (indexPath.section == 8) {
+        else if (indexPath.section == 7) {
             return @"10/4	作業事項:\n一. 作業繳交請用A4紙手寫, 其他不收 禮拜四上課收\n二. 遲交扣分, 答案放上後不得補交\n三. 作業查看兩個方法 1. 實驗室INS112找助教 2. 課輔時間會發 (成績有問題可以問)\n四. 作業一 10/11日繳交";
         }
-        else if (indexPath.section == 9) {
+        else if (indexPath.section == 8) {
             return @"9/27	第一章註解講義上傳, 作業一上傳 下禮拜三(10/4)下午五點半上課輔 (原上課教室)";
         }
-        else if (indexPath.section == 10) {
+        else if (indexPath.section == 9) {
             return @"9/24	2010,2011期中期末考古題上傳";
         }
-        else if (indexPath.section == 11) {
+        else if (indexPath.section == 10) {
             return @"9/24	課輔時間為每個禮拜三下午五點半，從9/26開始，9/26為講解有關作業事項。如沒特別公布為101教室上課，此後每周三下午五點半都需課輔。";
         }
-        else if (indexPath.section == 12) {
+        else if (indexPath.section == 11) {
             return @"9/24	第二章講義已經上傳。";
         }
-        else if (indexPath.section == 13) {
+        else if (indexPath.section == 12) {
             return @"9/24	第一章講義已經上傳。";
         }
-        else if (indexPath.section == 14) {
+        else if (indexPath.section == 13) {
             return @"9/24	Syllabus講義已經上傳。";
         }
     }
@@ -580,13 +580,13 @@
 	NSString *headerTitle;
         switch (section) {
             case 0:
-                headerTitle = @"作業成績：";
+                headerTitle = @"作業成績 (30%)：";
                 break;
             case 1:
-                headerTitle = @"平時考成績：";
+                headerTitle = @"平時考成績 (30%)：";
                 break;
             case 2:
-                headerTitle = @"期中、期末成績：";
+                headerTitle = @"期中、期末成績 (40%)：";
                 break;
             default:
                 headerTitle = @"目前實得總成績：";
