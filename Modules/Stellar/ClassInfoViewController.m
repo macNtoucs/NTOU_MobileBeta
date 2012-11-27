@@ -110,7 +110,7 @@
         viewController.title = type4;
         classinfo.text = @"上課講義";
     }
-    view.view.frame = CGRectMake(0, 40, 320, 420);
+    view.view.frame = CGRectMake(0, 40, 320, 330);
     [viewController.view addSubview:view.tableView];
 }
 
