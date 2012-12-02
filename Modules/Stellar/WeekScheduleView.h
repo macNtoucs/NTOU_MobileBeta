@@ -17,6 +17,7 @@
 -(void) showClassInfo:(ClassLabelBasis *)label;
 -(BOOL) NavigationBarHidden;
 -(void) DisplayUITextField:(NSArray *)info;
+-(void)alterButtonFunction:(BOOL)type;
 @end
 
 @class ScheduleViewController;
@@ -30,6 +31,7 @@
 @property bool WhetherTapped;
 @property (nonatomic, retain) NSMutableArray* TapAddCourse;
 @property (nonatomic, assign)ScheduleViewController *parent_ViewController;
-
+-(void)restorTheOriginalColor;
+-(void)removeAllcourselabel;
 -(void) getParent_ViewController:(ScheduleViewController *)recieve;
 @end

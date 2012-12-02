@@ -9,6 +9,7 @@
 @required
 -(void) changeTapEnable;
 -(void) NavigationBarShow;
+-(void) buttonDidFinish;
 @end
 #import <UIKit/UIKit.h>
 
@@ -29,6 +30,7 @@
 -(IBAction)cancel:(id)sender;
 - (IBAction)clean:(UIButton *)sender;
 - (IBAction)modify:(UIButton *)sender;
+-(void)buttonFuntion:(BOOL)type;
 @property (nonatomic,assign) id delegate;
 
 

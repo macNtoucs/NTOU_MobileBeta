@@ -199,6 +199,7 @@
 		56D7DF52128854DF00E9E5C9 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56D7DF51128854DF00E9E5C9 /* MapKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		6D7E698B1660B865004F9D20 /* right.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D7E69891660B862004F9D20 /* right.png */; };
 		6D7E698C1660B865004F9D20 /* wrong.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D7E698A1660B863004F9D20 /* wrong.png */; };
+		6D7E699F166BC5C0004F9D20 /* K_data.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6D7E699E166BC5C0004F9D20 /* K_data.plist */; };
 		91402E41163E749A00B04EE5 /* ClassAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 91402E3B163E749A00B04EE5 /* ClassAdd.m */; };
 		91402E42163E749A00B04EE5 /* ClassAdd.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91402E3C163E749A00B04EE5 /* ClassAdd.xib */; };
 		91402E43163E749A00B04EE5 /* ClassDataBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 91402E3E163E749A00B04EE5 /* ClassDataBase.m */; };
@@ -281,7 +282,6 @@
 		C7AFEE0F1659EC0A005FF1DB /* KUO_Data_Bra2.m in Sources */ = {isa = PBXBuildFile; fileRef = C7AFEE021659EC0A005FF1DB /* KUO_Data_Bra2.m */; };
 		C7AFEE101659EC0A005FF1DB /* K_TimeView.m in Sources */ = {isa = PBXBuildFile; fileRef = C7AFEE041659EC0A005FF1DB /* K_TimeView.m */; };
 		C7AFEE111659EC0A005FF1DB /* K_RouteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7AFEE061659EC0A005FF1DB /* K_RouteViewController.m */; };
-		C7AFEE121659EC0A005FF1DB /* K_data.plist in Resources */ = {isa = PBXBuildFile; fileRef = C7AFEE081659EC0A005FF1DB /* K_data.plist */; };
 		C7AFEE131659EC0A005FF1DB /* Info.png in Resources */ = {isa = PBXBuildFile; fileRef = C7AFEE091659EC0A005FF1DB /* Info.png */; };
 		C7AFEE1D165B4648005FF1DB /* Time.png in Resources */ = {isa = PBXBuildFile; fileRef = C7AFEE1C165B4647005FF1DB /* Time.png */; };
 		DE03763C1350F5080041DDBD /* MIT150Button.m in Sources */ = {isa = PBXBuildFile; fileRef = DE03763B1350F5080041DDBD /* MIT150Button.m */; };
@@ -838,6 +838,7 @@
 		56D7DF51128854DF00E9E5C9 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = iphoneos4.0/System/Library/Frameworks/MapKit.framework; sourceTree = "<group>"; };
 		6D7E69891660B862004F9D20 /* right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = right.png; sourceTree = "<group>"; };
 		6D7E698A1660B863004F9D20 /* wrong.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wrong.png; sourceTree = "<group>"; };
+		6D7E699E166BC5C0004F9D20 /* K_data.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = K_data.plist; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* MIT_Mobile-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MIT_Mobile-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		910662EF163BCFD700D01C81 /* DefinePixel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefinePixel.h; sourceTree = "<group>"; };
 		91402E3A163E749A00B04EE5 /* ClassAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassAdd.h; sourceTree = "<group>"; };
@@ -977,7 +978,6 @@
 		C7AFEE051659EC0A005FF1DB /* K_TimeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = K_TimeView.h; sourceTree = "<group>"; };
 		C7AFEE061659EC0A005FF1DB /* K_RouteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = K_RouteViewController.m; sourceTree = "<group>"; };
 		C7AFEE071659EC0A005FF1DB /* K_RouteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = K_RouteViewController.h; sourceTree = "<group>"; };
-		C7AFEE081659EC0A005FF1DB /* K_data.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = K_data.plist; sourceTree = "<group>"; };
 		C7AFEE091659EC0A005FF1DB /* Info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Info.png; sourceTree = "<group>"; };
 		C7AFEE1C165B4647005FF1DB /* Time.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Time.png; sourceTree = "<group>"; };
 		DE03763A1350F5080041DDBD /* MIT150Button.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIT150Button.h; sourceTree = "<group>"; };
@@ -2309,11 +2309,11 @@
 				C7AFEE011659EC0A005FF1DB /* Kuo_Data.h */,
 				C7AFEE021659EC0A005FF1DB /* KUO_Data_Bra2.m */,
 				C7AFEE031659EC0A005FF1DB /* KUO_Data_Bra2.h */,
+				6D7E699E166BC5C0004F9D20 /* K_data.plist */,
 				C7AFEE041659EC0A005FF1DB /* K_TimeView.m */,
 				C7AFEE051659EC0A005FF1DB /* K_TimeView.h */,
 				C7AFEE061659EC0A005FF1DB /* K_RouteViewController.m */,
 				C7AFEE071659EC0A005FF1DB /* K_RouteViewController.h */,
-				C7AFEE081659EC0A005FF1DB /* K_data.plist */,
 				C7AFEE091659EC0A005FF1DB /* Info.png */,
 				C7AFEDF51659EBDD005FF1DB /* OtherTrafficTrapViewController.m */,
 				C7AFEDF61659EBDD005FF1DB /* OtherTrafficTrapViewController.h */,
@@ -2970,7 +2970,6 @@
 				A6DCE6DE1657A305009290D9 /* stationNum.txt in Resources */,
 				A6DCE6E01657ECA6009290D9 /* stationNumber.plist in Resources */,
 				C7AFEE0A1659EC0A005FF1DB /* money-icon.png in Resources */,
-				C7AFEE121659EC0A005FF1DB /* K_data.plist in Resources */,
 				C7AFEE131659EC0A005FF1DB /* Info.png in Resources */,
 				C7AFEE1D165B4648005FF1DB /* Time.png in Resources */,
 				A6CE2914165C86C200C3FE81 /* bank.png in Resources */,
@@ -2983,6 +2982,7 @@
 				A6CE291B165C86C200C3FE81 /* train.png in Resources */,
 				6D7E698B1660B865004F9D20 /* right.png in Resources */,
 				6D7E698C1660B865004F9D20 /* wrong.png in Resources */,
+				6D7E699F166BC5C0004F9D20 /* K_data.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

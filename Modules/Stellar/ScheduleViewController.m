@@ -45,10 +45,20 @@
     [self.navigationController pushViewController:classInfo animated:YES];
 }
 
+-(void) buttonDidFinish
+{
+    [weekschedule restorTheOriginalColor];
+    [weekschedule removeAllcourselabel];
+}
 
 -(void) DisplayUITextField:(NSArray *)info
 {
     addView.classNameField.text = [info objectAtIndex:0];
+}
+
+-(void)alterButtonFunction:(BOOL)type
+{
+    [addView buttonFuntion:type];
 }
 
 -(void)ChangeDisplayView
@@ -69,6 +79,7 @@
     static BOOL change = NO;
     if (change) {
         [self.weekschedule.TapAddCourse removeAllObjects];
+        [self alterButtonFunction:NO];
         self.weekschedule.WhetherTapped = NO;
         self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, self.scrollView.contentSize.height-120);
         change = NO;
