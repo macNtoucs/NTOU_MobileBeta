@@ -2097,7 +2097,6 @@
 				91EC76C61663616500E4E134 /* setHTOriginAndTerminalViewController.m */,
 				A6DE9DC01663AD10009EECE6 /* HTSearchResultViewController.h */,
 				A6DE9DC11663AD10009EECE6 /* HTSearchResultViewController.m */,
-				A6D4DAF416632C3A001B9B52 /* train */,
 			);
 			name = HighSpeedTrain;
 			sourceTree = "<group>";
@@ -2331,6 +2330,7 @@
 		DE715449102FE468005E6111 /* ShuttleTrack */ = {
 			isa = PBXGroup;
 			children = (
+				A6D4DAF416632C3A001B9B52 /* train */,
 				91EC75FF166360B300E4E134 /* HighSpeedTrain */,
 				A6CE2908165C86C100C3FE81 /* DownloadingView.h */,
 				A6CE2909165C86C200C3FE81 /* DownloadingView.m */,
