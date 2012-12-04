@@ -2330,6 +2330,7 @@
 		DE715449102FE468005E6111 /* ShuttleTrack */ = {
 			isa = PBXGroup;
 			children = (
+				A65E39EB16495F63000E6782 /* StationPicker */,
 				A6D4DAF416632C3A001B9B52 /* train */,
 				91EC75FF166360B300E4E134 /* HighSpeedTrain */,
 				A6CE2908165C86C100C3FE81 /* DownloadingView.h */,
@@ -2357,7 +2358,6 @@
 				C7AFEDF61659EBDD005FF1DB /* OtherTrafficTrapViewController.h */,
 				A6DCE6DF1657ECA6009290D9 /* stationNumber.plist */,
 				A6DCE6DD1657A305009290D9 /* stationNum.txt */,
-				A65E39EB16495F63000E6782 /* StationPicker */,
 				C748785C1627D1D4001D3390 /* Annotation.h */,
 				C748785D1627D1D4001D3390 /* Annotation.m */,
 				C748785E1627D1D4001D3390 /* DepatureViewController.h */,

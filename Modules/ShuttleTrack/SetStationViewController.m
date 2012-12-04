@@ -73,17 +73,17 @@
         ///////////////////////////////////////////////////////////
     }
     
-    timeChoose_moth = [[StationPickerPickerView alloc] initWithFrame:CGRectMake(2.5, 5, 160, 320)];
-    timeChoose_day = [[StationPickerPickerView alloc] initWithFrame:CGRectMake(157.5, 5, 160, 320)];
+    timeChoose_moth = [[StationPickerPickerView alloc] initWithFrame:CGRectMake(2.5, 5, 160, 320-45)];
+    timeChoose_day = [[StationPickerPickerView alloc] initWithFrame:CGRectMake(157.5, 5, 160, 320-45)];
     [setTimeviewController.view addSubview:timeChoose_moth];
     [setTimeviewController.view addSubview:timeChoose_day];
     [setTimeviewController.view addSubview:bg];
     timeChoose_moth.delegate = self;
     timeChoose_moth.dataSource = self;
-    [timeChoose_moth reloadData];
     timeChoose_day.delegate = self;
     timeChoose_day.dataSource = self;
     [timeChoose_day reloadData];
+    [timeChoose_moth reloadData];
     setTimeviewController.tabBarItem.image = [UIImage imageNamed:@"TimeDrive.png"];
     //////////////////////////////////////////////////////////
     
@@ -217,7 +217,8 @@
 
 - (NSString *)pickerView:(StationPickerPickerView *)pickerView titleForRow:(NSInteger)row
 {
-    if (pickerView == timeChoose_moth) return [moth objectAtIndex:row];
+    if (pickerView == timeChoose_moth)
+        return [moth objectAtIndex:row];
     else if (pickerView == timeChoose_day)
         return [[day objectAtIndex:dateSelected]objectAtIndex:row] ;
 }

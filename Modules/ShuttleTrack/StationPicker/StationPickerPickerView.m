@@ -23,16 +23,6 @@ bool initailIndex = true;
 
 #pragma mark - Custom getters/setters
 
-- (void)setSelectedRow:(int)selectedRow
-{
-    if (selectedRow >= rowsCount)
-        return;
-    
-    currentRow = selectedRow;
-    [contentView setContentOffset:CGPointMake(0.0, glassHeight * (currentRow-2)-10) animated:NO];
-}
-
-
 
 
 - (void)setRowFont:(UIFont *)rowFont
@@ -94,7 +84,7 @@ bool initailIndex = true;
         
         // content
         rowsCount = [dataSource numberOfRowsInPickerView:self];
-        contentView = [[UIScrollView alloc] initWithFrame:CGRectMake(0.0, 0.0, frame.size.width, frame.size.height)];
+        contentView = [[UIScrollView alloc] initWithFrame:CGRectMake(0.0, 0, frame.size.width, frame.size.height)];
         contentView.showsHorizontalScrollIndicator = NO;
         contentView.showsVerticalScrollIndicator = NO;
         contentView.delegate = self;
@@ -125,8 +115,6 @@ bool initailIndex = true;
     
     currentRow = [dataSource initialRow:self];
     rowsCount = 0;
-    visibleViews = [[NSMutableSet alloc] init];
-    recycledViews = [[NSMutableSet alloc] init];
 }
 
 
@@ -139,7 +127,6 @@ bool initailIndex = true;
     // empry views
     currentRow = [dataSource initialRow:self];
     rowsCount = 0;
-    isreload=true;
     for (UIView *aView in visibleViews)
         [aView removeFromSuperview];
     
@@ -312,11 +299,11 @@ bool initailIndex = true;
                 label.backgroundColor = [UIColor clearColor];
                 label.font = _rowFont;
                 label.textColor = RGBACOLOR(0.0, 0.0, 0.0, 0.75);
-                if (index==1 && isreload){
+                /*if (index==1 && isreload){
                     label.font = [UIFont boldSystemFontOfSize:25];
-                    label.textColor = RGBACOLOR(255, 255,255,1);
+                    //label.textColor = RGBACOLOR(255, 255,255,1);
                     isreload = false;
-                }
+                }*/
             }
             
             [self configureView:label atIndex:index];
