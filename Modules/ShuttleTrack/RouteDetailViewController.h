@@ -10,7 +10,7 @@
 #import <libxml/HTMLparser.h>
 #import "TFHpple.h"
 #import "DepatureViewController.h"
-
+#import "SecondaryGroupedTableViewCell.h"
 @interface RouteDetailViewController : UITableViewController<UIApplicationDelegate,EGORefreshTableHeaderDelegate>
 {
          NSMutableArray *item;

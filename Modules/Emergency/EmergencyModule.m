@@ -15,7 +15,7 @@
     if (self != nil) {
         // Basic settings
         self.tag = EmergencyTag;
-        self.shortName = @"Emergency";
+        self.shortName = @"緊急聯絡";
         self.longName = @"Emergency Info";
         self.iconName = @"emergency";
         self.pushNotificationSupported = YES;

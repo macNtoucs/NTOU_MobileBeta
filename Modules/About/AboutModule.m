@@ -9,7 +9,7 @@
     self = [super init];
     if (self != nil) {
         self.tag = AboutTag;
-        self.shortName = @"About";
+        self.shortName = @"關於";
         self.longName = @"About";
         self.iconName = @"about";
     }
