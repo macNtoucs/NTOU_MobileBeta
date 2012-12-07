@@ -15,7 +15,10 @@
 #import "StationInfoViewController.h"
 #import "SetOriginAndStationViewController.h"
 #import "DownloadingView.h"
-@interface SetStationViewController : UITabBarController<UITabBarControllerDelegate,StationPickerPickerViewDataSource, StationPickerPickerViewDelegate,UIScrollViewDelegate,UITabBarControllerDelegate,StaionInfoDataSource,SetOriginAndStationViewDelegate,TrainStyleViewControllerDelegate>
+#import "SecondaryGroupedTableViewCell.h"
+#import "setHTOriginAndTerminalViewController.h"
+#import "HTSearchResultViewController.h"
+@interface SetStationViewController : UITabBarController<UITabBarControllerDelegate,StationPickerPickerViewDataSource, StationPickerPickerViewDelegate,UIScrollViewDelegate,UITabBarControllerDelegate,StaionInfoDataSource,SetOriginAndStationViewDelegate,TrainStyleViewControllerDelegate,SetHTOriginAndStationViewDelegate,HTStaionInfoDataSource>
 {
     NSArray *viewControllers;
     NSArray * region;
@@ -26,7 +29,14 @@
     StaionInfoTableViewController*   view5;
     TrainStyleViewController *view4;
     StationPickerPickerView *timeChoose_moth, *timeChoose_day;
-    SetOriginAndStationViewController *view1, *view2, *_view1, *_view2 ;
+    SetOriginAndStationViewController *view1, *view2 ;
+    setHTOriginAndTerminalViewController *HTView_origin, *HTView_terminal;
+    HTSearchResultViewController *ht_searchResult;
+    UIViewController *setStartStationController,
+    *setdepatureStationviewController,
+    *setTimeviewController,
+    *setTrainTypeviewController,
+    *resultViewController;
     id delegate;
     id stationInfoTableView_delegate;
     int startStaion_origin;
@@ -41,7 +51,7 @@
     NSString* trainStyle;
     bool isinitData;
     DownloadingView * downloadView;
-    
+    bool _isHightSpeedTrain;
 }
 @property int tag;
 @property (nonatomic, retain) UIImageView* tabBarArrow;
@@ -49,4 +59,7 @@
 @property (nonatomic ,retain) NSArray * region;
 @property (nonatomic, retain) NSString * nowSelectedRegion;
 @property (nonatomic ,retain) NSArray * station;
+
+
+-(id)initIsHighSpeedTrain:(bool)isHighSpeedTrain;
 @end

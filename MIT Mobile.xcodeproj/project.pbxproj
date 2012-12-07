@@ -204,6 +204,7 @@
 		91402E42163E749A00B04EE5 /* ClassAdd.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91402E3C163E749A00B04EE5 /* ClassAdd.xib */; };
 		91402E43163E749A00B04EE5 /* ClassDataBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 91402E3E163E749A00B04EE5 /* ClassDataBase.m */; };
 		91402E44163E749A00B04EE5 /* EditScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91402E40163E749A00B04EE5 /* EditScheduleViewController.m */; };
+		91EC76C81663616500E4E134 /* setHTOriginAndTerminalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91EC76C61663616500E4E134 /* setHTOriginAndTerminalViewController.m */; };
 		A60EF0E216455BC500AA1E59 /* StationInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A60EF0E116455BC500AA1E59 /* StationInfoViewController.m */; };
 		A61B643B165434A2007A382E /* TrainStyleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A61B643A165434A2007A382E /* TrainStyleViewController.m */; };
 		A6218833164586CD003FC7EE /* ClassAddBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = A6218830164586CD003FC7EE /* ClassAddBackground.m */; };
@@ -236,6 +237,7 @@
 		A6DCE34F165695C0009290D9 /* SetOriginAndStationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6DCE34E165695C0009290D9 /* SetOriginAndStationViewController.m */; };
 		A6DCE6DE1657A305009290D9 /* stationNum.txt in Resources */ = {isa = PBXBuildFile; fileRef = A6DCE6DD1657A305009290D9 /* stationNum.txt */; };
 		A6DCE6E01657ECA6009290D9 /* stationNumber.plist in Resources */ = {isa = PBXBuildFile; fileRef = A6DCE6DF1657ECA6009290D9 /* stationNumber.plist */; };
+		A6DE9DC21663AD10009EECE6 /* HTSearchResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6DE9DC11663AD10009EECE6 /* HTSearchResultViewController.m */; };
 		B64B47081288502E002E2F1D /* DummyRotatingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B64B47061288502E002E2F1D /* DummyRotatingViewController.m */; };
 		BD1E9309103B5D60004429AA /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = BD1E92F6103B5D60004429AA /* NSObject+SBJSON.m */; };
 		BD1E930A103B5D60004429AA /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = BD1E92F8103B5D60004429AA /* NSString+SBJSON.m */; };
@@ -848,6 +850,8 @@
 		91402E3E163E749A00B04EE5 /* ClassDataBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassDataBase.m; sourceTree = "<group>"; };
 		91402E3F163E749A00B04EE5 /* EditScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditScheduleViewController.h; sourceTree = "<group>"; };
 		91402E40163E749A00B04EE5 /* EditScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditScheduleViewController.m; sourceTree = "<group>"; };
+		91EC76C51663616500E4E134 /* setHTOriginAndTerminalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = setHTOriginAndTerminalViewController.h; sourceTree = "<group>"; };
+		91EC76C61663616500E4E134 /* setHTOriginAndTerminalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = setHTOriginAndTerminalViewController.m; sourceTree = "<group>"; };
 		A60EF0E016455BC500AA1E59 /* StationInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StationInfoViewController.h; sourceTree = "<group>"; };
 		A60EF0E116455BC500AA1E59 /* StationInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StationInfoViewController.m; sourceTree = "<group>"; };
 		A61B6439165434A1007A382E /* TrainStyleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrainStyleViewController.h; sourceTree = "<group>"; };
@@ -895,6 +899,8 @@
 		A6DCE34E165695C0009290D9 /* SetOriginAndStationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetOriginAndStationViewController.m; sourceTree = "<group>"; };
 		A6DCE6DD1657A305009290D9 /* stationNum.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = stationNum.txt; sourceTree = "<group>"; };
 		A6DCE6DF1657ECA6009290D9 /* stationNumber.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = stationNumber.plist; sourceTree = "<group>"; };
+		A6DE9DC01663AD10009EECE6 /* HTSearchResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTSearchResultViewController.h; sourceTree = "<group>"; };
+		A6DE9DC11663AD10009EECE6 /* HTSearchResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTSearchResultViewController.m; sourceTree = "<group>"; };
 		B64B47051288502E002E2F1D /* DummyRotatingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DummyRotatingViewController.h; sourceTree = "<group>"; };
 		B64B47061288502E002E2F1D /* DummyRotatingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DummyRotatingViewController.m; sourceTree = "<group>"; };
 		BD1E92F4103B5D60004429AA /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
@@ -2084,6 +2090,18 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		91EC75FF166360B300E4E134 /* HighSpeedTrain */ = {
+			isa = PBXGroup;
+			children = (
+				91EC76C51663616500E4E134 /* setHTOriginAndTerminalViewController.h */,
+				91EC76C61663616500E4E134 /* setHTOriginAndTerminalViewController.m */,
+				A6DE9DC01663AD10009EECE6 /* HTSearchResultViewController.h */,
+				A6DE9DC11663AD10009EECE6 /* HTSearchResultViewController.m */,
+				A6D4DAF416632C3A001B9B52 /* train */,
+			);
+			name = HighSpeedTrain;
+			sourceTree = "<group>";
+		};
 		A65E39EB16495F63000E6782 /* StationPicker */ = {
 			isa = PBXGroup;
 			children = (
@@ -2108,6 +2126,25 @@
 				A6CE2912165C86C200C3FE81 /* train.png */,
 			);
 			path = resource;
+			sourceTree = "<group>";
+		};
+		A6D4DAF416632C3A001B9B52 /* train */ = {
+			isa = PBXGroup;
+			children = (
+				A60EF0E016455BC500AA1E59 /* StationInfoViewController.h */,
+				A60EF0E116455BC500AA1E59 /* StationInfoViewController.m */,
+				A6CD760016482F8900D1209C /* SetStationViewController.h */,
+				A6CD760116482F8900D1209C /* SetStationViewController.m */,
+				A6DCE34D165695C0009290D9 /* SetOriginAndStationViewController.h */,
+				A6DCE34E165695C0009290D9 /* SetOriginAndStationViewController.m */,
+				A65E3A0216498D55000E6782 /* ThroughTap.h */,
+				A65E3A0316498D56000E6782 /* ThroughTap.m */,
+				A6CD76031648333300D1209C /* StationView.h */,
+				A6CD76041648333300D1209C /* StationView.m */,
+				A61B6439165434A1007A382E /* TrainStyleViewController.h */,
+				A61B643A165434A2007A382E /* TrainStyleViewController.m */,
+			);
+			name = train;
 			sourceTree = "<group>";
 		};
 		BD1E92F3103B5D60004429AA /* JSON */ = {
@@ -2294,6 +2331,7 @@
 		DE715449102FE468005E6111 /* ShuttleTrack */ = {
 			isa = PBXGroup;
 			children = (
+				91EC75FF166360B300E4E134 /* HighSpeedTrain */,
 				A6CE2908165C86C100C3FE81 /* DownloadingView.h */,
 				A6CE2909165C86C200C3FE81 /* DownloadingView.m */,
 				A6CE290A165C86C200C3FE81 /* resource */,
@@ -2375,18 +2413,6 @@
 				442C1CA210F4FE8900CB44EC /* ShuttleLocation.m */,
 				29EB610910FE47220085D32B /* ShuttleSubscriptionManager.h */,
 				29EB610A10FE47220085D32B /* ShuttleSubscriptionManager.m */,
-				A60EF0E016455BC500AA1E59 /* StationInfoViewController.h */,
-				A60EF0E116455BC500AA1E59 /* StationInfoViewController.m */,
-				A6CD760016482F8900D1209C /* SetStationViewController.h */,
-				A6CD760116482F8900D1209C /* SetStationViewController.m */,
-				A6DCE34D165695C0009290D9 /* SetOriginAndStationViewController.h */,
-				A6DCE34E165695C0009290D9 /* SetOriginAndStationViewController.m */,
-				A65E3A0216498D55000E6782 /* ThroughTap.h */,
-				A65E3A0316498D56000E6782 /* ThroughTap.m */,
-				A6CD76031648333300D1209C /* StationView.h */,
-				A6CD76041648333300D1209C /* StationView.m */,
-				A61B6439165434A1007A382E /* TrainStyleViewController.h */,
-				A61B643A165434A2007A382E /* TrainStyleViewController.m */,
 			);
 			path = ShuttleTrack;
 			sourceTree = "<group>";
@@ -3338,6 +3364,8 @@
 				C7AFEE101659EC0A005FF1DB /* K_TimeView.m in Sources */,
 				C7AFEE111659EC0A005FF1DB /* K_RouteViewController.m in Sources */,
 				A6CE2913165C86C200C3FE81 /* DownloadingView.m in Sources */,
+				91EC76C81663616500E4E134 /* setHTOriginAndTerminalViewController.m in Sources */,
+				A6DE9DC21663AD10009EECE6 /* HTSearchResultViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
