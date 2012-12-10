@@ -20,7 +20,7 @@
 		refreshButtonPressed = NO;
         infoWebView = nil;
         
-        self.title = @"Emergency Info";
+        self.title = @"緊急聯絡";
     }
     return self;
 }

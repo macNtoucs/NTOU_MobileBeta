@@ -61,7 +61,7 @@
     self = [super initWithNibName:nil
                            bundle:nil];
     if (self) {
-        self.title = @"Scanner";
+        self.title = @"QRScanner";
         self.isCaptureActive = NO;
         
         
