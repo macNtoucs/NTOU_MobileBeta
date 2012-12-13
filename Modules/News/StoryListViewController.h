@@ -27,8 +27,8 @@ typedef enum {
     NavScrollerView *navScrollView;
 	//UIScrollView *navScrollView;
 	//UIButton *leftScrollButton;
-	//UIButton *rightScrollButton;  
-
+	//UIButton *rightScrollButton;
+    
 	// Search bits
 	NSString *searchQuery;
 	NSArray *searchResults;
@@ -43,14 +43,25 @@ typedef enum {
     
     NSIndexPath *tempTableSelection;
     BOOL lastRequestSucceeded;
+    
+    NSArray *stories;
+    NSArray *storiesDate;
+    NSArray *storiesContent;
 }
 
 @property (nonatomic, retain) NSArray *stories;
+@property (nonatomic, retain) NSArray *storiesDate;
+@property (nonatomic, retain) NSArray *storiesContent;
 @property (nonatomic, retain) NSString *searchQuery;
 @property (nonatomic, retain) NSArray *searchResults;
 @property (nonatomic, retain) NSArray *categories;
 @property (nonatomic, assign) NSInteger activeCategoryId;
 @property (nonatomic, retain) StoryXMLParser *xmlParser;
+
+// 新增
+- (void)displayContentCampusFocus;
+- (void)displayContentSchoolBulletin;
+- (void)displayContentExternalMessage;
 
 - (void)pruneStories;
 - (void)switchToCategory:(NewsCategoryId)category;

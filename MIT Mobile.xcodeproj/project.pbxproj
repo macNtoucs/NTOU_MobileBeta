@@ -200,7 +200,6 @@
 		6D7E698B1660B865004F9D20 /* right.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D7E69891660B862004F9D20 /* right.png */; };
 		6D7E698C1660B865004F9D20 /* wrong.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D7E698A1660B863004F9D20 /* wrong.png */; };
 		91402E41163E749A00B04EE5 /* ClassAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 91402E3B163E749A00B04EE5 /* ClassAdd.m */; };
-		91402E42163E749A00B04EE5 /* ClassAdd.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91402E3C163E749A00B04EE5 /* ClassAdd.xib */; };
 		91402E43163E749A00B04EE5 /* ClassDataBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 91402E3E163E749A00B04EE5 /* ClassDataBase.m */; };
 		91402E44163E749A00B04EE5 /* EditScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91402E40163E749A00B04EE5 /* EditScheduleViewController.m */; };
 		91EC76C81663616500E4E134 /* setHTOriginAndTerminalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91EC76C61663616500E4E134 /* setHTOriginAndTerminalViewController.m */; };
@@ -218,7 +217,6 @@
 		A6A82E38145624F20075EB28 /* LibraryTextElementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A82E37145624F20075EB28 /* LibraryTextElementViewController.m */; };
 		A6CD75F5164820D500D1209C /* ClassInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CD75F1164820D500D1209C /* ClassInfoView.m */; };
 		A6CD75F6164820D500D1209C /* ClassInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CD75F3164820D500D1209C /* ClassInfoViewController.m */; };
-		A6CD75F7164820D500D1209C /* ClassInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A6CD75F4164820D500D1209C /* ClassInfoViewController.xib */; };
 		A6CD75FD164820FB00D1209C /* SetWeekTimesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CD75FA164820FB00D1209C /* SetWeekTimesViewController.m */; };
 		A6CD75FE164820FB00D1209C /* TabBarNipple.png in Resources */ = {isa = PBXBuildFile; fileRef = A6CD75FB164820FB00D1209C /* TabBarNipple.png */; };
 		A6CD75FF164820FB00D1209C /* TabBarNipple@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A6CD75FC164820FB00D1209C /* TabBarNipple@2x.png */; };
@@ -844,7 +842,6 @@
 		910662EF163BCFD700D01C81 /* DefinePixel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefinePixel.h; sourceTree = "<group>"; };
 		91402E3A163E749A00B04EE5 /* ClassAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassAdd.h; sourceTree = "<group>"; };
 		91402E3B163E749A00B04EE5 /* ClassAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassAdd.m; sourceTree = "<group>"; };
-		91402E3C163E749A00B04EE5 /* ClassAdd.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClassAdd.xib; sourceTree = "<group>"; };
 		91402E3D163E749A00B04EE5 /* ClassDataBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassDataBase.h; sourceTree = "<group>"; };
 		91402E3E163E749A00B04EE5 /* ClassDataBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassDataBase.m; sourceTree = "<group>"; };
 		91402E3F163E749A00B04EE5 /* EditScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditScheduleViewController.h; sourceTree = "<group>"; };
@@ -875,7 +872,6 @@
 		A6CD75F1164820D500D1209C /* ClassInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassInfoView.m; sourceTree = "<group>"; };
 		A6CD75F2164820D500D1209C /* ClassInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassInfoViewController.h; sourceTree = "<group>"; };
 		A6CD75F3164820D500D1209C /* ClassInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassInfoViewController.m; sourceTree = "<group>"; };
-		A6CD75F4164820D500D1209C /* ClassInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClassInfoViewController.xib; sourceTree = "<group>"; };
 		A6CD75F9164820FB00D1209C /* SetWeekTimesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetWeekTimesViewController.h; sourceTree = "<group>"; };
 		A6CD75FA164820FB00D1209C /* SetWeekTimesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetWeekTimesViewController.m; sourceTree = "<group>"; };
 		A6CD75FB164820FB00D1209C /* TabBarNipple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TabBarNipple.png; sourceTree = "<group>"; };
@@ -2430,14 +2426,12 @@
 				A6CD75F1164820D500D1209C /* ClassInfoView.m */,
 				A6CD75F2164820D500D1209C /* ClassInfoViewController.h */,
 				A6CD75F3164820D500D1209C /* ClassInfoViewController.m */,
-				A6CD75F4164820D500D1209C /* ClassInfoViewController.xib */,
 				A621882F164586CD003FC7EE /* ClassAddBackground.h */,
 				A6218830164586CD003FC7EE /* ClassAddBackground.m */,
 				A6218831164586CD003FC7EE /* ClassLabelBasis.h */,
 				A6218832164586CD003FC7EE /* ClassLabelBasis.m */,
 				91402E3A163E749A00B04EE5 /* ClassAdd.h */,
 				91402E3B163E749A00B04EE5 /* ClassAdd.m */,
-				91402E3C163E749A00B04EE5 /* ClassAdd.xib */,
 				91402E3D163E749A00B04EE5 /* ClassDataBase.h */,
 				91402E3E163E749A00B04EE5 /* ClassDataBase.m */,
 				91402E3F163E749A00B04EE5 /* EditScheduleViewController.h */,
@@ -2987,8 +2981,6 @@
 				C74878BA162D2989001D3390 /* Default.png in Resources */,
 				C74878BB162D2996001D3390 /* Default@2x.png in Resources */,
 				C74878BD162D299C001D3390 /* Default-568h@2x.png in Resources */,
-				91402E42163E749A00B04EE5 /* ClassAdd.xib in Resources */,
-				A6CD75F7164820D500D1209C /* ClassInfoViewController.xib in Resources */,
 				A6CD75FE164820FB00D1209C /* TabBarNipple.png in Resources */,
 				A6CD75FF164820FB00D1209C /* TabBarNipple@2x.png in Resources */,
 				A65E3A011649678C000E6782 /* StationPickerBackground.png in Resources */,

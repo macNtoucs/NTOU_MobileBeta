@@ -26,7 +26,7 @@
         classinfo = [[[ClassLabelBasis alloc] initWithFrame:CGRectMake(0, 0, 320, 40)] autorelease];
         classinfo.backgroundColor = [UIColor clearColor];
         classinfo.text = [NSString stringWithFormat:@"教授名稱：林清池 \n教室地點：CS301"];
-        classinfo.textAlignment = NSTextAlignmentCenter;
+        classinfo.textAlignment = UITextAlignmentCenter;
         classinfo.font = [UIFont fontWithName:BOLD_FONT size:15];
         classinfo.lineBreakMode = UILineBreakModeWordWrap;
         classinfo.numberOfLines = 0;
