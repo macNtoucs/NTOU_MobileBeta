@@ -85,7 +85,11 @@
     return 3;
 }
 -(void) finishSetting {
-[self dismissModalViewControllerAnimated:YES];
+    [self dismissModalViewControllerAnimated:YES];
+    NSData *myEncodedObject = [NSKeyedArchiver archivedDataWithRootObject:[ClassDataBase sharedData]];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:myEncodedObject forKey:ClassDataBaseKey];
+    [defaults synchronize];
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {

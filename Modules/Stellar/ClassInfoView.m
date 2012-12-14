@@ -28,7 +28,7 @@
         self.textView.font = [UIFont fontWithName:STANDARD_FONT size:CELL_STANDARD_FONT_SIZE];
         self.textView.delegate = self;
         self.textView.backgroundColor = [UIColor clearColor];
-        self.textView.text = @"Now is the time for all good developers tocome to serve their country.\n\nNow is the time for all good developers to cometo serve their country.";
+        self.textView.text = [[NSUserDefaults standardUserDefaults] objectForKey:type5];
         self.textView.returnKeyType = UIReturnKeyDefault;
         self.textView.keyboardType = UIKeyboardTypeDefault;
         self.textView.scrollEnabled = YES;
@@ -547,6 +547,9 @@
 
 - (void)textViewDidEndEditing:(UITextView *)textView {
     [delegatetype5 rightBarButtonItemOff];
+    NSUserDefaults *userPrefs = [NSUserDefaults standardUserDefaults];
+    [userPrefs setObject:self.textView.text forKey:type5];
+    [userPrefs synchronize];
     edit = NO;
     [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:[NSIndexPath indexPathForRow:0 inSection:0], nil] withRowAnimation:UITableViewRowAnimationLeft];
 }

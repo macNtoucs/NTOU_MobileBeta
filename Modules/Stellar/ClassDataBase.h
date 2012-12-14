@@ -16,10 +16,17 @@
 -(void)ReloadSetWeek;
 @end
 
+
+#define WeekTimesKey @"WeekTimesKey"
+#define ClassSessionTimesKey @"ClassSessionTimesKey"
+#define showClassTimesKey @"showClassTimesKey"
+#define ScheduleInfoKey @"ScheduleInfoKey"
+#define WeekDaysKey @"WeekDaysKey"
+#define ClassDataBaseKey @"classDataBaseKey"
 #import <Foundation/Foundation.h>
 #import "DefinePixel.h"
 typedef enum {Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday } ColumnName;
-@interface ClassDataBase : NSObject{
+@interface ClassDataBase : NSObject<NSCoding>{
     int WeekTimes;
     int ClassSessionTimes;
     bool showClassTimes;
