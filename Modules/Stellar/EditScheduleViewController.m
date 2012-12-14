@@ -7,9 +7,11 @@
 //
 
 #import "EditScheduleViewController.h"
-
+#import "MITUIConstants.h"
 @interface EditScheduleViewController (){
     SetWeekTimesViewController * setweek;
+    id accountDelegate;
+    id passwordDelegate;
 }
 
 @end
@@ -30,9 +32,18 @@
     UIBarButtonItem * right = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(finishSetting)];
     [self.navigationItem setRightBarButtonItem:right animated:YES];
 }
+
+- (void) hideKeyboard {
+    [accountDelegate resignFirstResponder];
+    [passwordDelegate resignFirstResponder];
+}
+
 - (void)viewDidLoad
 {
-      [self addNavRightButton]; 
+    UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
+    [self.tableView addGestureRecognizer:gestureRecognizer];
+    
+    [self addNavRightButton]; 
     [super viewDidLoad];
     [self.tableView applyStandardColors];
     // Uncomment the following line to preserve selection between presentations.
@@ -61,7 +72,7 @@
     CGSize constraintSize = CGSizeMake(270.0f, 2009.0f);
     NSString *cellText = nil;
     
-    cellText = @"A"; // just something to guarantee one line
+    cellText = @" "; // just something to guarantee one line
     CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
     rowHeight = labelSize.height + 20.0f;
     
@@ -75,14 +86,20 @@
 {
 #warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 3;
+    if (section==0) {
+        return 3;
+    }
+    else if (section==1) {
+        return 3;
+    }
+    return 0;
 }
 -(void) finishSetting {
     [self dismissModalViewControllerAnimated:YES];
@@ -95,39 +112,80 @@
 {
     
      
-    static NSString *CellIdentifier = @"Cell";
-    SecondaryGroupedTableViewCell *cell  = [[[SecondaryGroupedTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
+    NSString *CellIdentifier = [NSString stringWithFormat:@"Cell%d%d",indexPath.section,indexPath.row];
+    SecondaryGroupedTableViewCell *cell;
+    if (indexPath.section==1&&(indexPath.row==0||indexPath.row==1)) {
+        cell  = [[[SecondaryGroupedTableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:CellIdentifier] autorelease];
+    }
+    else
+        cell  = [[[SecondaryGroupedTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+
     UISwitch *switchview = [[UISwitch alloc] initWithFrame:CGRectZero];
     switchview.on = [[ClassDataBase sharedData] FetchshowClassTimes];
     UISlider *sliderView = [[UISlider alloc]initWithFrame:CGRectMake(174,12,120,23)];
     sliderView.maximumValue = 14;
     sliderView.minimumValue = 8;
     sliderView.value = [[ClassDataBase sharedData] FetchClassSessionTimes];
-    switch (indexPath.row) {
-        case 0:
-            cell.textLabel.text = @"一周上課天數";
-            cell.detailTextLabel.text = @"";
-            cell.detailTextLabel.textColor = [UIColor blueColor];
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            break;
-        case 1:
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.textLabel.text = @"節次";
-             cell.accessoryView = sliderView;
-            [(UISlider *)cell.accessoryView addTarget:self action:@selector(sliderValueChange:) forControlEvents:UIControlEventValueChanged];
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"%.0f",sliderView.value];
-            cell.detailTextLabel.textColor = [UIColor blueColor];
-            cell.detailTextLabel.backgroundColor = [UIColor clearColor];
-            break;
-        case 2:
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-              cell.accessoryView = switchview;
-            [(UISwitch *)cell.accessoryView addTarget:self action:@selector(switchValueChange:) forControlEvents:UIControlEventTouchUpInside];
-            cell.textLabel.text = @"顯示課堂時間";
-            break;
+    if (indexPath.section==0) {
+        switch (indexPath.row) {
+            case 0:
+                cell.textLabel.text = @"一周上課天數";
+                cell.detailTextLabel.text = @"";
+                cell.detailTextLabel.textColor = [UIColor blueColor];
+                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                break;
+            case 1:
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                cell.textLabel.text = @"節次";
+                cell.accessoryView = sliderView;
+                [(UISlider *)cell.accessoryView addTarget:self action:@selector(sliderValueChange:) forControlEvents:UIControlEventValueChanged];
+                cell.detailTextLabel.text = [NSString stringWithFormat:@"%.0f",sliderView.value];
+                cell.detailTextLabel.textColor = [UIColor blueColor];
+                cell.detailTextLabel.backgroundColor = [UIColor clearColor];
+                break;
+            case 2:
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                cell.accessoryView = switchview;
+                [(UISwitch *)cell.accessoryView addTarget:self action:@selector(switchValueChange:) forControlEvents:UIControlEventTouchUpInside];
+                cell.textLabel.text = @"顯示課堂時間";
+                break;
+        }
     }
-    
+    else if (indexPath.section==1) {
+        UITextField* contactNameTextField = [[UITextField alloc] initWithFrame:CGRectMake(93, 10, 200, 20)];
+        contactNameTextField.delegate = self;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        switch (indexPath.row) {
+            case 0:
+                accountDelegate = contactNameTextField;
+                cell.textLabel.text = @"帳號:";
+                contactNameTextField.backgroundColor = [UIColor clearColor];
+                contactNameTextField.font = [UIFont boldSystemFontOfSize:15];
+                contactNameTextField.keyboardType = UIKeyboardTypeDefault;
+                [cell addSubview:contactNameTextField];
+                break;
+            case 1:
+                passwordDelegate = contactNameTextField;
+                cell.textLabel.text = @"密碼:";
+                contactNameTextField.backgroundColor = [UIColor clearColor];
+                contactNameTextField.font = [UIFont boldSystemFontOfSize:15];
+                contactNameTextField.keyboardType = UIKeyboardTypeDefault;
+                contactNameTextField.secureTextEntry = YES;
+                [cell addSubview:contactNameTextField];
+                break;
+            case 2:
+                cell.textLabel.text = @"與當學期同步課表";
+                cell.textLabel.textAlignment = UITextAlignmentCenter;
+                break;
+        }
+    }
     return cell;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    
+    [textField resignFirstResponder];
+    return YES;
 }
 
 -(void)switchValueChange:(id)sender{
@@ -191,7 +249,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row==0){
+    if (indexPath.section==0&&indexPath.row==0){
         setweek = [SetWeekTimesViewController new];
         [self.navigationController pushViewController:setweek animated:YES];
         setweek.title = @"設定一周天數";
