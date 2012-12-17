@@ -127,7 +127,7 @@
     else{
         viewControllers = [[NSArray alloc]initWithObjects:setStartStationController, setdepatureStationviewController,setTimeviewController,setHTTimeviewController,resultViewController,nil];
     }
-    [viewControllers retain];
+   // [viewControllers retain];
     [self setViewControllers:viewControllers animated:YES];
     self.delegate=self;
     
@@ -190,7 +190,7 @@
 - (void) addTabBarArrow
 {
     UIImage* tabBarArrowImage = [UIImage imageNamed:@"TabBarNipple@2x.png"];
-    self.tabBarArrow = [[[UIImageView alloc] initWithImage:tabBarArrowImage] autorelease];
+    self.tabBarArrow = [[UIImageView alloc] initWithImage:tabBarArrowImage] ;
     CGFloat verticalLocation = 340;
     tabBarArrow.frame = CGRectMake([self horizontalLocationFor:0], verticalLocation, tabBarArrowImage.size.width, tabBarArrowImage.size.height);
     
@@ -256,17 +256,17 @@
 }
 -(void)SetOriginAndStationViewTableView:(UITableViewController *)tableView nowSelected:(NSString *)station{
     if (tableView==view1)
-        startStaion = [[NSString stringWithFormat:@"%@", station ] retain];
+        startStaion = [NSString stringWithFormat:@"%@", station ] ;
     else if (tableView==view2)
-        DepatureStation = [[NSString stringWithFormat:@"%@", station ]retain];
+        DepatureStation = [NSString stringWithFormat:@"%@", station ];
     [self viewDidLoad];
 }
 
 -(void)setHTOriginAndTerminalTableView:(UITableViewController*) tableView nowSelected:(NSString*) station{
     if (tableView==HTView_origin)
-        startStaion = [[NSString stringWithFormat:@"%@", station ] retain];
+        startStaion = [NSString stringWithFormat:@"%@", station ] ;
     else if (tableView==HTView_terminal)
-        DepatureStation = [[NSString stringWithFormat:@"%@", station ]retain];
+        DepatureStation = [NSString stringWithFormat:@"%@", station ];
     [self viewDidLoad];
     
 }
@@ -354,5 +354,7 @@
 -(void)HTTime:(SetTimeViewController *) controller nowselectedTime:(NSString *)Time{
     NSLog(@"%@",Time);
 }
+
+
 
 @end
