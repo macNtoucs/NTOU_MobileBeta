@@ -30,7 +30,6 @@
     isinitData = true;
     downloadView = [DownloadingView new];
     //[self addSelectView];
-    [self createData];
     _isHightSpeedTrain = isHighSpeedTrain;
     if (!isHighSpeedTrain){
         startStaion = [[NSString alloc]initWithString:@"基隆"];
@@ -73,17 +72,11 @@
         ///////////////////////////////////////////////////////////
     }
     
-    timeChoose_moth = [[StationPickerPickerView alloc] initWithFrame:CGRectMake(2.5, 5, 160, 320-45)];
-    timeChoose_day = [[StationPickerPickerView alloc] initWithFrame:CGRectMake(157.5, 5, 160, 320-45)];
-    [setTimeviewController.view addSubview:timeChoose_moth];
-    [setTimeviewController.view addSubview:timeChoose_day];
-    [setTimeviewController.view addSubview:bg];
-    timeChoose_moth.delegate = self;
-    timeChoose_moth.dataSource = self;
-    timeChoose_day.delegate = self;
-    timeChoose_day.dataSource = self;
-    [timeChoose_day reloadData];
-    [timeChoose_moth reloadData];
+    calendar = [[CKViewController alloc]init];
+    calendar.view.frame = CGRectMake(0, 3, 320, 440);
+    [setTimeviewController.view addSubview:calendar.view];
+    
+   
     setTimeviewController.tabBarItem.image = [UIImage imageNamed:@"TimeDrive.png"];
     //////////////////////////////////////////////////////////
     
@@ -110,7 +103,7 @@
         resultViewController.tabBarItem.image = [UIImage imageNamed:@"magnify.png"];
         [view5 recieveData];
     }
-    else {
+    /*else {
         ht_searchResult = [[HTSearchResultViewController alloc]init];
         ht_searchResult.dataSource = self;
         ht_searchResult.view.frame = CGRectMake(0, 10, 320, 425);
@@ -120,7 +113,7 @@
         resultViewController.tabBarItem.image = [UIImage imageNamed:@"magnify.png"];
         downloadView = [DownloadingView new];
         [ht_searchResult recieveData];
-    }
+    }*/
     //////////////////////////////////////////////////////////
     if(!isHighSpeedTrain)
         viewControllers = [[NSArray alloc]initWithObjects:setStartStationController, setdepatureStationviewController,setTimeviewController,setTrainTypeviewController ,resultViewController,nil];
@@ -176,79 +169,6 @@
         [self SwapStation];
     }
 }
--(int)initialRow:(StationPickerPickerView *)pickerView{
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    NSDate *date = [NSDate date];
-    [formatter setDateFormat:@"MM"];
-    currentMonth =  [[formatter stringFromDate:date]intValue];
-    [formatter setDateFormat:@"dd"];
-    currentDay =  [[formatter stringFromDate:date]intValue];
-    if (pickerView == timeChoose_moth){
-        return currentMonth;
-    }
-    else if (pickerView == timeChoose_day){
-        return currentDay;
-    }
-}
--(void) createData{
-    moth = [[NSArray alloc ]initWithObjects:@"一月",@"二月",@"三月",@"四月",@"五月",@"六月",@"七月",@"八月",@"九月",@"十月",@"十一月",@"十二月", nil ];
-    day = [[NSMutableArray alloc]init];
-    for (int _moth = 1 ; _moth<=12; ++_moth){
-        NSMutableArray *tmp  = [[[NSMutableArray alloc]init]autorelease];
-        if (_moth==1 || _moth==3 || _moth==5 || _moth==7 || _moth==8 || _moth==10 || _moth==12){
-            for (int _day = 1; _day<=31 ; _day++)
-                [tmp addObject:[NSString stringWithFormat:@"%d",_day]];
-            [day addObject:tmp];
-        }
-        else if (_moth == 2){ tmp  = [[[NSMutableArray alloc]init]autorelease];
-            for (int _day = 1; _day<=28 ; _day++)
-                [tmp addObject:[NSString stringWithFormat:@"%d",_day]];
-            [day addObject:tmp];
-        }
-        else {
-            tmp  = [[[NSMutableArray alloc]init]autorelease];
-            for (int _day = 1; _day<=30 ; _day++)
-                [tmp addObject:[NSString stringWithFormat:@"%d",_day]];
-            [day addObject:tmp];
-        }
-    }
-}
-
-
-- (NSString *)pickerView:(StationPickerPickerView *)pickerView titleForRow:(NSInteger)row
-{
-    if (pickerView == timeChoose_moth)
-        return [moth objectAtIndex:row];
-    else if (pickerView == timeChoose_day)
-        return [[day objectAtIndex:dateSelected]objectAtIndex:row] ;
-}
-
-- (NSInteger)numberOfRowsInPickerView:(StationPickerPickerView *)pickerView
-{
-    
-    if (pickerView == timeChoose_moth) return [moth count];
-    else if (pickerView == timeChoose_day)
-        return [[day objectAtIndex:dateSelected]count] ;
-}
-
-- (void)pickerView:(StationPickerPickerView *)pickerView didSelectRow:(NSInteger)row
-{
-    
-    if (pickerView == timeChoose_moth){
-        dateSelected = row;
-        [timeChoose_day reloadData];
-    }
-    /* else if (pickerView == _view1 || pickerView == _view2)
-     NSLog(@"%@",[[station objectAtIndex:NowStationRow]objectAtIndex:row]);*/
-    
-}
-- (NSString *) pickerView : (StationPickerPickerView *) pickerView nowSelected:(NSInteger) row{
-    if (pickerView == timeChoose_moth) return [moth objectAtIndex:row-1];
-    else if (pickerView == timeChoose_day)
-        return [[day objectAtIndex:dateSelected]objectAtIndex:row-1] ;
-}
-
-
 - (CGFloat) horizontalLocationFor:(NSUInteger)tabIndex
 {
     CGFloat tabItemWidth = self.tabBar.frame.size.width / [viewControllers count];
@@ -339,65 +259,37 @@
     [self viewDidLoad];
     
 }
-/*-(void)CreateStationNumPlist{
- NSString* path = [[NSBundle mainBundle] pathForResource:@"stationNum"
- ofType:@"txt"];
- NSString* content = [NSString stringWithContentsOfFile:path
- encoding:NSUTF8StringEncoding
- error:NULL];
- NSArray * tmp_token = [content componentsSeparatedByString:@"\n"];
- NSMutableArray * token = [NSMutableArray new];
- int _switch=1;
- NSMutableDictionary * stationNumberDic = [NSMutableDictionary new];
- NSError *error;
- NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
- NSFileManager * fileManager = nil;
- NSString *documentsDirectory = [paths objectAtIndex:0];
- for (NSString* objInTmp in tmp_token){
- if (_switch==1)
- [token addObject:objInTmp];
- _switch*=-1;
- 
- }
- for (NSString * objInToken in token){
- if (![stationNumberDic objectForKey:[objInToken substringToIndex:4]])
- // NSLog(@"%@",[objInToken substringWithRange:NSMakeRange([objInToken length]-2, 1)] );
- if ([[objInToken substringWithRange:NSMakeRange([objInToken length]-2, 1)] isEqualToString: @" "])
- [stationNumberDic setObject:[objInToken substringToIndex:4] forKey:[objInToken substringWithRange:NSMakeRange(4, [objInToken length]-6)]];
- else
- [stationNumberDic setObject:[objInToken substringToIndex:4] forKey:[objInToken substringWithRange:NSMakeRange(4, [objInToken length]-5)]];
- }
- 
- NSString *plistPath = [documentsDirectory stringByAppendingPathComponent:@"stationNumber.plist"];
- if (![fileManager fileExistsAtPath: path])
- {
- NSString *bundle = [[NSBundle mainBundle] pathForResource:@"stationNumber" ofType:@"plist"];
- [fileManager copyItemAtPath:bundle toPath:path error:&error];
- }
- [stationNumberDic writeToFile:plistPath atomically: YES];
- NSArray *arr= [stationNumberDic allKeys];
- 
- }*/
+
 - (NSURL*)StationInfoURL:(StaionInfoTableViewController *)stationInfoTableView{
     //[self CreateStationNumPlist];
     stationInfoTableView_delegate = self;
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    NSDate *date = [NSDate date];
     if(isinitData) {
         isinitData = false;
         return [NSURL URLWithString:@""];
     }
+    
+    NSLog(@"%@",calendar.selectedDate);
+    
     if (![startStaion isEqualToString:@""] && ![DepatureStation isEqualToString:@""] ){
-        
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+       
         NSString *StartStationID = [NSString stringWithFormat:@"%@",[stationNum valueForKey:startStaion]];
         NSString *DepatureStationID= [NSString stringWithFormat:@"%@",[stationNum valueForKey:DepatureStation]];
         // NSArray *arr= [stationNum allKeys];
-        NSString * queryURL = [[NSString alloc]initWithString:@"http://twtraffic.tra.gov.tw/twrail/SearchResult.aspx?searchtype=0&searchdate=2012%2F"];
-        queryURL=[queryURL stringByAppendingString:[NSString stringWithFormat:@"%d",currentMonth]];
+        NSString * queryURL = [[NSString alloc]initWithString:@"http://twtraffic.tra.gov.tw/twrail/SearchResult.aspx?searchtype=0&searchdate="];
+        
+        [dateFormatter setDateFormat:@"yyyy"];
+        queryURL=[queryURL stringByAppendingString:[NSString stringWithFormat:@"%@", [dateFormatter stringFromDate:calendar.selectedDate]]];
         queryURL= [queryURL stringByAppendingString:@"%2F"];
-        if(currentDay<10)
-            queryURL= [queryURL stringByAppendingString:[NSString stringWithFormat:@"0%d",currentDay]];
-        else queryURL= [queryURL stringByAppendingString:[NSString stringWithFormat:@"%d",currentDay]];
+        
+        [dateFormatter setDateFormat:@"M"];
+        queryURL=[queryURL stringByAppendingString:[NSString stringWithFormat:@"%@", [dateFormatter stringFromDate:calendar.selectedDate]]];
+        queryURL= [queryURL stringByAppendingString:@"%2F"];
+       
+        
+        [dateFormatter setDateFormat:@"d"];
+        queryURL=[queryURL stringByAppendingString:[NSString stringWithFormat:@"%@", [dateFormatter stringFromDate:calendar.selectedDate]]];
+        
         queryURL= [queryURL stringByAppendingString:[NSString stringWithFormat:@"&fromcity=0&tocity=0&fromstation=%@&tostation=%@&",StartStationID,DepatureStationID]];
         queryURL= [queryURL stringByAppendingString:[NSString stringWithFormat:@"trainclass=%@&fromtime=0000&totime=2359",trainStyle]];
         //  NSLog( @"%@",queryURL);
