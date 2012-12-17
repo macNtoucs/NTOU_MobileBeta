@@ -333,7 +333,7 @@
         [mailView setSubject:@"緊急事件"];
         
         [mailView setMessageBody:@"[照片]" isHTML:NO];
-        NSData *imageData = UIImagePNGRepresentation(image);
+        NSData *imageData = UIImageJPEGRepresentation(image,0.3);
         [mailView addAttachmentData:imageData mimeType:@"image/png" fileName:@"image"];
         [self dismissModalViewControllerAnimated:NO];
         [self presentModalViewController:mailView
