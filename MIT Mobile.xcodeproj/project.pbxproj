@@ -206,6 +206,7 @@
 		91EC76C81663616500E4E134 /* setHTOriginAndTerminalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91EC76C61663616500E4E134 /* setHTOriginAndTerminalViewController.m */; };
 		91F0175D167ED73B00B4C5F0 /* left_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 91F0175B167ED73B00B4C5F0 /* left_arrow.png */; };
 		91F0175E167ED73B00B4C5F0 /* right_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 91F0175C167ED73B00B4C5F0 /* right_arrow.png */; };
+		91F01765167F232E00B4C5F0 /* SetTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F01764167F232E00B4C5F0 /* SetTimeViewController.m */; };
 		91FBBB9A167ECE53009C5024 /* CKCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 91FBBB97167ECE53009C5024 /* CKCalendarView.m */; };
 		91FBBB9B167ECE53009C5024 /* CKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91FBBB99167ECE53009C5024 /* CKViewController.m */; };
 		A60EF0E216455BC500AA1E59 /* StationInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A60EF0E116455BC500AA1E59 /* StationInfoViewController.m */; };
@@ -859,6 +860,8 @@
 		91F01756167ED18B00B4C5F0 /* LayoutStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LayoutStyle.h; sourceTree = "<group>"; };
 		91F0175B167ED73B00B4C5F0 /* left_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = left_arrow.png; sourceTree = "<group>"; };
 		91F0175C167ED73B00B4C5F0 /* right_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = right_arrow.png; sourceTree = "<group>"; };
+		91F01763167F232E00B4C5F0 /* SetTimeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetTimeViewController.h; sourceTree = "<group>"; };
+		91F01764167F232E00B4C5F0 /* SetTimeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetTimeViewController.m; sourceTree = "<group>"; };
 		91FBBB96167ECE53009C5024 /* CKCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKCalendarView.h; sourceTree = "<group>"; };
 		91FBBB97167ECE53009C5024 /* CKCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKCalendarView.m; sourceTree = "<group>"; };
 		91FBBB98167ECE53009C5024 /* CKViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKViewController.h; sourceTree = "<group>"; };
@@ -2110,6 +2113,8 @@
 				91EC76C61663616500E4E134 /* setHTOriginAndTerminalViewController.m */,
 				A6DE9DC01663AD10009EECE6 /* HTSearchResultViewController.h */,
 				A6DE9DC11663AD10009EECE6 /* HTSearchResultViewController.m */,
+				91F01763167F232E00B4C5F0 /* SetTimeViewController.h */,
+				91F01764167F232E00B4C5F0 /* SetTimeViewController.m */,
 			);
 			name = HighSpeedTrain;
 			sourceTree = "<group>";
@@ -3400,6 +3405,7 @@
 				A6DE9DC21663AD10009EECE6 /* HTSearchResultViewController.m in Sources */,
 				91FBBB9A167ECE53009C5024 /* CKCalendarView.m in Sources */,
 				91FBBB9B167ECE53009C5024 /* CKViewController.m in Sources */,
+				91F01765167F232E00B4C5F0 /* SetTimeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

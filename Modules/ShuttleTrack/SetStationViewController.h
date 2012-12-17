@@ -20,7 +20,8 @@
 #import "HTSearchResultViewController.h"
 #import "CKCalendarView.h"
 #import "CKViewController.h"
-@interface SetStationViewController : UITabBarController<UITabBarControllerDelegate,UIScrollViewDelegate,UITabBarControllerDelegate,StaionInfoDataSource,SetOriginAndStationViewDelegate,TrainStyleViewControllerDelegate,SetHTOriginAndStationViewDelegate,HTStaionInfoDataSource>
+#import "SetTimeViewController.h"
+@interface SetStationViewController : UITabBarController<UITabBarControllerDelegate,UIScrollViewDelegate,UITabBarControllerDelegate,StaionInfoDataSource,SetOriginAndStationViewDelegate,TrainStyleViewControllerDelegate,SetHTOriginAndStationViewDelegate,HTStaionInfoDataSource,SetTimeViewControllerDelegate>
 {
     NSArray *viewControllers;
     NSArray * region;
@@ -37,7 +38,8 @@
     *setdepatureStationviewController,
     *setTimeviewController,
     *setTrainTypeviewController,
-    *resultViewController;
+    *resultViewController,
+    *setHTTimeviewController;
     id delegate;
     id stationInfoTableView_delegate;
     int startStaion_origin;
@@ -54,6 +56,7 @@
     DownloadingView * downloadView;
     bool _isHightSpeedTrain;
     CKViewController * calendar;
+    SetTimeViewController * HTTime;
 }
 @property int tag;
 @property (nonatomic, retain) UIImageView* tabBarArrow;

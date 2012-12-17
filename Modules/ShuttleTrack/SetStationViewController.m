@@ -29,7 +29,6 @@
     trainStyle = [[NSString alloc]initWithString:@"2"];
     isinitData = true;
     downloadView = [DownloadingView new];
-    //[self addSelectView];
     _isHightSpeedTrain = isHighSpeedTrain;
     if (!isHighSpeedTrain){
         startStaion = [[NSString alloc]initWithString:@"基隆"];
@@ -75,11 +74,9 @@
     calendar = [[CKViewController alloc]init];
     calendar.view.frame = CGRectMake(0, 3, 320, 440);
     [setTimeviewController.view addSubview:calendar.view];
-    
-   
     setTimeviewController.tabBarItem.image = [UIImage imageNamed:@"TimeDrive.png"];
     //////////////////////////////////////////////////////////
-    
+    if (!isHighSpeedTrain){ 
     view4 = [[TrainStyleViewController alloc] initWithStyle:UITableViewStyleGrouped];
     view4.title = type4;
     view4.view.frame = CGRectMake(0, 10, 320, 420);
@@ -87,6 +84,15 @@
     view4.delegate = self;
     setTrainTypeviewController.tabBarItem.tag=3;
     setTrainTypeviewController.tabBarItem.image = [UIImage imageNamed:@"train.png"];
+    }
+    else {
+    HTTime =[[SetTimeViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    HTTime.view.frame = CGRectMake(0, 10, 320, 420);
+    HTTime.delegate = self;
+    [setHTTimeviewController.view addSubview:HTTime.view];
+     setHTTimeviewController.tabBarItem.tag=3;
+    setHTTimeviewController.tabBarItem.image = [UIImage imageNamed:@"TimeDrive.png"];
+    }
     //////////////////////////////////////////////////////////
     if (!isHighSpeedTrain){
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -103,7 +109,7 @@
         resultViewController.tabBarItem.image = [UIImage imageNamed:@"magnify.png"];
         [view5 recieveData];
     }
-    /*else {
+   /* else {
         ht_searchResult = [[HTSearchResultViewController alloc]init];
         ht_searchResult.dataSource = self;
         ht_searchResult.view.frame = CGRectMake(0, 10, 320, 425);
@@ -115,11 +121,12 @@
         [ht_searchResult recieveData];
     }*/
     //////////////////////////////////////////////////////////
-    if(!isHighSpeedTrain)
+    if(!isHighSpeedTrain){
         viewControllers = [[NSArray alloc]initWithObjects:setStartStationController, setdepatureStationviewController,setTimeviewController,setTrainTypeviewController ,resultViewController,nil];
-    else
-        viewControllers = [[NSArray alloc]initWithObjects:setStartStationController, setdepatureStationviewController,setTimeviewController,resultViewController,nil];
-    
+    }
+    else{
+        viewControllers = [[NSArray alloc]initWithObjects:setStartStationController, setdepatureStationviewController,setTimeviewController,setHTTimeviewController,resultViewController,nil];
+    }
     [viewControllers retain];
     [self setViewControllers:viewControllers animated:YES];
     self.delegate=self;
@@ -142,14 +149,18 @@
         setdepatureStationviewController = [[UIViewController alloc] init];
         setdepatureStationviewController.title = @"訖站";
         setTimeviewController = [[UIViewController alloc] init];
-        setTimeviewController.title = @"時間";
+        setTimeviewController.title = @"日期";
         setTrainTypeviewController = [[UIViewController alloc] init];
         setTrainTypeviewController.title = @"車種";
         resultViewController = [[UIViewController alloc] init];
         resultViewController.title = @"查詢";
+        setHTTimeviewController = [[UIViewController alloc] init];
+        setHTTimeviewController.title = @"時間";
     }
     return self;
 }
+
+
 
 -(void)navAddRightButton{
     UIBarButtonItem * swapStation = [[UIBarButtonItem alloc]initWithTitle:@"往返切換" style:UIBarButtonItemStylePlain target:self action:@selector(SwapStation)];
@@ -339,4 +350,9 @@
         return DepatureStation;
     else return @"左營";
 }
+
+-(void)HTTime:(SetTimeViewController *) controller nowselectedTime:(NSString *)Time{
+    NSLog(@"%@",Time);
+}
+
 @end
