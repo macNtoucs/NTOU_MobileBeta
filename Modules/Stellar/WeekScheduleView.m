@@ -41,28 +41,37 @@
 // An empty implementation adversely affects performance during animation.
 
 
+-(void)restorTheOriginalColor
+{
+    for (ClassLabelBasis* courselabel in TapAddCourse){
+        courselabel.backgroundColor = courselabel.tempBackground;
+        courselabel.changeColor = NO;
+    }
+    [TapAddCourse removeAllObjects];
+}
+
+-(void)removeAllcourselabel
+{
+    for (ClassLabelBasis* courselabel in course) {
+        courselabel.backgroundColor = courselabel.tempBackground;
+        courselabel.userInteractionEnabled = YES;
+    }
+
+}
+
 -(IBAction)labelTapped:(id)sender
 {
     UIGestureRecognizer * tapGesture = (UIGestureRecognizer *)sender;
     ClassLabelBasis*label = (ClassLabelBasis*)[self viewWithTag:tapGesture.view.tag];
     if (WhetherTapped) {
         if (label.changeColor) {
-            if (label.tag>=0) {
-                for (ClassLabelBasis* courselabel in TapAddCourse){
-                    courselabel.backgroundColor = courselabel.tempBackground;
-                    courselabel.changeColor = NO;
-                }
-                [TapAddCourse removeAllObjects];
-            }
+            if (label.tag>=0)
+                [self restorTheOriginalColor];
             else
                 [TapAddCourse removeObject:label];
             if ([TapAddCourse count]==0) {
-                for (ClassLabelBasis* courselabel in course) {
-                    if (courselabel.tag!=label.tag) {
-                        courselabel.backgroundColor = courselabel.tempBackground;
-                        courselabel.userInteractionEnabled = YES;
-                    }
-                }
+                [parent_ViewController alterButtonFunction:NO];
+                [self removeAllcourselabel];
             }
             label.backgroundColor = label.tempBackground;
             label.changeColor = NO;
@@ -70,6 +79,7 @@
             if ([TapAddCourse count]==0) {
                 if (label.tag>=0) {
                     [parent_ViewController DisplayUITextField:[NSArray arrayWithObjects:label.text, nil]];
+                    [parent_ViewController alterButtonFunction:YES];
                 }
                 for (ClassLabelBasis* courselabel in course) {
                     if (courselabel.tag!=label.tag) {

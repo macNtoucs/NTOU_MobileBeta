@@ -9,6 +9,9 @@
 #import "ClassAdd.h"
 
 @interface ClassAdd ()
+{
+    BOOL firstButtonType;
+}
 
 @end
 
@@ -19,6 +22,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        firstButtonType = NO;
     }
     return self;
 }
@@ -83,14 +87,31 @@
     
 }
 
+
+-(void)buttonFuntion:(BOOL)type
+{
+    firstButtonType = type;
+    if (type) {
+        _cleanInfo.titleLabel.text = @"移動";
+    }
+    else
+        _cleanInfo.titleLabel.text = @"清空";
+}
+
 - (IBAction)clean:(UIButton *)sender {
-    _classNameField.text = [NSString string];
-    _teacherNameField.text = [NSString string];
-    _roomNameField.text = [NSString string];
+    if (firstButtonType) {
+        
+    }
+    else{
+        _classNameField.text = [NSString string];
+        _teacherNameField.text = [NSString string];
+        _roomNameField.text = [NSString string];
+    }
+    [delegate buttonDidFinish];
 }
 
 - (IBAction)modify:(UIButton *)sender {
-    
+    [delegate buttonDidFinish];
 }
 
 -(void)viewDidAppear:(BOOL)animated

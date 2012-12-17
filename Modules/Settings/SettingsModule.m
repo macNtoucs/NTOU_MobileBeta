@@ -10,7 +10,7 @@
     self = [super init];
     if (self != nil) {
         self.tag = SettingsTag;
-        self.shortName = @"Settings";
+        self.shortName = @"設定";
         self.longName = @"Settings";
         self.iconName = @"settings";
     }

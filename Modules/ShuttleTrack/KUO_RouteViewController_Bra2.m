@@ -35,7 +35,7 @@
 -(void)changeDirectType
 {
     if (direct) {
-        if (tabcIndexPath.row==exceptionIndex&&except==FALSE) {
+        if ([[[display allKeys]objectAtIndex:tabcIndexPath.section] isEqualToString:@"基隆"]&&tabcIndexPath.row==exceptionIndex&&except==FALSE) {
             except = TRUE;
         }
         else{
@@ -53,10 +53,10 @@
 }
 
 -(NSArray *)checkExceptionArriveTime:(NSArray*) arr{
-    if (tabcIndexPath.row==exceptionIndex&&except==FALSE&&direct==TRUE) {
+    if ([[[display allKeys]objectAtIndex:tabcIndexPath.section] isEqualToString:@"基隆"]&&tabcIndexPath.row==exceptionIndex&&except==FALSE&&direct==TRUE) {
         return [arr objectAtIndex:0];
     }
-    else if (tabcIndexPath.row==exceptionIndex&&except==TRUE){
+    else if ([[[display allKeys]objectAtIndex:tabcIndexPath.section] isEqualToString:@"基隆"]&&tabcIndexPath.row==exceptionIndex&&except==TRUE){
         return [arr objectAtIndex:1];
     }
     else
@@ -156,10 +156,10 @@
 
 -(NSString*)changeTimeViewTittle:(NSString*) name
 {
-    if (tabcIndexPath.row==exceptionIndex&&except==FALSE&&direct==TRUE) {
+    if ([[[display allKeys]objectAtIndex:tabcIndexPath.section] isEqualToString:@"基隆"]&&tabcIndexPath.row==exceptionIndex&&except==FALSE&&direct==TRUE) {
         name = [name stringByAppendingString:@"(平日班次)"];
     }
-    else if (tabcIndexPath.row==exceptionIndex&&except==TRUE) {
+    else if ([[[display allKeys]objectAtIndex:tabcIndexPath.section] isEqualToString:@"基隆"]&&tabcIndexPath.row==exceptionIndex&&except==TRUE) {
         name = [[name componentsSeparatedByString:@"(平日班次)"] objectAtIndex:0];
         name = [name stringByAppendingString:@"(假日班次)"];
     }
@@ -183,7 +183,6 @@
             tabc.title = [[cell.textLabel.text stringByAppendingString:@"  →  "] stringByAppendingString:[[display allKeys]objectAtIndex:indexPath.section]];
     }
     except = FALSE;
-    
     [self.navigationController pushViewController:tabc animated:YES];
     [tabc release];
 }

@@ -21,7 +21,7 @@
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
-        self.title = @"Shuttles";
+        self.title = @"交通資訊";
     }
     return self;
 }

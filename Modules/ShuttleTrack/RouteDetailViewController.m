@@ -281,15 +281,15 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kPlainId];
+    SecondaryGroupedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kPlainId];
     
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:kPlainId] autorelease];
+        cell = [[[SecondaryGroupedTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:kPlainId] autorelease];
     }
     
     // Set up the cell
     
-  
+    cell.detailTextLabel.backgroundColor = [UIColor clearColor];
     cell.detailTextLabel.text =[item objectAtIndex:indexPath.row];
     NSLog(@"%@",cell.detailTextLabel.text);
    // cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
