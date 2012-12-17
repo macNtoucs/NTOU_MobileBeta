@@ -78,7 +78,7 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSArray *moduleNames = [self defaultModuleOrder];
     NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
-                          moduleNames, MITModuleTabOrderKey, nil];                          
+                          moduleNames, MITModuleTabOrderKey, nil];
     // Register defaults -- only has an effect if this is the first time this app has run on the device
     [defaults registerDefaults:dict];
     [defaults synchronize];    
