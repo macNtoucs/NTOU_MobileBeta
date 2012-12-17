@@ -305,7 +305,7 @@
 		A6CD75FD164820FB00D1209C /* SetWeekTimesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CD75FA164820FB00D1209C /* SetWeekTimesViewController.m */; };
 		A6CD75FE164820FB00D1209C /* TabBarNipple.png in Resources */ = {isa = PBXBuildFile; fileRef = A6CD75FB164820FB00D1209C /* TabBarNipple.png */; };
 		A6CD75FF164820FB00D1209C /* TabBarNipple@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A6CD75FC164820FB00D1209C /* TabBarNipple@2x.png */; };
-		A6CD760216482F8900D1209C /* SetStationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CD760116482F8900D1209C /* SetStationViewController.m */; };
+		A6CD760216482F8900D1209C /* SetStationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CD760116482F8900D1209C /* SetStationViewController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		A6CD76051648333400D1209C /* StationView.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CD76041648333300D1209C /* StationView.m */; };
 		A6CE2913165C86C200C3FE81 /* DownloadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CE2909165C86C200C3FE81 /* DownloadingView.m */; };
 		A6CE2914165C86C200C3FE81 /* bank.png in Resources */ = {isa = PBXBuildFile; fileRef = A6CE290B165C86C200C3FE81 /* bank.png */; };
