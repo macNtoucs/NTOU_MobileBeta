@@ -49,6 +49,9 @@ static CalendarDataManager *s_sharedManager = nil;
 }
 
 - (NSArray *)staticEventListIDs {
+    
+    NSLog(@"CalendarDataManager.m staticEventListIDs = %@", _staticEventListIDs);
+    
 	return _staticEventListIDs;
 }
 
@@ -102,7 +105,8 @@ static CalendarDataManager *s_sharedManager = nil;
 }
 
 + (NSArray *)staticEventTypes {
-	NSString *path = [[NSBundle mainBundle] pathForResource:@"staticEventTypes" ofType:@"plist" inDirectory:@"calendar"];
+	NSString *path = [[NSBundle mainBundle] pathForResource:@"staticEventTypes_ntou" ofType:@"plist" inDirectory:@"calendar"];
+    
 	NSArray *staticEventData = [NSArray arrayWithContentsOfFile:path];
 	NSMutableArray *mutableArray = [NSMutableArray array];
 	for (NSDictionary *listInfo in staticEventData) {
@@ -114,6 +118,7 @@ static CalendarDataManager *s_sharedManager = nil;
 		}
 		[mutableArray addObject:eventList];
 	}
+    
 	return [NSArray arrayWithArray:mutableArray];
 }
 
@@ -122,7 +127,8 @@ static CalendarDataManager *s_sharedManager = nil;
 }
 
 - (NSString *)request:(MITMobileWebAPI *)request displayHeaderForError:(NSError *)error {
-    return @"Events";
+    //return @"Events";
+    return @"Error";
 }
                                                          
 - (void)request:(MITMobileWebAPI *)request jsonLoaded:(id)JSONObject {
