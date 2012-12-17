@@ -18,6 +18,13 @@
 @implementation ClassInfoView
 @synthesize textView;
 @synthesize delegatetype5;
+
+#pragma mark Constants
+
+#define DEMO_VIEW_CONTROLLER_PUSH FALSE
+
+#pragma mark UIViewController methods
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -38,6 +45,13 @@
     return self;
 }
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+	if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) // See README
+		return UIInterfaceOrientationIsPortrait(interfaceOrientation);
+	else
+		return YES;
+}
 
 - (void)viewDidLoad
 {
@@ -114,63 +128,112 @@
     return 1;
 }
 
+
+- (void)handleSingle:(NSString*)filename
+{
+	NSString *phrase = nil; // Document password (for unlocking most encrypted PDF files)
+    NSString *filePath = [[[NSBundle mainBundle] bundlePath]stringByAppendingPathComponent:filename];
+
+    
+	ReaderDocument *document = [ReaderDocument withDocumentFilePath:filePath password:phrase];
+    
+	if (document != nil) // Must have a valid ReaderDocument object in order to proceed with things
+	{
+		ReaderViewController *readerViewController = [[ReaderViewController alloc] initWithReaderDocument:document];
+        
+		readerViewController.delegate = self; // Set the ReaderViewController delegate to self
+        
+        
+#if (DEMO_VIEW_CONTROLLER_PUSH == TRUE)
+        
+		[self.navigationController pushViewController:readerViewController animated:YES];
+        
+#else // present in a modal view controller
+        
+        [delegatetype5 presentOn:readerViewController];
+        
+        
+#endif // DEMO_VIEW_CONTROLLER_PUSH
+
+        
+	}
+}
+
+#pragma mark ReaderViewControllerDelegate methods
+
+- (void)dismissReaderViewController:(ReaderViewController *)viewController
+{
+#if (DEMO_VIEW_CONTROLLER_PUSH == TRUE)
+    
+	[self.navigationController popViewControllerAnimated:YES];
+    
+#else // dismiss the modal view controller
+    [delegatetype5 presentOff];
+	
+    
+#endif // DEMO_VIEW_CONTROLLER_PUSH
+}
+
 - (void) myAction: (UITapGestureRecognizer *) gr {
-    NSURL *url;
+    NSURL *url = nil;
+
     if (types==4) {
         if (gr.view.tag == 8) {
-            url = [[[ NSURL alloc ] initWithString: @"https://dl.dropbox.com/u/57606902/%E6%BC%94%E7%AE%97%E6%B3%95/Algorithm-Ch9.pdf" ] autorelease];
+            [self handleSingle:@"Algorithm-Ch9.pdf"];
         }
         else if (gr.view.tag == 7){
-            url = [[[ NSURL alloc ] initWithString: @"https://dl.dropbox.com/u/57606902/%E6%BC%94%E7%AE%97%E6%B3%95/Algorithm-Ch8.pdf" ] autorelease];
+            [self handleSingle:@"Algorithm-Ch8.pdf"];
         }
         else if (gr.view.tag == 6){
-            url = [[[ NSURL alloc ] initWithString: @"https://dl.dropbox.com/u/57606902/%E6%BC%94%E7%AE%97%E6%B3%95/Algorithm-Ch7.pdf" ] autorelease];
+            [self handleSingle:@"Algorithm-Ch7.pdf"];
         }
         else if (gr.view.tag == 5){
-            url = [[[ NSURL alloc ] initWithString: @"https://dl.dropbox.com/u/57606902/%E6%BC%94%E7%AE%97%E6%B3%95/Algorithm-Ch6.pdf" ] autorelease];
+            [self handleSingle:@"Algorithm-Ch6.pdf"];
         }
         else if (gr.view.tag == 4){
-            url = [[[ NSURL alloc ] initWithString: @"https://dl.dropbox.com/u/57606902/%E6%BC%94%E7%AE%97%E6%B3%95/Algorithm-Ch4.pdf" ] autorelease];
+            [self handleSingle:@"Algorithm-Ch4.pdf"];
         }
         else if (gr.view.tag == 3){
-            url = [[[ NSURL alloc ] initWithString: @"https://dl.dropbox.com/u/57606902/%E6%BC%94%E7%AE%97%E6%B3%95/Algorithm-Ch3.pdf" ] autorelease];
+            [self handleSingle:@"Algorithm-Ch3.pdf"];
         }
         else if (gr.view.tag == 2){
-            url = [[[ NSURL alloc ] initWithString: @"https://dl.dropbox.com/u/57606902/%E6%BC%94%E7%AE%97%E6%B3%95/Algorithm-Ch2.pdf" ] autorelease];
+            [self handleSingle:@"Algorithm-Ch2.pdf"];
         }
         else if (gr.view.tag == 1){
-            url = [[[ NSURL alloc ] initWithString: @"https://dl.dropbox.com/u/57606902/%E6%BC%94%E7%AE%97%E6%B3%95/Algorithm-Ch1.pdf" ] autorelease];
+            [self handleSingle:@"Algorithm-Ch1.pdf"];
         }
         else if (gr.view.tag == 0){
-            url = [[[ NSURL alloc ] initWithString: @"https://dl.dropbox.com/u/57606902/%E6%BC%94%E7%AE%97%E6%B3%95/Syllabus.pdf" ] autorelease];
+            [self handleSingle:@"Syllabus.pdf"];
         }
+        
+
     }
     else if (types==2)
     {
         switch (gr.view.tag) {
             case 1:
-                url = [[[ NSURL alloc ] initWithString: @"https://dl.dropbox.com/u/57606902/%E6%BC%94%E7%AE%97%E6%B3%95/exercise/2012_algorithm_homework_1.pdf" ] autorelease];
+                [self handleSingle:@"2012_algorithm_homework_1.pdf"];
                 break;
             case 2:
-                url = [[[ NSURL alloc ] initWithString: @"https://dl.dropbox.com/u/57606902/%E6%BC%94%E7%AE%97%E6%B3%95/exercise/2012_algorithm_homework_2.pdf" ] autorelease];
+                [self handleSingle:@"2012_algorithm_homework_2.pdf"];
                 break;
             case 3:
-                url = [[[ NSURL alloc ] initWithString: @"https://dl.dropbox.com/u/57606902/%E6%BC%94%E7%AE%97%E6%B3%95/exercise/2012_algorithm_homework_3.pdf" ] autorelease];
+                [self handleSingle:@"2012_algorithm_homework_3.pdf"];
                 break;
             case 4:
-                url = [[[ NSURL alloc ] initWithString: @"https://dl.dropbox.com/u/57606902/%E6%BC%94%E7%AE%97%E6%B3%95/exercise/2012_algorithm_homework_4.pdf" ] autorelease];
+                [self handleSingle:@"2012_algorithm_homework_4.pdf"];
                 break;
             case 5:
-                url = [[[ NSURL alloc ] initWithString: @"https://dl.dropbox.com/u/57606902/%E6%BC%94%E7%AE%97%E6%B3%95/exercise/2012_algorithm_homework_5.pdf" ] autorelease];
+                [self handleSingle:@"2012_algorithm_homework_5.pdf"];
                 break;
             case 6:
-                url = [[[ NSURL alloc ] initWithString: @"https://dl.dropbox.com/u/57606902/%E6%BC%94%E7%AE%97%E6%B3%95/exercise/2012_algorithm_homework_6.pdf" ] autorelease];
+                [self handleSingle:@"2012_algorithm_homework_6.pdf"];
                 break;
             case 7:
-                url = [[[ NSURL alloc ] initWithString: @"https://dl.dropbox.com/u/57606902/%E6%BC%94%E7%AE%97%E6%B3%95/exercise/2012_algorithm_homework_7.pdf" ] autorelease];
+                [self handleSingle:@"2012_algorithm_homework_7.pdf"];
                 break;
             case 8:
-                url = [[[ NSURL alloc ] initWithString: @"https://dl.dropbox.com/u/57606902/%E6%BC%94%E7%AE%97%E6%B3%95/exercise/2012_algorithm_homework_8.pdf" ] autorelease];
+                [self handleSingle:@"2012_algorithm_homework_8.pdf"];
                 break;
 
             default:
@@ -181,23 +244,26 @@
     {
         switch (gr.view.tag) {
             case 1:
+                [self handleSingle:@"AL-mid-11.pdf"];
                 url = [[[ NSURL alloc ] initWithString: @"https://dl.dropbox.com/u/57606902/%E6%BC%94%E7%AE%97%E6%B3%95/AL-mid-11.pdf" ] autorelease];
                 break;
             case 2:
-                url = [[[ NSURL alloc ] initWithString: @"https://dl.dropbox.com/u/57606902/%E6%BC%94%E7%AE%97%E6%B3%95/2011_NTOU_CSIE_algorithm_final.pdf" ] autorelease];
+                [self handleSingle:@"2011_NTOU_CSIE_algorithm_final.pdf"];
                 break;
             case 3:
-                url = [[[ NSURL alloc ] initWithString: @"https://dl.dropbox.com/u/57606902/%E6%BC%94%E7%AE%97%E6%B3%95/AL-mid-10.pdf" ] autorelease];
+                [self handleSingle:@"AL-mid-10.pdf"];
                 break;
             case 4:
-                url = [[[ NSURL alloc ] initWithString: @"https://dl.dropbox.com/u/57606902/%E6%BC%94%E7%AE%97%E6%B3%95/2010_NTOU_CSIE_algorithm_final.pdf" ] autorelease];
+                [self handleSingle:@"2010_NTOU_CSIE_algorithm_final.pdf"];
                 break;
                 
             default:
                 break;
         }
     }
-    [[UIApplication sharedApplication] openURL:url];
+    if (url!=nil) {
+        [[UIApplication sharedApplication] openURL:url];
+    }
 }
 
 -(NSString *)subLabeltext:(NSIndexPath *)indexPath

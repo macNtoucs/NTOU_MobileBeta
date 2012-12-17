@@ -14,4 +14,7 @@
     #import "MITConstants.h" // shared constants (common URLs, NSUserDefaults keys, etc)
     #import "MITLogging.h" // DLog(), WLog(), ELog()
     #import "ZBarSDK.h"
+    #import <CoreGraphics/CoreGraphics.h>
+    #import <QuartzCore/QuartzCore.h>
+    #import <ImageIO/ImageIO.h>
 #endif

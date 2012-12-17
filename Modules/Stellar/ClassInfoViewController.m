@@ -45,18 +45,22 @@
         ClassInfoView *view1, *view2, *view3, *view4;
         view1 = [[ClassInfoView alloc] initWithStyle:UITableViewStyleGrouped];
         view1.title = type3;
+        view1.delegatetype5 = self;
         view1.view.frame = CGRectMake(0, 40, 320, 420);
         [viewController1.view addSubview:view1.tableView];
         view2 = [[ClassInfoView alloc] initWithStyle:UITableViewStyleGrouped];
         view2.title = type4;
+        view2.delegatetype5 = self;
         view2.view.frame = CGRectMake(0, 40, 320, 420);
         [viewController2.view addSubview:view2.tableView];
         view3 = [[ClassInfoView alloc] initWithStyle:UITableViewStyleGrouped];
         view3.title = type2;
+        view3.delegatetype5 = self;
         view3.view.frame = CGRectMake(0, 10, 320, 450);
         [viewController3.view addSubview:view3.tableView];
         view4 = [[ClassInfoView alloc] initWithStyle:UITableViewStyleGrouped];
         view4.title = type1;
+        view4.delegatetype5 = self;
         view4.view.frame = CGRectMake(0, 10, 320, 450);
         [viewController4.view addSubview:view4.tableView];
         view5 = [[ClassInfoView alloc] initWithStyle:UITableViewStyleGrouped];
@@ -70,6 +74,18 @@
     }
     
     return self;
+}
+
+-(void)presentOn:(ReaderViewController*)ViewController
+{
+    ViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    ViewController.modalPresentationStyle = UIModalPresentationFullScreen;
+    
+    [self presentViewController:ViewController animated:YES completion:nil];
+}
+-(void)presentOff
+{
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 - (CGFloat) horizontalLocationFor:(NSUInteger)tabIndex
