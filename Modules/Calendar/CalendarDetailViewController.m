@@ -19,6 +19,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    NSLog(@"CalendarDeatilViewController.m viewDidLoad");
 	
 	self.shareDelegate = self;
 	

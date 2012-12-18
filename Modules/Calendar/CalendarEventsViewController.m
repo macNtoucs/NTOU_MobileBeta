@@ -802,7 +802,8 @@
 																	 activeEventList.listID, @"type",
 																	 timeString, @"time", nil]];
 		}
-	} else if ([activeEventList.listID isEqualToString:@"academic"] || [activeEventList.listID isEqualToString:@"holidays"]) {
+	} //else if ([activeEventList.listID isEqualToString:@"academic"] || [activeEventList.listID isEqualToString:@"holidays"]) {
+    else if ([activeEventList.listID isEqualToString:@"Activities"]) {
 		NSCalendar *calendar = [NSCalendar currentCalendar];
 		NSUInteger unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit;
 		NSDateComponents *comps = [calendar components:unitFlags fromDate:startDate];
