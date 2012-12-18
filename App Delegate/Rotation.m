@@ -10,4 +10,12 @@
 
 @implementation Rotation
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (NSUInteger)supportedInterfaceOrientations{
+    return UIInterfaceOrientationMaskPortrait;
+}
+
 @end

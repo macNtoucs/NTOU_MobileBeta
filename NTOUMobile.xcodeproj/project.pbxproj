@@ -369,6 +369,7 @@
 		C7AFEE121659EC0A005FF1DB /* K_data.plist in Resources */ = {isa = PBXBuildFile; fileRef = C7AFEE081659EC0A005FF1DB /* K_data.plist */; };
 		C7AFEE131659EC0A005FF1DB /* Info.png in Resources */ = {isa = PBXBuildFile; fileRef = C7AFEE091659EC0A005FF1DB /* Info.png */; };
 		C7AFEE1D165B4648005FF1DB /* Time.png in Resources */ = {isa = PBXBuildFile; fileRef = C7AFEE1C165B4647005FF1DB /* Time.png */; };
+		C7BF082816806C3000153F6F /* Rotation.m in Sources */ = {isa = PBXBuildFile; fileRef = C7BF082716806C2F00153F6F /* Rotation.m */; };
 		DE03763C1350F5080041DDBD /* MIT150Button.m in Sources */ = {isa = PBXBuildFile; fileRef = DE03763B1350F5080041DDBD /* MIT150Button.m */; };
 		DE0A62AC10CDAEA90058B2C2 /* MITBuildInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DE0A62AB10CDAEA90058B2C2 /* MITBuildInfo.m */; };
 		DE0F6B3411109BC500F064D6 /* AboutMITVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DE0F6B3311109BC500F064D6 /* AboutMITVC.m */; };
@@ -1158,6 +1159,8 @@
 		C7AFEE081659EC0A005FF1DB /* K_data.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = K_data.plist; sourceTree = "<group>"; };
 		C7AFEE091659EC0A005FF1DB /* Info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Info.png; sourceTree = "<group>"; };
 		C7AFEE1C165B4647005FF1DB /* Time.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Time.png; sourceTree = "<group>"; };
+		C7BF082616806C2F00153F6F /* Rotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Rotation.h; path = "App Delegate/Rotation.h"; sourceTree = "<group>"; };
+		C7BF082716806C2F00153F6F /* Rotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Rotation.m; path = "App Delegate/Rotation.m"; sourceTree = "<group>"; };
 		DE03763A1350F5080041DDBD /* MIT150Button.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIT150Button.h; sourceTree = "<group>"; };
 		DE03763B1350F5080041DDBD /* MIT150Button.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIT150Button.m; sourceTree = "<group>"; };
 		DE0A62AA10CDAEA90058B2C2 /* MITBuildInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MITBuildInfo.h; sourceTree = "<group>"; };
@@ -2358,6 +2361,98 @@
 			path = JSON;
 			sourceTree = "<group>";
 		};
+		C7BF082316802EBF00153F6F /* PDFSources */ = {
+			isa = PBXGroup;
+			children = (
+				91F017C1167F355600B4C5F0 /* Syllabus.pdf */,
+				91F0177A167F355600B4C5F0 /* 2010_NTOU_CSIE_algorithm_final.pdf */,
+				91F0177B167F355600B4C5F0 /* 2011_NTOU_CSIE_algorithm_final.pdf */,
+				91F0177C167F355600B4C5F0 /* 2012_algorithm_homework_1.pdf */,
+				91F0177D167F355600B4C5F0 /* 2012_algorithm_homework_2.pdf */,
+				91F0177E167F355600B4C5F0 /* 2012_algorithm_homework_3.pdf */,
+				91F0177F167F355600B4C5F0 /* 2012_algorithm_homework_4.pdf */,
+				91F01780167F355600B4C5F0 /* 2012_algorithm_homework_5.pdf */,
+				91F01781167F355600B4C5F0 /* 2012_algorithm_homework_6.pdf */,
+				91F01782167F355600B4C5F0 /* 2012_algorithm_homework_7.pdf */,
+				91F01783167F355600B4C5F0 /* 2012_algorithm_homework_8.pdf */,
+				91F01784167F355600B4C5F0 /* AL-mid-10.pdf */,
+				91F01785167F355600B4C5F0 /* AL-mid-11.pdf */,
+				91F01786167F355600B4C5F0 /* Algorithm-Ch1.pdf */,
+				91F01787167F355600B4C5F0 /* Algorithm-Ch2.pdf */,
+				91F01788167F355600B4C5F0 /* Algorithm-Ch3.pdf */,
+				91F01789167F355600B4C5F0 /* Algorithm-Ch4.pdf */,
+				91F0178A167F355600B4C5F0 /* Algorithm-Ch6.pdf */,
+				91F0178B167F355600B4C5F0 /* Algorithm-Ch7.pdf */,
+				91F0178C167F355600B4C5F0 /* Algorithm-Ch8.pdf */,
+				91F0178D167F355600B4C5F0 /* Algorithm-Ch9.pdf */,
+			);
+			name = PDFSources;
+			sourceTree = "<group>";
+		};
+		C7BF082516802EDB00153F6F /* PDF_API */ = {
+			isa = PBXGroup;
+			children = (
+				91F017C2167F355600B4C5F0 /* ThumbsMainToolbar.h */,
+				91F017C3167F355600B4C5F0 /* ThumbsMainToolbar.m */,
+				91F017C4167F355600B4C5F0 /* ThumbsViewController.h */,
+				91F017C5167F355600B4C5F0 /* ThumbsViewController.m */,
+				91F017C6167F355600B4C5F0 /* UIXToolbarView.h */,
+				91F017C7167F355600B4C5F0 /* UIXToolbarView.m */,
+				91F0178E167F355600B4C5F0 /* AppIcon-057.png */,
+				91F0178F167F355600B4C5F0 /* AppIcon-072.png */,
+				91F01790167F355600B4C5F0 /* AppIcon-114.png */,
+				91F01791167F355600B4C5F0 /* AppIcon-144.png */,
+				91F01792167F355600B4C5F0 /* CGPDFDocument.h */,
+				91F01793167F355600B4C5F0 /* CGPDFDocument.m */,
+				91F01794167F355600B4C5F0 /* Default-568h@2x.png */,
+				91F01795167F355600B4C5F0 /* Reader-Button-H.png */,
+				91F01796167F355600B4C5F0 /* Reader-Button-H@2x.png */,
+				91F01797167F355600B4C5F0 /* Reader-Button-N.png */,
+				91F01798167F355600B4C5F0 /* Reader-Button-N@2x.png */,
+				91F01799167F355600B4C5F0 /* Reader-Email.png */,
+				91F0179A167F355600B4C5F0 /* Reader-Email@2x.png */,
+				91F0179B167F355600B4C5F0 /* Reader-Mark-N.png */,
+				91F0179C167F355600B4C5F0 /* Reader-Mark-N@2x.png */,
+				91F0179D167F355600B4C5F0 /* Reader-Mark-Y.png */,
+				91F0179E167F355600B4C5F0 /* Reader-Mark-Y@2x.png */,
+				91F0179F167F355600B4C5F0 /* Reader-Print.png */,
+				91F017A0167F355600B4C5F0 /* Reader-Print@2x.png */,
+				91F017A1167F355600B4C5F0 /* Reader-Thumbs.png */,
+				91F017A2167F355600B4C5F0 /* Reader-Thumbs@2x.png */,
+				91F017A3167F355600B4C5F0 /* ReaderConstants.h */,
+				91F017A4167F355600B4C5F0 /* ReaderConstants.m */,
+				91F017A5167F355600B4C5F0 /* ReaderContentPage.h */,
+				91F017A6167F355600B4C5F0 /* ReaderContentPage.m */,
+				91F017A7167F355600B4C5F0 /* ReaderContentTile.h */,
+				91F017A8167F355600B4C5F0 /* ReaderContentTile.m */,
+				91F017A9167F355600B4C5F0 /* ReaderContentView.h */,
+				91F017AA167F355600B4C5F0 /* ReaderContentView.m */,
+				91F017AB167F355600B4C5F0 /* ReaderDocument.h */,
+				91F017AC167F355600B4C5F0 /* ReaderDocument.m */,
+				91F017AD167F355600B4C5F0 /* ReaderMainPagebar.h */,
+				91F017AE167F355600B4C5F0 /* ReaderMainPagebar.m */,
+				91F017AF167F355600B4C5F0 /* ReaderMainToolbar.h */,
+				91F017B0167F355600B4C5F0 /* ReaderMainToolbar.m */,
+				91F017B1167F355600B4C5F0 /* ReaderThumbCache.h */,
+				91F017B2167F355600B4C5F0 /* ReaderThumbCache.m */,
+				91F017B3167F355600B4C5F0 /* ReaderThumbFetch.h */,
+				91F017B4167F355600B4C5F0 /* ReaderThumbFetch.m */,
+				91F017B5167F355600B4C5F0 /* ReaderThumbQueue.h */,
+				91F017B6167F355600B4C5F0 /* ReaderThumbQueue.m */,
+				91F017B7167F355600B4C5F0 /* ReaderThumbRender.h */,
+				91F017B8167F355600B4C5F0 /* ReaderThumbRender.m */,
+				91F017B9167F355600B4C5F0 /* ReaderThumbRequest.h */,
+				91F017BA167F355600B4C5F0 /* ReaderThumbRequest.m */,
+				91F017BB167F355600B4C5F0 /* ReaderThumbsView.h */,
+				91F017BC167F355600B4C5F0 /* ReaderThumbsView.m */,
+				91F017BD167F355600B4C5F0 /* ReaderThumbView.h */,
+				91F017BE167F355600B4C5F0 /* ReaderThumbView.m */,
+				91F017BF167F355600B4C5F0 /* ReaderViewController.h */,
+				91F017C0167F355600B4C5F0 /* ReaderViewController.m */,
+			);
+			name = PDF_API;
+			sourceTree = "<group>";
+		};
 		DE1348F810FFC2CC006FFF33 /* debug_tiles */ = {
 			isa = PBXGroup;
 			children = (
@@ -2611,84 +2706,8 @@
 		DE71544A102FE468005E6111 /* Stellar */ = {
 			isa = PBXGroup;
 			children = (
-				91F0177A167F355600B4C5F0 /* 2010_NTOU_CSIE_algorithm_final.pdf */,
-				91F0177B167F355600B4C5F0 /* 2011_NTOU_CSIE_algorithm_final.pdf */,
-				91F0177C167F355600B4C5F0 /* 2012_algorithm_homework_1.pdf */,
-				91F0177D167F355600B4C5F0 /* 2012_algorithm_homework_2.pdf */,
-				91F0177E167F355600B4C5F0 /* 2012_algorithm_homework_3.pdf */,
-				91F0177F167F355600B4C5F0 /* 2012_algorithm_homework_4.pdf */,
-				91F01780167F355600B4C5F0 /* 2012_algorithm_homework_5.pdf */,
-				91F01781167F355600B4C5F0 /* 2012_algorithm_homework_6.pdf */,
-				91F01782167F355600B4C5F0 /* 2012_algorithm_homework_7.pdf */,
-				91F01783167F355600B4C5F0 /* 2012_algorithm_homework_8.pdf */,
-				91F01784167F355600B4C5F0 /* AL-mid-10.pdf */,
-				91F01785167F355600B4C5F0 /* AL-mid-11.pdf */,
-				91F01786167F355600B4C5F0 /* Algorithm-Ch1.pdf */,
-				91F01787167F355600B4C5F0 /* Algorithm-Ch2.pdf */,
-				91F01788167F355600B4C5F0 /* Algorithm-Ch3.pdf */,
-				91F01789167F355600B4C5F0 /* Algorithm-Ch4.pdf */,
-				91F0178A167F355600B4C5F0 /* Algorithm-Ch6.pdf */,
-				91F0178B167F355600B4C5F0 /* Algorithm-Ch7.pdf */,
-				91F0178C167F355600B4C5F0 /* Algorithm-Ch8.pdf */,
-				91F0178D167F355600B4C5F0 /* Algorithm-Ch9.pdf */,
-				91F0178E167F355600B4C5F0 /* AppIcon-057.png */,
-				91F0178F167F355600B4C5F0 /* AppIcon-072.png */,
-				91F01790167F355600B4C5F0 /* AppIcon-114.png */,
-				91F01791167F355600B4C5F0 /* AppIcon-144.png */,
-				91F01792167F355600B4C5F0 /* CGPDFDocument.h */,
-				91F01793167F355600B4C5F0 /* CGPDFDocument.m */,
-				91F01794167F355600B4C5F0 /* Default-568h@2x.png */,
-				91F01795167F355600B4C5F0 /* Reader-Button-H.png */,
-				91F01796167F355600B4C5F0 /* Reader-Button-H@2x.png */,
-				91F01797167F355600B4C5F0 /* Reader-Button-N.png */,
-				91F01798167F355600B4C5F0 /* Reader-Button-N@2x.png */,
-				91F01799167F355600B4C5F0 /* Reader-Email.png */,
-				91F0179A167F355600B4C5F0 /* Reader-Email@2x.png */,
-				91F0179B167F355600B4C5F0 /* Reader-Mark-N.png */,
-				91F0179C167F355600B4C5F0 /* Reader-Mark-N@2x.png */,
-				91F0179D167F355600B4C5F0 /* Reader-Mark-Y.png */,
-				91F0179E167F355600B4C5F0 /* Reader-Mark-Y@2x.png */,
-				91F0179F167F355600B4C5F0 /* Reader-Print.png */,
-				91F017A0167F355600B4C5F0 /* Reader-Print@2x.png */,
-				91F017A1167F355600B4C5F0 /* Reader-Thumbs.png */,
-				91F017A2167F355600B4C5F0 /* Reader-Thumbs@2x.png */,
-				91F017A3167F355600B4C5F0 /* ReaderConstants.h */,
-				91F017A4167F355600B4C5F0 /* ReaderConstants.m */,
-				91F017A5167F355600B4C5F0 /* ReaderContentPage.h */,
-				91F017A6167F355600B4C5F0 /* ReaderContentPage.m */,
-				91F017A7167F355600B4C5F0 /* ReaderContentTile.h */,
-				91F017A8167F355600B4C5F0 /* ReaderContentTile.m */,
-				91F017A9167F355600B4C5F0 /* ReaderContentView.h */,
-				91F017AA167F355600B4C5F0 /* ReaderContentView.m */,
-				91F017AB167F355600B4C5F0 /* ReaderDocument.h */,
-				91F017AC167F355600B4C5F0 /* ReaderDocument.m */,
-				91F017AD167F355600B4C5F0 /* ReaderMainPagebar.h */,
-				91F017AE167F355600B4C5F0 /* ReaderMainPagebar.m */,
-				91F017AF167F355600B4C5F0 /* ReaderMainToolbar.h */,
-				91F017B0167F355600B4C5F0 /* ReaderMainToolbar.m */,
-				91F017B1167F355600B4C5F0 /* ReaderThumbCache.h */,
-				91F017B2167F355600B4C5F0 /* ReaderThumbCache.m */,
-				91F017B3167F355600B4C5F0 /* ReaderThumbFetch.h */,
-				91F017B4167F355600B4C5F0 /* ReaderThumbFetch.m */,
-				91F017B5167F355600B4C5F0 /* ReaderThumbQueue.h */,
-				91F017B6167F355600B4C5F0 /* ReaderThumbQueue.m */,
-				91F017B7167F355600B4C5F0 /* ReaderThumbRender.h */,
-				91F017B8167F355600B4C5F0 /* ReaderThumbRender.m */,
-				91F017B9167F355600B4C5F0 /* ReaderThumbRequest.h */,
-				91F017BA167F355600B4C5F0 /* ReaderThumbRequest.m */,
-				91F017BB167F355600B4C5F0 /* ReaderThumbsView.h */,
-				91F017BC167F355600B4C5F0 /* ReaderThumbsView.m */,
-				91F017BD167F355600B4C5F0 /* ReaderThumbView.h */,
-				91F017BE167F355600B4C5F0 /* ReaderThumbView.m */,
-				91F017BF167F355600B4C5F0 /* ReaderViewController.h */,
-				91F017C0167F355600B4C5F0 /* ReaderViewController.m */,
-				91F017C1167F355600B4C5F0 /* Syllabus.pdf */,
-				91F017C2167F355600B4C5F0 /* ThumbsMainToolbar.h */,
-				91F017C3167F355600B4C5F0 /* ThumbsMainToolbar.m */,
-				91F017C4167F355600B4C5F0 /* ThumbsViewController.h */,
-				91F017C5167F355600B4C5F0 /* ThumbsViewController.m */,
-				91F017C6167F355600B4C5F0 /* UIXToolbarView.h */,
-				91F017C7167F355600B4C5F0 /* UIXToolbarView.m */,
+				C7BF082316802EBF00153F6F /* PDFSources */,
+				C7BF082516802EDB00153F6F /* PDF_API */,
 				A6CD75F9164820FB00D1209C /* SetWeekTimesViewController.h */,
 				A6CD75FA164820FB00D1209C /* SetWeekTimesViewController.m */,
 				A6CD75FB164820FB00D1209C /* TabBarNipple.png */,
@@ -2765,6 +2784,8 @@
 				2C0865A41435FCB900A092D2 /* MIT_MobileAppDelegate+Private.h */,
 				1D3623240D0F684500981E51 /* MIT_MobileAppDelegate.h */,
 				1D3623250D0F684500981E51 /* MIT_MobileAppDelegate.m */,
+				C7BF082616806C2F00153F6F /* Rotation.h */,
+				C7BF082716806C2F00153F6F /* Rotation.m */,
 				DE71537A102FD66A005E6111 /* MIT_MobileAppDelegate+ModuleList.h */,
 				DE71537B102FD66A005E6111 /* MIT_MobileAppDelegate+ModuleList.m */,
 			);
@@ -3187,7 +3208,7 @@
 			attributes = {
 				LastUpgradeCheck = 0450;
 			};
-			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "MIT Mobile" */;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "NTOUMobile" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
@@ -3718,6 +3739,7 @@
 				91F01800167F355600B4C5F0 /* ThumbsMainToolbar.m in Sources */,
 				91F01801167F355600B4C5F0 /* ThumbsViewController.m in Sources */,
 				91F01802167F355600B4C5F0 /* UIXToolbarView.m in Sources */,
+				C7BF082816806C3000153F6F /* Rotation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3947,7 +3969,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "MIT Mobile" */ = {
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "NTOUMobile" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
