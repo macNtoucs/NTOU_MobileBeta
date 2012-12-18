@@ -542,7 +542,7 @@
         [cell.contentView addSubview:self.textView];
     }
     else if (types==6||(types==1&&indexPath.section==3)) {
-        cell.textLabel.textAlignment = NSTextAlignmentCenter;
+        cell.textLabel.textAlignment = UITextAlignmentCenter;
         if (types==1&&indexPath.section==3){
             cell.textLabel.textColor = [UIColor blueColor];
         }

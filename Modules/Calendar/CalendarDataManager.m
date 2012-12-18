@@ -49,6 +49,9 @@ static CalendarDataManager *s_sharedManager = nil;
 }
 
 - (NSArray *)staticEventListIDs {
+    
+    NSLog(@"CalendarDataManager.m staticEventListIDs = %@", _staticEventListIDs);
+    
 	return _staticEventListIDs;
 }
 
@@ -63,10 +66,16 @@ static CalendarDataManager *s_sharedManager = nil;
 }
 
 - (void)requestEventLists {
+    
+    NSLog(@"CalendarDataManager.m requestEventLists");
+    
 	// first assemble anything we already have
 	NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"sortOrder" ascending:YES];
 	[_eventLists release];
-	_eventLists = [[CoreDataManager objectsForEntity:@"MITEventList" matchingPredicate:nil sortDescriptors:[NSArray arrayWithObject:sort]] retain];
+    
+	//_eventLists = [[CoreDataManager objectsForEntity:@"MITEventList" matchingPredicate:nil sortDescriptors:[NSArray arrayWithObject:sort]] retain];
+    
+    _eventLists = [[NSArray alloc] initWithArray:[CalendarDataManager staticEventTypes]];
 
 	NSArray *staticLists = [CalendarDataManager staticEventTypes];
 	
@@ -94,6 +103,8 @@ static CalendarDataManager *s_sharedManager = nil;
 }
 
 - (MITEventList *)eventListWithID:(NSString *)listID {
+    
+    NSLog(@"CalendarDataManager.m eventLists = %@", _eventLists);
 	for (MITEventList *aList in _eventLists) {
 		if ([aList.listID isEqualToString:listID])
 			return aList;
@@ -102,7 +113,8 @@ static CalendarDataManager *s_sharedManager = nil;
 }
 
 + (NSArray *)staticEventTypes {
-	NSString *path = [[NSBundle mainBundle] pathForResource:@"staticEventTypes" ofType:@"plist" inDirectory:@"calendar"];
+	NSString *path = [[NSBundle mainBundle] pathForResource:@"staticEventTypes_ntou" ofType:@"plist" inDirectory:@"calendar"];
+    
 	NSArray *staticEventData = [NSArray arrayWithContentsOfFile:path];
 	NSMutableArray *mutableArray = [NSMutableArray array];
 	for (NSDictionary *listInfo in staticEventData) {
@@ -114,6 +126,7 @@ static CalendarDataManager *s_sharedManager = nil;
 		}
 		[mutableArray addObject:eventList];
 	}
+    
 	return [NSArray arrayWithArray:mutableArray];
 }
 
@@ -122,11 +135,13 @@ static CalendarDataManager *s_sharedManager = nil;
 }
 
 - (NSString *)request:(MITMobileWebAPI *)request displayHeaderForError:(NSError *)error {
-    return @"Events";
+    //return @"Events";
+    return @"Error";
 }
                                                          
 - (void)request:(MITMobileWebAPI *)request jsonLoaded:(id)JSONObject {
 	NSMutableArray *newLists = [NSMutableArray arrayWithArray:[CalendarDataManager staticEventTypes]];
+    
 	if (JSONObject && [JSONObject isKindOfClass:[NSArray class]]) {
 		NSInteger sortOrder = 1;
 		for (id anObject in JSONObject) {
