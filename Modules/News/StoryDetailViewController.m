@@ -32,8 +32,9 @@
 @synthesize webView = _webView;
 @synthesize type;
 //@synthesize table;
-@synthesize textView1;
-@synthesize textView2;
+@synthesize textView;
+@synthesize textSubView;
+@synthesize dataTableView;
 
 - (void)dealloc
 {
@@ -141,173 +142,37 @@
     }
     else
     {
-        /*table = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 320, 480) style:UITableViewStyleGrouped];
-         table.dataSource = self;
-         table.delegate = self;
-         [self.view addSubview:table];*/
+        CGRect dataFrame = CGRectMake(0, 50, 320, 180);
+        dataTableView = [[UITableView alloc] initWithFrame:dataFrame style:UITableViewStylePlain];
+        dataTableView.dataSource = self;
+        dataTableView.delegate = self;
+        dataTableView.scrollEnabled = NO;
+        textView = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
+        textView.editable = NO;
+        textView.scrollEnabled = YES;
         
-        /*CGRect textViewFrame = CGRectMake(20.0f, 20.0f, 280.0f, 124.0f);
-         textView1 = [[UITextView alloc] initWithFrame:textViewFrame];
-         textView1.returnKeyType = UIReturnKeyDone;
-         textView1.delegate = self;
-         [textView1 setEditable:NO];
-         
-         //[[textView1 layer] setBorderColor:[[UIColor blackColor] CGColor]];
-         //[[textView1 layer] setBorderWidth:1.5];
-         [[textView1 layer] setCornerRadius:15];
-         //[textView1 setBackgroundColor:[UIColor clearColor]];
-         [textView1 setClipsToBounds:YES];*/
         
-        CGRect textViewFrame = CGRectMake(20.0f, 20.0f, 280.0f, 124.0f);
-        textView1 = [[UITextView alloc] initWithFrame:textViewFrame];
         
-        NSString * tmpDate = @"公告日期：";
-        NSString * date = [[tmpDate stringByAppendingString:[story objectAtIndex:0]] stringByAppendingString:@"\n"];
-        NSString * tmpUndertaker = @"承辦人員：";
-        NSString * undertaker = [[tmpUndertaker stringByAppendingString:[story objectAtIndex:1]] stringByAppendingString:@"\n"];
-        NSString * tmpContact = @"聯絡方式：";
-        NSString * contact = [[tmpContact stringByAppendingString:[story objectAtIndex:2]] stringByAppendingString:@"\n"];
         NSString * tmpMain = @"主        旨：";
         NSString * main = [[tmpMain stringByAppendingString:[story objectAtIndex:3]] stringByAppendingString:@"\n"];
         
-        textView1.text = [[[date stringByAppendingString:undertaker] stringByAppendingString:contact] stringByAppendingString:main];
+        //NSString * tmpContent = @"公告內容22223efghjkltyuoertyuifghjk\n\n\n\n\n\n\n\n\n\n\n\n：";
+        //NSString * content = [[tmpContent stringByAppendingString:[story objectAtIndex:4]] stringByAppendingString:@"\n"];
+        textSubView = [[UITextView alloc] initWithFrame:CGRectMake(0, 250, 320, 230)];
+        textSubView.text = [story objectAtIndex:4];
+        textSubView.editable = NO;
         
-        CGRect frame1 = textView1.frame;
-        CGSize size1 = [textView1.text sizeWithFont:textView1.font
-                        
-                                  constrainedToSize:CGSizeMake(280, 1000)
-                        
-                                      lineBreakMode:UILineBreakModeTailTruncation];
-        frame1.size.height = size1.height > 1 ? size1.height + 30 : 64;
-        textView1.frame = frame1;
-        
-        textView1.returnKeyType = UIReturnKeyDone;
-        textView1.delegate = self;
-        [textView1 setEditable:NO];
-        [[textView1 layer] setCornerRadius:15];
-        [textView1 setClipsToBounds:YES];
-        
-        /*UIButton * undertakerButton = [UIButton buttonWithType:UIButtonTypeCustom];
-         undertakerButton.frame = CGRectMake(0, 18, 150, 20);
-         [undertakerButton setTitle:@"     ____" forState:UIControlStateNormal];
-         [undertakerButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-         undertakerButton.backgroundColor = [UIColor clearColor];
-         [undertakerButton addTarget:self action:@selector(openMail:) forControlEvents:UIControlEventTouchDown];
-         [textView1 addSubview:undertakerButton];*/
-        
-        CGRect textViewFrameContent = CGRectMake(20.0f, 170.0f, 280.0f, 220.0f);
-        textView2 = [[UITextView alloc] initWithFrame:textViewFrameContent];
-        
-        //[[textView2 layer] setBorderColor:[[UIColor blackColor] CGColor]];
-        //[[textView2 layer] setBorderWidth:1.5];
-        //[textView1 scrollRangeToVisible:[textView1 selectedRange]];
-        //[textView2 scrollRangeToVisible:[textView2 selectedRange]];
-        
-        NSString * tmpContent = @"公告內容：";
-        NSString * content = [[tmpContent stringByAppendingString:[story objectAtIndex:4]] stringByAppendingString:@"\n"];
-        NSString * tmpAttachment = @"附        件：";
-        NSString * attachment = [[tmpAttachment stringByAppendingString:[story objectAtIndex:5]] stringByAppendingString:@"\n"];
-        
-        textView2.text = [content stringByAppendingString:attachment];
-        CGRect frame2 = textView2.frame;
-        CGSize size2 = [textView2.text sizeWithFont:textView2.font
-                        
-                                  constrainedToSize:CGSizeMake(280, 200)
-                        
-                                      lineBreakMode:UILineBreakModeTailTruncation];
-        frame2.size.height = size2.height > 1 ? size2.height + 30 : 64;
-        textView2.frame = frame2;
-        
-        textView2.returnKeyType = UIReturnKeyDone;
-        textView2.delegate = self;
-        [textView2 setEditable:NO];
-        [[textView2 layer] setCornerRadius:15];
-        [textView2 setClipsToBounds:YES];
-        
-        [self.view addSubview:textView1];
-        [self.view addSubview:textView2];
+        [textView addSubview:textSubView];
+        [textView addSubview:dataTableView];
+        [self.view addSubview:textView];
     }
-    
-    /*NSURL*url=[NSURL URLWithString:@"http://www.google.com"];
-     NSURLRequest*request=[NSURLRequest requestWithURL:url];
-     [webView loadRequest:request];
-     //[self.view addSubview:webView];
-     CGRect mainFrame = [[UIScreen mainScreen] applicationFrame];
-     UIWebView *mainView = [[[UIWebView alloc] initWithFrame:mainFrame] autorelease];
-     mainView.autoresizingMask = (UIViewAutoresizingFlexibleHeight |
-     UIViewAutoresizingFlexibleWidth);
-     mainView.autoresizesSubviews = YES;
-     mainView.backgroundColor = [UIColor yellowColor];*/
-    
-    
-    //webView.delegate = self;
-    /*NSURL *url = [NSURL URLWithString:@"http://www.ntou.edu.tw/"];
-     //NSString *path = @"http://www.ntou.edu.tw/";
-     //NSURL *url = [NSURL fileURLWithPath:path];
-     NSURLRequest *requestURL = [NSURLRequest requestWithURL:url];
-     //將檔案載入UIWebView中
-     //[webView loadRequest:requestURL];
-     [mainView addSubview:webView];*/
-    //self.storyView = webView;
-    //[mainView addSubview:webView];
-    //[self setView:webView];
-    
-    /*[self.storyPager setEnabled:[self.newsController canSelectPreviousStory] forSegmentAtIndex:0];
-     [self.storyPager setEnabled:[self.newsController canSelectNextStory] forSegmentAtIndex:1];
-     
-     NSURL *baseURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath] isDirectory:YES];
-     NSURL *fileURL = [NSURL URLWithString:@"news/news_story_template.html" relativeToURL:baseURL];
-     
-     NSError *error = nil;
-     NSMutableString *htmlString = [NSMutableString stringWithContentsOfURL:fileURL encoding:NSUTF8StringEncoding error:&error];
-     if (!htmlString) {
-     return;
-     }
-     
-     NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
-     [dateFormatter setDateFormat:@"MMM dd, y"];
-     NSString *postDate = [dateFormatter stringFromDate:story.postDate];
-     
-     NSString *thumbnailURL = story.inlineImage.smallImage.url;
-     NSString *thumbnailWidth = [story.inlineImage.smallImage.width stringValue];
-     NSString *thumbnailHeight = [story.inlineImage.smallImage.height stringValue];
-     if (!thumbnailURL) {
-     thumbnailURL = @"";
-     }
-     if (!thumbnailWidth) {
-     thumbnailWidth = @"";
-     }
-     if (!thumbnailHeight) {
-     thumbnailHeight = @"";
-     }
-     
-     NSInteger galleryCount = [story.galleryImages count];
-     if (story.inlineImage) {
-     galleryCount++;
-     }
-     
-     // if not connected, pretend there are no images
-     NSString *galleryCountString = ([ConnectionDetector isConnected]) ? [[NSNumber numberWithInteger:galleryCount] stringValue] : @"0";
-     
-     NSArray *keys = [NSArray arrayWithObjects:
-     @"__TITLE__", @"__AUTHOR__", @"__DATE__", @"__BOOKMARKED__",
-     @"__THUMBNAIL_URL__", @"__THUMBNAIL_WIDTH__", @"__THUMBNAIL_HEIGHT__",
-     @"__GALLERY_COUNT__", @"__DEK__", @"__BODY__", nil];
-     
-     NSString *isBookmarked = ([self.story.bookmarked boolValue]) ? @"on" : @"";
-     
-     NSArray *values = [NSArray arrayWithObjects:
-     story.title, story.author, postDate, isBookmarked,
-     thumbnailURL, thumbnailWidth, thumbnailHeight,
-     galleryCountString, story.summary, story.body, nil];
-     
-     [htmlString replaceOccurrencesOfStrings:keys withStrings:values options:NSLiteralSearch];
-     
-     // mark story as read
-     self.story.read = [NSNumber numberWithBool:YES];
-     [CoreDataManager saveDataWithTemporaryMergePolicy:NSMergeByPropertyObjectTrumpMergePolicy];
-     [self.storyView loadHTMLString:htmlString baseURL:baseURL];*/
+    [self.view setBackgroundColor:[UIColor whiteColor]];
 }
+
+/*- (CGRect) textRectForBounds:(CGRect)bounds
+{
+    return CGRectInset(bounds, 100.0, 100.0);
+}*/
 
 -(IBAction)openMail:(id)sender
 {
@@ -358,30 +223,52 @@
     [self dismissModalViewControllerAnimated:YES];
 }
 
-/*- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
- {
- return 2;
- }
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+     return 1;
+}
  
  - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
- {
- return 1;
- }
+{
+     return 4;
+}
  
  - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
- {
- static NSString *CellIdentifier = @"Cell";
+{
+    static NSString *CellIdentifier = @"Cell";
  
- UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
- if (cell == nil) {
- cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:CellIdentifier];
- }
- 
- cell.textLabel.text = @"text1\ntext2";
- cell.detailTextLabel.text = @"detailText1\ndetailText2";
- 
- return cell;
- }*/
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:CellIdentifier];
+    }
+    NSString * tmpDate = @"公告日期：";
+    NSString * tmpUndertaker = @"承辦人員：";
+    NSString * tmpContact = @"聯絡方式：";
+    NSString * tmpAttachment = @"附        件：";
+    
+    switch (indexPath.row)
+    {
+        case 0:
+            cell.textLabel.text = tmpDate;
+            cell.detailTextLabel.text = [story objectAtIndex:0];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            break;
+        case 1:
+            cell.textLabel.text = tmpUndertaker;
+            cell.detailTextLabel.text = [story objectAtIndex:1];
+            break;
+        case 2:
+            cell.textLabel.text = tmpContact;
+            cell.detailTextLabel.text = [story objectAtIndex:2];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            break;
+        case 3:
+            cell.textLabel.text = tmpAttachment;
+            cell.detailTextLabel.text = [story objectAtIndex:5];
+            break;
+    }
+    return cell;
+}
 
 - (void)didPressNavButton:(id)sender {
     
