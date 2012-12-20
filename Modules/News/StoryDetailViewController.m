@@ -142,27 +142,26 @@
     }
     else
     {
-        CGRect dataFrame = CGRectMake(0, 50, 320, 180);
+        CGRect dataFrame = CGRectMake(0, 0, 320, 180);
         dataTableView = [[UITableView alloc] initWithFrame:dataFrame style:UITableViewStylePlain];
         dataTableView.dataSource = self;
         dataTableView.delegate = self;
         dataTableView.scrollEnabled = NO;
-        textView = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
+        textView = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, 320, 420)];
         textView.editable = NO;
         textView.scrollEnabled = YES;
+        //textView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"news/blueLine.png"]];
+        
+        //[dataTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+        [dataTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+        self.navigationItem.title = [story objectAtIndex:3];
+        
+        NSString * newLine = [[NSString alloc] initWithString:@"\n\n\n\n\n\n\n\n\n\n"];
+        
+        textView.font = [UIFont fontWithName:@"ArialMT" size:15];
+        textView.text = [newLine stringByAppendingString:[story objectAtIndex:4]];
         
         
-        
-        NSString * tmpMain = @"主        旨：";
-        NSString * main = [[tmpMain stringByAppendingString:[story objectAtIndex:3]] stringByAppendingString:@"\n"];
-        
-        //NSString * tmpContent = @"公告內容22223efghjkltyuoertyuifghjk\n\n\n\n\n\n\n\n\n\n\n\n：";
-        //NSString * content = [[tmpContent stringByAppendingString:[story objectAtIndex:4]] stringByAppendingString:@"\n"];
-        textSubView = [[UITextView alloc] initWithFrame:CGRectMake(0, 250, 320, 230)];
-        textSubView.text = [story objectAtIndex:4];
-        textSubView.editable = NO;
-        
-        [textView addSubview:textSubView];
         [textView addSubview:dataTableView];
         [self.view addSubview:textView];
     }
@@ -174,7 +173,7 @@
     return CGRectInset(bounds, 100.0, 100.0);
 }*/
 
--(IBAction)openMail:(id)sender
+-(void)openMail
 {
     if([MFMailComposeViewController canSendMail])
     {
@@ -183,7 +182,6 @@
         [mailer setSubject:@"A Massage from MobileTuts+"];
         NSArray *toRecipients = [NSArray arrayWithObjects:@"firstMail@example.com", nil];
         [mailer setToRecipients:toRecipients];
-        //UIImage *myImage = [UIImage imageNamed:<#(NSString *)#>];
         NSString *emailBody = @"Have you seen the MobileTuts+ web site?";
         [mailer setMessageBody:emailBody isHTML:NO];
         [self presentModalViewController:mailer animated:YES];
@@ -232,8 +230,24 @@
 {
      return 4;
 }
- 
- - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+
+/*- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+}*/
+
+/*- (NSIndexPath *) tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [[tableView cellForRowAtIndexPath:indexPath] setBackgroundColor:[UIColor colorWithRed:255/255.0 green:255/255.0 blue:0.0 alpha:0.5]];
+    return indexPath;
+}
+
+- (NSIndexPath *) tableView:(UITableView *)tableView willDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [[tableView cellForRowAtIndexPath:indexPath] setBackgroundColor:[UIColor whiteColor]];
+    return indexPath;
+}*/
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
  
@@ -252,22 +266,43 @@
             cell.textLabel.text = tmpDate;
             cell.detailTextLabel.text = [story objectAtIndex:0];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.contentView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"news/cell1.png"]];
+            cell.detailTextLabel.backgroundColor = [UIColor clearColor];
             break;
         case 1:
             cell.textLabel.text = tmpUndertaker;
             cell.detailTextLabel.text = [story objectAtIndex:1];
+            cell.contentView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"news/cell2.png"]];
+            cell.detailTextLabel.backgroundColor = [UIColor clearColor];
             break;
         case 2:
             cell.textLabel.text = tmpContact;
             cell.detailTextLabel.text = [story objectAtIndex:2];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.contentView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"news/cell3.png"]];
+            cell.detailTextLabel.backgroundColor = [UIColor clearColor];
             break;
         case 3:
             cell.textLabel.text = tmpAttachment;
             cell.detailTextLabel.text = [story objectAtIndex:5];
+            cell.contentView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"news/cell4.png"]];
+            cell.detailTextLabel.backgroundColor = [UIColor clearColor];
             break;
     }
     return cell;
+}
+
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == 1)
+    {
+        [self openMail];
+    }
+    
+    if (indexPath.row == 3)
+    {
+        
+    }
 }
 
 - (void)didPressNavButton:(id)sender {
