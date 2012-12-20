@@ -4,6 +4,26 @@
 #import "MITUIConstants.h"
 #import "MultiLineTableViewCell.h"
 
+@interface MyTableViewCell : UITableViewCell
+
+-(void) layoutSubviews;
+
+@end
+
+@implementation MyTableViewCell
+
+- (void) layoutSubviews
+{
+    [super layoutSubviews];
+    
+    CGRect frame = self.detailTextLabel.frame;
+    frame.size.width = 210;
+    [self.detailTextLabel setFrame:frame];
+}
+
+@end
+
+
 @implementation EventListTableView
 @synthesize events, parentViewController, isSearchResults, searchSpan;
 
@@ -17,13 +37,18 @@
 		return [self.events count];
 	}
     return 0;
-}
+    
+    //NSString *dateText = [CalendarDataManager dateStringForEventType:parentViewController.activeEventList forDate:parentViewController.startDate];
+    //if([dateText isEqual:@"Dec 17, 2012"])
+    /*if([dateText isEqual:@"Today"])
+        return 10;
+    return 0;*/}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return (isSearchResults) ? UNGROUPED_SECTION_HEADER_HEIGHT : 0;
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+/*- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
 	UIView *titleView = nil;
     NSString *titleString = nil;
 	if (isSearchResults) {
@@ -46,10 +71,13 @@
         
         titleView = [UITableView ungroupedSectionHeaderWithTitle:titleString];
 	}
+    
     return titleView;
-}
+}*/
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (MyTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    /*
 	NSString *CellIdentifier = [NSString stringWithFormat:@"%d", indexPath.row];
 	NSInteger randomTagNumberForLocationLabel = 1831;
     
@@ -103,11 +131,22 @@
         [cell.contentView addSubview:locationLabel];
         [locationLabel release];
     }
-	
+	*/
+    
+    static NSString *CellIdentifier = @"Cell";
+    
+    MyTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[MyTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+    }
+    
+    cell.textLabel.text = [[events objectAtIndex:indexPath.row] objectAtIndex:2];
+    cell.detailTextLabel.text = [[[[events objectAtIndex:indexPath.row] objectAtIndex:1] stringByAppendingString:@" "] stringByAppendingString:[[events objectAtIndex:indexPath.row] objectAtIndex:3]];
+    
     return cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+/*- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     //CGFloat *constraintWidth = [MultiLineTableViewCell cellWidthForTableStyle:self accessoryType:UITableViewCellAccessoryDisclosureIndicator];
     //if (*constraintWidth == 0) {
     
@@ -124,7 +163,7 @@
                                                          accessoryType:UITableViewCellAccessoryDisclosureIndicator];
     
     return (cellHeight > maxHeight) ? maxHeight : cellHeight;
-    /*
+    //
 	CGFloat height = CELL_TWO_LINE_HEIGHT;
     
 	UIFont *font = [UIFont fontWithName:BOLD_FONT size:CELL_STANDARD_FONT_SIZE];
@@ -137,8 +176,8 @@
 	}
 
 	return height;
-    */
-}
+    //
+}*/
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	

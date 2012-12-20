@@ -106,6 +106,7 @@
 		NSArray *lists = [[CalendarDataManager sharedManager] eventLists];
 		if (lists.count) {
 			activeEventList = [lists objectAtIndex:0];
+            
 		} else {
 			// TODO: show failure state
 		}
@@ -360,7 +361,7 @@
 		
 		self.tableView = nil;
 		
-		if ([activeEventList.listID isEqualToString:@"categories"]) {
+		/*if ([activeEventList.listID isEqualToString:@"categories"]) {
 			self.tableView = [[[EventCategoriesTableView alloc] initWithFrame:contentFrame style:UITableViewStyleGrouped] autorelease];		
 			[self.tableView applyStandardColors];
 			EventCategoriesTableView *categoriesTV = (EventCategoriesTableView *)self.tableView;
@@ -391,6 +392,9 @@
             requestNeeded = NO;
 
 		} else if([activeEventList.listID isEqualToString:@"OpenHouse"]) {
+            
+            NSLog(@"    OpenHouse");
+            
             OpenHouseTableView *openHouseTV = [[[OpenHouseTableView alloc] initWithFrame:contentFrame style:UITableViewStyleGrouped] autorelease];
             [openHouseTV applyStandardColors];
             self.tableView = openHouseTV;
@@ -403,13 +407,42 @@
             [self.tableView reloadData];
             requestNeeded = NO;
             
-        } else {
+        } else */{
+            
 			self.tableView = [[[EventListTableView alloc] initWithFrame:contentFrame] autorelease];
 			self.tableView.delegate = (EventListTableView *)self.tableView;
 			self.tableView.dataSource = (EventListTableView *)self.tableView;
 			((EventListTableView *)self.tableView).parentViewController = self;
             
+            NSLog(@"bar title = %@", );
+            
+            /*if()
+            {
+                
+            }*/
+            
+            NSArray * tmp1_1227 = [[NSArray alloc]initWithObjects:@"2012/12/27 (星期四)", @"下午 02:00 - 04:00	", @"Sensor Networks for Real", @"黃寶儀博士", @"國立台灣大學電機系教授", @"延平技術大樓820室", @"E3.通訊與導航工程系", nil];
+            NSArray * tmp2_1227 = [[NSArray alloc]initWithObjects:@"2012/12/27 (星期四)", @"下午 01:10 - 03:00	", @"(博、碩班專題討論) 海洋人生", @"楊施傑 先生", @"中華海員總工會 理事長", @"輪機系視聽教室", @"A4.輪機工程學系", nil];
+            
+            NSArray * Dec27 = [[NSArray alloc] initWithObjects:tmp1_1227, tmp2_1227, nil];
+            NSArray * dateText = [[CalendarDataManager dateStringForEventType:activeEventList forDate:startDate]componentsSeparatedByString:@","];
+            
+            if(![[dateText objectAtIndex:0] isEqual:@"Today"])
+            {
+                NSArray * month_date = [[dateText objectAtIndex:0] componentsSeparatedByString:@" "];
+                if([[month_date objectAtIndex:0] isEqual:@"Dec"] && [[month_date objectAtIndex:1] isEqual:@"27"])
+                {
+                    ((EventListTableView *)self.tableView).events = Dec27;
+                }
+            }
+            
+            else
+            {
+                events = Dec27;
+            }
+            
             if (!requestNeeded) {
+                
 				((EventListTableView *)self.tableView).events = events;
 				[self.tableView reloadData];
 			}
@@ -419,12 +452,13 @@
 				
 		[self.view addSubview:self.tableView];
 		
-		self.navigationItem.rightBarButtonItem = [self canShowMap:activeEventList]
+        // Map right button
+		/*self.navigationItem.rightBarButtonItem = [self canShowMap:activeEventList]
 		? [[[UIBarButtonItem alloc] initWithTitle:@"Map"
 											style:UIBarButtonItemStylePlain
 										   target:self
 										   action:@selector(mapButtonToggled)] autorelease]
-		: nil;
+		: nil;*/
 		
 		[self.mapView removeFromSuperview];
 

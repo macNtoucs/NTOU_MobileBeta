@@ -210,13 +210,14 @@ static CalendarDataManager *s_sharedManager = nil;
 {
 	// search from beginning of (day|month|fiscalYear) for (regular|academic|holiday) calendars
     NSDateComponents *components = nil;
-	if ([listType.listID isEqualToString:@"holidays"]) {
+	/*if ([listType.listID isEqualToString:@"holidays"]) {
 		components = [[NSCalendar currentCalendar] components:(NSYearCalendarUnit | NSMonthCalendarUnit)
 													 fromDate:startDate];
 		int year = [components month] <= 6 ? [components year] - 1 : [components year];
 		[components setYear:year];
 		[components setMonth:7];
-	} else if ([listType.listID isEqualToString:@"academic"]) {
+	} else if ([listType.listID isEqualToString:@"academic"]) {*/
+    if ([listType.listID isEqualToString:@"Activities"]) {
 		components = [[NSCalendar currentCalendar] components:(NSYearCalendarUnit | NSMonthCalendarUnit)
 													 fromDate:startDate];
 	} else {
@@ -423,7 +424,8 @@ static CalendarDataManager *s_sharedManager = nil;
 + (NSTimeInterval)intervalForEventType:(MITEventList *)listType fromDate:(NSDate *)aDate forward:(BOOL)forward
 {
 	NSInteger sign = forward ? 1 : -1;
-	if ([listType.listID isEqualToString:@"academic"]) {
+	//if ([listType.listID isEqualToString:@"academic"]) {
+    if ([listType.listID isEqualToString:@"Activities"]) {
 		NSCalendar *calendar = [NSCalendar currentCalendar];
 		NSDateComponents *comps = [[NSDateComponents alloc] init];
 		[comps setMonth:sign];
@@ -431,14 +433,15 @@ static CalendarDataManager *s_sharedManager = nil;
 		[comps release];
 		return [targetDate timeIntervalSinceDate:aDate];
 	}
-	else if ([listType.listID isEqualToString:@"holidays"]) {
+	/*else if ([listType.listID isEqualToString:@"holidays"]) {
 		NSCalendar *calendar = [NSCalendar currentCalendar];
 		NSDateComponents *comps = [[NSDateComponents alloc] init];
 		[comps setYear:sign];
 		NSDate *targetDate = [calendar dateByAddingComponents:comps toDate:aDate options:0];
 		[comps release];
 		return [targetDate timeIntervalSinceDate:aDate];
-	} else {
+	}*/
+    else {
 		return 86400.0 * sign;
 	}
 }
