@@ -170,7 +170,8 @@
         }
         
         textView.font = [UIFont systemFontOfSize:15.0];
-        textView.text = [newLine stringByAppendingString:[story objectAtIndex:4]];
+        if(![[story objectAtIndex:4] isEqual:@"無"])
+            textView.text = [newLine stringByAppendingString:[story objectAtIndex:4]];
         
         [textView addSubview:dataTableView];
         [textView addSubview:textSubView];

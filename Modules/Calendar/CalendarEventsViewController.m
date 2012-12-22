@@ -414,7 +414,7 @@
 			self.tableView.dataSource = (EventListTableView *)self.tableView;
 			((EventListTableView *)self.tableView).parentViewController = self;
             
-            NSLog(@"bar title = %@", );
+            //NSLog(@"bar title = %@", );
             
             /*if()
             {

@@ -128,18 +128,6 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
         case NewsCategoryIdEngineering:
             result = NewsCategoryEngineering;
             break;
-            /*case NewsCategoryIdScience:
-             result = NewsCategoryScience;
-             break;
-             case NewsCategoryIdManagement:
-             result = NewsCategoryManagement;
-             break;
-             case NewsCategoryIdArchitecture:
-             result = NewsCategoryArchitecture;
-             break;
-             case NewsCategoryIdHumanities:
-             result = NewsCategoryHumanities;
-             break;*/
         default:
             break;
     }
@@ -197,7 +185,7 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
 
 - (void)viewDidLoad
 {
-    //NSLog(@"StoryList.m viewDidLoad");
+    NSLog(@"StoryList.m viewDidLoad");
     [self setupNavScroller];
     
     // set up results table
@@ -210,7 +198,7 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    //NSLog(@"StoryList.m viewWillAppear");
+    NSLog(@"StoryList.m viewWillAppear");
     [super viewWillAppear:animated];
     // show / hide the bookmarks category
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"bookmarked == YES"];
@@ -460,7 +448,7 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
 
 - (void)buttonPressed:(id)sender
 {
-    //NSLog(@"StoryList.m buttonPressed");
+    NSLog(@"StoryList.m buttonPressed");
     UIButton *pressedButton = (UIButton *)sender;
     if (pressedButton.tag == SEARCH_BUTTON_TAG)
     {
@@ -633,7 +621,7 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
 
 - (void)switchToCategory:(NewsCategoryId)category
 {
-    //NSLog(@"StoryList.m switchToCategory");
+    NSLog(@"StoryList.m switchToCategory");
     if (category != self.activeCategoryId)
     {
         /*if (self.xmlParser)
@@ -641,12 +629,14 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
          [self.xmlParser abort]; // cancel previous category's request if it's still going
          self.xmlParser = nil;
          }*/
+        
         self.activeCategoryId = category;
         self.stories = nil;
         self.storiesDate = nil;
         self.storiesContent = nil;
         if ([self.stories count] > 0)
         {
+            NSLog(@"scrollToRowAtIndexPath");
             [storyTable scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
         }
         [storyTable reloadData];
@@ -654,6 +644,7 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
         
         if (self.activeCategoryId == NewsCategoryIdTopNews)
         {
+            NSLog(@"displayContentcampusFocus");
             [self displayContentCampusFocus];
             
         }
@@ -995,7 +986,7 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    //NSLog(@"StoryList.m numberOfSectionsInTableView");
+    NSLog(@"StoryList.m numberOfSectionsInTableView");
     return (self.stories.count > 0) ? 1 : 0;
 }
 
@@ -1048,14 +1039,17 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CGFloat rowHeight = THUMBNAIL_WIDTH;
-    
+    NSLog(@"stories = %@", [self.stories objectAtIndex:indexPath.row]);
     switch (indexPath.section)
     {
         case 0:
         {
+            //if (self.activeCategoryId == NewsCategoryIdTopNews)
             if (indexPath.row < self.stories.count)
             {
-                rowHeight = THUMBNAIL_WIDTH;
+                //rowHeight = THUMBNAIL_WIDTH;
+                rowHeight = 65.0;
+                //rowHeight = [[self.stories objectAtIndex:indexPath.row] length] / 30 * 50 + 1 * 75;
             }
             else
             {
@@ -1078,6 +1072,8 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
     
     if (cell == nil)
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:StoryCellIdentifier];
+    [cell.textLabel setFont:[UIFont boldSystemFontOfSize:16.0]];
+    cell.textLabel.numberOfLines = 2;
     
     cell.textLabel.text = [self.stories objectAtIndex:indexPath.row];
     cell.detailTextLabel.text = [self.storiesDate objectAtIndex:indexPath.row];
