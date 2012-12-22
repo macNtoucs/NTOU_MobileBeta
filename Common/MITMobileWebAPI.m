@@ -89,25 +89,29 @@
 
 + (void)showError:(NSError *)error header:(NSString *)header alertViewDelegate:(id<UIAlertViewDelegate>)alertViewDelegate {
 	
-	// Generic message
-	NSString *message = @"Connection Failure. Please try again later.";
-	// if the error can be classifed we will use a more specific error message
-	if(error) {
-		if ([[error domain] isEqualToString:@"NSURLErrorDomain"] && ([error code] == TIMED_OUT_CODE)) {
-			message = @"Connection Timed Out. Please try again later.";
-		} else if ([[error domain] isEqualToString:@"MITMobileWebAPI"] && ([error code] == JSON_ERROR_CODE)) {
-			message = @"Server Failure. Please try again later.";
-		}
-	}
-    
-	UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:header 
-														message:message
-													   delegate:alertViewDelegate 
-											  cancelButtonTitle:@"OK" 
-											  otherButtonTitles:nil];
-	
-	[alertView show];
-	[alertView release];
+	NSLog(@"MITMoileWebAPI.m header = %@", header);
+    if(![header isEqual:@"Events"])
+    {
+        // Generic message
+        NSString *message = @"Connection Failure. Please try again later.";
+        // if the error can be classifed we will use a more specific error message
+        if(error) {
+            if ([[error domain] isEqualToString:@"NSURLErrorDomain"] && ([error code] == TIMED_OUT_CODE)) {
+                message = @"Connection Timed Out. Please try again later.";
+            } else if ([[error domain] isEqualToString:@"MITMobileWebAPI"] && ([error code] == JSON_ERROR_CODE)) {
+                message = @"Server Failure. Please try again later.";
+            }
+        }
+        
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:header
+                                                            message:message
+                                                           delegate:alertViewDelegate
+                                                  cancelButtonTitle:@"OK" 
+                                                  otherButtonTitles:nil];
+        
+        [alertView show];
+        [alertView release];
+    }
 }
 
 
