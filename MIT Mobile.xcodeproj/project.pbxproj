@@ -126,6 +126,8 @@
 		3AA21C561039DDEA00DB7637 /* CoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA21C551039DDEA00DB7637 /* CoreDataManager.m */; };
 		431BC74E1679B125004B5376 /* ClassAdd.xib in Resources */ = {isa = PBXBuildFile; fileRef = 431BC74D1679B125004B5376 /* ClassAdd.xib */; };
 		431BC7511679B12E004B5376 /* ClassInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 431BC7501679B12E004B5376 /* ClassInfoViewController.xib */; };
+		431BC76516855AC5004B5376 /* CalendarActivities.m in Sources */ = {isa = PBXBuildFile; fileRef = 431BC76216855AC4004B5376 /* CalendarActivities.m */; };
+		431BC76616855AC5004B5376 /* CalendarSpeech.m in Sources */ = {isa = PBXBuildFile; fileRef = 431BC76416855AC5004B5376 /* CalendarSpeech.m */; };
 		441009DE110A6DAF00451B23 /* CampusMapToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 441009DD110A6DAF00451B23 /* CampusMapToolbar.m */; };
 		4420F23110E9513700A8CD05 /* ShuttleDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4420F23010E9513700A8CD05 /* ShuttleDataManager.m */; };
 		4420F31B10E96EBE00A8CD05 /* ShuttleStopMapAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4420F31A10E96EBE00A8CD05 /* ShuttleStopMapAnnotation.m */; };
@@ -700,6 +702,10 @@
 		3AA21C551039DDEA00DB7637 /* CoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataManager.m; sourceTree = "<group>"; };
 		431BC74D1679B125004B5376 /* ClassAdd.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClassAdd.xib; sourceTree = "<group>"; };
 		431BC7501679B12E004B5376 /* ClassInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClassInfoViewController.xib; sourceTree = "<group>"; };
+		431BC76116855AC4004B5376 /* CalendarActivities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarActivities.h; sourceTree = "<group>"; };
+		431BC76216855AC4004B5376 /* CalendarActivities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarActivities.m; sourceTree = "<group>"; };
+		431BC76316855AC5004B5376 /* CalendarSpeech.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarSpeech.h; sourceTree = "<group>"; };
+		431BC76416855AC5004B5376 /* CalendarSpeech.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarSpeech.m; sourceTree = "<group>"; };
 		441009DC110A6DAF00451B23 /* CampusMapToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CampusMapToolbar.h; sourceTree = "<group>"; };
 		441009DD110A6DAF00451B23 /* CampusMapToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CampusMapToolbar.m; sourceTree = "<group>"; };
 		4420F22F10E9513700A8CD05 /* ShuttleDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShuttleDataManager.h; sourceTree = "<group>"; };
@@ -2813,6 +2819,10 @@
 				EB83929F1163FD6E0067C0A3 /* Calendar.xcdatamodeld */,
 				EB8392421163EF340067C0A3 /* MITCalendarEvent.h */,
 				EB8392431163EF340067C0A3 /* MITCalendarEvent.m */,
+				431BC76116855AC4004B5376 /* CalendarActivities.h */,
+				431BC76216855AC4004B5376 /* CalendarActivities.m */,
+				431BC76316855AC5004B5376 /* CalendarSpeech.h */,
+				431BC76416855AC5004B5376 /* CalendarSpeech.m */,
 				EB8392441163EF340067C0A3 /* EventCategory.h */,
 				EB8392451163EF340067C0A3 /* EventCategory.m */,
 				EB07AD9512B886DF005D6A4C /* MITEventList.h */,
@@ -3415,6 +3425,8 @@
 				A6CE2913165C86C200C3FE81 /* DownloadingView.m in Sources */,
 				91EC76C81663616500E4E134 /* setHTOriginAndTerminalViewController.m in Sources */,
 				A6DE9DC21663AD10009EECE6 /* HTSearchResultViewController.m in Sources */,
+				431BC76516855AC5004B5376 /* CalendarActivities.m in Sources */,
+				431BC76616855AC5004B5376 /* CalendarSpeech.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
