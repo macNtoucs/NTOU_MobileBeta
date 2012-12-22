@@ -150,19 +150,30 @@
         textView = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, 320, 420)];
         textView.editable = NO;
         textView.scrollEnabled = YES;
-        //textView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"news/blueLine.png"]];
         
-        //[dataTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+        // 一行大約20個中文字
+        NSInteger lineNum = [[story objectAtIndex:3] length] / 20 + 1;
+        textSubView = [[UITextView alloc] initWithFrame:CGRectMake(0, 181, 320, lineNum*50)];
+        textSubView.text = [story objectAtIndex:3];
+        [textSubView setFont:[UIFont boldSystemFontOfSize:20.0]];
+        
         [dataTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
         self.navigationItem.title = [story objectAtIndex:3];
         
-        NSString * newLine = [[NSString alloc] initWithString:@"\n\n\n\n\n\n\n\n\n\n"];
+        NSInteger newLineHeight = lineNum * 50 / 20;
+        //NSLog(@"newLineHeight = %i", newLineHeight);
         
-        textView.font = [UIFont fontWithName:@"ArialMT" size:15];
+        NSString * newLine = [[NSString alloc] initWithString:@"\n\n\n\n\n\n\n\n\n\n"];
+        for (NSInteger i = 0; i < newLineHeight; i ++)
+        {
+            newLine = [newLine stringByAppendingString:@"\n"];
+        }
+        
+        textView.font = [UIFont systemFontOfSize:15.0];
         textView.text = [newLine stringByAppendingString:[story objectAtIndex:4]];
         
-        
         [textView addSubview:dataTableView];
+        [textView addSubview:textSubView];
         [self.view addSubview:textView];
     }
     [self.view setBackgroundColor:[UIColor whiteColor]];
@@ -253,38 +264,47 @@
  
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:CellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
-    NSString * tmpDate = @"公告日期：";
+    /*NSString * tmpDate = @"公告日期：";
     NSString * tmpUndertaker = @"承辦人員：";
     NSString * tmpContact = @"聯絡方式：";
-    NSString * tmpAttachment = @"附        件：";
-    
+    NSString * tmpAttachment = @"附        件：";*/
+    cell.textLabel.font = [UIFont systemFontOfSize:15.0];
+    //cell.textLabel.textColor = [UIColor blueColor];
     switch (indexPath.row)
     {
         case 0:
-            cell.textLabel.text = tmpDate;
-            cell.detailTextLabel.text = [story objectAtIndex:0];
+            //cell.textLabel.text = tmpDate;
+            //cell.detailTextLabel.text = [story objectAtIndex:0];
+            cell.textLabel.text = [story objectAtIndex:0];
+            cell.imageView.image = [UIImage imageNamed:@"news/home-calendar.png"];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.contentView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"news/cell1.png"]];
             cell.detailTextLabel.backgroundColor = [UIColor clearColor];
             break;
         case 1:
-            cell.textLabel.text = tmpUndertaker;
-            cell.detailTextLabel.text = [story objectAtIndex:1];
+            //cell.textLabel.text = tmpUndertaker;
+            //cell.detailTextLabel.text = [story objectAtIndex:1];
+            cell.textLabel.text = [story objectAtIndex:1];
+            cell.imageView.image = [UIImage imageNamed:@"news/home-people.png"];
             cell.contentView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"news/cell2.png"]];
             cell.detailTextLabel.backgroundColor = [UIColor clearColor];
             break;
         case 2:
-            cell.textLabel.text = tmpContact;
-            cell.detailTextLabel.text = [story objectAtIndex:2];
+            //cell.textLabel.text = tmpContact;
+            //cell.detailTextLabel.text = [story objectAtIndex:2];
+            cell.textLabel.text = [story objectAtIndex:2];
+            cell.imageView.image = [UIImage imageNamed:@"news/action-phone.png"];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.contentView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"news/cell3.png"]];
             cell.detailTextLabel.backgroundColor = [UIColor clearColor];
             break;
         case 3:
-            cell.textLabel.text = tmpAttachment;
-            cell.detailTextLabel.text = [story objectAtIndex:5];
+            //cell.textLabel.text = tmpAttachment;
+            //cell.detailTextLabel.text = [story objectAtIndex:5];
+            cell.textLabel.text = [story objectAtIndex:5];
+            cell.imageView.image = [UIImage imageNamed:@"news/action-pdf"];
             cell.contentView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"news/cell4.png"]];
             cell.detailTextLabel.backgroundColor = [UIColor clearColor];
             break;
@@ -301,7 +321,7 @@
     
     if (indexPath.row == 3)
     {
-        
+        // 放附件連結
     }
 }
 
