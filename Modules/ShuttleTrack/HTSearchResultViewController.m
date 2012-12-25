@@ -166,7 +166,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    [self.tableView applyStandardColors];
 }
 
 - (void)didReceiveMemoryWarning
@@ -201,10 +201,12 @@
     if (cell == nil) {
         cell = [[[SecondaryGroupedTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
     }
+     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"M/d K:m"];
     if (indexPath.row == 0 ) {
-        cell.textLabel.text = [NSString stringWithFormat:@"  車次                            %@           %@",startStation,depatureStation];
-        cell.detailTextLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:12];
-        cell.detailTextLabel.textColor = [UIColor brownColor];
+        cell.textLabel.text = [NSString stringWithFormat:@"      車次                      %@           %@",startStation,depatureStation];
+        cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:12];
+        cell.textLabel.textColor = [UIColor brownColor];
         cell.textLabel.textColor = [UIColor brownColor];
     }
     else if (indexPath==0 && [trainID count]==0){
@@ -212,8 +214,9 @@
     }
     else {
         NSString * detailString = [NSString stringWithFormat:@"%@         %@", [startTime objectAtIndex:indexPath.row-1],[depatureTime objectAtIndex:indexPath.row-1] ] ;
-        cell.textLabel.text=[NSString stringWithFormat:@"   %@",[trainID objectAtIndex:indexPath.row-1]] ;
+        cell.textLabel.text=[NSString stringWithFormat:@"       %@",[trainID objectAtIndex:indexPath.row-1]] ;
         cell.detailTextLabel.text = detailString;
+        cell.detailTextLabel.backgroundColor = [UIColor clearColor];
         cell.detailTextLabel.textColor = [UIColor blueColor];
     }
     
