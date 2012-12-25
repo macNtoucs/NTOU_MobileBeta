@@ -50,8 +50,6 @@ static CalendarDataManager *s_sharedManager = nil;
 
 - (NSArray *)staticEventListIDs {
     
-    NSLog(@"CalendarDataManager.m staticEventListIDs = %@", _staticEventListIDs);
-    
 	return _staticEventListIDs;
 }
 
@@ -67,10 +65,8 @@ static CalendarDataManager *s_sharedManager = nil;
 
 - (void)requestEventLists {
     
-    NSLog(@"CalendarDataManager.m requestEventLists");
-    
 	// first assemble anything we already have
-	NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"sortOrder" ascending:YES];
+	//NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"sortOrder" ascending:YES];
 	[_eventLists release];
     
 	//_eventLists = [[CoreDataManager objectsForEntity:@"MITEventList" matchingPredicate:nil sortDescriptors:[NSArray arrayWithObject:sort]] retain];
@@ -93,7 +89,7 @@ static CalendarDataManager *s_sharedManager = nil;
 }
 
 - (BOOL)isDailyEvent:(MITEventList *)listType {
-	if ([listType.listID isEqualToString:@"Events"]) {
+	if ([listType.listID isEqualToString:@"Speech"]) {
 		return YES;
 	}
     if ([listType.listID isEqualToString:@"OpenHouse"]) {
@@ -104,7 +100,6 @@ static CalendarDataManager *s_sharedManager = nil;
 
 - (MITEventList *)eventListWithID:(NSString *)listID {
     
-    NSLog(@"CalendarDataManager.m eventLists = %@", _eventLists);
 	for (MITEventList *aList in _eventLists) {
 		if ([aList.listID isEqualToString:listID])
 			return aList;
@@ -135,8 +130,7 @@ static CalendarDataManager *s_sharedManager = nil;
 }
 
 - (NSString *)request:(MITMobileWebAPI *)request displayHeaderForError:(NSError *)error {
-    //return @"Events";
-    return @"Error";
+    return @"Events";
 }
                                                          
 - (void)request:(MITMobileWebAPI *)request jsonLoaded:(id)JSONObject {
@@ -200,12 +194,15 @@ static CalendarDataManager *s_sharedManager = nil;
 	
 	NSPredicate *pred = [NSPredicate predicateWithFormat:@"listID like %@", listID];
 	NSArray *lists = [CoreDataManager objectsForEntity:@"MITEventList" matchingPredicate:pred];
+    //[CoreDataManager deleteObjects:lists];
 	if ([lists count]) {
 		result = [lists lastObject];
-	} else {
+	}
+    else {
 		result = [CoreDataManager insertNewObjectForEntityForName:@"MITEventList"];
 		result.listID = listID;
 	}
+    
 	return result;
 }
 
@@ -213,13 +210,14 @@ static CalendarDataManager *s_sharedManager = nil;
 {
 	// search from beginning of (day|month|fiscalYear) for (regular|academic|holiday) calendars
     NSDateComponents *components = nil;
-	if ([listType.listID isEqualToString:@"holidays"]) {
+	/*if ([listType.listID isEqualToString:@"holidays"]) {
 		components = [[NSCalendar currentCalendar] components:(NSYearCalendarUnit | NSMonthCalendarUnit)
 													 fromDate:startDate];
 		int year = [components month] <= 6 ? [components year] - 1 : [components year];
 		[components setYear:year];
 		[components setMonth:7];
-	} else if ([listType.listID isEqualToString:@"academic"]) {
+	} else if ([listType.listID isEqualToString:@"academic"]) {*/
+    if ([listType.listID isEqualToString:@"Activities"]) {
 		components = [[NSCalendar currentCalendar] components:(NSYearCalendarUnit | NSMonthCalendarUnit)
 													 fromDate:startDate];
 	} else {
@@ -310,6 +308,7 @@ static CalendarDataManager *s_sharedManager = nil;
 + (EventCategory *)categoryWithID:(NSInteger)catID forListID:(NSString *)listID;
 {	
 	NSPredicate *pred = [NSPredicate predicateWithFormat:@"catID == %d AND listID == %@", catID, listID];
+    
 	EventCategory *category = [[CoreDataManager objectsForEntity:CalendarCategoryEntityName
 											   matchingPredicate:pred] lastObject];
 	if (!category) {
@@ -392,10 +391,10 @@ static CalendarDataManager *s_sharedManager = nil;
 	
 	NSString *dateString = nil;
 	NSDateFormatter *df = [[NSDateFormatter alloc] init];
-	if ([listType.listID isEqualToString:@"academic"]) {
+	if ([listType.listID isEqualToString:@"Activities"]) {
 		[df setDateFormat:@"MMMM yyyy"];
 		dateString = [df stringFromDate:aDate];
-	} else if ([listType.listID isEqualToString:@"holidays"]) {
+	} /*else if ([listType.listID isEqualToString:@"holidays"]) {
 		// Find which Academic Year / Fiscal Year `aDate` falls under.
         // MIT's calendar starts July 1st and ends June 30th. 
         // e.g. 5/10/2012 would be in FY12 and comes out as the @"2011-2012" year.
@@ -412,7 +411,8 @@ static CalendarDataManager *s_sharedManager = nil;
         NSDate *endDate = [calendar dateFromComponents:comps];
         dateString = [NSString stringWithFormat:@"%@-%@", [df stringFromDate:startDate], [df stringFromDate:endDate]];
         [calendar release];
-	} else {
+	}*/
+    else {
 		[df setDateStyle:kCFDateFormatterMediumStyle];
 		dateString = [df stringFromDate:aDate];
     }
@@ -424,7 +424,8 @@ static CalendarDataManager *s_sharedManager = nil;
 + (NSTimeInterval)intervalForEventType:(MITEventList *)listType fromDate:(NSDate *)aDate forward:(BOOL)forward
 {
 	NSInteger sign = forward ? 1 : -1;
-	if ([listType.listID isEqualToString:@"academic"]) {
+	//if ([listType.listID isEqualToString:@"academic"]) {
+    if ([listType.listID isEqualToString:@"Activities"]) {
 		NSCalendar *calendar = [NSCalendar currentCalendar];
 		NSDateComponents *comps = [[NSDateComponents alloc] init];
 		[comps setMonth:sign];
@@ -432,14 +433,15 @@ static CalendarDataManager *s_sharedManager = nil;
 		[comps release];
 		return [targetDate timeIntervalSinceDate:aDate];
 	}
-	else if ([listType.listID isEqualToString:@"holidays"]) {
+	/*else if ([listType.listID isEqualToString:@"holidays"]) {
 		NSCalendar *calendar = [NSCalendar currentCalendar];
 		NSDateComponents *comps = [[NSDateComponents alloc] init];
 		[comps setYear:sign];
 		NSDate *targetDate = [calendar dateByAddingComponents:comps toDate:aDate options:0];
 		[comps release];
 		return [targetDate timeIntervalSinceDate:aDate];
-	} else {
+	}*/
+    else {
 		return 86400.0 * sign;
 	}
 }

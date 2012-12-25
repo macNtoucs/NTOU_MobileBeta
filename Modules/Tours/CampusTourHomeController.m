@@ -189,8 +189,7 @@
             break;
         default:
             break;
-    }
-    return num;
+    }    return num;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

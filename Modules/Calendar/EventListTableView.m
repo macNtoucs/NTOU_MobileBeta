@@ -1,8 +1,29 @@
 #import "EventListTableView.h"
-#import "MITCalendarEvent.h"
+#import "CalendarSpeech.h"
+#import "CalendarActivities.h"
 #import "CalendarDetailViewController.h"
 #import "MITUIConstants.h"
 #import "MultiLineTableViewCell.h"
+
+@interface MyTableViewCell : UITableViewCell
+
+-(void) layoutSubviews;
+
+@end
+
+@implementation MyTableViewCell
+
+- (void) layoutSubviews
+{
+    [super layoutSubviews];
+    
+    CGRect frame = self.detailTextLabel.frame;
+    frame.size.width = 210;
+    [self.detailTextLabel setFrame:frame];
+}
+
+@end
+
 
 @implementation EventListTableView
 @synthesize events, parentViewController, isSearchResults, searchSpan;
@@ -17,13 +38,18 @@
 		return [self.events count];
 	}
     return 0;
-}
+    
+    //NSString *dateText = [CalendarDataManager dateStringForEventType:parentViewController.activeEventList forDate:parentViewController.startDate];
+    //if([dateText isEqual:@"Dec 17, 2012"])
+    /*if([dateText isEqual:@"Today"])
+        return 10;
+    return 0;*/}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return (isSearchResults) ? UNGROUPED_SECTION_HEADER_HEIGHT : 0;
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+/*- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
 	UIView *titleView = nil;
     NSString *titleString = nil;
 	if (isSearchResults) {
@@ -46,10 +72,18 @@
         
         titleView = [UITableView ungroupedSectionHeaderWithTitle:titleString];
 	}
+    
     return titleView;
+}*/
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    CGFloat height = 65.0;
+    return height;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (MyTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    /*
 	NSString *CellIdentifier = [NSString stringWithFormat:@"%d", indexPath.row];
 	NSInteger randomTagNumberForLocationLabel = 1831;
     
@@ -103,11 +137,32 @@
         [cell.contentView addSubview:locationLabel];
         [locationLabel release];
     }
-	
+	*/
+    
+    static NSString *CellIdentifier = @"Cell";
+    
+    MyTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[MyTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+    }
+    cell.textLabel.numberOfLines = 2;
+    cell.textLabel.font = [UIFont boldSystemFontOfSize:16.5];
+    
+    if([[parentViewController.activeEventList listID] isEqual:@"Speech"])
+    {
+        cell.textLabel.text = [[events objectAtIndex:indexPath.row] title];
+        cell.detailTextLabel.text = [[[[events objectAtIndex:indexPath.row] time] stringByAppendingString:@" "] stringByAppendingString:[[events objectAtIndex:indexPath.row] speaker]];
+    }
+    else
+    {
+        cell.textLabel.text = [[events objectAtIndex:indexPath.row] title];
+        cell.detailTextLabel.text = [[events objectAtIndex:indexPath.row] period];
+    }
+    
     return cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+/*- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     //CGFloat *constraintWidth = [MultiLineTableViewCell cellWidthForTableStyle:self accessoryType:UITableViewCellAccessoryDisclosureIndicator];
     //if (*constraintWidth == 0) {
     
@@ -124,7 +179,7 @@
                                                          accessoryType:UITableViewCellAccessoryDisclosureIndicator];
     
     return (cellHeight > maxHeight) ? maxHeight : cellHeight;
-    /*
+    //
 	CGFloat height = CELL_TWO_LINE_HEIGHT;
     
 	UIFont *font = [UIFont fontWithName:BOLD_FONT size:CELL_STANDARD_FONT_SIZE];
@@ -137,16 +192,27 @@
 	}
 
 	return height;
-    */
-}
+    //
+}*/
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	
-	MITCalendarEvent *event = [self.events objectAtIndex:indexPath.row];
-		
 	CalendarDetailViewController *detailVC = [[CalendarDetailViewController alloc] initWithNibName:nil bundle:nil];//initWithStyle:UITableViewStylePlain];
-	detailVC.event = event;
 	detailVC.events = self.events;
+    
+    if([[parentViewController.activeEventList listID] isEqual:@"Speech"])
+    {
+        CalendarSpeech * speechEvent = [events objectAtIndex:indexPath.row];
+        detailVC.speechEvent = speechEvent;
+        detailVC.numRows = 4;
+    }
+    
+    else
+    {
+        CalendarActivities * activitiesEvent = [self.events objectAtIndex:indexPath.row];
+        detailVC.activitiesEvent = activitiesEvent;
+        detailVC.numRows = 5;
+    }
 
 	[self.parentViewController.navigationController pushViewController:detailVC animated:YES];
 	[detailVC release];

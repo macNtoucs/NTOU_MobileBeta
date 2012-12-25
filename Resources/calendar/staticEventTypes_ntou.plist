@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>sortOrder</key>
+		<string>-1</string>
+		<key>title</key>
+		<string>演講公告</string>
+		<key>listID</key>
+		<string>Speech</string>
+	</dict>
+	<dict>
+		<key>sortOrder</key>
+		<real>1</real>
+		<key>title</key>
+		<string>藝文活動</string>
+		<key>listID</key>
+		<string>Activities</string>
+	</dict>
+</array>
+</plist>

@@ -203,6 +203,9 @@
 		91402E42163E749A00B04EE5 /* ClassAdd.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91402E3C163E749A00B04EE5 /* ClassAdd.xib */; };
 		91402E43163E749A00B04EE5 /* ClassDataBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 91402E3E163E749A00B04EE5 /* ClassDataBase.m */; };
 		91402E44163E749A00B04EE5 /* EditScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91402E40163E749A00B04EE5 /* EditScheduleViewController.m */; };
+		91EC3F121689791E0065BE43 /* Calendar.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 91EC3F0A1689791E0065BE43 /* Calendar.xcdatamodeld */; };
+		91EC3F131689791E0065BE43 /* CalendarActivities.m in Sources */ = {isa = PBXBuildFile; fileRef = 91EC3F0F1689791E0065BE43 /* CalendarActivities.m */; };
+		91EC3F141689791E0065BE43 /* CalendarSpeech.m in Sources */ = {isa = PBXBuildFile; fileRef = 91EC3F111689791E0065BE43 /* CalendarSpeech.m */; };
 		91EC76C81663616500E4E134 /* setHTOriginAndTerminalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91EC76C61663616500E4E134 /* setHTOriginAndTerminalViewController.m */; };
 		91F0175D167ED73B00B4C5F0 /* left_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 91F0175B167ED73B00B4C5F0 /* left_arrow.png */; };
 		91F0175E167ED73B00B4C5F0 /* right_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 91F0175C167ED73B00B4C5F0 /* right_arrow.png */; };
@@ -936,6 +939,13 @@
 		91402E3E163E749A00B04EE5 /* ClassDataBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassDataBase.m; sourceTree = "<group>"; };
 		91402E3F163E749A00B04EE5 /* EditScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditScheduleViewController.h; sourceTree = "<group>"; };
 		91402E40163E749A00B04EE5 /* EditScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditScheduleViewController.m; sourceTree = "<group>"; };
+		91EC3F0B1689791E0065BE43 /* Calendar 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Calendar 2.xcdatamodel"; sourceTree = "<group>"; };
+		91EC3F0C1689791E0065BE43 /* Calendar 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Calendar 3.xcdatamodel"; sourceTree = "<group>"; };
+		91EC3F0D1689791E0065BE43 /* Calendar.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Calendar.xcdatamodel; sourceTree = "<group>"; };
+		91EC3F0E1689791E0065BE43 /* CalendarActivities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarActivities.h; sourceTree = "<group>"; };
+		91EC3F0F1689791E0065BE43 /* CalendarActivities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarActivities.m; sourceTree = "<group>"; };
+		91EC3F101689791E0065BE43 /* CalendarSpeech.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarSpeech.h; sourceTree = "<group>"; };
+		91EC3F111689791E0065BE43 /* CalendarSpeech.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarSpeech.m; sourceTree = "<group>"; };
 		91EC76C51663616500E4E134 /* setHTOriginAndTerminalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = setHTOriginAndTerminalViewController.h; sourceTree = "<group>"; };
 		91EC76C61663616500E4E134 /* setHTOriginAndTerminalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = setHTOriginAndTerminalViewController.m; sourceTree = "<group>"; };
 		91F01754167ED16200B4C5F0 /* LunarDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LunarDataSource.h; sourceTree = "<group>"; };
@@ -3088,6 +3098,11 @@
 		EB86CA6C115D273800C8F3D1 /* Calendar */ = {
 			isa = PBXGroup;
 			children = (
+				91EC3F0A1689791E0065BE43 /* Calendar.xcdatamodeld */,
+				91EC3F0E1689791E0065BE43 /* CalendarActivities.h */,
+				91EC3F0F1689791E0065BE43 /* CalendarActivities.m */,
+				91EC3F101689791E0065BE43 /* CalendarSpeech.h */,
+				91EC3F111689791E0065BE43 /* CalendarSpeech.m */,
 				4BB9C54F134BA78200B7F135 /* CalendarCategoriesViewController.h */,
 				4BB9C550134BA78200B7F135 /* CalendarCategoriesViewController.m */,
 				4BB9C551134BA78200B7F135 /* OpenHouseTableView.h */,
@@ -3756,6 +3771,9 @@
 				C7BF082816806C3000153F6F /* Rotation.m in Sources */,
 				C7BF083D16884B4E00153F6F /* NTOU_ClassColorViewController.m in Sources */,
 				C7BF084116885D8100153F6F /* NTOU_ClassColorTableController.m in Sources */,
+				91EC3F121689791E0065BE43 /* Calendar.xcdatamodeld in Sources */,
+				91EC3F131689791E0065BE43 /* CalendarActivities.m in Sources */,
+				91EC3F141689791E0065BE43 /* CalendarSpeech.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4038,6 +4056,18 @@
 			currentVersion = 4B6670701404020200714C6A /* LibrariesLocationsHours.xcdatamodel */;
 			name = LibrariesLocationsHours.xcdatamodeld;
 			path = LocationsHours/LibrariesLocationsHours.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		91EC3F0A1689791E0065BE43 /* Calendar.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				91EC3F0B1689791E0065BE43 /* Calendar 2.xcdatamodel */,
+				91EC3F0C1689791E0065BE43 /* Calendar 3.xcdatamodel */,
+				91EC3F0D1689791E0065BE43 /* Calendar.xcdatamodel */,
+			);
+			currentVersion = 91EC3F0C1689791E0065BE43 /* Calendar 3.xcdatamodel */;
+			path = Calendar.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
