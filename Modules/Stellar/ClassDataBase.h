@@ -23,6 +23,7 @@
 #define ScheduleInfoKey @"ScheduleInfoKey"
 #define WeekDaysKey @"WeekDaysKey"
 #define ClassDataBaseKey @"classDataBaseKey"
+#define ColorDicKey @"ColorDicKey"
 #import <Foundation/Foundation.h>
 #import "DefinePixel.h"
 typedef enum {Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday } ColumnName;
@@ -34,13 +35,17 @@ typedef enum {Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday } ColumnN
     id ScheduleViewDelegate;
     id EditScheduleDelegate;
     NSMutableArray* WeekDays;
+    NSMutableDictionary* ColorDic;
 }
 
 @property (nonatomic,retain) NSDictionary *ScheduleInfo;
+@property (nonatomic,retain) NSMutableDictionary *ColorDic;
 @property (nonatomic,assign) id ScheduleViewDelegate;
 @property (nonatomic,assign) id EditScheduleDelegate;
 
 + (ClassDataBase *)sharedData;
+-(NSMutableDictionary*) FetchColorDic;
+-(void)UpdataColorDic:(NSString*)Key ColorDic:(UIColor*)RGB;
 -(int)FetchWeekTimes;
 -(int)FetchClassSessionTimes;
 -(void)SetClassSessionTimes:(int)CST;

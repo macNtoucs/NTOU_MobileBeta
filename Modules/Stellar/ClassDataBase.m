@@ -12,6 +12,7 @@
 @synthesize ScheduleInfo;
 @synthesize ScheduleViewDelegate;
 @synthesize EditScheduleDelegate;
+@synthesize ColorDic;
 static ClassDataBase *sharedData = nil;
 
 + (ClassDataBase *)sharedData {
@@ -32,6 +33,7 @@ static ClassDataBase *sharedData = nil;
         showClassTimes = [aDecoder decodeBoolForKey:showClassTimesKey];
         ScheduleInfo = [[aDecoder decodeObjectForKey:ScheduleInfoKey] retain];
         WeekDays = [[aDecoder decodeObjectForKey:WeekDaysKey] retain];
+        ColorDic = [[aDecoder decodeObjectForKey:ColorDicKey] retain];
     }
     return self;
 }
@@ -42,6 +44,7 @@ static ClassDataBase *sharedData = nil;
     [aCoder encodeBool:showClassTimes forKey:showClassTimesKey];
     [aCoder encodeObject:ScheduleInfo forKey:ScheduleInfoKey];
     [aCoder encodeObject:WeekDays forKey:WeekDaysKey];
+    [aCoder encodeObject:ColorDic forKey:ColorDicKey];
 }
 
 -(id)init
@@ -62,6 +65,7 @@ static ClassDataBase *sharedData = nil;
                             [NSMutableArray arrayWithObjects:[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "], nil],@"Saturday",
                             [NSMutableArray arrayWithObjects:[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "], nil],@"Sunday",nil];
             WeekDays=[[NSMutableArray arrayWithObjects:[NSNumber numberWithBool:YES],[NSNumber numberWithBool:YES],[NSNumber numberWithBool:YES],[NSNumber numberWithBool:YES],[NSNumber numberWithBool:YES],[NSNumber numberWithBool:YES],[NSNumber numberWithBool:YES], nil] retain];
+            ColorDic = [[NSMutableDictionary alloc]initWithObjectsAndKeys:[UIColor colorWithRed:193.0/255 green:255.0/255 blue:193.0/255 alpha:1],[NSString stringWithFormat:@"資料庫"],[UIColor colorWithRed:248.0/255 green:248.0/255 blue:255.0/255 alpha:1],[NSString stringWithFormat:@"演算法"],[UIColor colorWithRed:255.0/255 green:248.0/255 blue:220.0/255 alpha:1],[NSString stringWithFormat:@"程式語言"],[UIColor colorWithRed:245.0/255 green:255.0/255 blue:250.0/255 alpha:1],[NSString stringWithFormat:@"日文"],[UIColor colorWithRed:255.0/255 green:255.0/255 blue:224.0/255 alpha:1],[NSString stringWithFormat:@"性別平等與就業歧視"],[UIColor colorWithRed:255.0/255 green:246.0/255 blue:143.0/255 alpha:1],[NSString stringWithFormat:@"現代藝術賞析"],[UIColor colorWithRed:255.0/255 green:181.0/255 blue:197.0/255 alpha:1],[NSString stringWithFormat:@"作業系統"], nil];
 
         }
         else
@@ -73,11 +77,23 @@ static ClassDataBase *sharedData = nil;
             ClassSessionTimes = obj->ClassSessionTimes;
             showClassTimes = obj->showClassTimes;
             ScheduleInfo = [[NSDictionary alloc] initWithDictionary:obj->ScheduleInfo];
+            ColorDic = [[NSMutableDictionary alloc] initWithDictionary:obj->ColorDic];
             WeekDays = [[NSMutableArray alloc] initWithArray:obj->WeekDays];
         }
         
     }
     return self;
+}
+
+
+-(NSMutableDictionary*) FetchColorDic{
+    return  ColorDic;
+}
+
+-(void)UpdataColorDic:(NSString*)Key ColorDic:(UIColor*)RGB
+{
+    [ColorDic removeObjectForKey:Key];
+    [ColorDic setValue:RGB forKey:Key];
 }
 
 -(NSDictionary*) FetchScheduleInfo{

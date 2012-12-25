@@ -370,6 +370,9 @@
 		C7AFEE131659EC0A005FF1DB /* Info.png in Resources */ = {isa = PBXBuildFile; fileRef = C7AFEE091659EC0A005FF1DB /* Info.png */; };
 		C7AFEE1D165B4648005FF1DB /* Time.png in Resources */ = {isa = PBXBuildFile; fileRef = C7AFEE1C165B4647005FF1DB /* Time.png */; };
 		C7BF082816806C3000153F6F /* Rotation.m in Sources */ = {isa = PBXBuildFile; fileRef = C7BF082716806C2F00153F6F /* Rotation.m */; };
+		C7BF083D16884B4E00153F6F /* NTOU_ClassColorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7BF083B16884B4E00153F6F /* NTOU_ClassColorViewController.m */; };
+		C7BF083E16884B4E00153F6F /* NTOU_ClassColorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7BF083C16884B4E00153F6F /* NTOU_ClassColorViewController.xib */; };
+		C7BF084116885D8100153F6F /* NTOU_ClassColorTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7BF084016885D8000153F6F /* NTOU_ClassColorTableController.m */; };
 		DE03763C1350F5080041DDBD /* MIT150Button.m in Sources */ = {isa = PBXBuildFile; fileRef = DE03763B1350F5080041DDBD /* MIT150Button.m */; };
 		DE0A62AC10CDAEA90058B2C2 /* MITBuildInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DE0A62AB10CDAEA90058B2C2 /* MITBuildInfo.m */; };
 		DE0F6B3411109BC500F064D6 /* AboutMITVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DE0F6B3311109BC500F064D6 /* AboutMITVC.m */; };
@@ -1161,6 +1164,11 @@
 		C7AFEE1C165B4647005FF1DB /* Time.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Time.png; sourceTree = "<group>"; };
 		C7BF082616806C2F00153F6F /* Rotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Rotation.h; path = "App Delegate/Rotation.h"; sourceTree = "<group>"; };
 		C7BF082716806C2F00153F6F /* Rotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Rotation.m; path = "App Delegate/Rotation.m"; sourceTree = "<group>"; };
+		C7BF083A16884B4E00153F6F /* NTOU_ClassColorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NTOU_ClassColorViewController.h; path = ../../NTOU_ClassColorViewController.h; sourceTree = "<group>"; };
+		C7BF083B16884B4E00153F6F /* NTOU_ClassColorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NTOU_ClassColorViewController.m; path = ../../NTOU_ClassColorViewController.m; sourceTree = "<group>"; };
+		C7BF083C16884B4E00153F6F /* NTOU_ClassColorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NTOU_ClassColorViewController.xib; path = ../../NTOU_ClassColorViewController.xib; sourceTree = "<group>"; };
+		C7BF083F16885D7F00153F6F /* NTOU_ClassColorTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTOU_ClassColorTableController.h; sourceTree = "<group>"; };
+		C7BF084016885D8000153F6F /* NTOU_ClassColorTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTOU_ClassColorTableController.m; sourceTree = "<group>"; };
 		DE03763A1350F5080041DDBD /* MIT150Button.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIT150Button.h; sourceTree = "<group>"; };
 		DE03763B1350F5080041DDBD /* MIT150Button.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIT150Button.m; sourceTree = "<group>"; };
 		DE0A62AA10CDAEA90058B2C2 /* MITBuildInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MITBuildInfo.h; sourceTree = "<group>"; };
@@ -2730,6 +2738,11 @@
 				91402E3E163E749A00B04EE5 /* ClassDataBase.m */,
 				91402E3F163E749A00B04EE5 /* EditScheduleViewController.h */,
 				91402E40163E749A00B04EE5 /* EditScheduleViewController.m */,
+				C7BF083F16885D7F00153F6F /* NTOU_ClassColorTableController.h */,
+				C7BF084016885D8000153F6F /* NTOU_ClassColorTableController.m */,
+				C7BF083A16884B4E00153F6F /* NTOU_ClassColorViewController.h */,
+				C7BF083B16884B4E00153F6F /* NTOU_ClassColorViewController.m */,
+				C7BF083C16884B4E00153F6F /* NTOU_ClassColorViewController.xib */,
 				910662EF163BCFD700D01C81 /* DefinePixel.h */,
 				C79A9BB6163A4E7E001FAF48 /* LessonTimeView.h */,
 				C79A9BB7163A4E80001FAF48 /* LessonTimeView.m */,
@@ -3341,6 +3354,7 @@
 				91F017EE167F355600B4C5F0 /* Reader-Thumbs.png in Resources */,
 				91F017EF167F355600B4C5F0 /* Reader-Thumbs@2x.png in Resources */,
 				91F017FF167F355600B4C5F0 /* Syllabus.pdf in Resources */,
+				C7BF083E16884B4E00153F6F /* NTOU_ClassColorViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3740,6 +3754,8 @@
 				91F01801167F355600B4C5F0 /* ThumbsViewController.m in Sources */,
 				91F01802167F355600B4C5F0 /* UIXToolbarView.m in Sources */,
 				C7BF082816806C3000153F6F /* Rotation.m in Sources */,
+				C7BF083D16884B4E00153F6F /* NTOU_ClassColorViewController.m in Sources */,
+				C7BF084116885D8100153F6F /* NTOU_ClassColorTableController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

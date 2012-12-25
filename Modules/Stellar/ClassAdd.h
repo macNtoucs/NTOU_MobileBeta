@@ -30,6 +30,7 @@
 -(IBAction)cancel:(id)sender;
 - (IBAction)clean:(UIButton *)sender;
 - (IBAction)modify:(UIButton *)sender;
+-(void)displayModifyButton:(BOOL)type;
 -(void)buttonFuntion:(BOOL)type;
 @property (nonatomic,assign) id delegate;
 
