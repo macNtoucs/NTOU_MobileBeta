@@ -171,7 +171,7 @@
     DepatureStation = [NSString stringWithString:startStaion];
     startStaion = [NSString stringWithString:tmpForSwap];
     [self viewDidLoad];
-    [view5 recieveData];
+   // [view5 recieveData];
 }
 
 -(void)didSwipe:(id)sender{

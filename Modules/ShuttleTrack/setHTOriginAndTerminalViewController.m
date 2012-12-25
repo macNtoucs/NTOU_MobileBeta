@@ -7,7 +7,7 @@
 //
 
 #import "setHTOriginAndTerminalViewController.h"
-
+#import "UIKit+MITAdditions.h"
 @interface setHTOriginAndTerminalViewController ()
 
 @end
@@ -34,6 +34,7 @@
 {
     
     [super viewDidLoad];
+    [self.tableView applyStandardColors];
     [self createData];
 }
 
@@ -43,7 +44,25 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    CGFloat rowHeight = 0;
+    UIFont *cellFont = [UIFont fontWithName:@"Helvetica" size:14.0];
+    CGSize constraintSize = CGSizeMake(270.0f, 2009.0f);
+    NSString *cellText = nil;
+    
+    switch (indexPath.section) {
+        default:
+            cellText = @"A"; // just something to guarantee one line
+            CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
+            rowHeight = labelSize.height + 20.0f;
+            break;
+    }
+    
+    return rowHeight;
+}
+
 #pragma mark - Table view data source
+
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {

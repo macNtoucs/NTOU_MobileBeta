@@ -36,6 +36,7 @@
     depatureStation =[[NSString alloc]initWithString:[self.dataSource HTdepatureStationTitile:self]];
 }
 -(void)initialDisplay{
+   
     trainID = [NSMutableArray new];
     depatureTime= [NSMutableArray new];
     startTime= [NSMutableArray new];
@@ -71,26 +72,32 @@
         }
         
     }
-   /*[ trainID  retain];
-    [depatureTime retain];
-    [startTime retain];*/
+   
     [self.tableView reloadData];
     [BIN_resultString release];
-    
+    [downloadView AlertViewEnd];
 }
 
 -(void)recieveData{
     [self recieveURL];
     if (![[dataURL absoluteString] isEqualToString:@""] && !isFirstTimeLoad){
+        downloadView = [DownloadingView new];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [downloadView AlertViewStart];
+        });
         [self recieveStartAndDepature];
         [self fetchData];
-        [self initialDisplay];
+          dispatch_async(dispatch_get_main_queue(), ^{
+            [self initialDisplay];
+        });
     }
+     
     isFirstTimeLoad = false;
 }
 
 
 -(void)fetchData{
+   
     //from=1&to=5&sDate=2012%2F12%2F18&TimeTable=13%3A30&FromOrDest=From&x=50&y=14
     NSMutableURLRequest *request = [[[NSMutableURLRequest alloc] init] autorelease];
     [request setURL:dataURL];
@@ -159,7 +166,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-  
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -187,19 +194,47 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *CellIdentifier = [NSString stringWithFormat:@"Cell%d%d",indexPath.section,indexPath.row];
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-   
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
-    }
-    cell.textLabel.text = [NSString stringWithFormat:@"%@    %@   %@",
-                           [trainID objectAtIndex:indexPath.row],
-                           [startTime objectAtIndex:indexPath.row],
-                           [depatureTime objectAtIndex:indexPath.row]
-                           ];
     
-    return cell;
+    NSString *CellIdentifier = [NSString stringWithFormat:@"Cell%d%d",indexPath.section,indexPath.row];
+    SecondaryGroupedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    if (cell == nil) {
+        cell = [[[SecondaryGroupedTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
+    }
+    if (indexPath.row == 0 ) {
+        cell.textLabel.text = [NSString stringWithFormat:@"  車次                            %@           %@",startStation,depatureStation];
+        cell.detailTextLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:12];
+        cell.detailTextLabel.textColor = [UIColor brownColor];
+        cell.textLabel.textColor = [UIColor brownColor];
+    }
+    else if (indexPath==0 && [trainID count]==0){
+        cell.textLabel.text = [NSString stringWithFormat:@"無資料"];
+    }
+    else {
+        NSString * detailString = [NSString stringWithFormat:@"%@         %@", [startTime objectAtIndex:indexPath.row-1],[depatureTime objectAtIndex:indexPath.row-1] ] ;
+        cell.textLabel.text=[NSString stringWithFormat:@"   %@",[trainID objectAtIndex:indexPath.row-1]] ;
+        cell.detailTextLabel.text = detailString;
+        cell.detailTextLabel.textColor = [UIColor blueColor];
+    }
+    
+       return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    CGFloat rowHeight = 0;
+    UIFont *cellFont = [UIFont fontWithName:@"Helvetica" size:14.0];
+    CGSize constraintSize = CGSizeMake(270.0f, 2009.0f);
+    NSString *cellText = nil;
+    
+    switch (indexPath.section) {
+        default:
+            cellText = @"A"; // just something to guarantee one line
+            CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
+            rowHeight = labelSize.height + 20.0f;
+            break;
+    }
+    
+    return rowHeight;
 }
 
 /*
