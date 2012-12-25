@@ -25,6 +25,6 @@
     __unsafe_unretained id<SetTimeViewControllerDelegate> delegate;
 }
 
-
+-(void) initialTime;
 @property (nonatomic,unsafe_unretained)id delegate;
 @end

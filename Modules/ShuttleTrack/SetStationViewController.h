@@ -57,6 +57,7 @@
     bool _isHightSpeedTrain;
     CKViewController * calendar;
     SetTimeViewController * HTTime;
+    NSString * selectedHTTime;
 }
 @property int tag;
 @property (nonatomic, retain) UIImageView* tabBarArrow;

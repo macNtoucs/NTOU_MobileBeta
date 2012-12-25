@@ -13,39 +13,15 @@
 @end
 
 @implementation HTSearchResultViewController
-
-@synthesize  dataURL;
-@synthesize StartAndTerminalstops;
-@synthesize depatureTimes;
-@synthesize arrivalTimes;
-@synthesize startStation;
-@synthesize depatureStation;
-
+@synthesize dataSource;
+@synthesize selectedDate;
+@synthesize selectedHTTime;
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
-       
-        north_id = [NSMutableArray new];
-        north_taipeiStation= [NSMutableArray new];
-        north_benchiouStation= [NSMutableArray new];
-        north_shinchewStation= [NSMutableArray new];
-        north_touyounStation = [NSMutableArray new];
-        north_taichungStation= [NSMutableArray new];
-        north_chiaiStation= [NSMutableArray new];
-        north_tainanStation= [NSMutableArray new];
-        north_zhouyingStation= [NSMutableArray new];
-        south_id= [NSMutableArray new];
-        south_taipeiStation= [NSMutableArray new];
-        south_benchiouStation= [NSMutableArray new];
-         south_touyounStation = [NSMutableArray new];
-        south_shinchewStation= [NSMutableArray new];
-        south_taichungStation= [NSMutableArray new];
-        south_chiaiStation= [NSMutableArray new];
-        south_tainanStation= [NSMutableArray new];
-        south_zhouyingStation= [NSMutableArray new];
         station = [[NSArray alloc]initWithObjects:@"台北",@"板橋",@"桃園",@"新竹",@"台中",@"嘉義",@"台南",@"左營", nil];
-        isFirstTime = true;
+        isFirstTimeLoad = true;
     }
     return self;
 }
@@ -59,134 +35,115 @@
     startStation =[[NSString alloc]initWithString:[self.dataSource HTstartStationTitile:self]];
     depatureStation =[[NSString alloc]initWithString:[self.dataSource HTdepatureStationTitile:self]];
 }
+-(void)initialDisplay{
+    trainID = [NSMutableArray new];
+    depatureTime= [NSMutableArray new];
+    startTime= [NSMutableArray new];
+    
+    NSData * BIN_resultString = [NSData new];
+    BIN_resultString = [queryResult dataUsingEncoding:NSUTF8StringEncoding];
+    TFHpple* parser = [[TFHpple alloc] initWithHTMLData:BIN_resultString];
+    
+    NSArray *tableData_td  = [parser searchWithXPathQuery:@"//body//table//tr//td//table//tr//td//table//tr//td//table//tr//td//table//tr//td//span"];
+    for (int i=0 ; i< [tableData_td count] ; ++i){
+       
+            TFHppleElement * attributeElement = [tableData_td objectAtIndex:i];
+            NSString * context = [[[attributeElement children]objectAtIndex:0]content];
+           // NSLog(@"context => %@",context);
+            [trainID addObject:context];
+    }
+    tableData_td  = [parser searchWithXPathQuery:@"//body//table//tr//td//table//tr//td//table//tr//td//table//tr//td//table//tr//td"];
+    bool isStartTime=true;
+    for (int i=[trainID count]+2; i<5*[trainID count]; ){
+        TFHppleElement * attributeElement = [tableData_td objectAtIndex:i];
+        NSString * context = [[[attributeElement children]objectAtIndex:0]content];
+        context = [context stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        NSLog(@"context => %@",context);
+        if (isStartTime){
+             [startTime addObject:context];
+               isStartTime = false;
+            ++i;
+            }
+        else {
+            [depatureTime addObject:context];
+            isStartTime=true;
+            i=i+3;
+        }
+        
+    }
+   /*[ trainID  retain];
+    [depatureTime retain];
+    [startTime retain];*/
+    [self.tableView reloadData];
+    [BIN_resultString release];
+    
+}
+
 -(void)recieveData{
     [self recieveURL];
-    if (![[dataURL absoluteString] isEqualToString:@""]){
+    if (![[dataURL absoluteString] isEqualToString:@""] && !isFirstTimeLoad){
         [self recieveStartAndDepature];
-        downloadView = [DownloadingView new];
-      if( isFirstTime) [self fetchData];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.tableView reloadData];
-        });
+        [self fetchData];
+        [self initialDisplay];
     }
-    isFirstTime =false;
+    isFirstTimeLoad = false;
 }
 
 
 -(void)fetchData{
-    
-   
-    NSError* error;
-    NSData* data = [[NSString stringWithContentsOfURL:dataURL encoding:NSUTF8StringEncoding error:&error] dataUsingEncoding:NSUTF8StringEncoding];
-    TFHpple* parser = [[TFHpple alloc] initWithHTMLData:data];
-    NSArray *tableData_td  = [parser searchWithXPathQuery:@"//body//table//tr//td//div//table//tr//td//div//table//tr//td"];
-    int southTrainNumber = 0;
-     
-    for (int i = 10 ; ; ++i){
-        NSString* input;
-        TFHppleElement * attributeElement = [tableData_td objectAtIndex:i];
-        NSArray * contextArr = [attributeElement children];
-        if ([contextArr count])
-            input = [[contextArr objectAtIndex:0]content];
-        else input = @"";
-        if ([input isEqualToString:@"車次"]) {
-            south = [[NSMutableDictionary alloc]initWithObjectsAndKeys:
-                     south_id,@"車次"
-                     ,south_taipeiStation, @"台北"
-                     ,south_benchiouStation,@"板橋"
-                     ,south_touyounStation,@"桃園"
-                     ,south_shinchewStation,@"新竹"
-                     ,south_taichungStation,@"台中"
-                     ,south_tainanStation,@"台南"
-                     ,south_zhouyingStation,@"左營"
-                     ,nil];
-            southTrainNumber = i;
-            break;
-        }
-        switch (i%10) {
-            case 0:
-                [south_id addObject:input];
-                break;
-            case 2:
-                [south_taipeiStation addObject:input];
-                break;
-            case 3:
-                [south_benchiouStation addObject:input];
-                break;
-            case 4:
-                [south_touyounStation addObject:input];
-                break;
-            case 5:
-                [south_shinchewStation addObject:input];
-                break;
-            case 6:
-                [south_taichungStation addObject:input];
-                break;
-            case 7:
-                [south_chiaiStation addObject:input];
-                break;
-            case 8:
-                [south_tainanStation addObject:input];
-                break;
-            case 9:
-                [south_zhouyingStation addObject:input];
-                break;
-            }
+    //from=1&to=5&sDate=2012%2F12%2F18&TimeTable=13%3A30&FromOrDest=From&x=50&y=14
+    NSMutableURLRequest *request = [[[NSMutableURLRequest alloc] init] autorelease];
+    [request setURL:dataURL];
+    [request setHTTPMethod:@"POST"];
+    [request addValue:@"http://www.thsrc.com.tw/TC/ticket/tic_time_result.asp" forHTTPHeaderField:@"Referer"];
+    [request addValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    [request addValue:@"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" forHTTPHeaderField:@"Accept"];
+    [request addValue:@"zh-TW,zh;q=0.8,en-US;q=0.6,en;q=0.4" forHTTPHeaderField:@"Accept-Language"];
+    [request addValue:@"Big5,utf-8;q=0.7,*;q=0.3" forHTTPHeaderField:@"Accept-Charset"];
+    [request addValue:@"max-age=0" forHTTPHeaderField:@"Cache-Control"];
+    [request addValue:@"http://www.thsrc.com.tw" forHTTPHeaderField:@"Origin"];
     
     
-    }
-    for (int i = southTrainNumber+10 ; i< [tableData_td count]; ++i){
-        NSString* input;
-        TFHppleElement * attributeElement = [tableData_td objectAtIndex:i];
-        NSArray * contextArr = [attributeElement children];
-        if ([contextArr count])
-            input = [[contextArr objectAtIndex:0]content];
-        else input = @"";
-        switch (i%10) {
-            case 0:
-                [north_id addObject:input];
-                break;
-            case 2:
-                [north_taipeiStation addObject:input];
-                break;
-            case 3:
-                [north_benchiouStation addObject:input];
-                break;
-            case 4:
-                [north_touyounStation addObject:input];
-                break;
-            case 5:
-                [north_shinchewStation addObject:input];
-                break;
-            case 6:
-                [north_taichungStation addObject:input];
-                break;
-            case 7:
-                [north_chiaiStation addObject:input];
-                break;
-            case 8:
-                [north_tainanStation addObject:input];
-                break;
-            case 9:
-                [north_zhouyingStation addObject:input];
-                break;
-        }
-        
-        
-    }
-    north = [[NSMutableDictionary alloc]initWithObjectsAndKeys:
-             north_id,@"車次"
-             ,north_taipeiStation, @"台北"
-             ,north_benchiouStation,@"板橋"
-             ,north_touyounStation,@"桃園"
-             ,north_shinchewStation,@"新竹"
-             ,north_taichungStation,@"台中"
-             ,north_tainanStation,@"台南"
-             ,north_zhouyingStation,@"左營"
-             ,nil];
+    NSString * postString = [[NSString alloc]init];
+    postString=[postString stringByAppendingFormat:@"from=%u",[station indexOfObject:startStation]+1];
+    postString=[postString stringByAppendingFormat:@"&to=%u",[station indexOfObject:depatureStation]+1];
+    postString=[postString stringByAppendingString:@"&sDate="];
     
-    direction = [[NSMutableDictionary alloc]initWithObjectsAndKeys:south,@"南下",north, @"北上",nil];
-      
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy"];
+    postString=[postString stringByAppendingString:[NSString stringWithFormat:@"%@", [dateFormatter stringFromDate:self.selectedDate]]];
+    postString= [postString stringByAppendingString:@"%2F"];
+    
+    [dateFormatter setDateFormat:@"M"];
+    postString=[postString stringByAppendingString:[NSString stringWithFormat:@"%@", [dateFormatter stringFromDate:self.selectedDate]]];
+    postString= [postString stringByAppendingString:@"%2F"];
+    
+    [dateFormatter setDateFormat:@"d"];
+    postString=[postString stringByAppendingString:[NSString stringWithFormat:@"%@", [dateFormatter stringFromDate:self.selectedDate]]];
+
+    
+    NSArray *dateData = [selectedHTTime componentsSeparatedByString:@":"];
+    postString=[postString stringByAppendingString:@"&TimeTable="];
+    postString=[postString stringByAppendingString:[NSString stringWithString:[dateData objectAtIndex:0] ]];
+    postString=[postString stringByAppendingString:@"%3A"];
+    postString=[postString stringByAppendingString:[NSString stringWithString:[dateData objectAtIndex:1] ]];
+    
+    
+    postString=[postString stringByAppendingString:@"&FromOrDest=From&x=50&y=14"];
+    
+    
+    [request setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
+    NSHTTPURLResponse *urlResponse = nil;
+     NSError *error = [[NSError alloc] init];
+    NSData *responseData = [NSURLConnection sendSynchronousRequest:request
+                                                 returningResponse:&urlResponse
+                                                             error:&error
+                            ];
+    queryResult = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+    
+    
+    //NSLog(@"Response ==> %@", queryResult);
+    
 }
 -(NSString *)determindir{ //return true 南下
     NSUInteger index_start = [station indexOfObject:startStation];
@@ -211,28 +168,7 @@
     // Dispose of any resources that can be recreated.
 }
 -(void)determinDisplay{
-    shouldDisplay_to = [NSMutableArray new];
-    shouldDisplay_from= [NSMutableArray new];
-    shouldDisplay_ID= [NSMutableArray new];
-    for (int i = 0 ; i < [[[direction objectForKey:[self determindir] ]objectForKey:@"車次"]count] ; ++i){
-        if (![[[[direction objectForKey:[self determindir] ]objectForKey:startStation] objectAtIndex:i] isEqualToString:@""] &&
-            ![[[[direction objectForKey:[self determindir] ]objectForKey:depatureStation] objectAtIndex:i] isEqualToString:@""] &&
-            ![[[[direction objectForKey:[self determindir] ]objectForKey:@"車次"] objectAtIndex:i] isEqualToString:@""] ){
-        if([[self determindir] isEqualToString:@"南下"]){
-            [shouldDisplay_from addObject:[[[direction objectForKey:[self determindir] ]objectForKey:startStation] objectAtIndex:i]];
-            [shouldDisplay_to addObject:[[[direction objectForKey:[self determindir] ]objectForKey:depatureStation] objectAtIndex:i]];
-            [shouldDisplay_ID addObject:[[[direction objectForKey:[self determindir] ]objectForKey:@"車次"] objectAtIndex:i]];
-        }
-        else {
-            [shouldDisplay_to addObject:[[[direction objectForKey:[self determindir] ]objectForKey:startStation] objectAtIndex:i]];
-            [shouldDisplay_from addObject:[[[direction objectForKey:[self determindir] ]objectForKey:depatureStation] objectAtIndex:i]];
-            [shouldDisplay_ID addObject:[[[direction objectForKey:[self determindir] ]objectForKey:@"車次"] objectAtIndex:i]];
-        
-        }
-        }
     }
- 
-}
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -245,10 +181,8 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 #warning Incomplete method implementation.
-    
-    [self determinDisplay];
-    NSLog(@"%d,%d,%d",[shouldDisplay_ID count],[shouldDisplay_to count],[shouldDisplay_from count]);
-    return MIN([shouldDisplay_to count], [shouldDisplay_from count])+2;
+   
+    return [trainID count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -259,22 +193,11 @@
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
     }
-    if (MIN([shouldDisplay_to count], [shouldDisplay_from count])<indexPath.row){
-        return cell;
-    }
-    if (indexPath.row == 0 ) {
-        cell.textLabel.text = [NSString stringWithFormat:@"車次                            %@           %@",startStation,depatureStation];
-        cell.detailTextLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:12];
-        cell.detailTextLabel.textColor = [UIColor brownColor];
-        cell.textLabel.textColor = [UIColor brownColor];
-    }
-    else{
-        NSString * detailString = [NSString stringWithFormat:@"%@         %@", [shouldDisplay_from objectAtIndex:indexPath.row-1],[shouldDisplay_to objectAtIndex:indexPath.row-1]] ;
-        cell.detailTextLabel.text = detailString;
-        cell.textLabel.text=[NSString stringWithFormat:@"%@", [shouldDisplay_ID objectAtIndex:indexPath.row-1]] ;
-    }
-    
-    // Configure the cell...
+    cell.textLabel.text = [NSString stringWithFormat:@"%@    %@   %@",
+                           [trainID objectAtIndex:indexPath.row],
+                           [startTime objectAtIndex:indexPath.row],
+                           [depatureTime objectAtIndex:indexPath.row]
+                           ];
     
     return cell;
 }

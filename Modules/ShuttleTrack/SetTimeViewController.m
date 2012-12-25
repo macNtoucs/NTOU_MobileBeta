@@ -27,6 +27,7 @@
         HT_timeArr_night =
         [[NSArray alloc]initWithObjects:@"19:00",@"19:30",@"20:00",@"20:30",@"21:00",@"21:30",@"22:00",@"22:30",@"23:00",@"23:30", nil];
         TimeCategory = [[NSArray alloc]initWithObjects:@"早上",@"中午",@"下午",@"晚上", nil];
+        
     }
     return self;
 }
@@ -35,11 +36,19 @@
 {
     [super viewDidLoad];
     [self.tableView applyStandardColors];
+   
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+-(void) initialTime{
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"H:mm"];
+    NSDate *date = [NSDate date];
+    [delegate HTTime:self nowselectedTime:[dateFormatter stringFromDate:date ]];
 }
 
 - (void)didReceiveMemoryWarning
