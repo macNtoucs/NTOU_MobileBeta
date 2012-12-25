@@ -1,5 +1,6 @@
 #import "EventListTableView.h"
-#import "MITCalendarEvent.h"
+#import "CalendarSpeech.h"
+#import "CalendarActivities.h"
 #import "CalendarDetailViewController.h"
 #import "MITUIConstants.h"
 #import "MultiLineTableViewCell.h"
@@ -74,6 +75,11 @@
     
     return titleView;
 }*/
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    CGFloat height = 65.0;
+    return height;
+}
 
 - (MyTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -139,9 +145,19 @@
     if (cell == nil) {
         cell = [[MyTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
+    cell.textLabel.numberOfLines = 2;
+    cell.textLabel.font = [UIFont boldSystemFontOfSize:16.5];
     
-    cell.textLabel.text = [[events objectAtIndex:indexPath.row] objectAtIndex:2];
-    cell.detailTextLabel.text = [[[[events objectAtIndex:indexPath.row] objectAtIndex:1] stringByAppendingString:@" "] stringByAppendingString:[[events objectAtIndex:indexPath.row] objectAtIndex:3]];
+    if([[parentViewController.activeEventList listID] isEqual:@"Speech"])
+    {
+        cell.textLabel.text = [[events objectAtIndex:indexPath.row] title];
+        cell.detailTextLabel.text = [[[[events objectAtIndex:indexPath.row] time] stringByAppendingString:@" "] stringByAppendingString:[[events objectAtIndex:indexPath.row] speaker]];
+    }
+    else
+    {
+        cell.textLabel.text = [[events objectAtIndex:indexPath.row] title];
+        cell.detailTextLabel.text = [[events objectAtIndex:indexPath.row] period];
+    }
     
     return cell;
 }
@@ -181,11 +197,22 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	
-	MITCalendarEvent *event = [self.events objectAtIndex:indexPath.row];
-		
 	CalendarDetailViewController *detailVC = [[CalendarDetailViewController alloc] initWithNibName:nil bundle:nil];//initWithStyle:UITableViewStylePlain];
-	detailVC.event = event;
 	detailVC.events = self.events;
+    
+    if([[parentViewController.activeEventList listID] isEqual:@"Speech"])
+    {
+        CalendarSpeech * speechEvent = [events objectAtIndex:indexPath.row];
+        detailVC.speechEvent = speechEvent;
+        detailVC.numRows = 4;
+    }
+    
+    else
+    {
+        CalendarActivities * activitiesEvent = [self.events objectAtIndex:indexPath.row];
+        detailVC.activitiesEvent = activitiesEvent;
+        detailVC.numRows = 5;
+    }
 
 	[self.parentViewController.navigationController pushViewController:detailVC animated:YES];
 	[detailVC release];

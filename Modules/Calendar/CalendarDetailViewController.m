@@ -13,9 +13,28 @@
 #define kCategoriesWebViewTag 521
 #define kDescriptionWebViewTag 516
 
+@interface DetailTableViewCell : UITableViewCell
+
+-(void) layoutSubviews;
+
+@end
+
+@implementation DetailTableViewCell
+
+- (void) layoutSubviews
+{
+    [super layoutSubviews];
+    
+    CGRect frame = self.detailTextLabel.frame;
+    frame.size.width = 210;
+    [self.detailTextLabel setFrame:frame];
+}
+
+@end
+
 @implementation CalendarDetailViewController
 
-@synthesize event, events, tableView = _tableView;
+@synthesize speechEvent, activitiesEvent, events, tableView = _tableView, numRows;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -25,8 +44,12 @@
 	self.shareDelegate = self;
 	
 	// setup table view
-	self.tableView = [[[UITableView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.frame.size.width, self.view.frame.size.height)
-												  style:UITableViewStylePlain] autorelease];
+    UITableViewStyle *tableStyle;
+    if(speechEvent)
+        tableStyle = UITableViewStyleGrouped;
+    else
+        tableStyle = UITableViewStylePlain;
+	self.tableView = [[[UITableView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.frame.size.width, self.view.frame.size.height) style:tableStyle] autorelease];
 	self.tableView.delegate = self;
 	self.tableView.dataSource = self;
 	self.tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
@@ -34,7 +57,7 @@
 	[self.view addSubview:_tableView];
 	
 	// setup nav bar
-	if (self.events.count > 1) {
+	/*if (self.events.count > 1) {
 		eventPager = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:
                                                                 [UIImage imageNamed:MITImageNameUpArrow],
                                                                 [UIImage imageNamed:MITImageNameDownArrow], nil]];
@@ -46,62 +69,69 @@
         UIBarButtonItem * segmentBarItem = [[UIBarButtonItem alloc] initWithCustomView:eventPager];
 		self.navigationItem.rightBarButtonItem = segmentBarItem;
 		[segmentBarItem release];
-	}
+	}*/
     
 	descriptionString = nil;
     categoriesString = nil;
 	
 	// set up table rows
 	[self reloadEvent];
-    if ([self.event hasMoreDetails] && [self.event.summary length] == 0) {
+    /*if ([self.event hasMoreDetails] && [self.event.summary length] == 0) {
         [self requestEventDetails];
-    }
+    }*/
 	
 	descriptionHeight = 0;
 }
 
 - (void)showNextEvent:(id)sender
 {
-	if ([sender isKindOfClass:[UISegmentedControl class]]) {
+	NSLog(@"    showNextEvent");
+    if ([sender isKindOfClass:[UISegmentedControl class]]) {
         NSInteger i = eventPager.selectedSegmentIndex;
-		NSInteger currentEventIndex = [self.events indexOfObject:self.event];
-		if (i == 0) { // previous
-            if (currentEventIndex > 0) {
-                currentEventIndex--;
+        
+        /*if(speechEvent)
+        {
+            NSInteger currentEventIndex = [self.speechEvent indexOfObject:self.speechEvent];
+            if (i == 0) { // previous
+                if (currentEventIndex > 0) {
+                    currentEventIndex--;
+                }
+            } else {
+                NSInteger maxIndex = [self.events count] - 1;
+                if (currentEventIndex < maxIndex) {
+                    currentEventIndex++;
+                }
             }
-		} else {
-            NSInteger maxIndex = [self.events count] - 1;
-            if (currentEventIndex < maxIndex) {
-                currentEventIndex++;
+            self.event = [self.events objectAtIndex:currentEventIndex];
+            [self reloadEvent];
+            if ([self.speechEvent hasMoreDetails] && [self.event.summary length] == 0) {
+                [self requestEventDetails];
             }
-		}
-		self.event = [self.events objectAtIndex:currentEventIndex];
-		[self reloadEvent];
-        if ([self.event hasMoreDetails] && [self.event.summary length] == 0) {
-            [self requestEventDetails];
-        }
+        }*/
     }
 }
 
 - (void)requestEventDetails
 {
+    NSLog(@"    requestEventDetails");
     if (isLoading) {
         [apiRequest abortRequest];
         isLoading = NO;
     }
     
 	apiRequest = [MITMobileWebAPI jsonLoadedDelegate:self];
-	NSString *eventID = [NSString stringWithFormat:@"%d", [self.event.eventID intValue]];
+	/*NSString *eventID = [NSString stringWithFormat:@"%d", [self.event.eventID intValue]];
 	
 	[apiRequest requestObjectFromModule:@"calendar" 
 								command:@"detail" 
-							 parameters:[NSDictionary dictionaryWithObjectsAndKeys:eventID, @"id", nil]];
+							 parameters:[NSDictionary dictionaryWithObjectsAndKeys:eventID, @"id", nil]];*/
     isLoading = YES;
 }
 
 - (void)reloadEvent
 {
-    if (event.url) {
+    NSLog(@"    reloadEvent");
+    /*if (event.url) {
         [self setupShareButton];
 	}
 	
@@ -167,11 +197,14 @@
 
         numRows++;
 	}
-	
+	*/
 	[self.tableView reloadData];
 }
 
 - (void)setupShareButton {
+    
+    NSLog(@"    setupShareButton");
+    
     if (!shareButton) {
         CGRect tableFrame = self.tableView.frame;
         shareButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
@@ -186,8 +219,12 @@
     }
 }
 
-- (void)setupHeader {	
-	CGRect tableFrame = self.tableView.frame;
+- (void)setupHeader {
+    
+    NSLog(@"    setupHeader");
+    
+	/*
+    CGRect tableFrame = self.tableView.frame;
 	
 	CGFloat titlePadding = 10.0;
     CGFloat titleWidth;
@@ -232,7 +269,7 @@
         [bottomBorder release];
     }
     
-	[titleView release];
+	[titleView release];*/
 }
 
 /*
@@ -251,10 +288,13 @@
 }
 
 - (void)setEvent:(MITCalendarEvent *)anEvent {
-	if (anEvent != event) {
+    
+    NSLog(@"    setEvent");
+    
+	/*if (anEvent != event) {
         [event release];
         event = [anEvent retain];
-    }
+    }*/
     
     [descriptionString release];
     [categoriesString release];
@@ -272,14 +312,14 @@
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    NSLog(@"    numRows = %i", numRows);
 	return numRows;
 }
 
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-	NSInteger rowType = rowTypes[indexPath.row];
+	/*NSInteger rowType = rowTypes[indexPath.row];
 	NSString *CellIdentifier = [NSString stringWithFormat:@"%d", rowType];
 
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -380,12 +420,71 @@
 
 			break;
         }
-	}
-	
+	}*/
+    
+    static NSString *CellIdentifier = @"Cell";
+    
+    DetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[DetailTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+    }
+    
+    cell.textLabel.numberOfLines = 0;
+    cell.detailTextLabel.numberOfLines = 0;
+    cell.textLabel.font = [UIFont systemFontOfSize:16.5];
+    
+    if(speechEvent)
+    {
+        switch(indexPath.row)
+        {
+            case 0:
+                cell.textLabel.font = [UIFont boldSystemFontOfSize:17.5];
+                cell.textLabel.text = [speechEvent title];
+                break;
+            case 1:
+                cell.textLabel.text = [speechEvent date];
+                cell.detailTextLabel.text = [speechEvent time];
+                break;
+            case 2:                cell.textLabel.text = [speechEvent speaker];
+                cell.detailTextLabel.text = [speechEvent serviceOrgan];
+                break;
+            case 3:
+                cell.textLabel.text = [speechEvent organizers];
+                break;
+        }
+    }
+    
+    else
+    {
+        [tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+        switch(indexPath.row)
+        {
+            case 0:
+                cell.textLabel.font = [UIFont boldSystemFontOfSize:17.5];
+                cell.textLabel.text = [activitiesEvent title];
+                break;
+            case 1:
+                cell.textLabel.text = [activitiesEvent period];
+                break;
+            case 2:
+                cell.textLabel.text = [activitiesEvent undertaker];
+                break;
+            case 3:
+                cell.textLabel.text = [activitiesEvent phone];
+                break;
+            case 4:
+                cell.textLabel.text = [activitiesEvent content];
+                break;
+        }
+    }
+    
     return cell;
 }
 
 - (NSString *)htmlStringFromString:(NSString *)source {
+    
+    NSLog(@"    htmlStringFromString");
+    
 	NSURL *baseURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath] isDirectory:YES];
 	NSURL *fileURL = [NSURL URLWithString:@"calendar/events_template.html" relativeToURL:baseURL];
 	NSError *error;
@@ -404,14 +503,61 @@
 	return [NSString stringWithString:target];
 }
 
+- (void)tableView: (UITableView*)tableView willDisplayCell: (UITableViewCell*)cell forRowAtIndexPath: (NSIndexPath*)indexPath
+{
+    if(activitiesEvent)
+    {
+        cell.textLabel.textColor = [UIColor whiteColor];
+        
+        switch(indexPath.row)
+        {
+            case 0:
+                cell.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"calendar/cell01_2.png"]];
+                //cell.backgroundColor = [UIColor colorWithRed:<#(CGFloat)#> green:<#(CGFloat)#> blue:<#(CGFloat)#> alpha:<#(CGFloat)#>];
+                break;
+            case 1:
+               cell.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"calendar/cell02_2.png"]];
+                //cell.backgroundColor = [UIColor colorWithRed:<#(CGFloat)#> green:<#(CGFloat)#> blue:<#(CGFloat)#> alpha:<#(CGFloat)#>];
+                break;
+            case 2:
+                cell.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"calendar/cell03_2.png"]];
+                //cell.backgroundColor = [UIColor colorWithRed:<#(CGFloat)#> green:<#(CGFloat)#> blue:<#(CGFloat)#> alpha:<#(CGFloat)#>];
+                break;
+            case 3:
+                cell.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"calendar/cell04_2.png"]];
+                //cell.backgroundColor = [UIColor colorWithRed:<#(CGFloat)#> green:<#(CGFloat)#> blue:<#(CGFloat)#> alpha:<#(CGFloat)#>];
+                break;
+            case 4:
+                cell.textLabel.textColor = [UIColor blackColor];
+                cell.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"calendar/cell05_2.png"]];
+                //cell.backgroundColor = [UIColor colorWithRed:<#(CGFloat)#> green:<#(CGFloat)#> blue:<#(CGFloat)#> alpha:<#(CGFloat)#>];
+                break;
+        }
+        
+        cell.detailTextLabel.textColor = [UIColor whiteColor];
+        cell.textLabel.backgroundColor = [UIColor clearColor];
+        cell.detailTextLabel.backgroundColor = [UIColor clearColor];
+    }
+ }
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	NSInteger rowType = rowTypes[indexPath.row];
+    if(activitiesEvent)
+    {
+        if(indexPath.row == 4)
+        {
+            return 250;
+        }
+    }
+    
+    return 45.0;
+    
+    /*NSInteger rowType = rowTypes[indexPath.row];
 	
 	NSString *cellText = nil;
 	UIFont *cellFont = nil;
 	CGFloat constraintWidth;
-
+    
 	switch (rowType) {
 		case CalendarDetailRowTypeCategories:
 			return categoriesHeight;
@@ -445,18 +591,20 @@
 		default:
 			return 44.0;
 	}
-
+     
 	CGSize textSize = [cellText sizeWithFont:cellFont
 						   constrainedToSize:CGSizeMake(constraintWidth, 2010.0)
 							   lineBreakMode:UILineBreakModeWordWrap];
 	
 	// constant defined in MultiLineTableViewcell.h
-	return textSize.height + CELL_VERTICAL_PADDING * 2;
+	return textSize.height + CELL_VERTICAL_PADDING * 2;*/
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
-	NSInteger rowType = rowTypes[indexPath.row];
+    NSLog(@"    didSelectRowAtIndexPath");
+    
+	/*NSInteger rowType = rowTypes[indexPath.row];
 	
 	switch (rowType) {
         case CalendarDetailRowTypeTime:
@@ -517,7 +665,7 @@
 		default:
 			break;
 	}
-	
+	*/
 	[tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
@@ -528,11 +676,13 @@
 }
 
 - (NSString *)emailSubject {
-	return [NSString stringWithFormat:@"MIT Event: %@", event.title];
+	//return [NSString stringWithFormat:@"MIT Event: %@", event.title];
+    return @"title";
 }
 
 - (NSString *)emailBody {
-	return [NSString stringWithFormat:@"I thought you might be interested in this event...\n\n%@\n\n%@", event.summary, event.url];
+	//return [NSString stringWithFormat:@"I thought you might be interested in this event...\n\n%@\n\n%@", event.summary, event.url];
+    return @"email";
 }
 
 - (NSString *)fbDialogPrompt {
@@ -540,23 +690,26 @@
 }
 
 - (NSString *)fbDialogAttachment {
-	return [NSString stringWithFormat:
+	/*return [NSString stringWithFormat:
 			@"{\"name\":\"%@\","
 			"\"href\":\"%@\","
 			"\"description\":\"%@\""
 			"}",
 			[event.title stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""],
             event.url,
-            [event.summary stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""]];
+            [event.summary stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""]];*/
+    return @"attachment";
 }
 
 - (NSString *)twitterUrl {
-    return event.url;
+    //return event.url;
 	//return [NSString stringWithFormat:@"http://%@/e/%@", MITMobileWebDomainString, [URLShortener compressedIdFromNumber:event.eventID]];
+    return @"url";
 }
 
 - (NSString *)twitterTitle {
-	return event.title;
+	//return event.title;
+    return @"title";
 }
 
 #pragma mark JSONLoadedDelegate for background refreshing of events
@@ -565,10 +718,10 @@
     isLoading = NO;
 	if (result && [result isKindOfClass:[NSDictionary class]]) {
         // make sure the event that the server returns is the one being viewed
-        if ([[result objectForKey:@"id"] intValue] == [self.event.eventID intValue]) {
+        /*if ([[result objectForKey:@"id"] intValue] == [self.event.eventID intValue]) {
             [self.event updateWithDict:result];
             [self reloadEvent];
-        }
+        }*/
 	}
 }
 
@@ -584,7 +737,7 @@
     
     self.event = nil;
     self.events = nil;
-	free(rowTypes);
+	//free(rowTypes);
 
     [eventPager release];
 	[shareButton release];

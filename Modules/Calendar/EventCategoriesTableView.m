@@ -45,6 +45,8 @@
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    NSLog(@"EventCategoriesTableView.m didselectRow");
 	
     EventCategory *category = [self.categories objectAtIndex:indexPath.row];
 	

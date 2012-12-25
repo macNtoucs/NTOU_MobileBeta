@@ -3,16 +3,18 @@
 #import "ShareDetailViewController.h"
 #import <EventKitUI/EventKitUI.h>
 
-@class MITCalendarEvent;
+//@class MITCalendarEvent;
+@class CalendarSpeech;
+@class CalendarActivities;
 
-typedef enum {
+/*typedef enum {
 	CalendarDetailRowTypeTime,
 	CalendarDetailRowTypeLocation,
 	CalendarDetailRowTypePhone,
 	CalendarDetailRowTypeURL,
 	CalendarDetailRowTypeDescription,
 	CalendarDetailRowTypeCategories
-} CalendarDetailRowType;
+} CalendarDetailRowType;*/
 
 @interface CalendarDetailViewController : ShareDetailViewController <
 UITableViewDelegate, UITableViewDataSource, JSONLoadedDelegate, ShareItemDelegate, 
@@ -21,8 +23,10 @@ UIWebViewDelegate, EKEventEditViewDelegate> {
     MITMobileWebAPI *apiRequest;
     BOOL isLoading;
     
-	MITCalendarEvent *event;
-	CalendarDetailRowType* rowTypes;
+	//MITCalendarEvent *event;
+    CalendarSpeech * speechEvent;
+    CalendarActivities * activitiesEvent;
+	//CalendarDetailRowType* rowTypes;
 	NSInteger numRows;
 	
 	UITableView *_tableView;
@@ -38,10 +42,12 @@ UIWebViewDelegate, EKEventEditViewDelegate> {
 	// list of events to scroll through for previous/next buttons
 	NSArray *events;
 }
-
-@property (nonatomic, retain) MITCalendarEvent *event;
+// @property (nonatomic, retain) MITCalendarEvent *event;
+@property (nonatomic, retain) CalendarSpeech * speechEvent;
+@property (nonatomic, retain) CalendarActivities * activitiesEvent;
 @property (nonatomic, retain) UITableView *tableView;
 @property (nonatomic, retain) NSArray *events;
+@property (nonatomic) NSInteger numRows;
 
 - (void)reloadEvent;
 - (void)setupHeader;

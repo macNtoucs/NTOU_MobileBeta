@@ -9,6 +9,9 @@
 #import "MITEventList.h"
 #import "CoreDataManager.h"
 
+#import "CalendarSpeech.h"
+#import "CalendarActivities.h"
+
 #define SCROLL_TAB_HORIZONTAL_PADDING 5.0
 #define SCROLL_TAB_HORIZONTAL_MARGIN  5.0
 
@@ -414,36 +417,59 @@
 			self.tableView.dataSource = (EventListTableView *)self.tableView;
 			((EventListTableView *)self.tableView).parentViewController = self;
             
-            //NSLog(@"bar title = %@", );
+            CalendarSpeech * tmp1_1227 = [CalendarSpeech new];
+            [tmp1_1227 setDate:@"2012/12/27 (星期四)" time:@"下午 02:00 - 04:00" title:@"Sensor Networks for Real" speaker:@"黃寶儀博士" serviceOrgan:@"國立台灣大學電機系教授" location:@"延平技術大樓820室" oranizers:@"E3.通訊與導航工程系"];
             
-            /*if()
-            {
-                
-            }*/
-            
-            NSArray * tmp1_1227 = [[NSArray alloc]initWithObjects:@"2012/12/27 (星期四)", @"下午 02:00 - 04:00	", @"Sensor Networks for Real", @"黃寶儀博士", @"國立台灣大學電機系教授", @"延平技術大樓820室", @"E3.通訊與導航工程系", nil];
-            NSArray * tmp2_1227 = [[NSArray alloc]initWithObjects:@"2012/12/27 (星期四)", @"下午 01:10 - 03:00	", @"(博、碩班專題討論) 海洋人生", @"楊施傑 先生", @"中華海員總工會 理事長", @"輪機系視聽教室", @"A4.輪機工程學系", nil];
+            CalendarSpeech * tmp2_1227 = [CalendarSpeech new];
+            [tmp2_1227 setDate:@"2012/12/27 (星期四)" time:@"下午 01:10 - 03:00	" title:@"(博、碩班專題討論) 海洋人生" speaker:@"楊施傑 先生" serviceOrgan:@"中華海員總工會 理事長" location:@"輪機系視聽教室" oranizers:@"A4.輪機工程學系"];
             
             NSArray * Dec27 = [[NSArray alloc] initWithObjects:tmp1_1227, tmp2_1227, nil];
+            
+            
+            CalendarActivities * tmp1_Dec = [CalendarActivities new];
+            [tmp1_Dec setDate:@"101/12/18" period:@"101/12/18～101/12/27" undertaker:@"林佩珊" email:nil phone:@"2121" title:@"舉辦「型衍形」吳建松石雕個展藝術家導覽。" content:@"時間：\n12/27　Thu\n13:10-14:30　卓越大師講座\n地點:人文社會科學院2樓　遠距教室\n\n14:30　藝術家導覽\n地點:圖書館一樓展示空間\n\n相關活動資訊請上藝文中心網站查詢\nhttp://www.art.ntou.edu.tw/"];
+            CalendarActivities * tmp2_Dec = [CalendarActivities new];
+            [tmp2_Dec setDate:@"101/12/18" period:@"101/12/18～101/12/31" undertaker:@"林令華" email:nil phone:@"24622192-2130" title:@"本期藝文Live　Show-12/12正港德意志-張正傑大提琴獨奏會演出片段" content:@"本期藝文Live　Show-12/12正港德意志-張正傑大提琴獨奏會演出片段\n\n可點以下連結觀賞：\n藝文中心http://www.art.ntou.edu.tw/\n播客行動學習系統http://podcast.ntou.edu.tw/podcast/show_channel/107"];
+            CalendarActivities * tmp3_Dec = [CalendarActivities new];
+            [tmp3_Dec setDate:@"101/12/14" period:@"101/11/30～101/1/25" undertaker:@"林佩珊" email:nil phone:@"2121" title:@"型衍形-吳建松石雕個展" content:@"<型衍形-吳建松石雕個展>\n2012.12.05Wed-2013.01.25Fri\n圖書館一樓展示空間\n\n12月27日下午1點10分，吳建松老師於海大開講\n地點：人社院2F遠距教室\n詳細演講內容請參卓越大師網站，\nhttp://www.art.ntou.edu.tw/masters/"];
+            
+            NSArray * December = [[NSArray alloc] initWithObjects:tmp1_Dec, tmp2_Dec, tmp3_Dec, nil];
+            
+            
             NSArray * dateText = [[CalendarDataManager dateStringForEventType:activeEventList forDate:startDate]componentsSeparatedByString:@","];
             
-            if(![[dateText objectAtIndex:0] isEqual:@"Today"])
+            //NSLog(@"    listID = %@", activeEventList.listID);
+            
+            if([activeEventList.listID isEqual:@"Speech"])
             {
-                NSArray * month_date = [[dateText objectAtIndex:0] componentsSeparatedByString:@" "];
-                if([[month_date objectAtIndex:0] isEqual:@"Dec"] && [[month_date objectAtIndex:1] isEqual:@"27"])
+                if([[dateText objectAtIndex:0] isEqual:@"Today"])
                 {
                     ((EventListTableView *)self.tableView).events = Dec27;
+                }
+                
+                else
+                {
+                    NSArray * month_date = [[dateText objectAtIndex:0] componentsSeparatedByString:@" "];
+                    if([[month_date objectAtIndex:0] isEqual:@"Dec"] && [[month_date objectAtIndex:1] isEqual:@"27"])
+                    {
+                        ((EventListTableView *)self.tableView).events = Dec27;
+                    }
                 }
             }
             
             else
             {
-                events = Dec27;
+                NSArray * month_year = [[dateText objectAtIndex:0] componentsSeparatedByString:@" "];
+                if([[month_year objectAtIndex:0] isEqual:@"December"] && [[month_year objectAtIndex:1] isEqual:@"2012"])
+                {
+                    ((EventListTableView *)self.tableView).events = December;
+                }
             }
             
+                        
             if (!requestNeeded) {
                 
-				((EventListTableView *)self.tableView).events = events;
+				//((EventListTableView *)self.tableView).events = events;
 				[self.tableView reloadData];
 			}
 		}
@@ -743,7 +769,7 @@
 
 	if (event != nil) {
 		CalendarDetailViewController *detailVC = [[CalendarDetailViewController alloc] init];
-		detailVC.event = event;
+		//detailVC.event = event;
 		[self.navigationController pushViewController:detailVC animated:YES];
 		[detailVC release];
 	}
