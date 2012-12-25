@@ -89,6 +89,7 @@
     HTTime =[[SetTimeViewController alloc] initWithStyle:UITableViewStyleGrouped];
     HTTime.view.frame = CGRectMake(0, 10, 320, 420);
     HTTime.delegate = self;
+    [HTTime initialTime];
     [setHTTimeviewController.view addSubview:HTTime.view];
      setHTTimeviewController.tabBarItem.tag=3;
     setHTTimeviewController.tabBarItem.image = [UIImage imageNamed:@"TimeDrive.png"];
@@ -109,7 +110,7 @@
         resultViewController.tabBarItem.image = [UIImage imageNamed:@"magnify.png"];
         [view5 recieveData];
     }
-   /* else {
+    else {
         ht_searchResult = [[HTSearchResultViewController alloc]init];
         ht_searchResult.dataSource = self;
         ht_searchResult.view.frame = CGRectMake(0, 10, 320, 425);
@@ -117,9 +118,8 @@
         [resultViewController.view addSubview:ht_searchResult.tableView];
         resultViewController.tabBarItem.tag=4;
         resultViewController.tabBarItem.image = [UIImage imageNamed:@"magnify.png"];
-        downloadView = [DownloadingView new];
         [ht_searchResult recieveData];
-    }*/
+    }
     //////////////////////////////////////////////////////////
     if(!isHighSpeedTrain){
         viewControllers = [[NSArray alloc]initWithObjects:setStartStationController, setdepatureStationviewController,setTimeviewController,setTrainTypeviewController ,resultViewController,nil];
@@ -171,7 +171,7 @@
     DepatureStation = [NSString stringWithString:startStaion];
     startStaion = [NSString stringWithString:tmpForSwap];
     [self viewDidLoad];
-    [view5 recieveData];
+   // [view5 recieveData];
 }
 
 -(void)didSwipe:(id)sender{
@@ -287,7 +287,7 @@
         NSString *StartStationID = [NSString stringWithFormat:@"%@",[stationNum valueForKey:startStaion]];
         NSString *DepatureStationID= [NSString stringWithFormat:@"%@",[stationNum valueForKey:DepatureStation]];
         // NSArray *arr= [stationNum allKeys];
-        NSString * queryURL = [[NSString alloc]initWithString:@"http://twtraffic.tra.gov.tw/twrail/SearchResult.aspx?searchtype=0&searchdate="];
+        NSString * queryURL = @"http://twtraffic.tra.gov.tw/twrail/SearchResult.aspx?searchtype=0&searchdate=";
         
         [dateFormatter setDateFormat:@"yyyy"];
         queryURL=[queryURL stringByAppendingString:[NSString stringWithFormat:@"%@", [dateFormatter stringFromDate:calendar.selectedDate]]];
@@ -336,9 +336,13 @@
 
 
 - (NSURL*)HTStationInfoURL:(HTSearchResultViewController *)stationInfoTableView{
-    NSString * URL = [NSString stringWithFormat:@"http://www.thsrc.com.tw/tc/ticket/tic_time_pop_summary.asp?sdate=2012/%d/%d",currentMonth,currentDay];
-    NSURL * queryURL = [[NSURL alloc]initWithString:URL];
-    return queryURL;
+    //http://www.thsrc.com.tw/TC/ticket/tic_time_result.asp
+    //from=1&to=5&sDate=2012%2F12%2F18&TimeTable=13%3A30&FromOrDest=From&x=50&y=14
+    // NSArray *arr= [stationNum allKeys];
+    stationInfoTableView.selectedDate = calendar.selectedDate;
+    stationInfoTableView.selectedHTTime=self->selectedHTTime;
+    NSString * queryURL = @"http://www.thsrc.com.tw/TC/ticket/tic_time_result.asp";
+    return [NSURL URLWithString: queryURL] ;
 }
 - (NSString *)HTstartStationTitile:(HTSearchResultViewController *)stationInfoTableView{
     if (![startStaion isEqualToString:@""] && startStaion)
@@ -352,6 +356,7 @@
 }
 
 -(void)HTTime:(SetTimeViewController *) controller nowselectedTime:(NSString *)Time{
+    selectedHTTime = Time;
     NSLog(@"%@",Time);
 }
 

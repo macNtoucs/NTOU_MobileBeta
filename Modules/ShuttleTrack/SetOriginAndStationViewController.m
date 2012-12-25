@@ -119,7 +119,7 @@
             break;
     }
     
-    return rowHeight;
+    return rowHeight; 
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {

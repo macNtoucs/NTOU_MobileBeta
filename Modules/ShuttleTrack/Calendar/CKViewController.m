@@ -11,7 +11,6 @@
 
 @implementation CKViewController
 
-
 @synthesize calendar;
 @synthesize selectedDate;
 
@@ -81,5 +80,6 @@
     
     
 }
+
 
 @end

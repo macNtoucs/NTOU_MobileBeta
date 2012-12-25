@@ -13,50 +13,25 @@
 @protocol HTStaionInfoDataSource;
 @interface HTSearchResultViewController : UITableViewController{
     __unsafe_unretained id <HTStaionInfoDataSource> dataSource;
-    NSURL * dataURL;
-    NSMutableArray * StartAndTerminalstops;
-    NSMutableArray * depatureTimes;
-    NSMutableArray *arrivalTimes;
-    NSString *startStation;
-    NSString *depatureStation;
-    DownloadingView *downloadView;
-    NSMutableURLRequest *request;
-    NSMutableDictionary *north;
-    NSMutableDictionary *south;
-    NSMutableDictionary *direction;
-    NSMutableArray *north_id;
-    NSMutableArray *north_taipeiStation;
-    NSMutableArray *north_benchiouStation;
-    NSMutableArray *north_touyounStation;
-    NSMutableArray *north_shinchewStation;
-    NSMutableArray *north_taichungStation;
-    NSMutableArray *north_chiaiStation;
-    NSMutableArray *north_tainanStation;
-    NSMutableArray *north_zhouyingStation;
-    NSMutableArray *south_id;
-    NSMutableArray *south_taipeiStation;
-    NSMutableArray *south_benchiouStation;
-    NSMutableArray *south_touyounStation;
-    NSMutableArray *south_shinchewStation;
-    NSMutableArray *south_taichungStation;
-    NSMutableArray *south_chiaiStation;
-    NSMutableArray *south_tainanStation;
-    NSMutableArray *south_zhouyingStation;
     NSArray * station;
-    NSMutableArray * shouldDisplay_to;
-    NSMutableArray * shouldDisplay_from;
-    NSMutableArray * shouldDisplay_ID;
-    bool isFirstTime;
+    NSString * startStation;
+    NSString * depatureStation;
+    NSURL * dataURL;
+    DownloadingView *downloadView;
+    NSDate * selectedDate;
+    NSString * selectedHTTime;
+    NSString * queryResult;
+    NSMutableArray * trainID;
+    NSMutableArray * depatureTime;
+    NSMutableArray * startTime;
+    bool isFirstTimeLoad;
 }
 
-@property (nonatomic,retain) NSURL * dataURL;
-@property (nonatomic ,retain )NSMutableArray * StartAndTerminalstops;
-@property (nonatomic, retain) NSMutableArray * depatureTimes;
-@property (nonatomic, retain)NSMutableArray *arrivalTimes;
-@property (nonatomic, retain)NSString *startStation;
-@property (nonatomic, retain)NSString *depatureStation;
-@property (nonatomic, unsafe_unretained) id <HTStaionInfoDataSource> dataSource;
+@property (nonatomic,unsafe_unretained)id dataSource;
+@property (nonatomic,retain) NSDate * selectedDate;
+@property (nonatomic,retain)NSString * selectedHTTime;
 -(void) recieveData;
+
 @end
 
 @protocol HTStaionInfoDataSource <NSObject>
