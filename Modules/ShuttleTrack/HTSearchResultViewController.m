@@ -80,7 +80,7 @@
 
 -(void)recieveData{
     [self recieveURL];
-    if (![[dataURL absoluteString] isEqualToString:@""] && !isFirstTimeLoad){
+    if (![[dataURL absoluteString] isEqualToString:@""]){
         downloadView = [DownloadingView new];
         dispatch_async(dispatch_get_main_queue(), ^{
             [downloadView AlertViewStart];
@@ -166,7 +166,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.tableView applyStandardColors];
+    //[self.tableView applyStandardColors];
 }
 
 - (void)didReceiveMemoryWarning
@@ -189,7 +189,7 @@
 {
 #warning Incomplete method implementation.
    
-    return [trainID count];
+    return [trainID count]+2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -204,13 +204,16 @@
      NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"M/d K:m"];
     if (indexPath.row == 0 ) {
-        cell.textLabel.text = [NSString stringWithFormat:@"      車次                      %@           %@",startStation,depatureStation];
-        cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:12];
-        cell.textLabel.textColor = [UIColor brownColor];
+        cell.textLabel.text = [NSString stringWithFormat:@"      車次                        %@           %@",startStation,depatureStation];
+        
         cell.textLabel.textColor = [UIColor brownColor];
     }
     else if (indexPath==0 && [trainID count]==0){
         cell.textLabel.text = [NSString stringWithFormat:@"無資料"];
+    }
+   
+    else if (indexPath.row > [trainID count]){
+        cell.textLabel.text=@"";
     }
     else {
         NSString * detailString = [NSString stringWithFormat:@"%@         %@", [startTime objectAtIndex:indexPath.row-1],[depatureTime objectAtIndex:indexPath.row-1] ] ;

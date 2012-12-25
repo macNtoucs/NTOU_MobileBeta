@@ -171,7 +171,9 @@
     DepatureStation = [NSString stringWithString:startStaion];
     startStaion = [NSString stringWithString:tmpForSwap];
     [self viewDidLoad];
-   // [view5 recieveData];
+    if (self.selectedIndex==4)
+        [view5 recieveData];
+       [ht_searchResult recieveData];
 }
 
 -(void)didSwipe:(id)sender{
@@ -208,9 +210,7 @@
     [UIView commitAnimations];
     NSLog(@"%d", viewController.tabBarItem.tag);
     if (viewController.tabBarItem.tag==4){
-        // dispatch_sync( dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        //[downloadView AlertViewStart];
-        //});
+       
         dispatch_async( dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             [view5 recieveData];
             [ht_searchResult recieveData];

@@ -45,6 +45,9 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
         });
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [downloadView AlertViewEnd];
+        });
     }
     
 }
@@ -96,14 +99,14 @@
           [trainStyle addObject: [[contextArr objectAtIndex:0]content] ];
         else continue;
        }
-    [downloadView AlertViewEnd];
+    
 }
 
 - (void)viewDidLoad
 {
     
     [super viewDidLoad];
-   
+    [self.tableView reloadData];
   
 }
 
@@ -129,7 +132,7 @@
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return [StartAndTerminalstops count];
+    return [StartAndTerminalstops count]+2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -148,6 +151,9 @@
     }
     else if (indexPath==0 && [StartAndTerminalstops count]==0){
         cell.textLabel.text = [NSString stringWithFormat:@"無資料"];
+    }
+    else if (indexPath.row > [StartAndTerminalstops count]){
+        cell.textLabel.text=@"";
     }
     else {
         NSString * detailString = [NSString stringWithFormat:@"%@         %@", [depatureTimes objectAtIndex:indexPath.row-1],[arrivalTimes objectAtIndex:indexPath.row-1] ] ;
