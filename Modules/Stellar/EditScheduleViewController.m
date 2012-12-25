@@ -33,15 +33,31 @@
     [self.navigationItem setRightBarButtonItem:right animated:YES];
 }
 
-- (void) hideKeyboard {
+- (void) hideKeyboard:(UITapGestureRecognizer*)recognizer {
     [accountDelegate resignFirstResponder];
     [passwordDelegate resignFirstResponder];
 }
 
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard:)];
+    
+    [self.tableView addGestureRecognizer:gestureRecognizer];
+    return YES;
+}
+
+-(BOOL)textFieldShouldEndEditing:(UITextField *)textField
+{
+    for (UIGestureRecognizer *recognizer in [self.tableView gestureRecognizers]) {
+        if ([recognizer isKindOfClass:[UITapGestureRecognizer class]]) {
+            [self.tableView removeGestureRecognizer:recognizer];
+        }
+    }
+    return YES;
+}
+
 - (void)viewDidLoad
 {
-    UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
-    [self.tableView addGestureRecognizer:gestureRecognizer];
     
     [self addNavRightButton]; 
     [super viewDidLoad];
@@ -94,7 +110,7 @@
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
     if (section==0) {
-        return 3;
+        return 4;
     }
     else if (section==1) {
         return 3;
@@ -117,8 +133,10 @@
     if (indexPath.section==1&&(indexPath.row==0||indexPath.row==1)) {
         cell  = [[[SecondaryGroupedTableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:CellIdentifier] autorelease];
     }
-    else
+    else if (indexPath.section==1&&indexPath.row==2)
         cell  = [[[SecondaryGroupedTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+    else
+        cell  = [[[SecondaryGroupedTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
 
     UISwitch *switchview = [[UISwitch alloc] initWithFrame:CGRectZero];
     switchview.on = [[ClassDataBase sharedData] FetchshowClassTimes];
@@ -135,6 +153,12 @@
                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
                 break;
             case 1:
+                cell.textLabel.text = @"課堂顏色";
+                cell.detailTextLabel.text = @"";
+                cell.detailTextLabel.textColor = [UIColor blueColor];
+                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                break;
+            case 2:
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 cell.textLabel.text = @"節次";
                 cell.accessoryView = sliderView;
@@ -143,7 +167,7 @@
                 cell.detailTextLabel.textColor = [UIColor blueColor];
                 cell.detailTextLabel.backgroundColor = [UIColor clearColor];
                 break;
-            case 2:
+            case 3:
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 cell.accessoryView = switchview;
                 [(UISwitch *)cell.accessoryView addTarget:self action:@selector(switchValueChange:) forControlEvents:UIControlEventTouchUpInside];
@@ -193,6 +217,7 @@
     willbeset_showClassTimes = theSwitch.on;
     [[ClassDataBase sharedData] SetShowClassTimes:willbeset_showClassTimes];
 }
+
 - (void)sliderValueChange:(id)sender{
     UISlider *theSlider = (UISlider *)sender;
     SecondaryGroupedTableViewCell *cell = (SecondaryGroupedTableViewCell *)theSlider.superview;
@@ -254,7 +279,11 @@
         [self.navigationController pushViewController:setweek animated:YES];
         setweek.title = @"設定一周天數";
     }
-        
+    else if (indexPath.section==0&&indexPath.row==1){
+        NTOU_ClassColorViewController* classColor = [[NTOU_ClassColorViewController alloc] init];
+        classColor.title = @"設定課堂顏色";
+        [self.navigationController pushViewController:classColor animated:YES];
+    }
 }
 
 @end

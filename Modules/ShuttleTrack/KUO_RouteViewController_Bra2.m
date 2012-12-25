@@ -32,6 +32,11 @@
     return self;
 }
 
+-(NSArray*)sectionIndexTitlesForTableView:(UITableView *)tableView
+{
+    return [display allKeys];
+}
+
 -(void)changeDirectType
 {
     if (direct) {
@@ -141,7 +146,7 @@
         cell.textLabel.lineBreakMode = UILineBreakModeWordWrap;
         cell.textLabel.numberOfLines = 0;
     }
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    //cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.textLabel.text= [[display objectForKey:[[display allKeys] objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row*StationInformationCount];
     return cell;
 }

@@ -87,6 +87,14 @@
     
 }
 
+-(void)displayModifyButton:(BOOL)type
+{
+    if (type) {
+        _modifyInfo.hidden = NO;
+    }
+    else
+       _modifyInfo.hidden = YES;
+}
 
 -(void)buttonFuntion:(BOOL)type
 {
@@ -99,19 +107,20 @@
 }
 
 - (IBAction)clean:(UIButton *)sender {
-    if (firstButtonType) {
-        
+    if (firstButtonType) {  //移動
+        _modifyInfo.hidden = YES;       
     }
-    else{
-        _classNameField.text = [NSString string];
+    else{   //清空
+        _classNameField.text = [NSString string]; 
         _teacherNameField.text = [NSString string];
         _roomNameField.text = [NSString string];
     }
     [delegate buttonDidFinish];
 }
 
-- (IBAction)modify:(UIButton *)sender {
+- (IBAction)modify:(UIButton *)sender { //修改
     [delegate buttonDidFinish];
+    _modifyInfo.hidden = YES;
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -145,6 +154,7 @@
                      completion:^(BOOL finished){
                      }];
     [delegate changeTapEnable];
+    _modifyInfo.hidden = YES;
    /* [[NSNotificationCenter defaultCenter] addObserver:_classNameField
                                              selector:@selector(keyboardShowAndDismiss:)
                                                  name:UIKeyboardWillShowNotification

@@ -56,6 +56,11 @@
     addView.classNameField.text = [info objectAtIndex:0];
 }
 
+-(void)displayModifyButton:(BOOL)type
+{
+    [addView displayModifyButton:type];
+}
+
 -(void)alterButtonFunction:(BOOL)type
 {
     [addView buttonFuntion:type];
@@ -194,6 +199,16 @@
     
 }
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    return (interfaceOrientation == UIDeviceOrientationPortrait);
+}
+
+
+
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
+{
+    return UIInterfaceOrientationPortrait;
+}
 
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer

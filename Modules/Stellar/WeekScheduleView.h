@@ -18,11 +18,12 @@
 -(BOOL) NavigationBarHidden;
 -(void) DisplayUITextField:(NSArray *)info;
 -(void)alterButtonFunction:(BOOL)type;
+-(void)displayModifyButton:(BOOL)type;
 @end
 
 @class ScheduleViewController;
 @interface WeekScheduleView : UIView <UIGestureRecognizerDelegate>{
-    NSArray *color;
+    NSMutableDictionary *color;
     ScheduleViewController *parent_ViewController;
     NSMutableArray* course;
     NSMutableArray* TapAddCourse;

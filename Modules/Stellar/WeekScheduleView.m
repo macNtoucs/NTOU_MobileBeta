@@ -23,7 +23,7 @@
         self.userInteractionEnabled = YES;
         TapAddCourse = [[NSMutableArray alloc] init];
         course = [[NSMutableArray alloc] init];
-        color = [[NSArray arrayWithObjects:[UIColor colorWithRed:193.0/255 green:255.0/255 blue:193.0/255 alpha:1],[UIColor colorWithRed:248.0/255 green:248.0/255 blue:255.0/255 alpha:1],[UIColor colorWithRed:255.0/255 green:248.0/255 blue:220.0/255 alpha:1],[UIColor colorWithRed:245.0/255 green:255.0/255 blue:250.0/255 alpha:1],[UIColor colorWithRed:255.0/255 green:255.0/255 blue:224.0/255 alpha:1],[UIColor colorWithRed:255.0/255 green:246.0/255 blue:143.0/255 alpha:1],[UIColor colorWithRed:255.0/255 green:181.0/255 blue:197.0/255 alpha:1],[UIColor colorWithRed:255.0/255 green:187.0/255 blue:255.0/255 alpha:1],[UIColor colorWithRed:224.0/255 green:255.0/255 blue:255.0/255 alpha:1],[UIColor colorWithRed:135.0/255 green:226.0/255 blue:255.0/255 alpha:1], nil] retain];
+        color = [[ClassDataBase sharedData] FetchColorDic];
 }
    
     return self;
@@ -72,6 +72,7 @@
             if ([TapAddCourse count]==0) {
                 [parent_ViewController alterButtonFunction:NO];
                 [self removeAllcourselabel];
+                [parent_ViewController displayModifyButton:NO];
             }
             label.backgroundColor = label.tempBackground;
             label.changeColor = NO;
@@ -87,6 +88,7 @@
                         courselabel.userInteractionEnabled = NO;
                     }
                 }
+                [parent_ViewController displayModifyButton:YES];
             }
             [TapAddCourse addObject:label];
             label.backgroundColor = [UIColor colorWithRed:187.0/255 green:255.0/255 blue:255.0/255 alpha:1];
@@ -126,7 +128,7 @@
         label.text = [content objectAtIndex:i];
         label.tag = -((number*100+sameClass)*100+i-sameClass+1);
         if (![[content objectAtIndex:i] isEqualToString:@" "]){
-            label.backgroundColor = [color objectAtIndex:(number+i)%10];
+            label.backgroundColor = [color objectForKey:label.text];
             label.tag = -label.tag;
             [course addObject:label];
         }
