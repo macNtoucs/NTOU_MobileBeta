@@ -24,6 +24,8 @@
 #define WeekDaysKey @"WeekDaysKey"
 #define ClassDataBaseKey @"classDataBaseKey"
 #define ColorDicKey @"ColorDicKey"
+#define professorNameKey @"professorNameKey"
+#define classroomLocationKey @"classroomLocationKey"
 #import <Foundation/Foundation.h>
 #import "DefinePixel.h"
 typedef enum {Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday } ColumnName;
@@ -36,10 +38,14 @@ typedef enum {Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday } ColumnN
     id EditScheduleDelegate;
     NSMutableArray* WeekDays;
     NSMutableDictionary* ColorDic;
+    NSMutableDictionary* professorName;
+    NSMutableDictionary* classroomLocation;
 }
 
 @property (nonatomic,retain) NSDictionary *ScheduleInfo;
 @property (nonatomic,retain) NSMutableDictionary *ColorDic;
+@property (nonatomic,retain) NSMutableDictionary* professorName;
+@property (nonatomic,retain) NSMutableDictionary* classroomLocation;
 @property (nonatomic,assign) id ScheduleViewDelegate;
 @property (nonatomic,assign) id EditScheduleDelegate;
 
@@ -50,9 +56,22 @@ typedef enum {Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday } ColumnN
 -(int)FetchClassSessionTimes;
 -(void)SetClassSessionTimes:(int)CST;
 -(void)SetShowClassTimes:(BOOL) SCT;
+
 -(NSDictionary*) FetchScheduleInfo;
+-(void)UpdataScheduleInfo:(NSNumber*)Key ScheduleInfo:(NSString*)Name;
+
 -(NSArray *)ShowClassTimes;
 -(BOOL)FetchshowClassTimes;
+
 -(void)SetWeekDays:(ColumnName)day;
 -(BOOL)displayWeekDays:(ColumnName)day;
+
+-(NSString*) FetchProfessorName:(NSNumber*)Key;
+-(void)deleteProfessorName:(NSNumber*)Key;
+-(void)UpdataProfessorNameKey:(NSNumber*)Key ProfessorName:(NSString*)Name;
+
+-(NSString*) FetchClassroomLocation:(NSNumber*)Key;
+-(void)deleteClassroomLocation:(NSNumber*)Key;
+-(void)UpdataClassroomLocationKey:(NSNumber*)Key ColorDic:(NSString*)Location;
+
 @end

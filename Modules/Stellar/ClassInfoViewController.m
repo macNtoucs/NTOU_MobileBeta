@@ -7,7 +7,7 @@
 //
 
 #import "ClassInfoViewController.h"
-
+#import "ClassDataBase.h"
 @interface ClassInfoViewController (){
     ClassLabelBasis * classinfo;
     ClassInfoView * view5;
@@ -23,14 +23,6 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        classinfo = [[[ClassLabelBasis alloc] initWithFrame:CGRectMake(0, 0, 320, 40)] autorelease];
-        classinfo.backgroundColor = [UIColor clearColor];
-        classinfo.text = [NSString stringWithFormat:@"教授名稱：林清池 \n教室地點：CS301"];
-        classinfo.textAlignment = UITextAlignmentCenter;
-        classinfo.font = [UIFont fontWithName:BOLD_FONT size:15];
-        classinfo.lineBreakMode = UILineBreakModeWordWrap;
-        classinfo.numberOfLines = 0;
-        [self.view addSubview:classinfo];
         UIViewController *viewController1, *viewController2, *viewController3, *viewController4, *viewController5;
         viewController1 = [[UIViewController alloc] init];
         viewController1.title = type3;
@@ -188,6 +180,20 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor clearColor];
     // Do any additional setup after loading the view from its nib.
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    classinfo = [[[ClassLabelBasis alloc] initWithFrame:CGRectMake(0, 0, 320, 40)] autorelease];
+    classinfo.backgroundColor = [UIColor clearColor];
+    classinfo.textAlignment = UITextAlignmentCenter;
+    classinfo.font = [UIFont fontWithName:BOLD_FONT size:15];
+    classinfo.lineBreakMode = UILineBreakModeWordWrap;
+    classinfo.numberOfLines = 0;
+    ClassDataBase* ClassData = [ClassDataBase sharedData];
+    classinfo.text = [NSString stringWithFormat:@"教授名稱：%@ \n教室地點：%@",[ClassData FetchProfessorName:[NSNumber numberWithInt:self.tag]],[ClassData FetchClassroomLocation:[NSNumber numberWithInt:self.tag]]];
+    [self.view addSubview:classinfo];
 }
 
 - (void)didReceiveMemoryWarning

@@ -65,10 +65,13 @@
         types = 3;
     else if (self.title == type4)
         types = 4;
-    else if (self.title == type5)
+    else if (self.title == type5){
         types = 5;
+        self.tableView.scrollEnabled = NO;
+    }
     else if (self.title == type6)
         types = 6;
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -535,9 +538,9 @@
 	cell.textLabel.backgroundColor = [UIColor clearColor];
     if (types==5) {
         if (edit) {
-            textView.frame = CGRectMake(0, 5, 300, 150);
+            textView.frame = CGRectMake(0, 0, 300, 160);
         } else {
-            textView.frame = CGRectMake(0, 5, 300, 300);
+            textView.frame = CGRectMake(0, 0, 300, 325);
         }
         [cell.contentView addSubview:self.textView];
     }
@@ -696,7 +699,7 @@
         return 160;
     }
     else if (types==5) {
-        return 320;
+        return 325;
     }
     else
     return rowHeight;

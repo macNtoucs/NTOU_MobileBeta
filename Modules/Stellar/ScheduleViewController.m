@@ -45,10 +45,48 @@
     [self.navigationController pushViewController:classInfo animated:YES];
 }
 
--(void) buttonDidFinish
+-(void) buttonDidFinish:(int)FinishType StringData:(NSArray *)array
 {
-    [weekschedule restorTheOriginalColor];
-    [weekschedule removeAllcourselabel];
+    if (FinishType == clean||(FinishType == move&&[weekschedule.TapAddCourse count]==1)) {
+        [weekschedule restorTheOriginalColor];
+        [weekschedule removeAllcourselabel];
+        return;
+    }
+    if (FinishType == move||[[array objectAtIndex:0] isEqualToString:[NSString string]]) {
+        [[ClassDataBase sharedData] UpdataScheduleInfo:[NSNumber numberWithInt:[[weekschedule.TapAddCourse objectAtIndex:0]tag]] ScheduleInfo:@" "];
+        [weekschedule.TapAddCourse removeObjectAtIndex:0];
+        if ([[array objectAtIndex:0] isEqualToString:[NSString string]]) {
+            [weekschedule drawRect:CGRectZero];
+            return;
+        }
+    }
+    NSSortDescriptor *sortDescriptor=[[NSSortDescriptor alloc]initWithKey:@"tag" ascending:NO];
+    NSArray *sortDescriptors=[NSArray arrayWithObject:sortDescriptor];
+    NSArray *sortedArr=[weekschedule.TapAddCourse sortedArrayUsingDescriptors:sortDescriptors];
+    weekschedule.TapAddCourse = [NSMutableArray array];
+    int i=0;
+    for (ClassLabelBasis* label in sortedArr) {
+        if (label.tag<0)
+                label.tag*=-1;
+        if ([weekschedule.TapAddCourse count]==0)
+            [weekschedule.TapAddCourse addObject:label];
+        else{
+            ClassLabelBasis* sortedlabel = [weekschedule.TapAddCourse objectAtIndex:i];
+            if (label.tag==sortedlabel.tag+1000)
+                sortedlabel.tag++;
+            else{
+                [weekschedule.TapAddCourse addObject:label];
+                i++;
+            }
+        }
+    }
+    for (ClassLabelBasis* label in weekschedule.TapAddCourse) {
+        [[ClassDataBase sharedData] UpdataScheduleInfo:[NSNumber numberWithInt:label.tag] ScheduleInfo:[array objectAtIndex:0]];
+        [[ClassDataBase sharedData] UpdataProfessorNameKey:[NSNumber numberWithInt:label.tag] ProfessorName:[array objectAtIndex:1]];
+        [[ClassDataBase sharedData] UpdataClassroomLocationKey:[NSNumber numberWithInt:label.tag] ColorDic:[array objectAtIndex:2]];
+    }
+    [weekschedule.TapAddCourse removeAllObjects];
+    [weekschedule drawRect:CGRectZero];
 }
 
 -(void) DisplayUITextField:(NSArray *)info
