@@ -9,10 +9,11 @@
 @required
 -(void) changeTapEnable;
 -(void) NavigationBarShow;
--(void) buttonDidFinish;
+-(void) buttonDidFinish:(int)FinishType StringData:(NSArray*)array;
 @end
-#import <UIKit/UIKit.h>
 
+#import <UIKit/UIKit.h>
+typedef enum {clean,modify,move}ButtonType;
 @interface ClassAdd : UIViewController{
     id delegate;
 }

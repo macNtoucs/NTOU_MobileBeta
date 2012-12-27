@@ -13,6 +13,8 @@
 @synthesize ScheduleViewDelegate;
 @synthesize EditScheduleDelegate;
 @synthesize ColorDic;
+@synthesize professorName;
+@synthesize classroomLocation;
 static ClassDataBase *sharedData = nil;
 
 + (ClassDataBase *)sharedData {
@@ -34,6 +36,8 @@ static ClassDataBase *sharedData = nil;
         ScheduleInfo = [[aDecoder decodeObjectForKey:ScheduleInfoKey] retain];
         WeekDays = [[aDecoder decodeObjectForKey:WeekDaysKey] retain];
         ColorDic = [[aDecoder decodeObjectForKey:ColorDicKey] retain];
+        professorName = [[aDecoder decodeObjectForKey:professorNameKey] retain];
+        classroomLocation = [[aDecoder decodeObjectForKey:classroomLocationKey] retain];
     }
     return self;
 }
@@ -45,6 +49,8 @@ static ClassDataBase *sharedData = nil;
     [aCoder encodeObject:ScheduleInfo forKey:ScheduleInfoKey];
     [aCoder encodeObject:WeekDays forKey:WeekDaysKey];
     [aCoder encodeObject:ColorDic forKey:ColorDicKey];
+    [aCoder encodeObject:professorName forKey:professorNameKey];
+    [aCoder encodeObject:classroomLocation forKey:classroomLocationKey];
 }
 
 -(id)init
@@ -66,6 +72,8 @@ static ClassDataBase *sharedData = nil;
                             [NSMutableArray arrayWithObjects:[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "], nil],@"Sunday",nil];
             WeekDays=[[NSMutableArray arrayWithObjects:[NSNumber numberWithBool:YES],[NSNumber numberWithBool:YES],[NSNumber numberWithBool:YES],[NSNumber numberWithBool:YES],[NSNumber numberWithBool:YES],[NSNumber numberWithBool:YES],[NSNumber numberWithBool:YES], nil] retain];
             ColorDic = [[NSMutableDictionary alloc]initWithObjectsAndKeys:[UIColor colorWithRed:193.0/255 green:255.0/255 blue:193.0/255 alpha:1],[NSString stringWithFormat:@"資料庫"],[UIColor colorWithRed:248.0/255 green:248.0/255 blue:255.0/255 alpha:1],[NSString stringWithFormat:@"演算法"],[UIColor colorWithRed:255.0/255 green:248.0/255 blue:220.0/255 alpha:1],[NSString stringWithFormat:@"程式語言"],[UIColor colorWithRed:245.0/255 green:255.0/255 blue:250.0/255 alpha:1],[NSString stringWithFormat:@"日文"],[UIColor colorWithRed:255.0/255 green:255.0/255 blue:224.0/255 alpha:1],[NSString stringWithFormat:@"性別平等與就業歧視"],[UIColor colorWithRed:255.0/255 green:246.0/255 blue:143.0/255 alpha:1],[NSString stringWithFormat:@"現代藝術賞析"],[UIColor colorWithRed:255.0/255 green:181.0/255 blue:197.0/255 alpha:1],[NSString stringWithFormat:@"作業系統"], nil];
+            professorName = [[NSMutableDictionary alloc]initWithObjectsAndKeys:[NSString stringWithFormat:@"林清池"],[NSNumber numberWithInt:10103], nil];
+            classroomLocation = [[NSMutableDictionary alloc]initWithObjectsAndKeys:[NSString stringWithFormat:@"CS301"],[NSNumber numberWithInt:10103], nil];
 
         }
         else
@@ -78,7 +86,10 @@ static ClassDataBase *sharedData = nil;
             showClassTimes = obj->showClassTimes;
             ScheduleInfo = [[NSDictionary alloc] initWithDictionary:obj->ScheduleInfo];
             ColorDic = [[NSMutableDictionary alloc] initWithDictionary:obj->ColorDic];
+            professorName = [[NSMutableDictionary alloc] initWithDictionary:obj->professorName];
+            classroomLocation = [[NSMutableDictionary alloc] initWithDictionary:obj->classroomLocation];
             WeekDays = [[NSMutableArray alloc] initWithArray:obj->WeekDays];
+            
         }
         
     }
@@ -96,9 +107,80 @@ static ClassDataBase *sharedData = nil;
     [ColorDic setValue:RGB forKey:Key];
 }
 
+-(NSString*) FetchProfessorName:(NSNumber*)Key{
+    return  [professorName objectForKey:Key];
+}
+
+-(void)deleteProfessorName:(NSNumber*)Key
+{
+    if ([professorName objectForKey:Key]) {
+        [professorName removeObjectForKey:Key];
+    }
+}
+
+-(void)UpdataProfessorNameKey:(NSNumber*)Key ProfessorName:(NSString*)Name
+{
+    [self deleteProfessorName:Key];
+    [professorName setObject:Name forKey:Key];
+}
+
+-(NSString*) FetchClassroomLocation:(NSNumber*)Key{
+    return  [classroomLocation objectForKey:Key];
+}
+
+-(void)deleteClassroomLocation:(NSNumber*)Key
+{
+    if ([classroomLocation objectForKey:Key]) {
+        [classroomLocation removeObjectForKey:Key];
+    }
+}
+
+-(void)UpdataClassroomLocationKey:(NSNumber*)Key ColorDic:(NSString*)Location
+{
+    [self deleteClassroomLocation:Key];
+    [classroomLocation setObject:Location forKey:Key];
+}
+
 -(NSDictionary*) FetchScheduleInfo{
     return  ScheduleInfo;
 }
+
+-(NSMutableArray*)ScheduleInfoKeyToWeek:(NSNumber*)Key
+{
+    if ([Key intValue]/10000==Monday) {
+        return [ScheduleInfo objectForKey:@"Monday"];
+    }
+    else if ([Key intValue]/10000==Tuesday) {
+        return [ScheduleInfo objectForKey:@"Tuesday"];
+    }
+    else if ([Key intValue]/10000==Wednesday) {
+        return [ScheduleInfo objectForKey:@"Wednesday"];
+    }
+    else if ([Key intValue]/10000==Thursday) {
+        return [ScheduleInfo objectForKey:@"Thursday"];
+    }
+    else if ([Key intValue]/10000==Friday) {
+        return [ScheduleInfo objectForKey:@"Friday"];
+    }
+    else if ([Key intValue]/10000==Saturday) {
+        return [ScheduleInfo objectForKey:@"Saturday"];
+    }
+    else if ([Key intValue]/10000==Sunday) {
+        return [ScheduleInfo objectForKey:@"Sunday"];
+    }
+    return nil;
+}
+
+-(void)UpdataScheduleInfo:(NSNumber*)Key ScheduleInfo:(NSString*)Name
+{
+    NSRange range =  NSMakeRange([Key intValue]%10000/100,[Key intValue]%100);
+    
+    for (int i=0; i < range.length; i++) {
+        [[self ScheduleInfoKeyToWeek:Key] replaceObjectAtIndex:range.location+i  withObject:Name];
+    }
+    
+}
+
 
 -(int)FetchWeekTimes
 {

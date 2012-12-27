@@ -63,8 +63,8 @@
 {
     UIGestureRecognizer * tapGesture = (UIGestureRecognizer *)sender;
     ClassLabelBasis*label = (ClassLabelBasis*)[self viewWithTag:tapGesture.view.tag];
-    if (WhetherTapped) {
-        if (label.changeColor) {
+    if (WhetherTapped) {    //是否進入修改課程頁面中
+        if (label.changeColor) {    
             if (label.tag>=0)
                 [self restorTheOriginalColor];
             else
@@ -107,14 +107,10 @@
 
     for (int i=0;i<[content count] && i < [[ClassDataBase sharedData] FetchClassSessionTimes] && number<[[ClassDataBase sharedData]FetchWeekTimes];i++) {
         int sameClass=i;
-        while (1) {
-            if (i+1<[content count] ) {
-                if ([[content objectAtIndex:i+1] isEqualToString:[content objectAtIndex:i]]&&![[content objectAtIndex:i]isEqualToString:@" "]) {
+        while (i+1<[content count]) {
+            if ([[content objectAtIndex:i+1] isEqualToString:[content objectAtIndex:i]]&&![[content objectAtIndex:i]isEqualToString:@" "]) {
                     i++;
                 }
-                else
-                    break;
-            }
             else
                 break;
         }
@@ -126,7 +122,7 @@
         labelFrame = CGRectMake( LeftBaseline+number*(UpperViewWidth-TextLabelborderWidth), x+UpperBaseline+(LeftViewHeight-TextLabelborderWidth)*sameClass, UpperViewWidth, LeftViewHeight+(LeftViewHeight-TextLabelborderWidth)*(i-sameClass));
         ClassLabelBasis* label = [[[ClassLabelBasis alloc] initWithFrame: labelFrame] autorelease];
         label.text = [content objectAtIndex:i];
-        label.tag = -((number*100+sameClass)*100+i-sameClass+1);
+        label.tag = -((number*100+sameClass)*100+i-sameClass+1); //（第幾週數－１）＊１００００＋（第幾堂數－１）＊１００＋連堂數
         if (![[content objectAtIndex:i] isEqualToString:@" "]){
             label.backgroundColor = [color objectForKey:label.text];
             label.tag = -label.tag;

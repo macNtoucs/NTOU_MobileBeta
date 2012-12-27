@@ -108,19 +108,22 @@
 
 - (IBAction)clean:(UIButton *)sender {
     if (firstButtonType) {  //移動
-        _modifyInfo.hidden = YES;       
+        _modifyInfo.hidden = YES;
+        [delegate buttonDidFinish:move StringData:[NSArray arrayWithObjects:_classNameField.text,_teacherNameField.text,_roomNameField.text, nil]];
+        [self buttonFuntion:NO];
     }
     else{   //清空
-        _classNameField.text = [NSString string]; 
+        _classNameField.text = [NSString string];
         _teacherNameField.text = [NSString string];
         _roomNameField.text = [NSString string];
+        [delegate buttonDidFinish:clean StringData:[NSArray arrayWithObjects:_classNameField.text,_teacherNameField.text,_roomNameField.text, nil]];
     }
-    [delegate buttonDidFinish];
 }
 
 - (IBAction)modify:(UIButton *)sender { //修改
-    [delegate buttonDidFinish];
+    [delegate buttonDidFinish:modify StringData:[NSArray arrayWithObjects:_classNameField.text,_teacherNameField.text,_roomNameField.text, nil]];
     _modifyInfo.hidden = YES;
+    [self buttonFuntion:NO];
 }
 
 -(void)viewDidAppear:(BOOL)animated
