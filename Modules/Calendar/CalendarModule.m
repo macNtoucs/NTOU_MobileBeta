@@ -24,7 +24,7 @@
     self = [super init];
     if (self != nil) {
         self.tag = CalendarTag;
-        self.shortName = @"Events";
+        self.shortName = @"活動";
         self.longName = @"Events Calendar";
         self.iconName = @"calendar";
         
