@@ -148,11 +148,13 @@ static ClassDataBase *sharedData = nil;
 
 -(void)ClassAddCancel
 {
+    CFRelease(ScheduleTempInfo);
     ScheduleTempInfo = (NSDictionary *)CFPropertyListCreateDeepCopy(kCFAllocatorDefault, (CFDictionaryRef)ScheduleInfo, kCFPropertyListMutableContainers);
 }
 
 -(void)ClassAddDecide
 {
+    CFRelease(ScheduleInfo);
     ScheduleInfo = (NSDictionary *)CFPropertyListCreateDeepCopy(kCFAllocatorDefault, (CFDictionaryRef)ScheduleTempInfo, kCFPropertyListMutableContainers);
 }
 
