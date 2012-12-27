@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface DownloadingView : NSObject{
+@interface DownloadingView : NSObject<UIAlertViewDelegate>{
  UIAlertView *loadingAlertView;
 
 }
