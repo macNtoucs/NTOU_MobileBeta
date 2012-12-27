@@ -87,7 +87,7 @@
 
 -(void)recieveData{
     [self recieveURL];
-    if (![[dataURL absoluteString] isEqualToString:@""]){
+    if (![[dataURL absoluteString] isEqualToString:@""]&&!isFirstTimeLoad){
         downloadView = [DownloadingView new];
         dispatch_async(dispatch_get_main_queue(), ^{
             [downloadView AlertViewStart];
@@ -230,15 +230,16 @@
     }
      NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"M/d K:m"];
-    if (indexPath.row == 0 ) {
+    if (![self hasWifi]){
+        cell.textLabel.text = [NSString stringWithFormat:@"無法連線，請檢查網路"];
+    }
+
+    else if (indexPath.row == 0 ) {
         cell.textLabel.text = [NSString stringWithFormat:@"      車次                        %@           %@",startStation,depatureStation];
         
         cell.textLabel.textColor = [UIColor brownColor];
     }
-    else if (![self hasWifi]){
-        cell.textLabel.text = [NSString stringWithFormat:@"無法連線，請檢查網路"];
-    }
-    
+      
     else if ([trainID count]==0){
         cell.textLabel.text = [NSString stringWithFormat:@"無資料"];
         cell.detailTextLabel.text=@"";

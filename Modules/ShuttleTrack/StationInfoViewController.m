@@ -164,15 +164,16 @@
     if (cell == nil) {
         cell = [[[SecondaryGroupedTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
     }
-    if (indexPath.row == 0 ) {
+    if (![self hasWifi]){
+        cell.textLabel.text = [NSString stringWithFormat:@"無法連線，請檢查網路"];
+    }
+   else if (indexPath.row == 0 ) {
         cell.textLabel.text = [NSString stringWithFormat:@"車種                            %@           %@",startStation,depatureStation];
         cell.detailTextLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:12];
         cell.detailTextLabel.textColor = [UIColor brownColor];
         cell.textLabel.textColor = [UIColor brownColor];
     }
-    else if (![self hasWifi]){
-        cell.textLabel.text = [NSString stringWithFormat:@"無法連線，請檢查網路"];
-    }
+   
     
     else if ([StartAndTerminalstops count]==0){
         cell.textLabel.text = [NSString stringWithFormat:@"無資料"];
