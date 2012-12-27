@@ -28,7 +28,7 @@ typedef enum {clean,modify,move}ButtonType;
 @property (retain, nonatomic) IBOutlet UIButton *cleanInfo;
 @property (retain, nonatomic) IBOutlet UIButton *modifyInfo;
 
--(IBAction)cancel:(id)sender;
+-(IBAction)ConfirmOrCancel:(id)sender;
 - (IBAction)clean:(UIButton *)sender;
 - (IBAction)modify:(UIButton *)sender;
 -(void)displayModifyButton:(BOOL)type;

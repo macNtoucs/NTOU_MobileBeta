@@ -34,6 +34,7 @@ typedef enum {Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday } ColumnN
     int ClassSessionTimes;
     bool showClassTimes;
     NSDictionary * ScheduleInfo; //key是星期幾 value是mutable array記錄課表
+    NSDictionary * ScheduleTempInfo;
     id ScheduleViewDelegate;
     id EditScheduleDelegate;
     NSMutableArray* WeekDays;
@@ -43,6 +44,7 @@ typedef enum {Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday } ColumnN
 }
 
 @property (nonatomic,retain) NSDictionary *ScheduleInfo;
+@property (nonatomic,retain) NSDictionary *ScheduleTempInfo;
 @property (nonatomic,retain) NSMutableDictionary *ColorDic;
 @property (nonatomic,retain) NSMutableDictionary* professorName;
 @property (nonatomic,retain) NSMutableDictionary* classroomLocation;
@@ -73,5 +75,8 @@ typedef enum {Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday } ColumnN
 -(NSString*) FetchClassroomLocation:(NSNumber*)Key;
 -(void)deleteClassroomLocation:(NSNumber*)Key;
 -(void)UpdataClassroomLocationKey:(NSNumber*)Key ColorDic:(NSString*)Location;
+
+-(void)ClassAddCancel;
+-(void)ClassAddDecide;
 
 @end
