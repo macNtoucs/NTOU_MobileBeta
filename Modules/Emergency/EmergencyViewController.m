@@ -213,6 +213,37 @@
     return num;
 }
 
+
+- (UIView *) tableView: (UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+   
+    UILabel *label = [[[UILabel alloc] init] autorelease];
+    label.frame = CGRectMake(15, 3, 284, 23);
+    label.textColor = [UIColor blackColor];
+    label.font = [UIFont fontWithName:@"Helvetica" size:18];
+    label.backgroundColor = [UIColor clearColor];
+    switch (section) {
+        case 0:
+             label.text = @"校內";
+            break;
+            
+        case 1:
+             label.text =@"校外";
+            break;
+            
+        case 2:
+             label.text =@"其他";
+            break;
+            
+    }
+    // Create header view and add label as a subview
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 100)];
+    [view autorelease];
+    [view addSubview:label];
+    
+    return view;
+    
+    
+}
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     CGFloat rowHeight = 0;
     UIFont *cellFont = [UIFont fontWithName:@"Helvetica" size:14.0];
