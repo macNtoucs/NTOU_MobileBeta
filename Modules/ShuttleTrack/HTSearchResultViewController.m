@@ -7,6 +7,9 @@
 //
 
 #import "HTSearchResultViewController.h"
+#import "StationInfoViewController.h"
+#import <netinet/in.h>
+#import <SystemConfiguration/SystemConfiguration.h>
 
 @interface HTSearchResultViewController ()
 
@@ -152,6 +155,26 @@
     //NSLog(@"Response ==> %@", queryResult);
     
 }
+
+-(bool)hasWifi{
+    //Create zero addy
+    struct sockaddr_in Addr;
+    bzero(&Addr, sizeof(Addr));
+    Addr.sin_len = sizeof(Addr);
+    Addr.sin_family = AF_INET;
+    
+    //結果存至旗標中
+    SCNetworkReachabilityRef target = SCNetworkReachabilityCreateWithAddress(NULL, (struct sockaddr *) &Addr);
+    SCNetworkReachabilityFlags flags;
+    SCNetworkReachabilityGetFlags(target, &flags);
+    
+    
+    //將取得結果與狀態旗標位元做AND的運算並輸出
+    if (flags & kSCNetworkFlagsReachable)  return true;
+    else return false;
+}
+
+
 -(NSString *)determindir{ //return true 南下
     NSUInteger index_start = [station indexOfObject:startStation];
     NSUInteger index_depature = [station indexOfObject:depatureStation];
@@ -208,7 +231,11 @@
         
         cell.textLabel.textColor = [UIColor brownColor];
     }
-    else if (indexPath==0 && [trainID count]==0){
+    else if (![self hasWifi]){
+        cell.textLabel.text = [NSString stringWithFormat:@"無法連線，請檢查網路"];
+    }
+    
+    else if ([trainID count]==0){
         cell.textLabel.text = [NSString stringWithFormat:@"無資料"];
     }
    
