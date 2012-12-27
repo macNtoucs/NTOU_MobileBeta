@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ClassAddBackground : UIView
-
+@interface ClassAddBackground : UIView{
+    int statment;
+}
+@property int statment;
 @end

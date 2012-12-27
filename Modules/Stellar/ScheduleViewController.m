@@ -72,7 +72,7 @@
             [weekschedule.TapAddCourse addObject:label];
         else{
             ClassLabelBasis* sortedlabel = [weekschedule.TapAddCourse objectAtIndex:i];
-            if (label.tag==sortedlabel.tag+1000)
+            if (label.tag==sortedlabel.tag+100)
                 sortedlabel.tag++;
             else{
                 [weekschedule.TapAddCourse addObject:label];
@@ -92,6 +92,8 @@
 -(void) DisplayUITextField:(NSArray *)info
 {
     addView.classNameField.text = [info objectAtIndex:0];
+    addView.teacherNameField.text = [info objectAtIndex:1];
+    addView.roomNameField.text = [info objectAtIndex:2];
 }
 
 -(void)displayModifyButton:(BOOL)type

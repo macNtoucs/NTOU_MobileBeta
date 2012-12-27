@@ -79,7 +79,7 @@
         } else {
             if ([TapAddCourse count]==0) {
                 if (label.tag>=0) {
-                    [parent_ViewController DisplayUITextField:[NSArray arrayWithObjects:label.text, nil]];
+                    [parent_ViewController DisplayUITextField:[NSArray arrayWithObjects:label.text,[[ClassDataBase sharedData] FetchProfessorName:[NSNumber numberWithInt:label.tag]],[[ClassDataBase sharedData] FetchClassroomLocation:[NSNumber numberWithInt:label.tag]], nil]];
                     [parent_ViewController alterButtonFunction:YES];
                 }
                 for (ClassLabelBasis* courselabel in course) {

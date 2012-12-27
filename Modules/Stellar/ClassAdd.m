@@ -7,7 +7,7 @@
 //
 
 #import "ClassAdd.h"
-
+#import "ClassAddBackground.h"
 @interface ClassAdd ()
 {
     BOOL firstButtonType;
@@ -51,6 +51,10 @@
                                                         _bottomView.frame.origin.y - 210,
                                                         _bottomView.frame.size.width,
                                                         _bottomView.frame.size.height);
+                         ClassAddBackground*view = (ClassAddBackground *)self.view;
+                         if ([view isKindOfClass:[ClassAddBackground class]]) {
+                             view.statment = 1;
+                         }
                      }
                      completion:nil];
 }
@@ -64,6 +68,10 @@
                                                         _bottomView.frame.origin.y + 210,
                                                         _bottomView.frame.size.width,
                                                         _bottomView.frame.size.height);
+                         ClassAddBackground*view = (ClassAddBackground *)self.view;
+                         if ([view isKindOfClass:[ClassAddBackground class]]) {
+                             view.statment = 0;
+                         }
                      }
                      completion:nil];
     
@@ -106,6 +114,13 @@
         _cleanInfo.titleLabel.text = @"清空";
 }
 
+-(void)resignResponder
+{
+    [_classNameField resignFirstResponder];
+    [_teacherNameField resignFirstResponder];
+    [_roomNameField resignFirstResponder];
+}
+
 - (IBAction)clean:(UIButton *)sender {
     if (firstButtonType) {  //移動
         _modifyInfo.hidden = YES;
@@ -118,12 +133,14 @@
         _roomNameField.text = [NSString string];
         [delegate buttonDidFinish:clean StringData:[NSArray arrayWithObjects:_classNameField.text,_teacherNameField.text,_roomNameField.text, nil]];
     }
+    [self resignResponder];
 }
 
 - (IBAction)modify:(UIButton *)sender { //修改
     [delegate buttonDidFinish:modify StringData:[NSArray arrayWithObjects:_classNameField.text,_teacherNameField.text,_roomNameField.text, nil]];
     _modifyInfo.hidden = YES;
     [self buttonFuntion:NO];
+    [self resignResponder];
 }
 
 -(void)viewDidAppear:(BOOL)animated

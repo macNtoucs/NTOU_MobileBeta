@@ -174,7 +174,22 @@ static ClassDataBase *sharedData = nil;
 -(void)UpdataScheduleInfo:(NSNumber*)Key ScheduleInfo:(NSString*)Name
 {
     NSRange range =  NSMakeRange([Key intValue]%10000/100,[Key intValue]%100);
-    
+    BOOL iscontainsName= FALSE;
+    for (NSString* week in [ScheduleInfo allKeys]) {
+        if([[ScheduleInfo objectForKey:week] containsObject:[[self ScheduleInfoKeyToWeek:Key] objectAtIndex:range.location]]){
+            iscontainsName = true;
+            break;
+        }
+    }
+    if (!iscontainsName) {
+        [ColorDic removeObjectForKey:[[self ScheduleInfoKeyToWeek:Key] objectAtIndex:range.location]];
+    }
+    if(![Name isEqualToString:[[self ScheduleInfoKeyToWeek:Key] objectAtIndex:range.location]]&&![ColorDic objectForKey:Name]){
+        [ColorDic setValue:[ColorDic objectForKey:[[self ScheduleInfoKeyToWeek:Key] objectAtIndex:range.location]] forKey:Name];
+    }
+    else if (![ColorDic objectForKey:Name]) {
+        [ColorDic setValue:[UIColor colorWithRed:255/255 green:255/255 blue:255/255 alpha:1] forKey:Name];
+    }
     for (int i=0; i < range.length; i++) {
         [[self ScheduleInfoKeyToWeek:Key] replaceObjectAtIndex:range.location+i  withObject:Name];
     }
