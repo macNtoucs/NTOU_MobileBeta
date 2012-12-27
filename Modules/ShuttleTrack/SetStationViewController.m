@@ -171,9 +171,10 @@
     DepatureStation = [NSString stringWithString:startStaion];
     startStaion = [NSString stringWithString:tmpForSwap];
     [self viewDidLoad];
-    if (self.selectedIndex==4)
+    if (self.selectedIndex==4){
         [view5 recieveData];
        [ht_searchResult recieveData];
+    }
 }
 
 -(void)didSwipe:(id)sender{
