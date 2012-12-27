@@ -44,6 +44,10 @@
     depatureTime= [NSMutableArray new];
     startTime= [NSMutableArray new];
     
+    [trainID removeAllObjects];
+    [depatureTime removeAllObjects];
+    [startTime removeAllObjects];
+    
     NSData * BIN_resultString = [NSData new];
     BIN_resultString = [queryResult dataUsingEncoding:NSUTF8StringEncoding];
     TFHpple* parser = [[TFHpple alloc] initWithHTMLData:BIN_resultString];
@@ -237,6 +241,7 @@
     
     else if ([trainID count]==0){
         cell.textLabel.text = [NSString stringWithFormat:@"無資料"];
+        cell.detailTextLabel.text=@"";
     }
    
     else if (indexPath.row > [trainID count]){

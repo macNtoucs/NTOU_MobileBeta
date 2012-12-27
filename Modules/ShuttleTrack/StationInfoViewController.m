@@ -176,6 +176,7 @@
     
     else if ([StartAndTerminalstops count]==0){
         cell.textLabel.text = [NSString stringWithFormat:@"無資料"];
+        cell.detailTextLabel.text=@"";
     }
     else if (indexPath.row > [StartAndTerminalstops count]){
         cell.textLabel.text=@"";
