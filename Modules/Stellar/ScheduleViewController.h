@@ -24,7 +24,8 @@
     UIScrollView *scrollView;
     CGPoint scrollView_position;
     CGFloat lastScale;
-    bool isWeekScheduleInScrowView; //if 3days then set to be false 
+    bool isWeekScheduleInScrowView; //if 3days then set to be false
+    bool isScrollingUp;
 }
 -(void) showClassInfo:(ClassLabelBasis *)label;
 

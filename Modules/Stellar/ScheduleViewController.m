@@ -298,4 +298,52 @@
     [super dealloc];
 }
 
+
+- (void)determineMove
+{
+    CGPoint delta;
+    delta.y= self.scrollView.contentOffset.y;
+    delta.x=self.scrollView.contentOffset.x;
+    
+    int aWeekWidth = UpperViewWidth-2;
+    int aSeesionHeight = LeftViewHeight-2;
+    
+    int position_y = round(delta.y / aSeesionHeight );
+    int position_x = round(delta.x / aWeekWidth);
+    
+    CGPoint offset;
+    offset.x=aWeekWidth * position_x;
+    offset.y = aSeesionHeight * position_y;
+    NSLog(@"delta.x = %f",delta.x);
+    NSLog(@"delta.y = %f",delta.y);
+    NSLog(@"position.y = %d",position_y);
+   // if (offset.x>160) offset.x-=UpperViewWidth-1;
+    //if (offset.y>480) offset.y-=LeftViewHeight-1;
+    
+    NSLog(@"New offset : x= %d\n",aWeekWidth * position_x);
+    NSLog(@"y= %d",aSeesionHeight * position_y);
+    
+    [self.scrollView setContentOffset:offset animated:YES];
+}
+
+
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    isScrollingUp=true;
+    if (!decelerate)
+        [self determineMove];
+}
+
+
+
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    //isScrollingUp=true;
+    [self determineMove];
+    
+}
+
+
 @end
