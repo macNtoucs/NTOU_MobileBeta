@@ -60,6 +60,7 @@
 
 @property (nonatomic, strong) NSDate *date;
 @property (nonatomic, retain) UILabel* label;
+@property (nonatomic) bool expired;
 
 @end
 
@@ -67,7 +68,7 @@
 
 @synthesize date = _date;
 @synthesize label = _label;
-
+@synthesize expired;
 - (void)setDate:(NSDate *)aDate {
     _date = aDate;
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -104,7 +105,7 @@
 @property (nonatomic, strong) NSDate *monthShowing;
 @property (nonatomic, strong) NSCalendar *calendar;
 @property(nonatomic, assign) CGFloat cellWidth;
-
+@property(nonatomic , retain) NSDate* tody;
 
 @end
 
@@ -128,13 +129,17 @@
 
 @synthesize selectedDateTextColor = _selectedDateTextColor;
 @synthesize selectedDateBackgroundColor = _selectedDateBackgroundColor;
+@synthesize expiredDateTextColor = _expiredDateTextColor;
+@synthesize expiredDateTextColorBGColor = _expiredDateTextColorBGColor;
+
 @synthesize currentDateTextColor = _currentDateTextColor;
 @synthesize currentDateBackgroundColor = _currentDateBackgroundColor;
 @synthesize cellWidth = _cellWidth;
-
+@synthesize tody;
 @synthesize calendarStartDay;
 
 - (id)init {
+  
     return [self initWithStartDay:startSunday];
 }
 
@@ -230,7 +235,7 @@
         for (int i = 0; i < 43; i++) {
             DateButton *dateButton = [DateButton buttonWithType:UIButtonTypeCustom];
             [dateButton setTitle:[NSString stringWithFormat:@"%d", i] forState:UIControlStateNormal];
-            [dateButton addTarget:self action:@selector(dateButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+           
             dateButton.titleLabel.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
             dateButton.titleLabel.textAlignment = UITextAlignmentCenter;
             // set date label.
@@ -260,6 +265,22 @@
     return self;
 }
 
+-(bool)checkTheDateIsExpired:(NSDate*) date{
+    
+    NSTimeZone* sourceTimeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
+    NSTimeZone* destinationTimeZone = [NSTimeZone systemTimeZone];
+    NSInteger sourceGMTOffset = [sourceTimeZone secondsFromGMTForDate:date];
+    NSInteger destinationGMTOffset = [destinationTimeZone secondsFromGMTForDate:date];
+    NSTimeInterval interval = destinationGMTOffset - sourceGMTOffset;
+    NSDate *selectedDate = [[NSDate alloc] initWithTimeInterval:interval sinceDate:date] ;
+    unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
+    
+    NSDateComponents* todayComponents = [self.calendar components:unitFlags fromDate:tody];
+    
+    NSDateComponents* otherComponents = [self.calendar components:unitFlags fromDate:selectedDate];
+    if ( ((todayComponents.month <= otherComponents.month)&&(todayComponents.day <=otherComponents.day))||(todayComponents.year < otherComponents.year)) return false;
+    else return  true;
+}
 
 
 - (void)layoutSubviews {
@@ -302,13 +323,31 @@
         UIColor* textColor = [UIColor blackColor];
         [self.dataSource loadDate:date];
         dateButton.date = date;
-        if ([dateButton.date isEqualToDate:self.selectedDate]) {
+        
+        //過期日期 不加入點擊事件
+        if (dateButton!=nil&&[self checkTheDateIsExpired: dateButton.date])
+            dateButton.expired=true;
+        else dateButton.expired=false;
+        if (!dateButton.expired)
+            [dateButton addTarget:self action:@selector(dateButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        
+        if ([dateButton.date isEqualToDate:self.selectedDate] && !dateButton.expired) {
             textColor = self.selectedDateTextColor;
             dateButton.backgroundColor = self.selectedDateBackgroundColor;
-        } else if ([self dateIsToday:dateButton.date]) {
+        } else if ([self dateIsToday:dateButton.date] ) {
+            NSTimeZone* sourceTimeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
+            
+            NSTimeZone* destinationTimeZone = [NSTimeZone systemTimeZone];
+            NSInteger sourceGMTOffset = [sourceTimeZone secondsFromGMTForDate:date];
+            NSInteger destinationGMTOffset = [destinationTimeZone secondsFromGMTForDate:date];
+            NSTimeInterval interval = destinationGMTOffset - sourceGMTOffset;
+            tody = [[NSDate alloc] initWithTimeInterval:interval sinceDate:date] ;
             textColor = self.currentDateTextColor;
             dateButton.backgroundColor = self.currentDateBackgroundColor;
-        } else {
+        }else if (dateButton.expired){
+            textColor = self.expiredDateTextColor;
+            dateButton.backgroundColor = self.expiredDateTextColorBGColor;
+        }else {
             textColor = [self dateTextColor];
             dateButton.backgroundColor = [self dateBackgroundColor];
         }
@@ -366,8 +405,11 @@
     [self setSelectedDateTextColor:UIColorFromRGB(0xF2F2F2)];
     [self setSelectedDateBackgroundColor:UIColorFromRGB(0x88B6DB)];
 
-    [self setCurrentDateTextColor:UIColorFromRGB(0xF2F2F2)];
-    [self setCurrentDateBackgroundColor:[UIColor lightGrayColor]];
+    [self setCurrentDateTextColor:[UIColor whiteColor]];
+    [self setCurrentDateBackgroundColor:UIColorFromRGB(0x000000)];
+    
+    [self setExpiredDateTextColor:[UIColor whiteColor]];
+    [self setExpiredDateTextColorBGColor:UIColorFromRGB(0xa9a9a9)];
 }
 
 - (CGRect)calculateDayCellFrame:(NSDate *)date {
@@ -391,6 +433,7 @@
 
 - (void)dateButtonPressed:(id)sender {
     DateButton *dateButton = sender;
+    if (dateButton.expired) return;
     self.selectedDate = dateButton.date;
     [self.delegate didSelectDate:self.selectedDate];
     [self setNeedsLayout];
