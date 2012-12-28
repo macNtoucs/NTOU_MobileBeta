@@ -11,7 +11,7 @@
 #import "TFHpple.h"
 #import "DepatureViewController.h"
 #import "SecondaryGroupedTableViewCell.h"
-@interface RouteDetailViewController : UITableViewController<UIApplicationDelegate,EGORefreshTableHeaderDelegate>
+@interface RouteDetailViewController : UITableViewController<UIApplicationDelegate,EGORefreshTableHeaderDelegate,UIAlertViewDelegate>
 {
          NSMutableArray *item;
          NSURL* waitTime1_103;

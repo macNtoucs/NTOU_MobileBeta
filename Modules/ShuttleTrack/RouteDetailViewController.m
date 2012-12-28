@@ -81,6 +81,9 @@
 
 -(void)CatchData{
     [item removeAllObjects];
+    
+     
+    dispatch_async(dispatch_get_current_queue(),^(void){
     for (id obj in waitTime){
         NSError* error;
         UInt32 big5 = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingBig5);
@@ -99,8 +102,18 @@
         NSArray *child2 = [T_ptr2 children];
         TFHppleElement* buf2 = [child2 objectAtIndex:0];
         [item  addObject: [buf2 content] ];
-        [self.tableView reloadData];
+       
     }
+
+    if (loadingAlertView) {
+        [loadingAlertView dismissWithClickedButtonIndex:0 animated:NO];
+        [loadingAlertView release];
+        loadingAlertView = nil;
+    }
+         [self.tableView reloadData];
+        self.lastRefresh = [NSDate date];
+    });
+    
 }
 
 -(void)AlertStart:(UIAlertView *) loadingAlertView{
@@ -119,13 +132,11 @@
 - (void)refreshPropertyList{
     self.lastRefresh = [NSDate date];
     self.navigationItem.rightBarButtonItem.title = @"Refreshing";
-    UIAlertView *  loadingAlertView = [[UIAlertView alloc]
-                                       initWithTitle:nil message:@"\n\nDownloading\nPlease wait"
-                                       delegate:nil cancelButtonTitle:nil
-                                       otherButtonTitles: nil];
-    [self performSelectorOnMainThread:@selector(AlertStart:)
-                                 withObject:loadingAlertView
-                              waitUntilDone:YES];
+    loadingAlertView = [[UIAlertView alloc]
+                        initWithTitle:nil message:@"\n\nDownloading\nPlease wait"
+                        delegate:self cancelButtonTitle:@"取消"
+                        otherButtonTitles: nil];
+    [self AlertStart:loadingAlertView];
     /*NSThread*thread = [[NSThread alloc]initWithTarget:self selector:@selector(AlertStart:) object:loadingAlertView];
     [thread start];
     while (true) {
@@ -133,9 +144,14 @@
             break;
         }
     }*/
-    [self CatchData];
-    [loadingAlertView dismissWithClickedButtonIndex:0 animated:NO];
-    [loadingAlertView release];
+    double interval = 1;
+    [NSTimer scheduledTimerWithTimeInterval:interval
+                                     target:self
+                                   selector:@selector(CatchData)
+                                   userInfo:nil
+                                    repeats:FALSE];
+
+
     //[thread release];
 }
 
@@ -163,6 +179,7 @@
         
 		if (sinceRefresh <= -kRefreshInterval)
 		{
+            
             [self refreshPropertyList];
 			self.anotherButton.title = @"Refreshing";
             //updateTimeOnButton = NO;
@@ -179,11 +196,24 @@
     
 }
 
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
 
+    if (buttonIndex==0) {
+        
+        [self.navigationController popViewControllerAnimated:YES];
+                       
+    }
+}
 
 
 - (void)viewDidLoad
 {
+    loadingAlertView = [[UIAlertView alloc]
+                        initWithTitle:nil message:@"\n\nDownloading\nPlease wait"
+                        delegate:self cancelButtonTitle:@"取消"
+                        otherButtonTitles: nil];
+    [self AlertStart:loadingAlertView];
     [super viewDidLoad];
     anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"Refresh" style:UIBarButtonItemStylePlain target:self action:@selector(refreshPropertyList)];
     self.navigationItem.rightBarButtonItem = anotherButton;
@@ -215,27 +245,39 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    loadingAlertView = [[UIAlertView alloc]
-                                       initWithTitle:nil message:@"\n\nDownloading\nPlease wait"
-                                       delegate:nil cancelButtonTitle:nil
-                                       otherButtonTitles: nil];
-    [self performSelectorOnMainThread:@selector(AlertStart:)
-                           withObject:loadingAlertView
-                        waitUntilDone:YES];
+
+
+}
+
+-(void)viewDidLayoutSubviews
+{
+    
+    [super viewDidLayoutSubviews];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [self CatchData];
-    [loadingAlertView dismissWithClickedButtonIndex:0 animated:NO];
-    [loadingAlertView release];
-    [self startTimer];
     [super viewDidAppear:animated];
+    double interval = 1;
+    [NSTimer scheduledTimerWithTimeInterval:interval
+                                     target:self
+                                   selector:@selector(CatchData)
+                                   userInfo:nil
+                                    repeats:FALSE];
+    
+    [self startTimer];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    /*dispatch_queue_t network = dispatch_get_specific("");
+    dispatch_async(network, ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            dispatch_release(network);
+        });
+    });*/
+    //dispatch_release(network);
 }
 
 -(void)stopTimer
