@@ -22,6 +22,7 @@
 {
     self = [super initWithStyle:style];
     if (self) {
+        self.title = @"設定";
         self.view.backgroundColor = [UIColor clearColor];
         [ClassDataBase sharedData].EditScheduleDelegate = self;
     }
