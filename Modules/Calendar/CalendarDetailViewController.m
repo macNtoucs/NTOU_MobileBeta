@@ -426,12 +426,15 @@
     
     DetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[DetailTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        if(speechEvent)
+            cell = [[DetailTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        else
+            cell = [[DetailTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
     }
     
     cell.textLabel.numberOfLines = 0;
     cell.detailTextLabel.numberOfLines = 0;
-    cell.textLabel.font = [UIFont systemFontOfSize:16.5];
+    cell.textLabel.font = [UIFont fontWithName:@"Thonburi" size:16.5];
     
     if(speechEvent)
     {
@@ -456,7 +459,7 @@
     
     else
     {
-        [tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+        //[tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
         switch(indexPath.row)
         {
             case 0:
@@ -507,34 +510,30 @@
 {
     if(activitiesEvent)
     {
-        cell.textLabel.textColor = [UIColor whiteColor];
+        cell.textLabel.textColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:91/255.0 alpha:1.0];
         
         switch(indexPath.row)
         {
             case 0:
-                cell.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"calendar/cell01_2.png"]];
-                //cell.backgroundColor = [UIColor colorWithRed:<#(CGFloat)#> green:<#(CGFloat)#> blue:<#(CGFloat)#> alpha:<#(CGFloat)#>];
+                //cell.textLabel.textColor = [UIColor colorWithRed:48/255.0 green:0/255.0 blue:15/255.0 alpha:1.0];
+                cell.textLabel.textColor = [UIColor blackColor];
+                cell.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"calendar/cell01_light.png"]];
                 break;
             case 1:
-               cell.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"calendar/cell02_2.png"]];
-                //cell.backgroundColor = [UIColor colorWithRed:<#(CGFloat)#> green:<#(CGFloat)#> blue:<#(CGFloat)#> alpha:<#(CGFloat)#>];
+                cell.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"calendar/cell02_light.png"]];
                 break;
             case 2:
-                cell.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"calendar/cell03_2.png"]];
-                //cell.backgroundColor = [UIColor colorWithRed:<#(CGFloat)#> green:<#(CGFloat)#> blue:<#(CGFloat)#> alpha:<#(CGFloat)#>];
+                cell.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"calendar/cell03_light.png"]];
                 break;
             case 3:
-                cell.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"calendar/cell04_2.png"]];
-                //cell.backgroundColor = [UIColor colorWithRed:<#(CGFloat)#> green:<#(CGFloat)#> blue:<#(CGFloat)#> alpha:<#(CGFloat)#>];
+                cell.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"calendar/cell04_light.png"]];
                 break;
             case 4:
                 cell.textLabel.textColor = [UIColor blackColor];
-                cell.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"calendar/cell05_2.png"]];
-                //cell.backgroundColor = [UIColor colorWithRed:<#(CGFloat)#> green:<#(CGFloat)#> blue:<#(CGFloat)#> alpha:<#(CGFloat)#>];
+                cell.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"calendar/cell05_light.png"]];
                 break;
         }
         
-        cell.detailTextLabel.textColor = [UIColor whiteColor];
         cell.textLabel.backgroundColor = [UIColor clearColor];
         cell.detailTextLabel.backgroundColor = [UIColor clearColor];
     }
@@ -545,9 +544,10 @@
     if(activitiesEvent)
     {
         if(indexPath.row == 4)
-        {
             return 250;
-        }
+            
+        else if(indexPath.row == 0)
+            return 50;
     }
     
     return 45.0;
