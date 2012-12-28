@@ -56,6 +56,8 @@
         [[ClassDataBase sharedData] UpdataScheduleInfo:[NSNumber numberWithInt:[[weekschedule.TapAddCourse objectAtIndex:0]tag]] ScheduleInfo:@" "];
         [weekschedule.TapAddCourse removeObjectAtIndex:0];
         if ([[array objectAtIndex:0] isEqualToString:[NSString string]]) {
+            [weekschedule restorTheOriginalColor];
+            [weekschedule removeAllcourselabel];
             [weekschedule drawRect:CGRectZero];
             return;
         }

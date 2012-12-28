@@ -8,6 +8,7 @@
 
 #import "ClassAdd.h"
 #import "ClassAddBackground.h"
+#import "ClassDataBase.h"
 @interface ClassAdd ()
 {
     BOOL firstButtonType;
@@ -77,7 +78,8 @@
     
 }
 
--(IBAction)cancel:(id)sender{
+-(IBAction)ConfirmOrCancel:(id)sender{
+    UIButton* button = (UIButton*)sender;
     CGRect basketTopFrame = CGRectMake(_topView.frame.origin.x, -_topView.frame.origin.y, _topView.frame.size.width, _topView.frame.size.height);
     CGRect basketBottomFrame = CGRectMake(_bottomView.frame.origin.x, self.view.bounds.size.height+22, _bottomView.frame.size.width, _bottomView.frame.size.height);
     [UIView animateWithDuration:0.25
@@ -92,7 +94,11 @@
                          [delegate NavigationBarShow];
                      }];
     [delegate changeTapEnable];
-    
+    if (button.tag) {
+        [[ClassDataBase sharedData] ClassAddDecide];
+    }
+    else
+        [[ClassDataBase sharedData] ClassAddCancel];
 }
 
 -(void)displayModifyButton:(BOOL)type
