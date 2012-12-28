@@ -56,6 +56,8 @@
         [[ClassDataBase sharedData] UpdataScheduleInfo:[NSNumber numberWithInt:[[weekschedule.TapAddCourse objectAtIndex:0]tag]] ScheduleInfo:@" "];
         [weekschedule.TapAddCourse removeObjectAtIndex:0];
         if ([[array objectAtIndex:0] isEqualToString:[NSString string]]) {
+            [weekschedule restorTheOriginalColor];
+            [weekschedule removeAllcourselabel];
             [weekschedule drawRect:CGRectZero];
             return;
         }
@@ -305,24 +307,14 @@
     delta.y= self.scrollView.contentOffset.y;
     delta.x=self.scrollView.contentOffset.x;
     
-    int aWeekWidth = UpperViewWidth-2;
-    int aSeesionHeight = LeftViewHeight-2;
-    
+    int aWeekWidth = UpperViewWidth-TextLabelborderWidth;
+    int aSeesionHeight = LeftViewHeight-TextLabelborderWidth;
     int position_y = round(delta.y / aSeesionHeight );
     int position_x = round(delta.x / aWeekWidth);
     
     CGPoint offset;
     offset.x=aWeekWidth * position_x;
     offset.y = aSeesionHeight * position_y;
-    NSLog(@"delta.x = %f",delta.x);
-    NSLog(@"delta.y = %f",delta.y);
-    NSLog(@"position.y = %d",position_y);
-   // if (offset.x>160) offset.x-=UpperViewWidth-1;
-    //if (offset.y>480) offset.y-=LeftViewHeight-1;
-    
-    NSLog(@"New offset : x= %d\n",aWeekWidth * position_x);
-    NSLog(@"y= %d",aSeesionHeight * position_y);
-    
     [self.scrollView setContentOffset:offset animated:YES];
 }
 
