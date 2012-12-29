@@ -27,7 +27,7 @@
 @synthesize anotherButton;
 @synthesize refreshTimer;
 @synthesize lastRefresh;
-
+@synthesize receivedData;
 - (void) getURL:(NSString* ) inputURL
 {
    
@@ -40,6 +40,8 @@
         [self.tableView applyStandardColors];
         // Custom initialization
     }
+    theConncetionCount = 0;
+    updateTimeOnButton = NO;
     item = [NSMutableArray new];
     waitTime = [NSMutableArray new];
     return self;
@@ -79,41 +81,27 @@
 
 #pragma mark - View lifecycle
 
+
+
 -(void)CatchData{
     [item removeAllObjects];
     
-     
-    dispatch_async(dispatch_get_current_queue(),^(void){
     for (id obj in waitTime){
-        NSError* error;
-        UInt32 big5 = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingBig5);
-        NSData* data = [[NSString stringWithContentsOfURL:obj encoding:big5 error:&error] dataUsingEncoding:big5];
-        TFHpple* parser = [[TFHpple alloc] initWithHTMLData:data];
-        NSArray *waittime_tmp  = [parser searchWithXPathQuery:@"//body//div//table//tr//td"]; // get the title
-        if ([waittime_tmp count]==0) {
-            UIAlertView *  loadingAlertView = [[UIAlertView alloc]
-                                               initWithTitle:nil message:@"無法連接伺服器\n或無網路連線"
-                                               delegate:nil cancelButtonTitle:@"確定"
-                                               otherButtonTitles: nil];
-            [loadingAlertView show];
-            break;
-        }
-        TFHppleElement* T_ptr2 = [waittime_tmp objectAtIndex:2];
-        NSArray *child2 = [T_ptr2 children];
-        TFHppleElement* buf2 = [child2 objectAtIndex:0];
-        [item  addObject: [buf2 content] ];
-       
+        NSError* error=nil;
+        //UInt32 big5 = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingBig5);
+        NSURLRequest *urlRequest = [NSURLRequest requestWithURL:obj];
+        //NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+        theConncetion=[[NSURLConnection alloc]initWithRequest:urlRequest delegate:self];
+       /* [NSURLConnection sendAsynchronousRequest:urlRequest queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
+        {
+            if ([data length] > 0 && error == nil)
+                [self receivedData:data];
+            else if ([data length] == 0 && error == nil)
+                [self emptyReply:error];
+        }];*/
+               
     }
 
-    if (loadingAlertView) {
-        [loadingAlertView dismissWithClickedButtonIndex:0 animated:NO];
-        [loadingAlertView release];
-        loadingAlertView = nil;
-    }
-         [self.tableView reloadData];
-        self.lastRefresh = [NSDate date];
-    });
-    
 }
 
 -(void)AlertStart:(UIAlertView *) loadingAlertView{
@@ -130,8 +118,8 @@
 
 
 - (void)refreshPropertyList{
-    self.lastRefresh = [NSDate date];
-    self.navigationItem.rightBarButtonItem.title = @"Refreshing";
+    self.anotherButton.title = @"Refreshing";
+    updateTimeOnButton = NO;
     loadingAlertView = [[UIAlertView alloc]
                         initWithTitle:nil message:@"\n\nDownloading\nPlease wait"
                         delegate:self cancelButtonTitle:@"取消"
@@ -174,18 +162,16 @@
         // If we detect that the app was backgrounded while this timer
         // was expiring we go around one more time - this is to enable a commuter
         // bookmark time to be processed.
-        
-        bool updateTimeOnButton = YES;
-        
-		if (sinceRefresh <= -kRefreshInterval)
+        if (!updateTimeOnButton) {
+            return;
+        }
+		else if (sinceRefresh <= -kRefreshInterval)
 		{
             
             [self refreshPropertyList];
-			self.anotherButton.title = @"Refreshing";
-            //updateTimeOnButton = NO;
 		}
         
-        else if (updateTimeOnButton)
+        else
         {
             int secs = (1+kRefreshInterval+sinceRefresh);
             if (secs < 0) secs = 0;
@@ -200,8 +186,7 @@
 {
 
     if (buttonIndex==0) {
-        
-        [self.navigationController popViewControllerAnimated:YES];
+        [theConncetion cancel];
                        
     }
 }
@@ -306,6 +291,63 @@
     [item release];
     [super dealloc];
 }
+
+
+#pragma mark - connected
+
+- (void)connection:(NSURLConnection*)connection didReceiveResponse:(NSURLResponse *)response
+{
+    NSLog(@"Did Receive Response %@", response);
+    receivedData = [[NSMutableData alloc]init];
+}
+- (void)connection:(NSURLConnection*)connection didReceiveData:(NSData*)data
+{
+    //NSLog(@"Did Receive Data %@", data);
+    [receivedData appendData:data];
+}
+- (void)connection:(NSURLConnection*)connection didFailWithError:(NSError*)error
+{
+    UIAlertView * AlertView;
+    if (error) {
+        AlertView = [[UIAlertView alloc] initWithTitle:nil message:error.domain
+                                              delegate:nil cancelButtonTitle:@"確定"
+                                     otherButtonTitles: nil];
+    }
+    else
+        AlertView = [[UIAlertView alloc] initWithTitle:nil message:@"無法連接伺服器\n或無網路連線"
+                                              delegate:nil cancelButtonTitle:@"確定"
+                                     otherButtonTitles: nil];
+    [AlertView show];
+    NSLog(@"Did Fail");
+}
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    UInt32 big5 = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingBig5);
+    //NSData* data = [[NSString stringWithContentsOfURL:obj encoding:big5 error:&error] dataUsingEncoding:big5];
+    TFHpple* parser = [[TFHpple alloc] initWithHTMLData:receivedData];
+    NSArray *waittime_tmp  = [parser searchWithXPathQuery:@"//body//div//table//tr//td"]; // get the title
+    
+    TFHppleElement* T_ptr2 = [waittime_tmp objectAtIndex:2];
+    NSArray *child2 = [T_ptr2 children];
+    TFHppleElement* buf2 = [child2 objectAtIndex:0];
+    [item  addObject: [buf2 content] ];
+    theConncetionCount++;
+    NSLog(@"Did Finish");
+    if ([waitTime count]==theConncetionCount) {
+        if (loadingAlertView) {
+            [loadingAlertView dismissWithClickedButtonIndex:0 animated:NO];
+            [loadingAlertView release];
+            loadingAlertView = nil;
+        }
+        [self.tableView reloadData];
+        self.lastRefresh = [NSDate date];
+        theConncetionCount=0;
+        updateTimeOnButton = YES;
+    }
+    // Do something with responseData
+}
+
+
 
 #pragma mark - Table view data source
 

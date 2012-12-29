@@ -11,7 +11,7 @@
 #import "TFHpple.h"
 #import "DepatureViewController.h"
 #import "SecondaryGroupedTableViewCell.h"
-@interface RouteDetailViewController : UITableViewController<UIApplicationDelegate,EGORefreshTableHeaderDelegate,UIAlertViewDelegate>
+@interface RouteDetailViewController : UITableViewController<UIApplicationDelegate,EGORefreshTableHeaderDelegate,UIAlertViewDelegate,NSURLConnectionDelegate>
 {
          NSMutableArray *item;
          NSURL* waitTime1_103;
@@ -29,6 +29,10 @@
     NSTimer * refreshTimer;
     NSDate * lastRefresh;
     UIAlertView *  loadingAlertView;
+    NSMutableData* receivedData;
+    NSURLConnection *theConncetion;
+    int theConncetionCount;
+    bool updateTimeOnButton;
 }
 
 - (void) getURL:(NSString* ) inputURL;
@@ -43,6 +47,7 @@
 -(void)goBackMode:(BOOL)go; //true 往市區
 @property (nonatomic, retain) NSMutableArray* item;
 @property (nonatomic , retain) NSMutableArray* waitTime;
+@property (nonatomic , retain) NSMutableData* receivedData;
 @property (nonatomic ,retain)  NSURL* waitTime1_103;
 @property (nonatomic ,retain)  NSURL* waitTime2_103;
 @property (nonatomic ,retain)  NSURL* waitTime1_104;
