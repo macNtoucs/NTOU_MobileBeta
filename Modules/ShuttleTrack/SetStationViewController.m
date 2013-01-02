@@ -292,14 +292,14 @@
         
         [dateFormatter setDateFormat:@"yyyy"];
         queryURL=[queryURL stringByAppendingString:[NSString stringWithFormat:@"%@", [dateFormatter stringFromDate:calendar.selectedDate]]];
-        queryURL= [queryURL stringByAppendingString:@"%2F"];
+        queryURL= [queryURL stringByAppendingString:@"%2f"];
         
-        [dateFormatter setDateFormat:@"M"];
+        [dateFormatter setDateFormat:@"MM"];
         queryURL=[queryURL stringByAppendingString:[NSString stringWithFormat:@"%@", [dateFormatter stringFromDate:calendar.selectedDate]]];
-        queryURL= [queryURL stringByAppendingString:@"%2F"];
+        queryURL= [queryURL stringByAppendingString:@"%2f"];
        
         
-        [dateFormatter setDateFormat:@"d"];
+        [dateFormatter setDateFormat:@"dd"];
         queryURL=[queryURL stringByAppendingString:[NSString stringWithFormat:@"%@", [dateFormatter stringFromDate:calendar.selectedDate]]];
         
         queryURL= [queryURL stringByAppendingString:[NSString stringWithFormat:@"&fromcity=0&tocity=0&fromstation=%@&tostation=%@&",StartStationID,DepatureStationID]];
