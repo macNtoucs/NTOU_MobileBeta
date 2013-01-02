@@ -199,6 +199,7 @@
 		56D7DF52128854DF00E9E5C9 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56D7DF51128854DF00E9E5C9 /* MapKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		6D7E698B1660B865004F9D20 /* right.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D7E69891660B862004F9D20 /* right.png */; };
 		6D7E698C1660B865004F9D20 /* wrong.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D7E698A1660B863004F9D20 /* wrong.png */; };
+		6DEB40CE1692D71500BCACBC /* RequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DEB40CD1692D71400BCACBC /* RequestOperation.m */; };
 		910E7338168C166F00360762 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 910E7337168C166F00360762 /* SystemConfiguration.framework */; };
 		91402E41163E749A00B04EE5 /* ClassAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 91402E3B163E749A00B04EE5 /* ClassAdd.m */; };
 		91402E42163E749A00B04EE5 /* ClassAdd.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91402E3C163E749A00B04EE5 /* ClassAdd.xib */; };
@@ -928,6 +929,8 @@
 		56D7DF51128854DF00E9E5C9 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = iphoneos4.0/System/Library/Frameworks/MapKit.framework; sourceTree = "<group>"; };
 		6D7E69891660B862004F9D20 /* right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = right.png; sourceTree = "<group>"; };
 		6D7E698A1660B863004F9D20 /* wrong.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wrong.png; sourceTree = "<group>"; };
+		6DEB40CC1692D71400BCACBC /* RequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestOperation.h; sourceTree = "<group>"; };
+		6DEB40CD1692D71400BCACBC /* RequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestOperation.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* MIT_Mobile-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MIT_Mobile-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		910662EF163BCFD700D01C81 /* DefinePixel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefinePixel.h; sourceTree = "<group>"; };
 		910E7337168C166F00360762 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -2657,6 +2660,8 @@
 				C74878631627D1D4001D3390 /* NTOUTableViewControllerLayer1.m */,
 				C74878641627D1D4001D3390 /* NTOUTableViewControllerLayer2.h */,
 				C74878651627D1D4001D3390 /* NTOUTableViewControllerLayer2.m */,
+				6DEB40CC1692D71400BCACBC /* RequestOperation.h */,
+				6DEB40CD1692D71400BCACBC /* RequestOperation.m */,
 				C74878661627D1D4001D3390 /* RouteDetailViewController.h */,
 				C74878671627D1D4001D3390 /* RouteDetailViewController.m */,
 				C74878681627D1D4001D3390 /* StopsLocationMapViewController.h */,
@@ -3756,6 +3761,7 @@
 				91EC3F121689791E0065BE43 /* Calendar.xcdatamodeld in Sources */,
 				91EC3F131689791E0065BE43 /* CalendarActivities.m in Sources */,
 				91EC3F141689791E0065BE43 /* CalendarSpeech.m in Sources */,
+				6DEB40CE1692D71500BCACBC /* RequestOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

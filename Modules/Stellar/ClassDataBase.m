@@ -107,6 +107,8 @@ static ClassDataBase *sharedData = nil;
 
 -(void)UpdataColorDic:(NSString*)Key ColorDic:(UIColor*)RGB
 {
+    if ([Key isEqualToString:[NSString string]])
+        return;
     [ColorDic removeObjectForKey:Key];
     [ColorDic setValue:RGB forKey:Key];
 }

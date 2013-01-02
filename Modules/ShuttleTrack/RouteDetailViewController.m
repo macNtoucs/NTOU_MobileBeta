@@ -27,7 +27,9 @@
 @synthesize anotherButton;
 @synthesize refreshTimer;
 @synthesize lastRefresh;
-
+@synthesize receivedData;
+@synthesize theConncetion;
+@synthesize queue;
 - (void) getURL:(NSString* ) inputURL
 {
    
@@ -40,7 +42,10 @@
         [self.tableView applyStandardColors];
         // Custom initialization
     }
+    theConncetionCount = 0;
+    updateTimeOnButton = NO;
     item = [NSMutableArray new];
+    queue = [[NSOperationQueue alloc] init];
     waitTime = [NSMutableArray new];
     return self;
 }
@@ -79,28 +84,24 @@
 
 #pragma mark - View lifecycle
 
+
 -(void)CatchData{
     [item removeAllObjects];
     for (id obj in waitTime){
-        NSError* error;
-        UInt32 big5 = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingBig5);
-        NSData* data = [[NSString stringWithContentsOfURL:obj encoding:big5 error:&error] dataUsingEncoding:big5];
-        TFHpple* parser = [[TFHpple alloc] initWithHTMLData:data];
-        NSArray *waittime_tmp  = [parser searchWithXPathQuery:@"//body//div//table//tr//td"]; // get the title
-        if ([waittime_tmp count]==0) {
-            UIAlertView *  loadingAlertView = [[UIAlertView alloc]
-                                               initWithTitle:nil message:@"無法連接伺服器\n或無網路連線"
-                                               delegate:nil cancelButtonTitle:@"確定"
-                                               otherButtonTitles: nil];
-            [loadingAlertView show];
-            break;
+        if (queue) {
+            NSURLRequest* request = [NSURLRequest requestWithURL:obj cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:0];
+            RequestOperation* operation = [[RequestOperation alloc] initWithRequest:request];
+            operation.RequestDelegate = self;
+            [operation start];
+            [operation autorelease];
+            [queue addOperation:operation];
+            NSLog(@"%@",[queue operations]);
         }
-        TFHppleElement* T_ptr2 = [waittime_tmp objectAtIndex:2];
-        NSArray *child2 = [T_ptr2 children];
-        TFHppleElement* buf2 = [child2 objectAtIndex:0];
-        [item  addObject: [buf2 content] ];
-        [self.tableView reloadData];
+        /*NSURLRequest *urlRequest = [NSURLRequest requestWithURL:obj];
+        theConncetion=[[NSURLConnection alloc]initWithRequest:urlRequest delegate:self];*/
+               
     }
+
 }
 
 -(void)AlertStart:(UIAlertView *) loadingAlertView{
@@ -117,15 +118,16 @@
 
 
 - (void)refreshPropertyList{
-    self.lastRefresh = [NSDate date];
-    self.navigationItem.rightBarButtonItem.title = @"Refreshing";
-    UIAlertView *  loadingAlertView = [[UIAlertView alloc]
-                                       initWithTitle:nil message:@"\n\nDownloading\nPlease wait"
-                                       delegate:nil cancelButtonTitle:nil
-                                       otherButtonTitles: nil];
-    [self performSelectorOnMainThread:@selector(AlertStart:)
-                                 withObject:loadingAlertView
-                              waitUntilDone:YES];
+    if (!queue) {
+        queue = [[NSOperationQueue alloc] init];
+    }
+    self.anotherButton.title = @"Refreshing";
+    updateTimeOnButton = NO;
+    loadingAlertView = [[UIAlertView alloc]
+                        initWithTitle:nil message:@"\n\nDownloading\nPlease wait"
+                        delegate:self cancelButtonTitle:@"取消"
+                        otherButtonTitles: nil];
+    [self AlertStart:loadingAlertView];
     /*NSThread*thread = [[NSThread alloc]initWithTarget:self selector:@selector(AlertStart:) object:loadingAlertView];
     [thread start];
     while (true) {
@@ -133,9 +135,14 @@
             break;
         }
     }*/
-    [self CatchData];
-    [loadingAlertView dismissWithClickedButtonIndex:0 animated:NO];
-    [loadingAlertView release];
+    double interval = 0.7;
+    [NSTimer scheduledTimerWithTimeInterval:interval
+                                     target:self
+                                   selector:@selector(CatchData)
+                                   userInfo:nil
+                                    repeats:FALSE];
+
+
     //[thread release];
 }
 
@@ -158,17 +165,16 @@
         // If we detect that the app was backgrounded while this timer
         // was expiring we go around one more time - this is to enable a commuter
         // bookmark time to be processed.
-        
-        bool updateTimeOnButton = YES;
-        
-		if (sinceRefresh <= -kRefreshInterval)
+        if (!updateTimeOnButton) {
+            return;
+        }
+		else if (sinceRefresh <= -kRefreshInterval)
 		{
+            
             [self refreshPropertyList];
-			self.anotherButton.title = @"Refreshing";
-            //updateTimeOnButton = NO;
 		}
         
-        else if (updateTimeOnButton)
+        else
         {
             int secs = (1+kRefreshInterval+sinceRefresh);
             if (secs < 0) secs = 0;
@@ -179,11 +185,25 @@
     
 }
 
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
 
+    if (buttonIndex==0) {
+        NSLog(@"%@",[queue operations]);
+        [queue cancelAllOperations];
+        queue = nil;
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
 
 
 - (void)viewDidLoad
 {
+    loadingAlertView = [[UIAlertView alloc]
+                        initWithTitle:nil message:@"\n\nDownloading\nPlease wait"
+                        delegate:self cancelButtonTitle:@"取消"
+                        otherButtonTitles: nil];
+    [self AlertStart:loadingAlertView];
     [super viewDidLoad];
     anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"Refresh" style:UIBarButtonItemStylePlain target:self action:@selector(refreshPropertyList)];
     self.navigationItem.rightBarButtonItem = anotherButton;
@@ -215,27 +235,39 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    loadingAlertView = [[UIAlertView alloc]
-                                       initWithTitle:nil message:@"\n\nDownloading\nPlease wait"
-                                       delegate:nil cancelButtonTitle:nil
-                                       otherButtonTitles: nil];
-    [self performSelectorOnMainThread:@selector(AlertStart:)
-                           withObject:loadingAlertView
-                        waitUntilDone:YES];
+
+
+}
+
+-(void)viewDidLayoutSubviews
+{
+    
+    [super viewDidLayoutSubviews];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [self CatchData];
-    [loadingAlertView dismissWithClickedButtonIndex:0 animated:NO];
-    [loadingAlertView release];
-    [self startTimer];
     [super viewDidAppear:animated];
+    double interval = 0.7;
+    [NSTimer scheduledTimerWithTimeInterval:interval
+                                     target:self
+                                   selector:@selector(CatchData)
+                                   userInfo:nil
+                                    repeats:FALSE];
+    
+    [self startTimer];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    /*dispatch_queue_t network = dispatch_get_specific("");
+    dispatch_async(network, ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            dispatch_release(network);
+        });
+    });*/
+    //dispatch_release(network);
 }
 
 -(void)stopTimer
@@ -264,6 +296,79 @@
     [item release];
     [super dealloc];
 }
+
+
+#pragma mark - connected
+
+- (void)connection:(NSURLConnection*)connection didReceiveResponse:(NSURLResponse *)response
+{
+    NSLog(@"Did Receive Response %@", response);
+    receivedData = [[NSMutableData alloc]init];
+}
+- (void)connection:(NSURLConnection*)connection didReceiveData:(NSData*)data
+{
+    //NSLog(@"Did Receive Data %@", data);
+    [receivedData appendData:data];
+}
+- (void)connection:(NSURLConnection*)connection didFailWithError:(NSError*)error
+{
+    UIAlertView * AlertView;
+    theConncetionCount++;
+    if ([waitTime count]==theConncetionCount) {
+        if (loadingAlertView) {
+            [loadingAlertView dismissWithClickedButtonIndex:0 animated:NO];
+            [loadingAlertView release];
+            loadingAlertView = nil;
+        }
+        if (error) {
+            AlertView = [[UIAlertView alloc] initWithTitle:nil message:@"無法連接伺服器\n或無網路連線"
+                                                  delegate:nil cancelButtonTitle:@"確定"
+                                         otherButtonTitles: nil];
+            [AlertView show];
+        }
+        else{
+            AlertView = [[UIAlertView alloc] initWithTitle:nil message:@"無法連接伺服器\n或無網路連線"
+                                                  delegate:nil cancelButtonTitle:@"確定"
+                                         otherButtonTitles: nil];
+            [AlertView show];
+        }
+        self.lastRefresh = [NSDate date];
+        theConncetionCount=0;
+        updateTimeOnButton = YES;
+    }
+    NSLog(@"Did Fail");
+}
+- (void)connectionDidFinishLoading:(NSMutableData *)received
+{
+    if (queue) {
+        UInt32 big5 = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingBig5);
+        //NSData* data = [[NSString stringWithContentsOfURL:obj encoding:big5 error:&error] dataUsingEncoding:big5];
+        TFHpple* parser = [[TFHpple alloc] initWithHTMLData:received];
+        NSArray *waittime_tmp  = [parser searchWithXPathQuery:@"//body//div//table//tr//td"]; // get the title
+        
+        TFHppleElement* T_ptr2 = [waittime_tmp objectAtIndex:2];
+        NSArray *child2 = [T_ptr2 children];
+        TFHppleElement* buf2 = [child2 objectAtIndex:0];
+        [item  addObject: [buf2 content] ];
+        theConncetionCount++;
+        NSLog(@"Did Finish");
+        if ([waitTime count]==theConncetionCount) {
+            if (loadingAlertView) {
+                [loadingAlertView dismissWithClickedButtonIndex:0 animated:NO];
+                [loadingAlertView release];
+                loadingAlertView = nil;
+            }
+            [self.tableView reloadData];
+            self.lastRefresh = [NSDate date];
+            theConncetionCount=0;
+            updateTimeOnButton = YES;
+        }
+    }
+    else
+        theConncetionCount=0;
+}
+
+
 
 #pragma mark - Table view data source
 
@@ -414,6 +519,9 @@
 
 - (void)doneLoadingTableViewData{
     _reloading = NO;
+    if (!queue) {
+        queue = [[NSOperationQueue alloc] init];
+    }
     [self CatchData];
     self.lastRefresh = [NSDate date];
     [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.tableView];
