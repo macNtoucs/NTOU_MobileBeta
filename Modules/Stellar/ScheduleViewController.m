@@ -203,7 +203,7 @@
 - (void)viewDidLoad
 {
     scrollView = [[[UIScrollView alloc] init]autorelease];
-    weekschedule = [[[WeekScheduleView alloc]initWithFrame:CGRectMake(0, 0, LeftBaseline+(UpperViewWidth-TextLabelborderWidth)*[[ClassDataBase sharedData] FetchWeekTimes], NavigationAndStatusHeight+UpperBaseline+(LeftViewHeight-TextLabelborderWidth)*[[ClassDataBase sharedData] FetchClassSessionTimes])] autorelease];
+    weekschedule = [[[WeekScheduleView alloc]initWithFrame:CGRectMake(0, 0, 320, 480)] autorelease];
     [weekschedule getParent_ViewController:self];
     [self addNavRightButton]; 
     scrollView = [[UIScrollView alloc] init];
