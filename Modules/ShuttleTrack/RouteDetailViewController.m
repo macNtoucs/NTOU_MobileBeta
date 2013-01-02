@@ -135,7 +135,7 @@
             break;
         }
     }*/
-    double interval = 0.7;
+    double interval = 1.0;
     [NSTimer scheduledTimerWithTimeInterval:interval
                                      target:self
                                    selector:@selector(CatchData)
@@ -248,7 +248,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    double interval = 0.7;
+    double interval = 1.0;
     [NSTimer scheduledTimerWithTimeInterval:interval
                                      target:self
                                    selector:@selector(CatchData)
