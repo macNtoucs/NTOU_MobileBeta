@@ -278,8 +278,11 @@
     NSDateComponents* todayComponents = [self.calendar components:unitFlags fromDate:tody];
     
     NSDateComponents* otherComponents = [self.calendar components:unitFlags fromDate:selectedDate];
-    if ( ((todayComponents.month <= otherComponents.month)&&(todayComponents.day <=otherComponents.day))||(todayComponents.year < otherComponents.year)) return false;
-    else return  true;
+    if (  otherComponents.year<todayComponents.year ||
+          ((otherComponents.year == todayComponents.year) && otherComponents.month<todayComponents.month) ||
+          ((otherComponents.year == todayComponents.year)&& (otherComponents.month == todayComponents.month) && otherComponents.day<todayComponents.day)
+        ) return true;
+    else return  false;
 }
 
 

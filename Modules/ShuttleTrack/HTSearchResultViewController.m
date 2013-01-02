@@ -62,7 +62,11 @@
     }
     tableData_td  = [parser searchWithXPathQuery:@"//body//table//tr//td//table//tr//td//table//tr//td//table//tr//td//table//tr//td"];
     bool isStartTime=true;
-    for (int i=[trainID count]+2; i<5*[trainID count]; ){
+    int start=0,end=0;
+    end = [trainID count]>=10 ? 5*[trainID count] : 7*[trainID count]+4;
+    start = [trainID count]>=10 ?  [trainID count]+2 : 12;
+    if ([trainID count]==1) end = 9*[trainID count]+5;
+    for (int i=start; i<end; ){
         TFHppleElement * attributeElement = [tableData_td objectAtIndex:i];
         NSString * context = [[[attributeElement children]objectAtIndex:0]content];
         context = [context stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceAndNewlineCharacterSet]];
@@ -216,13 +220,14 @@
 {
 #warning Incomplete method implementation.
    
-    return [trainID count]+2;
+    return [trainID count]>=8 ? [trainID count]+2 : [trainID count]+1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    NSString *CellIdentifier = [NSString stringWithFormat:@"Cell%d%d",indexPath.section,indexPath.row];
+   
+  static  NSString *CellIdentifier = @"cell";
     SecondaryGroupedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (cell == nil) {
@@ -233,6 +238,10 @@
     if (![self hasWifi]){
         cell.textLabel.text = [NSString stringWithFormat:@"無法連線，請檢查網路"];
     }
+    else if ([trainID count]==0){
+        cell.textLabel.text = [NSString stringWithFormat:@"無資料"];
+        cell.detailTextLabel.text=@"";
+    }
 
     else if (indexPath.row == 0 ) {
         cell.textLabel.text = [NSString stringWithFormat:@"      車次                        %@           %@",startStation,depatureStation];
@@ -240,13 +249,11 @@
         cell.textLabel.textColor = [UIColor brownColor];
     }
       
-    else if ([trainID count]==0){
-        cell.textLabel.text = [NSString stringWithFormat:@"無資料"];
-        cell.detailTextLabel.text=@"";
-    }
+   
    
     else if (indexPath.row > [trainID count]){
         cell.textLabel.text=@"";
+        cell.detailTextLabel.text=@"";
     }
     else {
         NSString * detailString = [NSString stringWithFormat:@"%@         %@", [startTime objectAtIndex:indexPath.row-1],[depatureTime objectAtIndex:indexPath.row-1] ] ;
@@ -276,6 +283,13 @@
     return rowHeight;
 }
 
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [trainID removeAllObjects];
+    [depatureTime removeAllObjects];
+    [startTime removeAllObjects];
+    [super viewWillDisappear:animated];
+}
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath

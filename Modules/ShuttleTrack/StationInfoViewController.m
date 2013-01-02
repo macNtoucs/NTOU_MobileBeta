@@ -153,7 +153,7 @@
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return [StartAndTerminalstops count]+2;
+    return [StartAndTerminalstops count]>=8 || [StartAndTerminalstops count]==0 ? [StartAndTerminalstops count]+2 : [StartAndTerminalstops count]+1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -168,14 +168,15 @@
         cell.textLabel.text = [NSString stringWithFormat:@"無法連線，請檢查網路"];
     }
    else if (indexPath.row == 0 ) {
-        cell.textLabel.text = [NSString stringWithFormat:@"車種                            %@           %@",startStation,depatureStation];
-        cell.detailTextLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:12];
+        cell.textLabel.text = [NSString stringWithFormat:@"車種                          %@           %@",startStation,depatureStation];
+        cell.detailTextLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:10];
         cell.detailTextLabel.textColor = [UIColor brownColor];
         cell.textLabel.textColor = [UIColor brownColor];
     }
    
     
     else if ([StartAndTerminalstops count]==0){
+        cell.imageView.image=nil;
         cell.textLabel.text = [NSString stringWithFormat:@"無資料"];
         cell.detailTextLabel.text=@"";
     }
@@ -185,7 +186,8 @@
     else {
         NSString * detailString = [NSString stringWithFormat:@"%@         %@", [depatureTimes objectAtIndex:indexPath.row-1],[arrivalTimes objectAtIndex:indexPath.row-1] ] ;
         cell.textLabel.text=[NSString stringWithFormat:@"%@",[StartAndTerminalstops objectAtIndex:indexPath.row-1]] ;
-        if ([[trainStyle objectAtIndex:indexPath.row-1] isEqualToString: @"區間車"])
+        
+        if ([[trainStyle objectAtIndex:indexPath.row-1] isEqualToString:@"區間車"])
             cell.imageView.image = [UIImage imageNamed:@"local_train.png"];
         if ([[trainStyle objectAtIndex:indexPath.row-1]isEqualToString: @"自強"])
             cell.imageView.image = [UIImage imageNamed:@"speed_train.png"];
