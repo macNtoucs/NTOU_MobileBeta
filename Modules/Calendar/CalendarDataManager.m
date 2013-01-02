@@ -391,6 +391,7 @@ static CalendarDataManager *s_sharedManager = nil;
 	
 	NSString *dateString = nil;
 	NSDateFormatter *df = [[NSDateFormatter alloc] init];
+     [df setLocale:[[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"] autorelease]];
 	if ([listType.listID isEqualToString:@"Activities"]) {
 		[df setDateFormat:@"MMMM yyyy"];
 		dateString = [df stringFromDate:aDate];
