@@ -417,13 +417,79 @@
 			self.tableView.dataSource = (EventListTableView *)self.tableView;
 			((EventListTableView *)self.tableView).parentViewController = self;
             
+            CalendarSpeech * tmp1_1226= [CalendarSpeech new];
+            [tmp1_1226 setDate:@"2012/12/26 (星期三)" time:@" 下午 02:00	下午 04:00" title:@" 行動寬頻應用" speaker:@" 林紹威 先生" serviceOrgan:@" 大眾電腦董事長特助" location:@" 資工系館101室" oranizers:@" E0.電機資訊學院"];
+            
+            CalendarSpeech * tmp2_1226= [CalendarSpeech new];
+            [tmp2_1226 setDate:@" 2012/12/26 (星期三)" time:@" 下午 03:10	下午 05:00 " title:@" LNG-清潔能源" speaker:@" 王思遠 先生" serviceOrgan:@" 經管 4艘 LNG船" location:@" 延平大樓109遠距多媒體教室" oranizers:@" A4.輪機工程學系(2) "];
+            
+            CalendarSpeech * tmp3_1226= [CalendarSpeech new];
+            [tmp3_1226 setDate:@" 2012/12/26 (星期三)" time:@" 下午 03:10	下午 04:50 " title:@" 求學歷程、工作經驗及未來的期許" speaker:@" 李雲萬 學長" serviceOrgan:@" 交通部航港局副局長" location:@" 工學院B1演講廳" oranizers:@" D2.河海工程學系(2) "];
+            
+            NSArray * Dec26 = [[NSArray alloc] initWithObjects:tmp1_1226, tmp2_1226, tmp3_1226, nil];
+            
             CalendarSpeech * tmp1_1227 = [CalendarSpeech new];
-            [tmp1_1227 setDate:@"2012/12/27 (星期四)" time:@"下午 02:00 - 04:00" title:@"Sensor Networks for Real" speaker:@"黃寶儀博士" serviceOrgan:@"國立台灣大學電機系教授" location:@"延平技術大樓820室" oranizers:@"E3.通訊與導航工程系"];
+            [tmp1_1227 setDate:@"2012/12/27 (星期四)" time:@"上午 10:00	下午 12:00" title:@"創業與創業家精神" speaker:@"陳良基 博士" serviceOrgan:@"國家實驗研究院院長" location:@"行政大樓第一演講廳" oranizers:@"產學技轉中心"];
             
             CalendarSpeech * tmp2_1227 = [CalendarSpeech new];
-            [tmp2_1227 setDate:@"2012/12/27 (星期四)" time:@"下午 01:10 - 03:00	" title:@"(博、碩班專題討論) 海洋人生" speaker:@"楊施傑 先生" serviceOrgan:@"中華海員總工會 理事長" location:@"輪機系視聽教室" oranizers:@"A4.輪機工程學系"];
+            [tmp2_1227 setDate:@"2012/12/27 (星期四)" time:@"上午 10:20	下午 12:00" title:@"我在統一企業糧食及水產部門的職場生涯及現金22K薪水的省思" speaker:@"劉茂生 先生" serviceOrgan:@"喃嶸水產有限公司顧問" location:@"生科院管109教室(全興廳)" oranizers:@"B2.水產養殖學系(2)"];
             
-            NSArray * Dec27 = [[NSArray alloc] initWithObjects:tmp1_1227, tmp2_1227, nil];
+            CalendarSpeech * tmp3_1227 = [CalendarSpeech new];
+            [tmp3_1227 setDate:@"2012/12/27 (星期四)" time:@"下午 01:10	下午 03:00" title:@" (博、碩班專題討論) 海洋人生" speaker:@" 楊施傑 先生" serviceOrgan:@" 中華海員總工會 理事長" location:@" 輪機系視聽教室" oranizers:@" A4.輪機工程學系"];
+            
+            CalendarSpeech * tmp4_1227 = [CalendarSpeech new];
+            [tmp4_1227 setDate:@"2012/12/27 (星期四)" time:@" 下午 01:10	下午 03:10" title:@" 水產飼料產品的研發" speaker:@" 林龍參 博士" serviceOrgan:@" 全興國際水產股份有限公司/經理" location:@" 生科院管108教室(群海廳)" oranizers:@" B2.水產養殖學系(2)"];
+            
+            CalendarSpeech * tmp5_1227 = [CalendarSpeech new];
+            [tmp5_1227 setDate:@"2012/12/27 (星期四)" time:@" 下午 02:00	下午 04:00" title:@" Sensor Networks for Real" speaker:@" 黃寶儀博士" serviceOrgan:@" 國立台灣大學電機系教授" location:@" 延平技術大樓820室" oranizers:@" E3.通訊與導航工程系"];
+            
+            NSArray * Dec27 = [[NSArray alloc] initWithObjects:tmp1_1227, tmp2_1227, tmp3_1227, tmp4_1227, tmp5_1227, nil];
+            
+            CalendarSpeech * tmp1_1228 = [CalendarSpeech new];
+            [tmp1_1228 setDate:@"2012/12/28 (星期五)" time:@"上午 10:20	下午 12:05" title:@"風力發電技術與發展" speaker:@"高瑞祥 博士" serviceOrgan:@"台達電子工業股份有限公司/副理" location:@"工學院 1樓視聽室" oranizers:@"D1.系統工程暨造船學系"];
+            
+            CalendarSpeech * tmp2_1228 = [CalendarSpeech new];
+            [tmp2_1228 setDate:@"2012/12/28 (星期五)" time:@"下午 02:10	下午 05:00" title:@"「應用技術創造產品價值應有的觀念與技能」" speaker:@"張秉綸 碩士" serviceOrgan:@"經營管理顧問股份有限公司 總經理" location:@"資工系105室" oranizers:@" E0.電機資訊學院"];
+            
+            CalendarSpeech * tmp3_1228 = [CalendarSpeech new];
+            [tmp3_1228 setDate:@"2012/12/28 (星期五)" time:@"下午 03:10	下午 05:10" title:@"海洋、島、臺灣…多元認識下作為海洋文化研究之可能途徑" speaker:@"溫毓詩 博士" serviceOrgan:@"國立臺中科技大學通識教育中心助理教授" location:@"海文所會議室" oranizers:@"F7.海洋文化研究所"];
+            
+            NSArray * Dec28 = [[NSArray alloc] initWithObjects:tmp1_1228, tmp2_1228, tmp3_1228, nil];
+            
+            CalendarSpeech * tmp_0102 = [CalendarSpeech new];
+            [tmp_0102 setDate:@"2013/1/2 (星期三)" time:@"下午 03:10	下午 05:00" title:@"綠能船舶與公司策略" speaker:@"謝敏雄 碩士" serviceOrgan:@"大副、駐外代表、船務、工務主管" location:@"延平大樓109遠距多媒體教室" oranizers:@"A0.海運暨管理學院"];
+            
+            NSArray * Jan02 = [[NSArray alloc] initWithObjects:tmp_0102, nil];
+            
+            CalendarSpeech * tmp_0103 = [CalendarSpeech new];
+            [tmp_0103 setDate:@"2013/1/3 (星期四)" time:@"下午 01:00	下午 03:00" title:@"(博、碩班專題討論) 氣功與健康" speaker:@"林永鈞 先生" serviceOrgan:@"中山科學研究院 副研究員" location:@"輪機系視聽教室(TEC109)" oranizers:@"A4.輪機工程學系"];
+            
+            NSArray * Jan03 = [[NSArray alloc] initWithObjects:tmp_0103, nil];
+            
+            CalendarSpeech * tmp_0105 = [CalendarSpeech new];
+            [tmp_0105 setDate:@"2013/1/5 (星期六)" time:@"上午 09:00	下午 01:00" title:@"寶石介紹與鑑定" speaker:@"林書弘 先生" serviceOrgan:@"台灣聯合珠寶玉石鑑定中心 常務董事 / 總鑑定師" location:@"綜合一館413教室" oranizers:@"C3.應用地球科學研究所"];
+            
+            NSArray * Jan05 = [[NSArray alloc] initWithObjects:tmp_0105, nil];
+            
+            CalendarSpeech * tmp_0107 = [CalendarSpeech new];
+            [tmp_0107 setDate:@"2013/1/7 (星期一)" time:@"下午 01:30	下午 03:00" title:@"海洋能源轉換系統介紹" speaker:@"林鎮洲 博士" serviceOrgan:@"海洋大學機械與機電工程學系教授" location:@"延平技術大樓B1演講廳" oranizers:@"D4.機械與機電工程學系"];
+            
+            NSArray * Jan07 = [[NSArray alloc] initWithObjects:tmp_0107, nil];
+            
+            CalendarSpeech * tmp_0109 = [CalendarSpeech new];
+            [tmp_0109 setDate:@"2013/1/9 (星期三)" time:@"下午 03:10	下午 05:00" title:@"燃料電池系統應用與未來發展" speaker:@"黃林輝 先生" serviceOrgan:@"亞太燃料電池科技股份有限公司 執行長" location:@"延平大樓109遠距多媒體教室" oranizers:@"A0.海運暨管理學院"];
+            
+            NSArray * Jan09 = [[NSArray alloc] initWithObjects:tmp_0109, nil];
+            
+            CalendarSpeech * tmp_0110 = [CalendarSpeech new];
+            [tmp_0110 setDate:@"2013/1/10 (星期四)" time:@"下午 01:10	下午 03:00" title:@"海洋生態與污染毒物學" speaker:@"孟培傑 博士" serviceOrgan:@"國立海洋生物博物館生物訓養組副研究員" location:@"綜合二館506教室" oranizers:@"B4.海洋生物研究所"];
+            
+            NSArray * Jan10 = [[NSArray alloc] initWithObjects:tmp_0110, nil];
+            
+            CalendarSpeech * tmp_0114 = [CalendarSpeech new];
+            [tmp_0114 setDate:@"2013/1/14 (星期一)" time:@"下午 01:30	下午 03:00" title:@"Wireless Ceramic Devices and Modules" speaker:@"簡朝和 先生" serviceOrgan:@"國立清華大學材料科學工程學系教授" location:@"延平技術大樓B1演講廳" oranizers:@"D4.機械與機電工程學系"];
+            
+            NSArray * Jan14 = [[NSArray alloc] initWithObjects:tmp_0114, nil];
             
             
             CalendarActivities * tmp1_Dec = [CalendarActivities new];
@@ -432,27 +498,59 @@
             [tmp2_Dec setDate:@"101/12/18" period:@"101/12/18～101/12/31" undertaker:@"林令華" email:nil phone:@"24622192-2130" title:@"本期藝文Live　Show-12/12正港德意志-張正傑大提琴獨奏會演出片段" content:@"本期藝文Live　Show-12/12正港德意志-張正傑大提琴獨奏會演出片段\n\n可點以下連結觀賞：\n藝文中心http://www.art.ntou.edu.tw/\n播客行動學習系統http://podcast.ntou.edu.tw/podcast/show_channel/107"];
             CalendarActivities * tmp3_Dec = [CalendarActivities new];
             [tmp3_Dec setDate:@"101/12/14" period:@"101/11/30～101/1/25" undertaker:@"林佩珊" email:nil phone:@"2121" title:@"型衍形-吳建松石雕個展" content:@"<型衍形-吳建松石雕個展>\n2012.12.05Wed-2013.01.25Fri\n圖書館一樓展示空間\n\n12月27日下午1點10分，吳建松老師於海大開講\n地點：人社院2F遠距教室\n詳細演講內容請參卓越大師網站，\nhttp://www.art.ntou.edu.tw/masters/"];
+            CalendarActivities * tmp4_Dec = [CalendarActivities new];
+            [tmp4_Dec setDate:@" 101/12/24" period:@"101/12/24~102/01/01" undertaker:@" 林佩珊" email:nil phone:@" 2121" title:@" 配合圖書館年度館舍打蠟作業，吳建松石雕個展暫停展覽兩日。" content:@" 民國101年12月31日及102年1月1日，，吳建松石雕個展暫停兩日，不便之處敬請見諒。"];
             
-            NSArray * December = [[NSArray alloc] initWithObjects:tmp1_Dec, tmp2_Dec, tmp3_Dec, nil];
+            NSArray * December = [[NSArray alloc] initWithObjects:tmp1_Dec, tmp2_Dec, tmp3_Dec, tmp4_Dec, nil];
             
             
             NSArray * dateText = [[CalendarDataManager dateStringForEventType:activeEventList forDate:startDate]componentsSeparatedByString:@","];
-            
-            //NSLog(@"    listID = %@", activeEventList.listID);
             
             if([activeEventList.listID isEqual:@"Speech"])
             {
                 if([[dateText objectAtIndex:0] isEqual:@"Today"])
                 {
-                    ((EventListTableView *)self.tableView).events = Dec27;
+                    ((EventListTableView *)self.tableView).events = Jan03;
                 }
                 
                 else
                 {
                     NSArray * month_date = [[dateText objectAtIndex:0] componentsSeparatedByString:@" "];
-                    if([[month_date objectAtIndex:0] isEqual:@"Dec"] && [[month_date objectAtIndex:1] isEqual:@"27"])
+                    if([[month_date objectAtIndex:0] isEqual:@"Dec"] && [[month_date objectAtIndex:1] isEqual:@"26"])
+                    {
+                        ((EventListTableView *)self.tableView).events = Dec26;
+                    }
+                    else if([[month_date objectAtIndex:0] isEqual:@"Dec"] && [[month_date objectAtIndex:1] isEqual:@"27"])
                     {
                         ((EventListTableView *)self.tableView).events = Dec27;
+                    }
+                    else if([[month_date objectAtIndex:0] isEqual:@"Dec"] && [[month_date objectAtIndex:1] isEqual:@"28"])
+                    {
+                        ((EventListTableView *)self.tableView).events = Dec28;
+                    }
+                    else if([[month_date objectAtIndex:0] isEqual:@"Jan"] && [[month_date objectAtIndex:1] isEqual:@"2"])
+                    {
+                        ((EventListTableView *)self.tableView).events = Jan02;
+                    }
+                    else if([[month_date objectAtIndex:0] isEqual:@"Jan"] && [[month_date objectAtIndex:1] isEqual:@"5"])
+                    {
+                        ((EventListTableView *)self.tableView).events = Jan05;
+                    }
+                    else if([[month_date objectAtIndex:0] isEqual:@"Jan"] && [[month_date objectAtIndex:1] isEqual:@"7"])
+                    {
+                        ((EventListTableView *)self.tableView).events = Jan07;
+                    }
+                    else if([[month_date objectAtIndex:0] isEqual:@"Jan"] && [[month_date objectAtIndex:1] isEqual:@"9"])
+                    {
+                        ((EventListTableView *)self.tableView).events = Jan09;
+                    }
+                    else if([[month_date objectAtIndex:0] isEqual:@"Jan"] && [[month_date objectAtIndex:1] isEqual:@"10"])
+                    {
+                        ((EventListTableView *)self.tableView).events = Jan10;
+                    }
+                    else if([[month_date objectAtIndex:0] isEqual:@"Jan"] && [[month_date objectAtIndex:1] isEqual:@"14"])
+                    {
+                        ((EventListTableView *)self.tableView).events = Jan14;
                     }
                 }
             }
