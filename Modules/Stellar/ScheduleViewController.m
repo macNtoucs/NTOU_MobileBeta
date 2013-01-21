@@ -128,11 +128,11 @@
         [self.weekschedule.TapAddCourse removeAllObjects];
         [self alterButtonFunction:NO];
         self.weekschedule.WhetherTapped = NO;
-        self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, self.scrollView.contentSize.height-120);
+        self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, self.scrollView.contentSize.height-132);
         change = NO;
     } else {
         self.weekschedule.WhetherTapped = YES;
-        self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, self.scrollView.contentSize.height+120);
+        self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, self.scrollView.contentSize.height+132);
         change = YES;
     }
 }
@@ -202,13 +202,12 @@
 
 - (void)viewDidLoad
 {
-    scrollView = [[[UIScrollView alloc] init]autorelease];
     weekschedule = [[[WeekScheduleView alloc]initWithFrame:CGRectMake(0, 0, LeftBaseline+(UpperViewWidth-TextLabelborderWidth)*[[ClassDataBase sharedData] FetchWeekTimes], NavigationAndStatusHeight+UpperBaseline+(LeftViewHeight-TextLabelborderWidth)*[[ClassDataBase sharedData] FetchClassSessionTimes])] autorelease];
     [weekschedule getParent_ViewController:self];
     [self addNavRightButton]; 
     scrollView = [[UIScrollView alloc] init];
    
-    [scrollView setFrame:[[UIApplication sharedApplication] keyWindow].frame];
+    [scrollView setFrame:[[UIScreen mainScreen] bounds]];
     [scrollView addSubview:weekschedule];
     isWeekScheduleInScrowView = true;
     scrollView.delegate=self;

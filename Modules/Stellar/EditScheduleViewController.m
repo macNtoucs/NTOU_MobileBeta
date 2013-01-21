@@ -103,7 +103,7 @@
 {
 #warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 2;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -116,6 +116,10 @@
     else if (section==1) {
         return 3;
     }
+    else if (section==2) {
+        return 1;
+    }
+
     return 0;
 }
 -(void) finishSetting {
@@ -134,7 +138,7 @@
     if (indexPath.section==1&&(indexPath.row==0||indexPath.row==1)) {
         cell  = [[[SecondaryGroupedTableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:CellIdentifier] autorelease];
     }
-    else if (indexPath.section==1&&indexPath.row==2)
+    else if ((indexPath.section==1&&indexPath.row==2)||(indexPath.section==2&&indexPath.row==0))
         cell  = [[[SecondaryGroupedTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     else
         cell  = [[[SecondaryGroupedTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
@@ -200,6 +204,16 @@
                 break;
             case 2:
                 cell.textLabel.text = @"與當學期同步課表";
+                cell.textLabel.textAlignment = UITextAlignmentCenter;
+                break;
+        }
+     
+    }
+    else if (indexPath.section==2) {
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        switch (indexPath.row) {
+            case 0:
+                cell.textLabel.text = @"重置課表";
                 cell.textLabel.textAlignment = UITextAlignmentCenter;
                 break;
         }
@@ -285,6 +299,23 @@
         classColor.title = @"設定課堂顏色";
         [self.navigationController pushViewController:classColor animated:YES];
     }
+    else if (indexPath.section==1&&indexPath.row==2){
+        UIAlertView *loadingAlertView = [[UIAlertView alloc]
+                                         initWithTitle:@"警告" message:@"將會覆蓋相同位置課堂"
+                                         delegate:nil cancelButtonTitle:@"取消"
+                                         otherButtonTitles:@"確定", nil];
+        [loadingAlertView show];
+        [loadingAlertView release];
+    }
+    else if (indexPath.section==2&&indexPath.row==0){
+        UIAlertView *loadingAlertView = [[UIAlertView alloc]
+                                         initWithTitle:@"警告" message:@"將會清空當前課表"
+                                         delegate:nil cancelButtonTitle:@"取消"
+                                         otherButtonTitles:@"確定", nil];
+        [loadingAlertView show];
+        [loadingAlertView release];
+    }
+        
 }
 
 @end
