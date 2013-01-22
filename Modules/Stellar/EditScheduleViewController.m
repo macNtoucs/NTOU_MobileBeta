@@ -103,7 +103,7 @@
 {
 #warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 3;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -115,9 +115,6 @@
     }
     else if (section==1) {
         return 3;
-    }
-    else if (section==2) {
-        return 1;
     }
 
     return 0;
@@ -138,7 +135,7 @@
     if (indexPath.section==1&&(indexPath.row==0||indexPath.row==1)) {
         cell  = [[[SecondaryGroupedTableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:CellIdentifier] autorelease];
     }
-    else if ((indexPath.section==1&&indexPath.row==2)||(indexPath.section==2&&indexPath.row==0))
+    else if ((indexPath.section==1&&indexPath.row==2))
         cell  = [[[SecondaryGroupedTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     else
         cell  = [[[SecondaryGroupedTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
@@ -209,15 +206,6 @@
         }
      
     }
-    else if (indexPath.section==2) {
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        switch (indexPath.row) {
-            case 0:
-                cell.textLabel.text = @"重置課表";
-                cell.textLabel.textAlignment = UITextAlignmentCenter;
-                break;
-        }
-    }
     return cell;
 }
 
@@ -285,6 +273,24 @@
 }
 */
 
+- (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    switch (buttonIndex) {
+        case 0:
+            [[ClassDataBase sharedData] ClearAllCourses];
+            [[ClassDataBase sharedData] loginAccount:[(UITextField*)accountDelegate text]
+                                            Password:[(UITextField*)passwordDelegate text]];
+            break;
+        case 1:
+            [[ClassDataBase sharedData] loginAccount:[(UITextField*)accountDelegate text]
+                                            Password:[(UITextField*)passwordDelegate text]];
+            break;
+        default:
+            break;
+    }
+    
+}
+
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -302,20 +308,11 @@
     else if (indexPath.section==1&&indexPath.row==2){
         UIAlertView *loadingAlertView = [[UIAlertView alloc]
                                          initWithTitle:@"警告" message:@"將會覆蓋相同位置課堂"
-                                         delegate:nil cancelButtonTitle:@"取消"
-                                         otherButtonTitles:@"確定", nil];
+                                         delegate:self cancelButtonTitle:@"取消"
+                                         otherButtonTitles:@"重置",@"僅更新當學期課堂", nil];
         [loadingAlertView show];
         [loadingAlertView release];
     }
-    else if (indexPath.section==2&&indexPath.row==0){
-        UIAlertView *loadingAlertView = [[UIAlertView alloc]
-                                         initWithTitle:@"警告" message:@"將會清空當前課表"
-                                         delegate:nil cancelButtonTitle:@"取消"
-                                         otherButtonTitles:@"確定", nil];
-        [loadingAlertView show];
-        [loadingAlertView release];
-    }
-        
 }
 
 @end

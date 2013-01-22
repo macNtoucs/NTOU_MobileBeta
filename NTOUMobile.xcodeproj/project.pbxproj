@@ -301,7 +301,6 @@
 		A6930566144CEBFC0012EEFA /* ThankYouViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6930564144CEBFC0012EEFA /* ThankYouViewController.m */; };
 		A69826E51354A488004A8258 /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A69826E41354A488004A8258 /* EventKitUI.framework */; };
 		A6A82E38145624F20075EB28 /* LibraryTextElementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A82E37145624F20075EB28 /* LibraryTextElementViewController.m */; };
-		A6CB9E5E16ADA27D008DD61C /* Moodle_API.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CB9E5B16ADA27D008DD61C /* Moodle_API.m */; };
 		A6CB9E5F16ADA27D008DD61C /* NSData+DES.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CB9E5D16ADA27D008DD61C /* NSData+DES.m */; };
 		A6CD75F5164820D500D1209C /* ClassInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CD75F1164820D500D1209C /* ClassInfoView.m */; };
 		A6CD75F6164820D500D1209C /* ClassInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CD75F3164820D500D1209C /* ClassInfoViewController.m */; };
@@ -377,6 +376,7 @@
 		C7BF083D16884B4E00153F6F /* NTOU_ClassColorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7BF083B16884B4E00153F6F /* NTOU_ClassColorViewController.m */; };
 		C7BF083E16884B4E00153F6F /* NTOU_ClassColorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7BF083C16884B4E00153F6F /* NTOU_ClassColorViewController.xib */; };
 		C7BF084116885D8100153F6F /* NTOU_ClassColorTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7BF084016885D8000153F6F /* NTOU_ClassColorTableController.m */; };
+		C7DE16C416AE876300BBE23D /* Moodle_API.m in Sources */ = {isa = PBXBuildFile; fileRef = C7DE16C216AE876300BBE23D /* Moodle_API.m */; };
 		DE03763C1350F5080041DDBD /* MIT150Button.m in Sources */ = {isa = PBXBuildFile; fileRef = DE03763B1350F5080041DDBD /* MIT150Button.m */; };
 		DE0A62AC10CDAEA90058B2C2 /* MITBuildInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DE0A62AB10CDAEA90058B2C2 /* MITBuildInfo.m */; };
 		DE0F6B3411109BC500F064D6 /* AboutMITVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DE0F6B3311109BC500F064D6 /* AboutMITVC.m */; };
@@ -1057,8 +1057,6 @@
 		A69826E41354A488004A8258 /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = System/Library/Frameworks/EventKitUI.framework; sourceTree = SDKROOT; };
 		A6A82E36145624F20075EB28 /* LibraryTextElementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryTextElementViewController.h; sourceTree = "<group>"; };
 		A6A82E37145624F20075EB28 /* LibraryTextElementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryTextElementViewController.m; sourceTree = "<group>"; };
-		A6CB9E5A16ADA27D008DD61C /* Moodle_API.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Moodle_API.h; path = Classes/Moodle_API.h; sourceTree = "<group>"; };
-		A6CB9E5B16ADA27D008DD61C /* Moodle_API.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Moodle_API.m; path = Classes/Moodle_API.m; sourceTree = "<group>"; };
 		A6CB9E5C16ADA27D008DD61C /* NSData+DES.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSData+DES.h"; path = "Classes/NSData+DES.h"; sourceTree = "<group>"; };
 		A6CB9E5D16ADA27D008DD61C /* NSData+DES.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSData+DES.m"; path = "Classes/NSData+DES.m"; sourceTree = "<group>"; };
 		A6CB9E6416ADA3A0008DD61C /* CommonCryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonCryptor.h; sourceTree = "<group>"; };
@@ -1184,6 +1182,8 @@
 		C7BF083C16884B4E00153F6F /* NTOU_ClassColorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NTOU_ClassColorViewController.xib; path = ../../NTOU_ClassColorViewController.xib; sourceTree = "<group>"; };
 		C7BF083F16885D7F00153F6F /* NTOU_ClassColorTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTOU_ClassColorTableController.h; sourceTree = "<group>"; };
 		C7BF084016885D8000153F6F /* NTOU_ClassColorTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTOU_ClassColorTableController.m; sourceTree = "<group>"; };
+		C7DE16C216AE876300BBE23D /* Moodle_API.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Moodle_API.m; sourceTree = "<group>"; };
+		C7DE16C316AE876300BBE23D /* Moodle_API.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Moodle_API.h; sourceTree = "<group>"; };
 		DE03763A1350F5080041DDBD /* MIT150Button.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIT150Button.h; sourceTree = "<group>"; };
 		DE03763B1350F5080041DDBD /* MIT150Button.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIT150Button.m; sourceTree = "<group>"; };
 		DE0A62AA10CDAEA90058B2C2 /* MITBuildInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MITBuildInfo.h; sourceTree = "<group>"; };
@@ -2322,8 +2322,8 @@
 		A6CB9B1616ADA062008DD61C /* Moodle_API */ = {
 			isa = PBXGroup;
 			children = (
-				A6CB9E5A16ADA27D008DD61C /* Moodle_API.h */,
-				A6CB9E5B16ADA27D008DD61C /* Moodle_API.m */,
+				C7DE16C316AE876300BBE23D /* Moodle_API.h */,
+				C7DE16C216AE876300BBE23D /* Moodle_API.m */,
 				A6CB9E5C16ADA27D008DD61C /* NSData+DES.h */,
 				A6CB9E5D16ADA27D008DD61C /* NSData+DES.m */,
 				A6CB9E6416ADA3A0008DD61C /* CommonCryptor.h */,
@@ -3782,8 +3782,8 @@
 				91EC3F131689791E0065BE43 /* CalendarActivities.m in Sources */,
 				91EC3F141689791E0065BE43 /* CalendarSpeech.m in Sources */,
 				6DEB40CE1692D71500BCACBC /* RequestOperation.m in Sources */,
-				A6CB9E5E16ADA27D008DD61C /* Moodle_API.m in Sources */,
 				A6CB9E5F16ADA27D008DD61C /* NSData+DES.m in Sources */,
+				C7DE16C416AE876300BBE23D /* Moodle_API.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -17,6 +17,8 @@
 @synthesize classroomLocation;
 @synthesize ScheduleTempInfo;
 @synthesize token;
+@synthesize courseCount;
+@synthesize moodleFrom;
 static ClassDataBase *sharedData = nil;
 
 + (ClassDataBase *)sharedData {
@@ -40,6 +42,8 @@ static ClassDataBase *sharedData = nil;
         ColorDic = [[aDecoder decodeObjectForKey:ColorDicKey] retain];
         professorName = [[aDecoder decodeObjectForKey:professorNameKey] retain];
         classroomLocation = [[aDecoder decodeObjectForKey:classroomLocationKey] retain];
+        courseCount = [[aDecoder decodeObjectForKey:courseCountKey] retain];
+        moodleFrom = [[aDecoder decodeObjectForKey:moodleFromKey] retain];
     }
     return self;
 }
@@ -53,6 +57,8 @@ static ClassDataBase *sharedData = nil;
     [aCoder encodeObject:ColorDic forKey:ColorDicKey];
     [aCoder encodeObject:professorName forKey:professorNameKey];
     [aCoder encodeObject:classroomLocation forKey:classroomLocationKey];
+    [aCoder encodeObject:courseCount forKey:courseCountKey];
+    [aCoder encodeObject:moodleFrom forKey:moodleFromKey];
 }
 
 -(NSDictionary *)VoidSchedule
@@ -86,7 +92,11 @@ static ClassDataBase *sharedData = nil;
                             [NSMutableArray arrayWithObjects:[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "], nil],@"Sunday",nil];
             ScheduleTempInfo = (NSDictionary *)CFPropertyListCreateDeepCopy(kCFAllocatorDefault, (CFDictionaryRef)ScheduleInfo, kCFPropertyListMutableContainers);
             WeekDays=[[NSMutableArray arrayWithObjects:[NSNumber numberWithBool:YES],[NSNumber numberWithBool:YES],[NSNumber numberWithBool:YES],[NSNumber numberWithBool:YES],[NSNumber numberWithBool:YES],[NSNumber numberWithBool:YES],[NSNumber numberWithBool:YES], nil] retain];
+            courseCount = [[NSMutableDictionary alloc]initWithObjectsAndKeys:[NSNumber numberWithInt:3],[NSString stringWithFormat:@"資料庫"],[NSNumber numberWithInt:3],[NSString stringWithFormat:@"演算法"],[NSNumber numberWithInt:3],[NSString stringWithFormat:@"程式語言"],[NSNumber numberWithInt:3],[NSString stringWithFormat:@"日文"],[NSNumber numberWithInt:2],[NSString stringWithFormat:@"性別平等與就業歧視"],[NSNumber numberWithInt:2],[NSString stringWithFormat:@"現代藝術賞析"],[NSNumber numberWithInt:3],[NSString stringWithFormat:@"作業系統"], nil];
+            moodleFrom = [[NSMutableDictionary alloc]initWithObjectsAndKeys:[NSNumber numberWithBool:1],[NSString stringWithFormat:@"資料庫"],[NSNumber numberWithBool:1],[NSString stringWithFormat:@"演算法"],[NSNumber numberWithBool:1],[NSString stringWithFormat:@"程式語言"],[NSNumber numberWithBool:1],[NSString stringWithFormat:@"日文"],[NSNumber numberWithBool:1],[NSString stringWithFormat:@"性別平等與就業歧視"],[NSNumber numberWithBool:1],[NSString stringWithFormat:@"現代藝術賞析"],[NSNumber numberWithBool:1],[NSString stringWithFormat:@"作業系統"], nil];
+            
             ColorDic = [[NSMutableDictionary alloc]initWithObjectsAndKeys:[UIColor colorWithRed:193.0/255 green:255.0/255 blue:193.0/255 alpha:1],[NSString stringWithFormat:@"資料庫"],[UIColor colorWithRed:248.0/255 green:248.0/255 blue:255.0/255 alpha:1],[NSString stringWithFormat:@"演算法"],[UIColor colorWithRed:255.0/255 green:248.0/255 blue:220.0/255 alpha:1],[NSString stringWithFormat:@"程式語言"],[UIColor colorWithRed:245.0/255 green:255.0/255 blue:250.0/255 alpha:1],[NSString stringWithFormat:@"日文"],[UIColor colorWithRed:255.0/255 green:255.0/255 blue:224.0/255 alpha:1],[NSString stringWithFormat:@"性別平等與就業歧視"],[UIColor colorWithRed:255.0/255 green:246.0/255 blue:143.0/255 alpha:1],[NSString stringWithFormat:@"現代藝術賞析"],[UIColor colorWithRed:255.0/255 green:181.0/255 blue:197.0/255 alpha:1],[NSString stringWithFormat:@"作業系統"], nil];
+            
             professorName = [[NSMutableDictionary alloc]initWithObjectsAndKeys:[NSString stringWithFormat:@"林清池"],[NSNumber numberWithInt:10103],[NSString stringWithFormat:@" "],[NSNumber numberWithInt:30202],[NSString stringWithFormat:@" "],[NSNumber numberWithInt:503],[NSString stringWithFormat:@" "],[NSNumber numberWithInt:10603],[NSString stringWithFormat:@" "],[NSNumber numberWithInt:20202],[NSString stringWithFormat:@" "],[NSNumber numberWithInt:30002],[NSString stringWithFormat:@" "],[NSNumber numberWithInt:40103], nil];
             classroomLocation = [[NSMutableDictionary alloc]initWithObjectsAndKeys:[NSString stringWithFormat:@"CS301"],[NSNumber numberWithInt:10103],[NSString stringWithFormat:@" "],[NSNumber numberWithInt:30202],[NSString stringWithFormat:@" "],[NSNumber numberWithInt:503],[NSString stringWithFormat:@" "],[NSNumber numberWithInt:10603],[NSString stringWithFormat:@" "],[NSNumber numberWithInt:20202],[NSString stringWithFormat:@" "],[NSNumber numberWithInt:30002],[NSString stringWithFormat:@" "],[NSNumber numberWithInt:40103], nil];
 
@@ -102,6 +112,8 @@ static ClassDataBase *sharedData = nil;
             ScheduleInfo = [[NSDictionary alloc] initWithDictionary:obj->ScheduleInfo];
             ScheduleTempInfo = (NSDictionary *)CFPropertyListCreateDeepCopy(kCFAllocatorDefault, (CFDictionaryRef)ScheduleInfo, kCFPropertyListMutableContainers);
             ColorDic = [[NSMutableDictionary alloc] initWithDictionary:obj->ColorDic];
+            courseCount = [[NSMutableDictionary alloc] initWithDictionary:obj->courseCount];
+            moodleFrom = [[NSMutableDictionary alloc] initWithDictionary:obj->moodleFrom];
             professorName = [[NSMutableDictionary alloc] initWithDictionary:obj->professorName];
             classroomLocation = [[NSMutableDictionary alloc] initWithDictionary:obj->classroomLocation];
             WeekDays = [[NSMutableArray alloc] initWithArray:obj->WeekDays];
@@ -225,6 +237,11 @@ static ClassDataBase *sharedData = nil;
     }
     for (int i=0; i < range.length; i++) {
         [[self ScheduleInfoKeyToWeek:Key] replaceObjectAtIndex:range.location+i  withObject:Name];
+        if ([courseCount objectForKey:Name]) {
+            [courseCount setValue:[NSNumber numberWithInt:[[courseCount objectForKey:Name] intValue]-1] forKey:Name] ;
+        }
+        else
+            [courseCount setValue:[NSNumber numberWithInt:1] forKey:Name] ;
     }
     
 }
@@ -290,6 +307,8 @@ static ClassDataBase *sharedData = nil;
     [ColorDic removeAllObjects];
     [professorName removeAllObjects];
     [classroomLocation removeAllObjects];
+    [courseCount removeAllObjects];
+    [moodleFrom removeAllObjects];
 }
 
 
@@ -351,7 +370,18 @@ static ClassDataBase *sharedData = nil;
         NSMutableArray* daySched = [self ScheduleInfoFromMoodleKeyToWeek:[courseDic objectForKey:@"day"]];
         NSMutableArray* classroomArray = [NSArray array];
         for (NSDictionary* couses in [ColorDic objectForKey:@"course"]) {
-            [daySched replaceObjectAtIndex:(int)[couses objectForKey:@"time"] withObject:[couses objectForKey:@"name"]];
+            NSString* replaceCourse=[daySched objectAtIndex:(int)[couses objectForKey:@"time"]];
+            if ([[courseCount objectForKey:replaceCourse] intValue]==1) {
+                [courseCount removeObjectForKey:replaceCourse];
+            }
+            else
+                [courseCount setValue:[NSNumber numberWithInt:[[courseCount objectForKey:replaceCourse] intValue]-1] forKey:replaceCourse];
+            [daySched replaceObjectAtIndex:[couses objectForKey:@"time"] withObject:[couses objectForKey:@"name"]];
+
+            if (![ColorDic objectForKey:[couses objectForKey:@"name"]]) {
+                [ColorDic setValue:[UIColor colorWithRed:255.0/255 green:255.0/255 blue:255.0/255 alpha:1] forKey:[couses objectForKey:@"name"]];
+            }
+            
             [classroomArray addObject:[couses objectForKey:@"classroom"]];
         }
         for (int i=0,j=0;i<[daySched count] && i < [[ClassDataBase sharedData] FetchClassSessionTimes];i++) {
@@ -361,20 +391,47 @@ static ClassDataBase *sharedData = nil;
             NSNumber* tag = [NSNumber numberWithInt:([self ScheduleInfoFromMoodleKeyToNumber:[courseDic objectForKey:@"day"]]*100+sameClass)*100+i-sameClass+1];
             if (![[classroomLocation allKeys] containsObject:tag]) {
                 [self UpdataClassroomLocationKey:tag Classroom:[classroomArray objectAtIndex:j]];
-                j=j+[tag intValue]%100;
-            }//unfixed
+                for (;j+1<[classroomArray count];)
+                    if ([classroomArray objectAtIndex:j]==[classroomArray objectAtIndex:j+1]) {
+                        j++;
+                }
+                if (j+1!=[classroomArray count]) {
+                    j++;
+                }
+            }
         }
 
     }
 }
 
--(void)loaginAccount:(NSString *)account Password:(NSString *)password
+-(void)deleteFromMoodle
+{
+    NSNumber* moodle = nil;
+    for (int i = 0;i < [[moodleFrom allKeys] count];i++) {
+        moodle = [moodleFrom objectForKey:[[moodleFrom allKeys] objectAtIndex:i]];
+        if ([moodle boolValue]) {
+            for (NSMutableArray* week in [ScheduleInfo allValues]) {
+                for (NSString* courses in week) {
+                    if ([[[moodleFrom allKeys] objectAtIndex:i] isEqualToString:courses]) {
+                        courses = [NSString stringWithFormat:@" "];
+                    }
+                }
+            }
+        }
+    }
+}
+
+-(void)loginAccount:(NSString *)account Password:(NSString *)password
 {
     NSDictionary* info = [Moodle_API Login:account andPassword:password];
-    if((int)[info objectForKey:@"result"]==1){
+    NSLog(@"%@",[info objectForKey:@"result"]);
+    if([[info objectForKey:@"result"] intValue]==1){
         token = [info objectForKey:@"token"];
         NSDictionary *schedule = [Moodle_API GetCourse_AndUseToken:token];
+        [self deleteFromMoodle];
         [self updataScheduleFromMoodle:schedule];
+        [self ClassAddDecide];
+        [[ScheduleViewDelegate weekschedule] drawRect:CGRectZero];
     }
 }
 

@@ -26,6 +26,9 @@
 #define ColorDicKey @"ColorDicKey"
 #define professorNameKey @"professorNameKey"
 #define classroomLocationKey @"classroomLocationKey"
+#define courseCountKey @"courseCountKey"
+#define moodleFromKey @"moodleFromKey"
+
 #import <Foundation/Foundation.h>
 #import "DefinePixel.h"
 #import "Moodle_API.h"
@@ -42,10 +45,14 @@ typedef enum {Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday } ColumnN
     NSMutableDictionary* ColorDic;
     NSMutableDictionary* professorName;
     NSMutableDictionary* classroomLocation;
+    NSMutableDictionary* courseCount;
+    NSMutableDictionary* moodleFrom;
     NSString * token;
 }
 
 @property (nonatomic,retain) NSDictionary *ScheduleInfo;
+@property (nonatomic,retain) NSDictionary *courseCount;
+@property (nonatomic,retain) NSDictionary *moodleFrom;
 @property (nonatomic,retain) NSDictionary *ScheduleTempInfo;
 @property (nonatomic,retain) NSMutableDictionary *ColorDic;
 @property (nonatomic,retain) NSMutableDictionary* professorName;
@@ -83,6 +90,6 @@ typedef enum {Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday } ColumnN
 -(void)ClassAddDecide;
 
 -(void)ClearAllCourses;
--(void)loaginAccount:(NSString *)account Password:(NSString *)password;
+-(void)loginAccount:(NSString *)account Password:(NSString *)password;
 
 @end
