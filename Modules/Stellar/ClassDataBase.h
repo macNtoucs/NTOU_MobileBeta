@@ -28,6 +28,7 @@
 #define classroomLocationKey @"classroomLocationKey"
 #import <Foundation/Foundation.h>
 #import "DefinePixel.h"
+#import "Moodle_API.h"
 typedef enum {Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday } ColumnName;
 @interface ClassDataBase : NSObject<NSCoding>{
     int WeekTimes;
@@ -41,6 +42,7 @@ typedef enum {Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday } ColumnN
     NSMutableDictionary* ColorDic;
     NSMutableDictionary* professorName;
     NSMutableDictionary* classroomLocation;
+    NSString * token;
 }
 
 @property (nonatomic,retain) NSDictionary *ScheduleInfo;
@@ -48,6 +50,7 @@ typedef enum {Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday } ColumnN
 @property (nonatomic,retain) NSMutableDictionary *ColorDic;
 @property (nonatomic,retain) NSMutableDictionary* professorName;
 @property (nonatomic,retain) NSMutableDictionary* classroomLocation;
+@property (nonatomic,retain) NSString * token;
 @property (nonatomic,assign) id ScheduleViewDelegate;
 @property (nonatomic,assign) id EditScheduleDelegate;
 
@@ -74,9 +77,12 @@ typedef enum {Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday } ColumnN
 
 -(NSString*) FetchClassroomLocation:(NSNumber*)Key;
 -(void)deleteClassroomLocation:(NSNumber*)Key;
--(void)UpdataClassroomLocationKey:(NSNumber*)Key ColorDic:(NSString*)Location;
+-(void)UpdataClassroomLocationKey:(NSNumber*)Key Classroom:(NSString*)Location;
 
 -(void)ClassAddCancel;
 -(void)ClassAddDecide;
+
+-(void)ClearAllCourses;
+-(void)loaginAccount:(NSString *)account Password:(NSString *)password;
 
 @end

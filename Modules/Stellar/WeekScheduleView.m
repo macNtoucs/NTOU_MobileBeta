@@ -103,9 +103,9 @@
     
 }
 
--(void)drawColumnTextLabelNumber:(NSInteger)number Content:(NSArray *)content {
+-(void)drawColumnTextLabelNumber:(NSInteger)number Content:(NSArray *)content WeekDays:(ColumnName)day  {
 
-    for (int i=0;i<[content count] && i < [[ClassDataBase sharedData] FetchClassSessionTimes] && number<[[ClassDataBase sharedData]FetchWeekTimes];i++) {
+    for (int i=0;i<[content count] && i < [[ClassDataBase sharedData] FetchClassSessionTimes];i++) {
         int sameClass=i;
         while (i+1<[content count]) {
             if ([[content objectAtIndex:i+1] isEqualToString:[content objectAtIndex:i]]&&![[content objectAtIndex:i]isEqualToString:@" "]) {
@@ -122,7 +122,7 @@
         labelFrame = CGRectMake( LeftBaseline+number*(UpperViewWidth-TextLabelborderWidth), x+UpperBaseline+(LeftViewHeight-TextLabelborderWidth)*sameClass, UpperViewWidth, LeftViewHeight+(LeftViewHeight-TextLabelborderWidth)*(i-sameClass));
         ClassLabelBasis* label = [[[ClassLabelBasis alloc] initWithFrame: labelFrame] autorelease];
         label.text = [content objectAtIndex:i];
-        label.tag = -((number*100+sameClass)*100+i-sameClass+1); //（第幾週數－１）＊１００００＋（第幾堂數－１）＊１００＋連堂數
+        label.tag = -((day*100+sameClass)*100+i-sameClass+1); //（第幾週數－１）＊１００００＋（第幾堂數－１）＊１００＋連堂數
         if (![[content objectAtIndex:i] isEqualToString:@" "]){
             label.backgroundColor = [color objectForKey:label.text];
             label.tag = -label.tag;
@@ -160,19 +160,19 @@
     NSDictionary * scheduleInfo = [[ClassDataBase sharedData] FetchScheduleInfo];
     int ColumnNumber=0;
     if ([[ClassDataBase sharedData] displayWeekDays:Monday])
-        [self drawColumnTextLabelNumber:ColumnNumber++ Content:[scheduleInfo objectForKey:@"Monday"]];
+        [self drawColumnTextLabelNumber:ColumnNumber++ Content:[scheduleInfo objectForKey:@"Monday"] WeekDays:Monday];
     if ([[ClassDataBase sharedData] displayWeekDays:Tuesday])
-        [self drawColumnTextLabelNumber:ColumnNumber++ Content:[scheduleInfo objectForKey:@"Tuesday"]];
+        [self drawColumnTextLabelNumber:ColumnNumber++ Content:[scheduleInfo objectForKey:@"Tuesday"] WeekDays:Tuesday];
     if ([[ClassDataBase sharedData] displayWeekDays:Wednesday])
-        [self drawColumnTextLabelNumber:ColumnNumber++ Content:[scheduleInfo objectForKey:@"Wednesday"]];
+        [self drawColumnTextLabelNumber:ColumnNumber++ Content:[scheduleInfo objectForKey:@"Wednesday"] WeekDays:Wednesday];
     if ([[ClassDataBase sharedData] displayWeekDays:Thursday])
-        [self drawColumnTextLabelNumber:ColumnNumber++ Content:[scheduleInfo objectForKey:@"Thursday"]];
+        [self drawColumnTextLabelNumber:ColumnNumber++ Content:[scheduleInfo objectForKey:@"Thursday"] WeekDays:Thursday];
     if ([[ClassDataBase sharedData] displayWeekDays:Friday])
-        [self drawColumnTextLabelNumber:ColumnNumber++ Content:[scheduleInfo objectForKey:@"Friday"]];
+        [self drawColumnTextLabelNumber:ColumnNumber++ Content:[scheduleInfo objectForKey:@"Friday"] WeekDays:Friday];
     if ([[ClassDataBase sharedData] displayWeekDays:Saturday])
-        [self drawColumnTextLabelNumber:ColumnNumber++ Content:[scheduleInfo objectForKey:@"Saturday"]];
+        [self drawColumnTextLabelNumber:ColumnNumber++ Content:[scheduleInfo objectForKey:@"Saturday"] WeekDays:Saturday];
     if ([[ClassDataBase sharedData] displayWeekDays:Sunday])
-        [self drawColumnTextLabelNumber:ColumnNumber++ Content:[scheduleInfo objectForKey:@"Sunday"]];
+        [self drawColumnTextLabelNumber:ColumnNumber++ Content:[scheduleInfo objectForKey:@"Sunday"] WeekDays:Sunday];
     [super drawRect:rect];
 }
 

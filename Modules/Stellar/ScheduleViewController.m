@@ -85,7 +85,7 @@
     for (ClassLabelBasis* label in weekschedule.TapAddCourse) {
         [[ClassDataBase sharedData] UpdataScheduleInfo:[NSNumber numberWithInt:label.tag] ScheduleInfo:[array objectAtIndex:0]];
         [[ClassDataBase sharedData] UpdataProfessorNameKey:[NSNumber numberWithInt:label.tag] ProfessorName:[array objectAtIndex:1]];
-        [[ClassDataBase sharedData] UpdataClassroomLocationKey:[NSNumber numberWithInt:label.tag] ColorDic:[array objectAtIndex:2]];
+        [[ClassDataBase sharedData] UpdataClassroomLocationKey:[NSNumber numberWithInt:label.tag] Classroom:[array objectAtIndex:2]];
     }
     [weekschedule.TapAddCourse removeAllObjects];
     [weekschedule drawRect:CGRectZero];

@@ -16,7 +16,7 @@
 @synthesize professorName;
 @synthesize classroomLocation;
 @synthesize ScheduleTempInfo;
-
+@synthesize token;
 static ClassDataBase *sharedData = nil;
 
 + (ClassDataBase *)sharedData {
@@ -53,6 +53,18 @@ static ClassDataBase *sharedData = nil;
     [aCoder encodeObject:ColorDic forKey:ColorDicKey];
     [aCoder encodeObject:professorName forKey:professorNameKey];
     [aCoder encodeObject:classroomLocation forKey:classroomLocationKey];
+}
+
+-(NSDictionary *)VoidSchedule
+{
+    return [[NSDictionary alloc]initWithObjectsAndKeys:
+            [NSMutableArray arrayWithObjects:[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "], nil],@"Monday",
+            [NSMutableArray arrayWithObjects:[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "], nil],@"Tuesday",
+            [NSMutableArray arrayWithObjects:[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "], nil] ,@"Wednesday",
+            [NSMutableArray arrayWithObjects:[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "], nil],@"Thursday",
+            [NSMutableArray arrayWithObjects:[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "], nil],@"Friday",
+            [NSMutableArray arrayWithObjects:[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "], nil],@"Saturday",
+            [NSMutableArray arrayWithObjects:[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "],[NSString stringWithFormat:@" "], nil],@"Sunday",nil];
 }
 
 -(id)init
@@ -141,7 +153,7 @@ static ClassDataBase *sharedData = nil;
     }
 }
 
--(void)UpdataClassroomLocationKey:(NSNumber*)Key ColorDic:(NSString*)Location
+-(void)UpdataClassroomLocationKey:(NSNumber*)Key Classroom:(NSString*)Location
 {
     [self deleteClassroomLocation:Key];
     [classroomLocation setObject:Location forKey:Key];
@@ -269,6 +281,101 @@ static ClassDataBase *sharedData = nil;
 -(BOOL)displayWeekDays:(ColumnName)day
 {
     return [[WeekDays objectAtIndex:day] boolValue];
+}
+
+-(void)ClearAllCourses
+{
+    ScheduleInfo = [self VoidSchedule];
+    ScheduleTempInfo = [self VoidSchedule];
+    [ColorDic removeAllObjects];
+    [professorName removeAllObjects];
+    [classroomLocation removeAllObjects];
+}
+
+
+-(NSMutableArray*)ScheduleInfoFromMoodleKeyToWeek:(NSString*)Key
+{
+    if ([Key isEqualToString:@"Mon"]) {
+        return [ScheduleTempInfo objectForKey:@"Monday"];
+    }
+    else if ([Key isEqualToString:@"Tue"]) {
+        return [ScheduleTempInfo objectForKey:@"Tuesday"];
+    }
+    else if ([Key isEqualToString:@"Wed"]) {
+        return [ScheduleTempInfo objectForKey:@"Wednesday"];
+    }
+    else if ([Key isEqualToString:@"Thu"]) {
+        return [ScheduleTempInfo objectForKey:@"Thursday"];
+    }
+    else if ([Key isEqualToString:@"Fri"]) {
+        return [ScheduleTempInfo objectForKey:@"Friday"];
+    }
+    else if ([Key isEqualToString:@"Sat"]) {
+        return [ScheduleTempInfo objectForKey:@"Saturday"];
+    }
+    else if ([Key isEqualToString:@"Sun"]) {
+        return [ScheduleTempInfo objectForKey:@"Sunday"];
+    }
+    return nil;
+}
+
+-(int)ScheduleInfoFromMoodleKeyToNumber:(NSString*)Key
+{
+    if ([Key isEqualToString:@"Mon"]) {
+        return Monday;
+    }
+    else if ([Key isEqualToString:@"Tue"]) {
+        return Tuesday;
+    }
+    else if ([Key isEqualToString:@"Wed"]) {
+        return Wednesday;
+    }
+    else if ([Key isEqualToString:@"Thu"]) {
+        return Thursday;
+    }
+    else if ([Key isEqualToString:@"Fri"]) {
+        return Friday;
+    }
+    else if ([Key isEqualToString:@"Sat"]) {
+        return Saturday;
+    }
+    else if ([Key isEqualToString:@"Sun"]) {
+        return Sunday;
+    }
+    return nil;
+}
+
+-(void)updataScheduleFromMoodle:(NSDictionary *)dictionary
+{
+    for (NSDictionary * courseDic in [dictionary objectForKey:@"list"]) {
+        NSMutableArray* daySched = [self ScheduleInfoFromMoodleKeyToWeek:[courseDic objectForKey:@"day"]];
+        NSMutableArray* classroomArray = [NSArray array];
+        for (NSDictionary* couses in [ColorDic objectForKey:@"course"]) {
+            [daySched replaceObjectAtIndex:(int)[couses objectForKey:@"time"] withObject:[couses objectForKey:@"name"]];
+            [classroomArray addObject:[couses objectForKey:@"classroom"]];
+        }
+        for (int i=0,j=0;i<[daySched count] && i < [[ClassDataBase sharedData] FetchClassSessionTimes];i++) {
+            int sameClass=i;
+            while (i+1<[daySched count]&&[[daySched objectAtIndex:i+1] isEqualToString:[daySched objectAtIndex:i]]&&![[daySched objectAtIndex:i]isEqualToString:@" "])
+                i++;
+            NSNumber* tag = [NSNumber numberWithInt:([self ScheduleInfoFromMoodleKeyToNumber:[courseDic objectForKey:@"day"]]*100+sameClass)*100+i-sameClass+1];
+            if (![[classroomLocation allKeys] containsObject:tag]) {
+                [self UpdataClassroomLocationKey:tag Classroom:[classroomArray objectAtIndex:j]];
+                j=j+[tag intValue]%100;
+            }//unfixed
+        }
+
+    }
+}
+
+-(void)loaginAccount:(NSString *)account Password:(NSString *)password
+{
+    NSDictionary* info = [Moodle_API Login:account andPassword:password];
+    if((int)[info objectForKey:@"result"]==1){
+        token = [info objectForKey:@"token"];
+        NSDictionary *schedule = [Moodle_API GetCourse_AndUseToken:token];
+        [self updataScheduleFromMoodle:schedule];
+    }
 }
 
 @end
