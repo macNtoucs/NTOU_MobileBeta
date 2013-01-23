@@ -1,5 +1,5 @@
 #import <Foundation/Foundation.h>
-#import "JSON.h"
+#import "SBJSON.h"
 
 
 @interface MITJSON : NSObject {

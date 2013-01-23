@@ -5,15 +5,15 @@
  modification, are permitted provided that the following conditions are met:
  
  * Redistributions of source code must retain the above copyright notice, this
-   list of conditions and the following disclaimer.
+ list of conditions and the following disclaimer.
  
  * Redistributions in binary form must reproduce the above copyright notice,
-   this list of conditions and the following disclaimer in the documentation
-   and/or other materials provided with the distribution.
+ this list of conditions and the following disclaimer in the documentation
+ and/or other materials provided with the distribution.
  
  * Neither the name of the author nor the names of its contributors may be used
-   to endorse or promote products derived from this software without specific
-   prior written permission.
+ to endorse or promote products derived from this software without specific
+ prior written permission.
  
  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
  AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
@@ -51,7 +51,7 @@
  for signed long long integers) turn into NSNumber instances, while
  complex ones turn into NSDecimalNumber instances. We can thus avoid any
  loss of precision as JSON allows ridiculously large numbers.
-
+ 
  @page objc2json Objective-C to JSON
  
  Objective-C types are mapped to JSON types in the following way:
@@ -72,7 +72,7 @@
  converted into the JSON boolean "true" and "false" values, and vice
  versa. Any other NSNumber instances are converted to a JSON number the
  way you would expect.
-
+ 
  */
 
 #import "SBJsonParser.h"
