@@ -92,27 +92,7 @@
 // method calls MIT to tell it to remove the notification
 // then syncs with the data MIT returns
 + (void) removeNotifications: (NSArray *)notifications {
-	if([notifications count]) {
-		MITIdentity *identity = [MITDeviceRegistration identity];
-		
-		if(identity) {
-			NSMutableArray *noticeStrings = [NSMutableArray array];
-			for(MITNotification *notification in notifications) {
-				[noticeStrings addObject:[notification string]];
-			}		
-			SBJSON *sbjson = [SBJSON new];
-		
-			NSMutableDictionary *parameters = [identity mutableDictionary];
-			[parameters setObject:[sbjson stringWithObject:noticeStrings] forKey:@"tags"];
-		
-			[[MITMobileWebAPI jsonLoadedDelegate:[[SynchronizeUnreadNotificationsDelegate new] autorelease]]
-				requestObjectFromModule:@"push" command:@"markNotificationsAsRead" parameters:parameters];
-		
-			[sbjson release];
-		}
-        
-        [MITUnreadNotifications updateUI];
-	}
+	
 }
 
 + (void) removeNotificationsForModuleTag: (NSString *)moduleTag {

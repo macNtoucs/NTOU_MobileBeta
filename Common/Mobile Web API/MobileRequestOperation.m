@@ -2,7 +2,6 @@
 
 #import "Foundation+MITAdditions.h"
 #import "MITConstants.h"
-#import "MITJSON.h"
 #import "MITLogging.h"
 #import "MITMobileServerConfiguration.h"
 #import "MobileKeychainServices.h"
@@ -333,35 +332,10 @@ typedef enum {
     // cases where the -(void)finish method is called on the main
     // thread (instead of the operation's thread) and it shouldn't
     // block.
-    NSData *jsonData = [[self.requestData copy] autorelease];
-    NSError *error = [[self.requestError copy] autorelease];
+   
     self.requestData = nil;
     self.requestError = nil;
-    dispatch_queue_t parseQueue = dispatch_queue_create("edu.mit.mobile.json-parse", 0);
-    dispatch_async(parseQueue, ^(void) {
-        id jsonResult = nil;
-        NSError *jsonError = error;
-        
-        if (jsonError == nil) {
-            jsonResult = [MITJSON objectWithJSONData:jsonData
-                                               error:&jsonError];
-#ifdef DEBUG
-            if (jsonError)
-            {
-                NSString *data = [[[NSString alloc] initWithData:jsonData
-                                                        encoding:NSUTF8StringEncoding] autorelease];
-                DLog(@"JSON failed on data:\n-----\n%@\n-----",data);
-            }
-#endif
-        }
-        
-        [self dispatchCompleteBlockWithResult:((jsonError == nil) ? jsonResult : jsonData)
-                                        error:jsonError];
-        
-        self.isExecuting = NO;
-        self.isFinished = YES;
-    });
-    dispatch_release(parseQueue);
+    
 }
 
 - (void)cancel {

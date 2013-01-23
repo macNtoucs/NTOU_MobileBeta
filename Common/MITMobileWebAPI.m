@@ -2,7 +2,6 @@
 #import "MITMobileWebAPI.h"
 #import "MITMobileServerConfiguration.h"
 #import "MIT_MobileAppDelegate.h"
-#import "MITJSON.h"
 #import "Foundation+MITAdditions.h"
 
 #define TIMED_OUT_CODE -1001
@@ -290,18 +289,7 @@
 
 #pragma mark - ConnectionWrapper Delegate Methods
 -(void)connection:(ConnectionWrapper *)wrapper handleData:(NSData *)data {
-	id result = [MITJSON objectWithJSONData:data];
-	if(result) {
-		[((MIT_MobileAppDelegate *)[[UIApplication sharedApplication] delegate]) hideNetworkActivityIndicator];
-		[self.jsonDelegate request:self jsonLoaded:result];
-        self.connectionWrapper = nil;
-		[self release];	
-	} else {
-		NSError *error = [NSError errorWithDomain:@"MITMobileWebAPI" code:JSON_ERROR_CODE 
-										 userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"failed to handle JSON data", @"message", data, @"data", nil]];
-		[self connection:wrapper handleConnectionFailureWithError:error];
 	}
-}
 
 - (void)connection:(ConnectionWrapper *)wrapper handleConnectionFailureWithError: (NSError *)error {
     id<JSONLoadedDelegate> delegate = self.jsonDelegate;

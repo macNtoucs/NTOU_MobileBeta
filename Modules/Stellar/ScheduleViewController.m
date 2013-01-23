@@ -47,6 +47,7 @@
 
 -(void) buttonDidFinish:(int)FinishType StringData:(NSArray *)array
 {
+    ClassLabelBasis* FirstTap = [weekschedule.TapAddCourse objectAtIndex:0];
     if (FinishType == clean||(FinishType == move&&[weekschedule.TapAddCourse count]==1)) {
         [weekschedule restorTheOriginalColor];
         [weekschedule removeAllcourselabel];
@@ -89,7 +90,10 @@
         [[ClassDataBase sharedData] UpdataScheduleInfo:[NSNumber numberWithInt:label.tag] ScheduleInfo:[array objectAtIndex:0]];
         [[ClassDataBase sharedData] UpdataProfessorNameKey:[NSNumber numberWithInt:label.tag] ProfessorName:[array objectAtIndex:1]];
         [[ClassDataBase sharedData] UpdataClassroomLocationKey:[NSNumber numberWithInt:label.tag] Classroom:[array objectAtIndex:2]];
+        
     }
+    [[ClassDataBase sharedData] UpdataColorFromFirstTap:[array objectAtIndex:0] ForOldCourse:FirstTap.text];
+    [[ClassDataBase sharedData] deleteColorwhenCourseCountZero];
     [weekschedule.TapAddCourse removeAllObjects];
     [weekschedule drawRect:CGRectZero];
 }

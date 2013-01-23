@@ -99,7 +99,7 @@ static ClassDataBase *sharedData = nil;
             courseCount = [[NSMutableDictionary alloc]initWithObjectsAndKeys:[NSNumber numberWithInt:3],[NSString stringWithFormat:@"資料庫"],[NSNumber numberWithInt:3],[NSString stringWithFormat:@"演算法"],[NSNumber numberWithInt:3],[NSString stringWithFormat:@"程式語言"],[NSNumber numberWithInt:3],[NSString stringWithFormat:@"日文"],[NSNumber numberWithInt:2],[NSString stringWithFormat:@"性別平等與就業歧視"],[NSNumber numberWithInt:2],[NSString stringWithFormat:@"現代藝術賞析"],[NSNumber numberWithInt:3],[NSString stringWithFormat:@"作業系統"], nil];
             moodleFrom = [[NSMutableDictionary alloc]initWithObjectsAndKeys:[NSNumber numberWithBool:1],[NSString stringWithFormat:@"資料庫"],[NSNumber numberWithBool:1],[NSString stringWithFormat:@"演算法"],[NSNumber numberWithBool:1],[NSString stringWithFormat:@"程式語言"],[NSNumber numberWithBool:1],[NSString stringWithFormat:@"日文"],[NSNumber numberWithBool:1],[NSString stringWithFormat:@"性別平等與就業歧視"],[NSNumber numberWithBool:1],[NSString stringWithFormat:@"現代藝術賞析"],[NSNumber numberWithBool:1],[NSString stringWithFormat:@"作業系統"], nil];
             
-            ColorDic = [[NSMutableDictionary alloc]initWithObjectsAndKeys:[UIColor colorWithRed:193.0/255 green:255.0/255 blue:193.0/255 alpha:1],[NSString stringWithFormat:@"資料庫"],[UIColor colorWithRed:248.0/255 green:248.0/255 blue:255.0/255 alpha:1],[NSString stringWithFormat:@"演算法"],[UIColor colorWithRed:255.0/255 green:248.0/255 blue:220.0/255 alpha:1],[NSString stringWithFormat:@"程式語言"],[UIColor colorWithRed:245.0/255 green:255.0/255 blue:250.0/255 alpha:1],[NSString stringWithFormat:@"日文"],[UIColor colorWithRed:255.0/255 green:255.0/255 blue:224.0/255 alpha:1],[NSString stringWithFormat:@"性別平等與就業歧視"],[UIColor colorWithRed:255.0/255 green:246.0/255 blue:143.0/255 alpha:1],[NSString stringWithFormat:@"現代藝術賞析"],[UIColor colorWithRed:255.0/255 green:181.0/255 blue:197.0/255 alpha:0.5],[NSString stringWithFormat:@"作業系統"], nil];
+            ColorDic = [[NSMutableDictionary alloc]initWithObjectsAndKeys:[UIColor colorWithRed:193.0/255 green:255.0/255 blue:193.0/255 alpha:1],[NSString stringWithFormat:@"資料庫"],[UIColor colorWithRed:248.0/255 green:248.0/255 blue:255.0/255 alpha:1],[NSString stringWithFormat:@"演算法"],[UIColor colorWithRed:255.0/255 green:248.0/255 blue:220.0/255 alpha:1],[NSString stringWithFormat:@"程式語言"],[UIColor colorWithRed:245.0/255 green:255.0/255 blue:250.0/255 alpha:1],[NSString stringWithFormat:@"日文"],[UIColor colorWithRed:255.0/255 green:255.0/255 blue:224.0/255 alpha:1],[NSString stringWithFormat:@"性別平等與就業歧視"],[UIColor colorWithRed:255.0/255 green:246.0/255 blue:143.0/255 alpha:1],[NSString stringWithFormat:@"現代藝術賞析"],[UIColor colorWithRed:255.0/255 green:181.0/255 blue:197.0/255 alpha:1],[NSString stringWithFormat:@"作業系統"], nil];
             
             professorName = [[NSMutableDictionary alloc]initWithObjectsAndKeys:[NSString stringWithFormat:@"林清池"],[NSNumber numberWithInt:10103],[NSString stringWithFormat:@" "],[NSNumber numberWithInt:30202],[NSString stringWithFormat:@" "],[NSNumber numberWithInt:503],[NSString stringWithFormat:@" "],[NSNumber numberWithInt:10603],[NSString stringWithFormat:@" "],[NSNumber numberWithInt:20202],[NSString stringWithFormat:@" "],[NSNumber numberWithInt:30002],[NSString stringWithFormat:@" "],[NSNumber numberWithInt:40103], nil];
             classroomLocation = [[NSMutableDictionary alloc]initWithObjectsAndKeys:[NSString stringWithFormat:@"CS301"],[NSNumber numberWithInt:10103],[NSString stringWithFormat:@" "],[NSNumber numberWithInt:30202],[NSString stringWithFormat:@" "],[NSNumber numberWithInt:503],[NSString stringWithFormat:@" "],[NSNumber numberWithInt:10603],[NSString stringWithFormat:@" "],[NSNumber numberWithInt:20202],[NSString stringWithFormat:@" "],[NSNumber numberWithInt:30002],[NSString stringWithFormat:@" "],[NSNumber numberWithInt:40103], nil];
@@ -278,22 +278,12 @@ static ClassDataBase *sharedData = nil;
     return nil;
 }
 
--(void)deleteColorwhenCourseCountZero
-{
-    for (NSString* course in [ColorDic allKeys]) {
-        if (![courseCount objectForKey:course]) {
-            [ColorDic removeObjectForKey:course];
-        }
-    }
-    
-}
-
 -(void)whenCourseCountZeroForDeleteCourse:(NSString *)oldCourse
 {
     [courseTempCount removeObjectForKey:oldCourse];
     [moodleTempFrom removeObjectForKey:oldCourse];
+    [ColorDic removeObjectForKey:oldCourse];
 }
-
 
 -(void)courseCountReplaceForNewCourse:(NSString *)newCourse ForOldCourse:(NSString *)oldCourse
 {
@@ -323,25 +313,6 @@ static ClassDataBase *sharedData = nil;
 
 }
 
--(void)UpdataColorFromFirstTap:(NSString *)newCourse ForOldCourse:(NSString*)oldCourse
-{
-    if (![ColorDic objectForKey:newCourse]) {
-        if ([oldCourse isEqualToString:@" "]) {
-            [ColorDic setValue:[NSNumber numberWithBool:0] forKey:newCourse];
-        }
-    }
-    /*if (![newCourse isEqualToString:@" "]) {
-        if (![ColorDic objectForKey:newCourse]) {
-            [ColorDic setValue:[UIColor colorWithRed:255/255 green:255/255 blue:255/255 alpha:1] forKey:newCourse];
-        }
-        else if(![Name isEqualToString:[[self ScheduleInfoKeyToWeek:firstTap] objectAtIndex:range.location]]){
-            NSLog(@"%@,%@",[[self ScheduleInfoKeyToWeek:firstTap] objectAtIndex:range.location],
-                  [ColorDic objectForKey:[[self ScheduleInfoKeyToWeek:firstTap] objectAtIndex:range.location]]);
-            [ColorDic setValue:[ColorDic objectForKey:[[self ScheduleInfoKeyToWeek:firstTap] objectAtIndex:range.location]] forKey:Name];
-        }*/
-    
-}
-
 -(void)UpdataScheduleInfo:(NSNumber*)Key ScheduleInfo:(NSString*)Name
 {
     if([Key intValue] <0)
@@ -357,6 +328,15 @@ static ClassDataBase *sharedData = nil;
     if (!iscontainsName) {
         [ColorDic removeObjectForKey:[[self ScheduleInfoKeyToWeek:Key] objectAtIndex:range.location]];
     }*/
+    if (![Name isEqualToString:@" "]) {
+        if (![ColorDic objectForKey:Name]) {
+            [ColorDic setValue:[UIColor colorWithRed:255/255 green:255/255 blue:255/255 alpha:1] forKey:Name];
+        }
+        else if(![Name isEqualToString:[[self ScheduleInfoKeyToWeek:Key] objectAtIndex:range.location]]){
+           // NSLog(@"%@,%@"[[self ScheduleInfoKeyToWeek:Key] objectAtIndex:range.location],[ColorDic objectForKey:[[self ScheduleInfoKeyToWeek:Key] objectAtIndex:range.location]]);
+            [ColorDic setValue:[ColorDic objectForKey:[[self ScheduleInfoKeyToWeek:Key] objectAtIndex:range.location]] forKey:Name];
+        }
+    }
     for (int i=0; i < range.length; i++) {
         NSString* replaceCourse =[[self ScheduleInfoKeyToWeek:Key] objectAtIndex:range.location+i];
         [self courseCountReplaceForNewCourse:Name ForOldCourse:replaceCourse];
@@ -544,18 +524,16 @@ static ClassDataBase *sharedData = nil;
 
 -(void)loginAccount:(NSString *)account Password:(NSString *)password
 {
+    
     NSDictionary* info = [Moodle_API Login:account andPassword:password];
     NSLog(@"%@",[info objectForKey:@"result"]);
     if([[info objectForKey:@"result"] intValue]==1){
         token = [info objectForKey:@"token"];
-        /*NSDictionary *schedule = [Moodle_API GetCourse_AndUseToken:token];
+        NSDictionary *schedule = [Moodle_API GetCourse_AndUseToken:token];
         [self deleteFromMoodle];
         [self updataScheduleFromMoodle:schedule];
         [self ClassAddDecide];
-        [[ScheduleViewDelegate weekschedule] drawRect:CGRectZero];*/
-       
-        NSDictionary * courseDic = [Moodle_API GetCourse_AndUseToken:token];
-            NSLog(@"%@",courseDic);
+        [[ScheduleViewDelegate weekschedule] drawRect:CGRectZero];
         NSDictionary *courseInfoDic = [Moodle_API GetCourseInfo_AndUseToken:token courseID:@"B5703660" classID:@"A"];
          NSLog(@"%@",courseInfoDic);
         NSDictionary *moodleInfoDic = [Moodle_API GetMoodleInfo_AndUseToken:token courseID:@"B5703660" classID:@"A"];

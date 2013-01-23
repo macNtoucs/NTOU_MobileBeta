@@ -76,6 +76,10 @@ typedef enum {Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday } ColumnN
 -(int)FetchClassSessionTimes;
 -(void)SetClassSessionTimes:(int)CST;
 -(void)SetShowClassTimes:(BOOL) SCT;
+-(BOOL)whetherHaveMoodleInfo:(NSString *)className;
+
+-(void)deleteColorwhenCourseCountZero;
+-(void)UpdataColorFromFirstTap:(NSString *)newCourse ForOldCourse:(NSString*)oldCourse;
 
 -(NSDictionary*) FetchScheduleInfo;
 -(void)UpdataScheduleInfo:(NSNumber*)Key ScheduleInfo:(NSString*)Name;

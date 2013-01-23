@@ -38,7 +38,7 @@
     [result addObject:[[[ShuttleModule alloc] init] autorelease]];
 	//[result addObject:[[[CMModule alloc] init] autorelease]];
     [result addObject:[[[CalendarModule alloc] init] autorelease]];
-	//[result addObject:[[[PeopleModule alloc] init] autorelease]];
+	[result addObject:[[[PeopleModule alloc] init] autorelease]];
    // [result addObject:[[[ToursModule alloc] init] autorelease]];
     [result addObject:[[[EmergencyModule alloc] init] autorelease]];
    // [result addObject:[[[LibrariesModule alloc] init] autorelease]];

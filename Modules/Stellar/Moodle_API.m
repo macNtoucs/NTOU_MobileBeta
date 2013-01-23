@@ -130,6 +130,8 @@ static Byte iv[] = {1,2,3,4,5,6,7,8};
     NSDictionary *dictionary = [self queryFunctionType:@"CourseInfo" PostString:finailPost];
      return dictionary;
 
+    
+    
 }
 
 +(NSDictionary* )GetMoodleInfo_AndUseToken:(NSString *)token courseID:(NSString *)cosID classID:(NSString *)clsID{
