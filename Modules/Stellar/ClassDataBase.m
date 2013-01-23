@@ -19,6 +19,10 @@
 @synthesize token;
 @synthesize courseCount;
 @synthesize moodleFrom;
+@synthesize professorTempName;
+@synthesize classroomTempLocation;
+@synthesize courseTempCount;
+@synthesize moodleTempFrom;
 static ClassDataBase *sharedData = nil;
 
 + (ClassDataBase *)sharedData {
@@ -99,6 +103,10 @@ static ClassDataBase *sharedData = nil;
             
             professorName = [[NSMutableDictionary alloc]initWithObjectsAndKeys:[NSString stringWithFormat:@"林清池"],[NSNumber numberWithInt:10103],[NSString stringWithFormat:@" "],[NSNumber numberWithInt:30202],[NSString stringWithFormat:@" "],[NSNumber numberWithInt:503],[NSString stringWithFormat:@" "],[NSNumber numberWithInt:10603],[NSString stringWithFormat:@" "],[NSNumber numberWithInt:20202],[NSString stringWithFormat:@" "],[NSNumber numberWithInt:30002],[NSString stringWithFormat:@" "],[NSNumber numberWithInt:40103], nil];
             classroomLocation = [[NSMutableDictionary alloc]initWithObjectsAndKeys:[NSString stringWithFormat:@"CS301"],[NSNumber numberWithInt:10103],[NSString stringWithFormat:@" "],[NSNumber numberWithInt:30202],[NSString stringWithFormat:@" "],[NSNumber numberWithInt:503],[NSString stringWithFormat:@" "],[NSNumber numberWithInt:10603],[NSString stringWithFormat:@" "],[NSNumber numberWithInt:20202],[NSString stringWithFormat:@" "],[NSNumber numberWithInt:30002],[NSString stringWithFormat:@" "],[NSNumber numberWithInt:40103], nil];
+            professorTempName = [[NSMutableDictionary dictionaryWithDictionary:professorName] retain];
+            classroomTempLocation = [[NSMutableDictionary dictionaryWithDictionary:classroomLocation] retain];
+            moodleTempFrom = [[NSMutableDictionary dictionaryWithDictionary:moodleFrom] retain];
+            courseTempCount = [[NSMutableDictionary dictionaryWithDictionary:courseCount] retain];
 
         }
         else
@@ -117,7 +125,10 @@ static ClassDataBase *sharedData = nil;
             professorName = [[NSMutableDictionary alloc] initWithDictionary:obj->professorName];
             classroomLocation = [[NSMutableDictionary alloc] initWithDictionary:obj->classroomLocation];
             WeekDays = [[NSMutableArray alloc] initWithArray:obj->WeekDays];
-            
+            professorTempName = [[NSMutableDictionary dictionaryWithDictionary:professorName] retain];
+            classroomTempLocation = [[NSMutableDictionary dictionaryWithDictionary:classroomLocation] retain];
+            moodleTempFrom = [[NSMutableDictionary dictionaryWithDictionary:moodleFrom] retain];
+            courseTempCount = [[NSMutableDictionary dictionaryWithDictionary:courseCount] retain];
         }
         
     }
@@ -138,50 +149,98 @@ static ClassDataBase *sharedData = nil;
 }
 
 -(NSString*) FetchProfessorName:(NSNumber*)Key{
-    return  [professorName objectForKey:Key];
+    return  [professorTempName objectForKey:Key];
 }
 
 -(void)deleteProfessorName:(NSNumber*)Key
 {
-    if ([professorName objectForKey:Key]) {
-        [professorName removeObjectForKey:Key];
+    if ([professorTempName objectForKey:Key]) {
+        [professorTempName removeObjectForKey:Key];
     }
 }
 
 -(void)UpdataProfessorNameKey:(NSNumber*)Key ProfessorName:(NSString*)Name
 {
     [self deleteProfessorName:Key];
-    [professorName setObject:Name forKey:Key];
+    Key=[self mergeContinuousTag:Key checkDataType:professorTempName];
+    [professorTempName setObject:Name forKey:Key];
 }
 
 -(NSString*) FetchClassroomLocation:(NSNumber*)Key{
-    return  [classroomLocation objectForKey:Key];
+    return  [classroomTempLocation objectForKey:Key];
 }
 
 -(void)deleteClassroomLocation:(NSNumber*)Key
 {
-    if ([classroomLocation objectForKey:Key]) {
-        [classroomLocation removeObjectForKey:Key];
+    if ([classroomTempLocation objectForKey:Key]) {
+        [classroomTempLocation removeObjectForKey:Key];
     }
 }
 
 -(void)UpdataClassroomLocationKey:(NSNumber*)Key Classroom:(NSString*)Location
 {
     [self deleteClassroomLocation:Key];
-    [classroomLocation setObject:Location forKey:Key];
+    Key=[self mergeContinuousTag:Key checkDataType:classroomTempLocation];
+    [classroomTempLocation setObject:Location forKey:Key];
 }
 
+#define upside 99
+#define below 101
+-(NSNumber*)mergeContinuousTag:(NSNumber*)Key checkDataType:(NSMutableDictionary*)dataType
+{
+    int Tag = [Key intValue];
+    //NSLog(@"%@,%@,%@,",[[self ScheduleInfoKeyToWeek:Key] objectAtIndex:([Key intValue]%10000)/100-1],[[self ScheduleInfoKeyToWeek:Key] objectAtIndex:([Key intValue]%10000)/100],[[self ScheduleInfoKeyToWeek:Key] objectAtIndex:([Key intValue]%10000)/100+1]);
+    if (([Key intValue]%10000)/100!=0) { //向上檢查是否連堂
+        if ([[self ScheduleInfoKeyToWeek:Key] objectAtIndex:([Key intValue]%10000)/100-1]
+            ==[[self ScheduleInfoKeyToWeek:Key] objectAtIndex:([Key intValue]%10000)/100]) {
+            int anotherTag = (Tag/100)*100-upside;
+            while (![dataType objectForKey:[NSNumber numberWithInt:anotherTag]]) {
+                anotherTag-=upside;
+            }
+            [dataType removeObjectForKey:[NSNumber numberWithInt:anotherTag]];
+            Tag = anotherTag+Tag%100;
+        }
+    }
+    if (([Key intValue]%10000)/100!=14) { //向下檢查是否連堂
+        if ([[self ScheduleInfoKeyToWeek:Key] objectAtIndex:([Key intValue]%10000)/100+1+([Key intValue]%100-1)]
+            ==[[self ScheduleInfoKeyToWeek:Key] objectAtIndex:([Key intValue]%10000)/100]) {
+            int anotherTag = ([Key intValue]/100)*100+below+([Key intValue]%100-1)*100;
+            while (![dataType objectForKey:[NSNumber numberWithInt:anotherTag]]) {
+                anotherTag+=1;
+            }
+            [dataType removeObjectForKey:[NSNumber numberWithInt:anotherTag]];
+            Tag +=anotherTag%100;
+        }
+    }
+    return [NSNumber numberWithInt:Tag];
+}
 
 -(void)ClassAddCancel
 {
     CFRelease(ScheduleTempInfo);
     ScheduleTempInfo = (NSDictionary *)CFPropertyListCreateDeepCopy(kCFAllocatorDefault, (CFDictionaryRef)ScheduleInfo, kCFPropertyListMutableContainers);
+    [professorTempName release];
+    professorTempName = [[NSMutableDictionary dictionaryWithDictionary:professorName] retain];
+    [classroomTempLocation release];
+    classroomTempLocation = [[NSMutableDictionary dictionaryWithDictionary:classroomLocation] retain];
+    [moodleFrom release];
+    moodleTempFrom = [[NSMutableDictionary dictionaryWithDictionary:moodleFrom] retain];
+    [courseCount release];
+    courseCount = [[NSMutableDictionary dictionaryWithDictionary:courseTempCount] retain];
 }
 
 -(void)ClassAddDecide
 {
     CFRelease(ScheduleInfo);
     ScheduleInfo = (NSDictionary *)CFPropertyListCreateDeepCopy(kCFAllocatorDefault, (CFDictionaryRef)ScheduleTempInfo, kCFPropertyListMutableContainers);
+    [professorName release];
+    professorName = [[NSMutableDictionary dictionaryWithDictionary:professorTempName] retain];
+    [classroomLocation release];
+    classroomLocation = [[NSMutableDictionary dictionaryWithDictionary:classroomTempLocation] retain];
+    [moodleFrom release];
+    moodleFrom = [[NSMutableDictionary dictionaryWithDictionary:moodleTempFrom] retain];
+    [courseCount release];
+    courseCount = [[NSMutableDictionary dictionaryWithDictionary:courseTempCount] retain];
 }
 
 -(NSDictionary*) FetchScheduleInfo{
@@ -214,12 +273,47 @@ static ClassDataBase *sharedData = nil;
     return nil;
 }
 
+-(void)whenCourseCountZeroForDeleteCourse:(NSString *)oldCourse
+{
+    [courseTempCount removeObjectForKey:oldCourse];
+    [moodleTempFrom removeObjectForKey:oldCourse];
+    [ColorDic removeObjectForKey:oldCourse];
+}
+
+-(void)courseCountReplaceForNewCourse:(NSString *)newCourse ForOldCourse:(NSString *)oldCourse
+{
+    if (![newCourse isEqualToString:@" "]) {
+        if ([courseTempCount objectForKey:newCourse]) {
+            [courseTempCount setValue:[NSNumber numberWithInt:[[courseTempCount objectForKey:newCourse] intValue]+1] forKey:newCourse] ;
+        }
+        else
+            [courseTempCount setValue:[NSNumber numberWithInt:1] forKey:newCourse] ;
+    }
+    if (![oldCourse isEqualToString:@" "]) {
+        if ([[courseTempCount objectForKey:oldCourse] intValue]!=1) {
+            [courseTempCount setValue:[NSNumber numberWithInt:[[courseTempCount objectForKey:oldCourse] intValue]-1] forKey:oldCourse] ;
+        }
+        else
+            [courseTempCount removeObjectForKey:oldCourse];
+    }
+}
+
+-(void)moodleFromRecordForNewCourse:(NSString *)newCourse ForOldCourse:(NSString *)oldCourse
+{
+    if (![[moodleTempFrom objectForKey:newCourse] boolValue]) {
+        if ([oldCourse isEqualToString:@" "]) {
+            [moodleTempFrom setValue:[NSNumber numberWithBool:0] forKey:newCourse];
+        }
+    }
+
+}
+
 -(void)UpdataScheduleInfo:(NSNumber*)Key ScheduleInfo:(NSString*)Name
 {
     if([Key intValue] <0)
         Key = [NSNumber numberWithInt:-[Key intValue]];
     NSRange range =  NSMakeRange([Key intValue]%10000/100,[Key intValue]%100);
-    BOOL iscontainsName= FALSE;
+    /*BOOL iscontainsName= FALSE;
     for (NSString* week in [ScheduleTempInfo allKeys]) {
         if([[ScheduleTempInfo objectForKey:week] containsObject:[[self ScheduleInfoKeyToWeek:Key] objectAtIndex:range.location]]){
             iscontainsName = true;
@@ -228,7 +322,7 @@ static ClassDataBase *sharedData = nil;
     }
     if (!iscontainsName) {
         [ColorDic removeObjectForKey:[[self ScheduleInfoKeyToWeek:Key] objectAtIndex:range.location]];
-    }
+    }*/
     if(![Name isEqualToString:[[self ScheduleInfoKeyToWeek:Key] objectAtIndex:range.location]]&&![ColorDic objectForKey:Name]){
         [ColorDic setValue:[ColorDic objectForKey:[[self ScheduleInfoKeyToWeek:Key] objectAtIndex:range.location]] forKey:Name];
     }
@@ -236,12 +330,10 @@ static ClassDataBase *sharedData = nil;
         [ColorDic setValue:[UIColor colorWithRed:255/255 green:255/255 blue:255/255 alpha:1] forKey:Name];
     }
     for (int i=0; i < range.length; i++) {
+        NSString* replaceCourse =[[self ScheduleInfoKeyToWeek:Key] objectAtIndex:range.location+i];
+        [self courseCountReplaceForNewCourse:Name ForOldCourse:replaceCourse];
+        [self moodleFromRecordForNewCourse:Name ForOldCourse:replaceCourse];
         [[self ScheduleInfoKeyToWeek:Key] replaceObjectAtIndex:range.location+i  withObject:Name];
-        if ([courseCount objectForKey:Name]) {
-            [courseCount setValue:[NSNumber numberWithInt:[[courseCount objectForKey:Name] intValue]-1] forKey:Name] ;
-        }
-        else
-            [courseCount setValue:[NSNumber numberWithInt:1] forKey:Name] ;
     }
     
 }
@@ -306,9 +398,13 @@ static ClassDataBase *sharedData = nil;
     ScheduleTempInfo = [self VoidSchedule];
     [ColorDic removeAllObjects];
     [professorName removeAllObjects];
+    [professorTempName removeAllObjects];
     [classroomLocation removeAllObjects];
+    [classroomTempLocation removeAllObjects];
     [courseCount removeAllObjects];
     [moodleFrom removeAllObjects];
+    [moodleTempFrom removeAllObjects];
+    [courseCount removeAllObjects];
 }
 
 
@@ -369,14 +465,11 @@ static ClassDataBase *sharedData = nil;
     for (NSDictionary * courseDic in [dictionary objectForKey:@"list"]) {
         NSMutableArray* daySched = [self ScheduleInfoFromMoodleKeyToWeek:[courseDic objectForKey:@"day"]];
         NSMutableArray* classroomArray = [NSArray array];
-        for (NSDictionary* couses in [ColorDic objectForKey:@"course"]) {
-            NSString* replaceCourse=[daySched objectAtIndex:(int)[couses objectForKey:@"time"]];
-            if ([[courseCount objectForKey:replaceCourse] intValue]==1) {
-                [courseCount removeObjectForKey:replaceCourse];
-            }
-            else
-                [courseCount setValue:[NSNumber numberWithInt:[[courseCount objectForKey:replaceCourse] intValue]-1] forKey:replaceCourse];
-            [daySched replaceObjectAtIndex:[couses objectForKey:@"time"] withObject:[couses objectForKey:@"name"]];
+        for (NSDictionary* couses in [courseDic objectForKey:@"course"]) {
+            NSString* replaceCourse=[daySched objectAtIndex:[[couses objectForKey:@"time"] intValue]];
+            [self courseCountReplaceForNewCourse:[couses objectForKey:@"name"] ForOldCourse:replaceCourse];
+            [self moodleFromRecordForNewCourse:[couses objectForKey:@"name"]  ForOldCourse:replaceCourse];
+            [daySched replaceObjectAtIndex:[[couses objectForKey:@"time"] intValue] withObject:[couses objectForKey:@"name"]];
 
             if (![ColorDic objectForKey:[couses objectForKey:@"name"]]) {
                 [ColorDic setValue:[UIColor colorWithRed:255.0/255 green:255.0/255 blue:255.0/255 alpha:1] forKey:[couses objectForKey:@"name"]];
@@ -389,7 +482,7 @@ static ClassDataBase *sharedData = nil;
             while (i+1<[daySched count]&&[[daySched objectAtIndex:i+1] isEqualToString:[daySched objectAtIndex:i]]&&![[daySched objectAtIndex:i]isEqualToString:@" "])
                 i++;
             NSNumber* tag = [NSNumber numberWithInt:([self ScheduleInfoFromMoodleKeyToNumber:[courseDic objectForKey:@"day"]]*100+sameClass)*100+i-sameClass+1];
-            if (![[classroomLocation allKeys] containsObject:tag]) {
+            if (![[classroomTempLocation allKeys] containsObject:tag]) {
                 [self UpdataClassroomLocationKey:tag Classroom:[classroomArray objectAtIndex:j]];
                 for (;j+1<[classroomArray count];)
                     if ([classroomArray objectAtIndex:j]==[classroomArray objectAtIndex:j+1]) {

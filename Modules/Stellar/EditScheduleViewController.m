@@ -276,12 +276,12 @@
 - (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     
     switch (buttonIndex) {
-        case 0:
+        case 1:
             [[ClassDataBase sharedData] ClearAllCourses];
             [[ClassDataBase sharedData] loginAccount:[(UITextField*)accountDelegate text]
                                             Password:[(UITextField*)passwordDelegate text]];
             break;
-        case 1:
+        case 2:
             [[ClassDataBase sharedData] loginAccount:[(UITextField*)accountDelegate text]
                                             Password:[(UITextField*)passwordDelegate text]];
             break;

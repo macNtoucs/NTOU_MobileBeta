@@ -44,9 +44,13 @@ typedef enum {Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday } ColumnN
     NSMutableArray* WeekDays;
     NSMutableDictionary* ColorDic;
     NSMutableDictionary* professorName;
+    NSMutableDictionary* professorTempName;
     NSMutableDictionary* classroomLocation;
+    NSMutableDictionary* classroomTempLocation;
     NSMutableDictionary* courseCount;
+    NSMutableDictionary* courseTempCount;
     NSMutableDictionary* moodleFrom;
+    NSMutableDictionary* moodleTempFrom;
     NSString * token;
 }
 
@@ -57,6 +61,10 @@ typedef enum {Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday } ColumnN
 @property (nonatomic,retain) NSMutableDictionary *ColorDic;
 @property (nonatomic,retain) NSMutableDictionary* professorName;
 @property (nonatomic,retain) NSMutableDictionary* classroomLocation;
+@property (nonatomic,retain) NSMutableDictionary* professorTempName;
+@property (nonatomic,retain) NSMutableDictionary* classroomTempLocation;
+@property (nonatomic,retain) NSMutableDictionary* courseTempCount;
+@property (nonatomic,retain) NSMutableDictionary* moodleTempFrom;
 @property (nonatomic,retain) NSString * token;
 @property (nonatomic,assign) id ScheduleViewDelegate;
 @property (nonatomic,assign) id EditScheduleDelegate;

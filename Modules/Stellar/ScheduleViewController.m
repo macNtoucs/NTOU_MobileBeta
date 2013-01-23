@@ -53,7 +53,10 @@
         return;
     }
     if (FinishType == move||[[array objectAtIndex:0] isEqualToString:[NSString string]]) {
-        [[ClassDataBase sharedData] UpdataScheduleInfo:[NSNumber numberWithInt:[[weekschedule.TapAddCourse objectAtIndex:0]tag]] ScheduleInfo:@" "];
+        NSNumber* deleteCourseTag = [NSNumber numberWithInt:[[weekschedule.TapAddCourse objectAtIndex:0]tag]];
+        [[ClassDataBase sharedData] UpdataScheduleInfo:deleteCourseTag ScheduleInfo:@" "];
+        [[ClassDataBase sharedData] deleteClassroomLocation:deleteCourseTag];
+        [[ClassDataBase sharedData] deleteProfessorName:deleteCourseTag];
         [weekschedule.TapAddCourse removeObjectAtIndex:0];
         if ([[array objectAtIndex:0] isEqualToString:[NSString string]]) {
             [weekschedule restorTheOriginalColor];
