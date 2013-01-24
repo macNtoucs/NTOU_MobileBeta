@@ -24,7 +24,7 @@ static NSString * const PeopleStateDetail = @"detail";
     self = [super init];
     if (self) {
         self.tag = DirectoryTag;
-        self.shortName = @"Directory";
+        self.shortName = @"生活圈";
         self.longName = @"People Directory";
         self.iconName = @"people";
     }

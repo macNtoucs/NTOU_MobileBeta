@@ -323,10 +323,13 @@ static ClassDataBase *sharedData = nil;
 
 }
 
+
+
+
 -(void)UpdataColorFromFirstTap:(NSString *)newCourse ForOldCourse:(NSString*)oldCourse
 {
-    if (![ColorDic objectForKey:newCourse]) {
-        if ([oldCourse isEqualToString:@" "]) {
+    if (![ColorDic objectForKey:oldCourse]) {
+        if ([newCourse isEqualToString:@" "]) {
             [ColorDic setValue:[NSNumber numberWithBool:0] forKey:newCourse];
         }
     }
