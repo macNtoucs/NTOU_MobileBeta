@@ -74,88 +74,60 @@ static Byte iv[] = {1,2,3,4,5,6,7,8};
     else false;
 }
 
-+(NSDictionary *)Login:(NSString *)username andPassword:(NSString*)password{
-    // NSDictionary *dictionary = [self queryFunctionType:@"login" PostString:finailPost];
-    NSDictionary *dictionary;
-    bool validString=false;
-    NSDictionary *postDic1;
-    do{
-        struct timeval t;
-        gettimeofday(&t, NULL);
-        long msec = (t.tv_sec * 1000 + t.tv_usec / 1000);
-        long forEncrpt = msec%100000000;
-        // setup post string
-        NSString * encrypt_username =  [Moodle_API encryptUseDES:username key:[NSString stringWithFormat:@"%ld",forEncrpt]];
-        NSString * encrypt_password =  [Moodle_API encryptUseDES:password key:[NSString stringWithFormat:@"%ld",forEncrpt]];
-        
-        
-        postDic1 =[[NSDictionary alloc]initWithObjectsAndKeys:
-                                 encrypt_username,@"username",
-                                 encrypt_password,@"password",
-                                 [NSString stringWithFormat:@"%ld",msec],@"now", nil];
-        
-        //NSLog(@"加密username=>%@",encrypt_username );
-        //NSLog(@"加密password=>%@",encrypt_password );
-        if ( ![self checkIsStringIncludePulseSymbol:encrypt_username] &&  ![self checkIsStringIncludePulseSymbol:encrypt_password]) validString = true;
-        
-        
-       }while (!validString);
-        NSString *jsonRequest = [postDic1 JSONRepresentation];
-        NSString *finailPost = [NSString stringWithFormat:@"json=%@",jsonRequest];
-        dictionary = [self queryFunctionType:@"login" PostString:finailPost];
-        if([[dictionary allValues]count]>1) {
-            NSLog(@"登入成功");
-        }
++(NSDictionary *)Login:(NSString *)username andPassword:(NSString*)password{    
     
-    
-    return dictionary;
+    NSString *path =  [[[NSBundle mainBundle] bundlePath]stringByAppendingPathComponent:@"Login"];
+    NSString*responseString = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+    NSData *responseData = [responseString dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *e = nil;
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData: responseData options: 0 error: &e];
+    return dic;
  }
 
 +(NSDictionary *)GetCourse_AndUseToken:(NSString*)token{
-    NSDictionary *postDic = [[NSDictionary alloc]initWithObjectsAndKeys:token,@"stid", nil];
-    NSString *jsonRequest = [postDic JSONRepresentation];
-    NSString *finailPost = [NSString stringWithFormat:@"json=%@",jsonRequest];
-    
-    NSDictionary *dictionary = [self queryFunctionType:@"getCourse" PostString:finailPost];
-    
-   
-    return dictionary;
+    NSString *path =  [[[NSBundle mainBundle] bundlePath]stringByAppendingPathComponent:@"Course"];
+    NSString*responseString = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+    NSData *responseData = [responseString dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *e = nil;
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData: responseData options: 0 error: &e];
+    return dic;
 }
 
 
 +(NSDictionary* )GetCourseInfo_AndUseToken:(NSString *)token courseID:(NSString *)cosID classID:(NSString *)clsID{
-    NSDictionary *postDic = [[NSDictionary alloc]initWithObjectsAndKeys:token,@"stid",cosID,@"cosid",clsID,@"clsid",nil];
-    NSString *jsonRequest = [postDic JSONRepresentation];
-    NSString *finailPost = [NSString stringWithFormat:@"json=%@",jsonRequest];
-    NSDictionary *dictionary = [self queryFunctionType:@"CourseInfo" PostString:finailPost];
-     return dictionary;
-
-    
-    
+    NSString *path =  [[[NSBundle mainBundle] bundlePath]stringByAppendingPathComponent:@"CourseInfo"];
+    NSString*responseString = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+    NSData *responseData = [responseString dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *e = nil;
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData: responseData options: 0 error: &e];
+    return dic;
 }
 
 +(NSDictionary* )GetMoodleInfo_AndUseToken:(NSString *)token courseID:(NSString *)cosID classID:(NSString *)clsID{
-    NSDictionary *postDic = [[NSDictionary alloc]initWithObjectsAndKeys:token,@"stid",cosID,@"cosid",clsID,@"clsid",nil];
-    NSString *jsonRequest = [postDic JSONRepresentation];
-    NSString *finailPost = [NSString stringWithFormat:@"json=%@",jsonRequest];
-    NSDictionary *dictionary = [self queryFunctionType:@"getMoodleInfo" PostString:finailPost];
-    return dictionary;
+    NSString *path =  [[[NSBundle mainBundle] bundlePath]stringByAppendingPathComponent:@"MoodleInfo"];
+    NSString*responseString = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+    NSData *responseData = [responseString dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *e = nil;
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData: responseData options: 0 error: &e];
+    return dic;
 }
 
 +(NSDictionary* )GetGrade_AndUseToken:(NSString *)token courseID:(NSString *)cosID classID:(NSString *)clsID{
-    NSDictionary *postDic = [[NSDictionary alloc]initWithObjectsAndKeys:token,@"stid",cosID,@"cosid",clsID,@"clsid",nil];
-    NSString *jsonRequest = [postDic JSONRepresentation];
-    NSString *finailPost = [NSString stringWithFormat:@"json=%@",jsonRequest];
-    NSDictionary *dictionary = [self queryFunctionType:@"getGrade" PostString:finailPost];
-    return dictionary;
+    NSString *path =  [[[NSBundle mainBundle] bundlePath]stringByAppendingPathComponent:@"Grade"];
+    NSString*responseString = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+    NSData *responseData = [responseString dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *e = nil;
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData: responseData options: 0 error: &e];
+    return dic;
 }
 
 +(NSDictionary* )GetMoodleID_AndUseToken:(NSString *)token courseID:(NSString *)cosID classID:(NSString *)clsID{
-    NSDictionary *postDic = [[NSDictionary alloc]initWithObjectsAndKeys:token,@"stid",cosID,@"cosid",clsID,@"clsid",nil];
-    NSString *jsonRequest = [postDic JSONRepresentation];
-    NSString *finailPost = [NSString stringWithFormat:@"json=%@",jsonRequest];
-    NSDictionary *dictionary = [self queryFunctionType:@"getMoodleID" PostString:finailPost];
-    return dictionary;
+    NSString *path =  [[[NSBundle mainBundle] bundlePath]stringByAppendingPathComponent:@"MoodleID"];
+    NSString*responseString = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+    NSData *responseData = [responseString dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *e = nil;
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData: responseData options: 0 error: &e];
+    return dic;
 }
 
 @end

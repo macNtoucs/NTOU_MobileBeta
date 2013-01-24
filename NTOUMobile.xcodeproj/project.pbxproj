@@ -364,6 +364,12 @@
 		C74878BA162D2989001D3390 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = DE936CA3161CD28100B69F7C /* Default.png */; };
 		C74878BB162D2996001D3390 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE936CA5161CD28300B69F7C /* Default@2x.png */; };
 		C74878BD162D299C001D3390 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C74878BC162D299C001D3390 /* Default-568h@2x.png */; };
+		C784C89316B0F4D4000978FE /* Course in Resources */ = {isa = PBXBuildFile; fileRef = C784C89216B0F4D4000978FE /* Course */; };
+		C784C89616B0F557000978FE /* MoodleID in Resources */ = {isa = PBXBuildFile; fileRef = C784C89516B0F557000978FE /* MoodleID */; };
+		C784C89816B0F62C000978FE /* Login in Resources */ = {isa = PBXBuildFile; fileRef = C784C89716B0F62C000978FE /* Login */; };
+		C784C89A16B0F65B000978FE /* CourseInfo in Resources */ = {isa = PBXBuildFile; fileRef = C784C89916B0F65B000978FE /* CourseInfo */; };
+		C784C89C16B0F694000978FE /* Grade in Resources */ = {isa = PBXBuildFile; fileRef = C784C89B16B0F694000978FE /* Grade */; };
+		C784C89E16B0F6CA000978FE /* MoodleInfo in Resources */ = {isa = PBXBuildFile; fileRef = C784C89D16B0F6CA000978FE /* MoodleInfo */; };
 		C79A9B9E1638FDC4001FAF48 /* ScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C79A9B9D1638FDC4001FAF48 /* ScheduleViewController.m */; };
 		C79A9BA216390494001FAF48 /* WeekScheduleView.m in Sources */ = {isa = PBXBuildFile; fileRef = C79A9BA116390494001FAF48 /* WeekScheduleView.m */; };
 		C79A9BAD1639464C001FAF48 /* WeekNameView.m in Sources */ = {isa = PBXBuildFile; fileRef = C79A9BAC1639464C001FAF48 /* WeekNameView.m */; };
@@ -1171,6 +1177,12 @@
 		C74878B4162D1F41001D3390 /* OutCampusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OutCampusViewController.m; sourceTree = "<group>"; };
 		C74878B8162D297C001D3390 /* NTOU_default_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NTOU_default_icon.png; sourceTree = "<group>"; };
 		C74878BC162D299C001D3390 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		C784C89216B0F4D4000978FE /* Course */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Course; sourceTree = "<group>"; };
+		C784C89516B0F557000978FE /* MoodleID */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MoodleID; sourceTree = "<group>"; };
+		C784C89716B0F62C000978FE /* Login */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Login; sourceTree = "<group>"; };
+		C784C89916B0F65B000978FE /* CourseInfo */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CourseInfo; sourceTree = "<group>"; };
+		C784C89B16B0F694000978FE /* Grade */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Grade; sourceTree = "<group>"; };
+		C784C89D16B0F6CA000978FE /* MoodleInfo */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MoodleInfo; sourceTree = "<group>"; };
 		C79A9B9C1638FDC4001FAF48 /* ScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleViewController.h; sourceTree = "<group>"; };
 		C79A9B9D1638FDC4001FAF48 /* ScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleViewController.m; sourceTree = "<group>"; };
 		C79A9BA016390494001FAF48 /* WeekScheduleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeekScheduleView.h; sourceTree = "<group>"; };
@@ -2346,6 +2358,12 @@
 			children = (
 				C7DE16C316AE876300BBE23D /* Moodle_API.h */,
 				C7DE16C216AE876300BBE23D /* Moodle_API.m */,
+				C784C89716B0F62C000978FE /* Login */,
+				C784C89216B0F4D4000978FE /* Course */,
+				C784C89916B0F65B000978FE /* CourseInfo */,
+				C784C89516B0F557000978FE /* MoodleID */,
+				C784C89B16B0F694000978FE /* Grade */,
+				C784C89D16B0F6CA000978FE /* MoodleInfo */,
 				A6CB9E5C16ADA27D008DD61C /* NSData+DES.h */,
 				A6CB9E5D16ADA27D008DD61C /* NSData+DES.m */,
 				A6CB9E6416ADA3A0008DD61C /* CommonCryptor.h */,
@@ -3415,6 +3433,12 @@
 				91F017EF167F355600B4C5F0 /* Reader-Thumbs@2x.png in Resources */,
 				91F017FF167F355600B4C5F0 /* Syllabus.pdf in Resources */,
 				C7BF083E16884B4E00153F6F /* NTOU_ClassColorViewController.xib in Resources */,
+				C784C89316B0F4D4000978FE /* Course in Resources */,
+				C784C89616B0F557000978FE /* MoodleID in Resources */,
+				C784C89816B0F62C000978FE /* Login in Resources */,
+				C784C89A16B0F65B000978FE /* CourseInfo in Resources */,
+				C784C89C16B0F694000978FE /* Grade in Resources */,
+				C784C89E16B0F6CA000978FE /* MoodleInfo in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

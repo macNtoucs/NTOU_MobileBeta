@@ -23,7 +23,6 @@
         self.userInteractionEnabled = YES;
         TapAddCourse = [[NSMutableArray alloc] init];
         course = [[NSMutableArray alloc] init];
-        color = [[ClassDataBase sharedData] FetchColorDic];
 }
    
     return self;
@@ -104,7 +103,7 @@
 }
 
 -(void)drawColumnTextLabelNumber:(NSInteger)number Content:(NSArray *)content WeekDays:(ColumnName)day  {
-
+    color = [[ClassDataBase sharedData] FetchColorDic];
     for (int i=0;i<[content count] && i < [[ClassDataBase sharedData] FetchClassSessionTimes];i++) {
         int sameClass=i;
         while (i+1<[content count]) {

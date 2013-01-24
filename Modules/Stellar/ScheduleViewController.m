@@ -60,6 +60,7 @@
         [[ClassDataBase sharedData] deleteProfessorName:deleteCourseTag];
         [weekschedule.TapAddCourse removeObjectAtIndex:0];
         if ([[array objectAtIndex:0] isEqualToString:[NSString string]]) {
+            [[ClassDataBase sharedData] deleteColorwhenCourseCountZero];
             [weekschedule restorTheOriginalColor];
             [weekschedule removeAllcourselabel];
             [weekschedule drawRect:CGRectZero];
