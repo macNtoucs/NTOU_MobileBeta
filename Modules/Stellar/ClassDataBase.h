@@ -16,6 +16,24 @@
 -(void)ReloadSetWeek;
 @end
 
+#define accountKey @"accountKey"
+#define passwordKey @"passwordKey"
+
+#define moodleLoginTokenKey @"token"
+#define moodleLoginResultKey @"result"
+#define moodleListKey @"list"
+
+#define moodleCourseKey @"course"
+#define moodleCourseIdKey @"id"
+#define moodleCourseClassroomKey @"classroom"
+#define moodleCourseTimeKey @"time"
+#define moodleCourseNameKey @"name"
+#define moodleCourseClassKey @"open_clsid"
+#define moodleCourseDayKey @"day"
+
+#define moodleGradeNameKey @"name"
+#define moodleGradeKey @"grade"
+#define moodleGradeCommentKey @"comment"
 
 #define WeekTimesKey @"WeekTimesKey"
 #define ClassSessionTimesKey @"ClassSessionTimesKey"
@@ -28,7 +46,8 @@
 #define classroomLocationKey @"classroomLocationKey"
 #define courseCountKey @"courseCountKey"
 #define moodleFromKey @"moodleFromKey"
-
+#define courseIDKey @"courseIDKey"
+#define classIDKey @"classIDKey"
 #import <Foundation/Foundation.h>
 #import "DefinePixel.h"
 #import "Moodle_API.h"
@@ -52,6 +71,10 @@ typedef enum {Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday } ColumnN
     NSMutableDictionary* courseTempCount;
     NSMutableDictionary* moodleFrom;
     NSMutableDictionary* moodleTempFrom;
+    NSMutableDictionary* courseID;
+    NSMutableDictionary* courseTempID;
+    NSMutableDictionary* classID;
+    NSMutableDictionary* classTempID;
     NSString * token;
 }
 
@@ -67,6 +90,10 @@ typedef enum {Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday } ColumnN
 @property (nonatomic,retain) NSMutableDictionary* classroomTempLocation;
 @property (nonatomic,retain) NSMutableDictionary* courseTempCount;
 @property (nonatomic,retain) NSMutableDictionary* moodleTempFrom;
+@property (nonatomic,retain) NSMutableDictionary* courseID;
+@property (nonatomic,retain) NSMutableDictionary* courseTempID;
+@property (nonatomic,retain) NSMutableDictionary* classID;
+@property (nonatomic,retain) NSMutableDictionary* classTempID;
 @property (nonatomic,retain) NSString * token;
 @property (nonatomic,assign) id ScheduleViewDelegate;
 @property (nonatomic,assign) id EditScheduleDelegate;
@@ -105,5 +132,7 @@ typedef enum {Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday } ColumnN
 
 -(void)ClearAllCourses;
 -(void)loginAccount:(NSString *)account Password:(NSString *)password;
+-(NSString *)loginTokenWhenAccountFromUserDefault;
+-(NSDictionary *)loginCourseToGetCourseidAndClassid:(NSString *)courseName;
 
 @end

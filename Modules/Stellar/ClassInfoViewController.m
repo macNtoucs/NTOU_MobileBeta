@@ -16,6 +16,8 @@
 @end
 
 @implementation ClassInfoViewController
+@synthesize classId;
+@synthesize courseId;
 @synthesize tag;
 @synthesize tabBarArrow;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -23,6 +25,8 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        NSString *token = [[ClassDataBase sharedData] loginTokenWhenAccountFromUserDefault];
+        NSDictionary* apiKey = [[ClassDataBase sharedData] loginCourseToGetCourseidAndClassid:self.title];
         UIViewController *viewController1, *viewController2, *viewController3, *viewController4, *viewController5;
         viewController1 = [[UIViewController alloc] init];
         viewController1.title = type3;
@@ -34,32 +38,39 @@
         viewController4.title = type1;
         viewController5 = [[UIViewController alloc] init];
         viewController5.title = type5;
+        
         ClassInfoView *view1, *view2, *view3, *view4;
         view1 = [[ClassInfoView alloc] initWithStyle:UITableViewStyleGrouped];
         view1.title = type3;
         view1.delegatetype5 = self;
         view1.view.frame = CGRectMake(0, 40, 320, 420);
         [viewController1.view addSubview:view1.tableView];
+        
         view2 = [[ClassInfoView alloc] initWithStyle:UITableViewStyleGrouped];
         view2.title = type4;
         view2.delegatetype5 = self;
         view2.view.frame = CGRectMake(0, 40, 320, 420);
         [viewController2.view addSubview:view2.tableView];
+        
         view3 = [[ClassInfoView alloc] initWithStyle:UITableViewStyleGrouped];
         view3.title = type2;
         view3.delegatetype5 = self;
         view3.view.frame = CGRectMake(0, 10, 320, 450);
         [viewController3.view addSubview:view3.tableView];
+        
         view4 = [[ClassInfoView alloc] initWithStyle:UITableViewStyleGrouped];
         view4.title = type1;
+        view4.moodleData = [Moodle_API GetGrade_AndUseToken:token courseID:[apiKey objectForKey:courseIDKey] classID:[apiKey objectForKey:classIDKey]];
         view4.delegatetype5 = self;
         view4.view.frame = CGRectMake(0, 10, 320, 450);
         [viewController4.view addSubview:view4.tableView];
+        
         view5 = [[ClassInfoView alloc] initWithStyle:UITableViewStyleGrouped];
         view5.delegatetype5 = self;
         view5.title = type5;
         view5.view.frame = CGRectMake(0, 10, 320, 450);
         [viewController5.view addSubview:view5.tableView];
+        
         [self setViewControllers:[NSArray arrayWithObjects:viewController1, viewController2,viewController3,viewController4,viewController5, nil] animated:YES];
         self.delegate=self;
         [self addTabBarArrow];
@@ -153,7 +164,7 @@
         classinfo.text = nil;
         if (self.selectedIndex==0){
             classinfo.font = [UIFont fontWithName:BOLD_FONT size:15];
-            classinfo.text = [NSString stringWithFormat:@"教授名稱：林清池\n教室地點：CS301"];
+            classinfo.text = [NSString stringWithFormat:@"教授名稱：%@\n 教室地點：%@",[[ClassDataBase sharedData] FetchProfessorName:[NSNumber numberWithInt:self.tag]],[[ClassDataBase sharedData] FetchClassroomLocation:[NSNumber numberWithInt:self.tag]]];
         }
     }
     
@@ -193,7 +204,7 @@
         classinfo.lineBreakMode = UILineBreakModeWordWrap;
         classinfo.numberOfLines = 0;
         ClassDataBase* ClassData = [ClassDataBase sharedData];
-        classinfo.text = [NSString stringWithFormat:@"教授名稱：%@ \n教室地點：%@",[ClassData FetchProfessorName:[NSNumber numberWithInt:self.tag]],[ClassData FetchClassroomLocation:[NSNumber numberWithInt:self.tag]]];
+        classinfo.text = [NSString stringWithFormat:@"教授名稱：%@\n 教室地點：%@",[ClassData FetchProfessorName:[NSNumber numberWithInt:self.tag]],[ClassData FetchClassroomLocation:[NSNumber numberWithInt:self.tag]]];
     }
     [self.view addSubview:classinfo];
 }

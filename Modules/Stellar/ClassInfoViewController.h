@@ -12,7 +12,11 @@
 @interface ClassInfoViewController : UITabBarController<UITabBarControllerDelegate,ClassInfoViewDelegate>
 {
     UIImageView* tabBarArrow;
+    NSString* courseId;
+    NSString* classId;
 }
 @property int tag;
 @property (nonatomic, retain) UIImageView* tabBarArrow;
+@property (nonatomic, retain) NSString* courseId;
+@property (nonatomic, retain) NSString* classId;
 @end

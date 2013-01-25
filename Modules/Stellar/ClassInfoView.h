@@ -31,8 +31,10 @@
 @interface ClassInfoView : UITableViewController<UITextViewDelegate,ReaderViewControllerDelegate>
 {
     UITextView *textView;
+    NSDictionary* moodleData;
     id delegatetype5;
 }
 @property (nonatomic, retain) UITextView *textView;
+@property (nonatomic, retain) NSDictionary* moodleData;
 @property (nonatomic,assign) id delegatetype5;
 @end

@@ -9,6 +9,7 @@
 #import "ClassInfoView.h"
 #import "UIKit+MITAdditions.h"
 #import "MITUIConstants.h"
+#import "ClassDataBase.h"
 @interface ClassInfoView (){
     int types;
     BOOL edit;
@@ -18,7 +19,7 @@
 @implementation ClassInfoView
 @synthesize textView;
 @synthesize delegatetype5;
-
+@synthesize moodleData;
 #pragma mark Constants
 
 #define DEMO_VIEW_CONTROLLER_PUSH FALSE
@@ -57,8 +58,9 @@
 {
     [super viewDidLoad];
     [self.tableView applyStandardColors];
-    if (self.title == type1)
+    if (self.title == type1){
         types = 1;
+    }
     else if (self.title == type2)
         types = 2;
     else if (self.title == type3)
@@ -86,7 +88,7 @@
 {
     // Return the number of sections.
     if (types == 1)
-        return 4;
+        return 1;
     else if (types == 2)
         return 1;
     else if (types == 3)
@@ -102,7 +104,8 @@
 {
     // Return the number of rows in the section.
     if (types == 1)
-        switch (section) {
+        return [[moodleData objectForKey:moodleListKey] count];
+        /*switch (section) {
             case 0:
                 return 5;
                 break;
@@ -117,7 +120,7 @@
                 break;
             default:
                 break;
-        }
+        }*/
     else if (types == 2)
         return 9;
     else if (types == 3)
@@ -271,54 +274,10 @@
 
 -(NSString *)subLabeltext:(NSIndexPath *)indexPath
 {
-    if (types == 1)
-        switch (indexPath.section) {
-            case 0:
-                switch (indexPath.row) {
-                    case 0:
-                        return @"75";
-                        break;
-                    case 1:
-                        return @"95";
-                        break;
-                    case 2:
-                        return @"50";
-                        break;
-                    case 3:
-                        return @"70";
-                        break;
-                    case 4:
-                        return @"90";
-                        break;
-                    default:
-                        break;
-                }
-                break;
-            case 1:
-                switch (indexPath.row) {
-                    case 0:
-                        return @"85";
-                        break;
-                    case 1:
-                        return @"70";
-                        break;
-                    default:
-                        break;
-                }
-                break;
-            case 2:
-                switch (indexPath.row) {
-                    case 0:
-                        return @"75";
-                        break;
-                    default:
-                        break;
-                }
-                break;
-                
-            default:
-                break;
-        }
+    if (types == 1){
+        NSDictionary* gradeInfo = [[moodleData objectForKey:moodleListKey] objectAtIndex:indexPath.row];
+        return [gradeInfo objectForKey:moodleGradeKey];
+    }
     return nil;
 }
 
@@ -326,8 +285,17 @@
 {
     if (types == 1)
         switch (indexPath.section) {
-            case 0:
-                switch (indexPath.row) {
+            case 0:{
+                NSDictionary* gradeInfo = [[moodleData objectForKey:moodleListKey] objectAtIndex:indexPath.row];
+                NSString *str = nil;
+                if ([gradeInfo objectForKey:moodleGradeCommentKey]) {
+                    str = [[gradeInfo objectForKey:moodleGradeNameKey] stringByAppendingFormat:@"  (%@)",[gradeInfo objectForKey:moodleGradeCommentKey]];
+                }
+                else
+                    str = [gradeInfo objectForKey:moodleGradeNameKey];
+                return str;
+            }
+               /* switch (indexPath.row) {
                     case 0:
                         return @"作業1";
                         break;
@@ -345,7 +313,7 @@
                         break;
                     default:
                         break;
-                }
+                }*/
                 break;
             case 1:
                 switch (indexPath.row) {
@@ -517,13 +485,15 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil)
     {
-        if (types==1&&indexPath.section<3)
+        if (types==1&&indexPath.section<3){
             cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
+        }
         else
             cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     cell.textLabel.text = [self textLabeltext:indexPath];
+    
     cell.detailTextLabel.text = [self subLabeltext:indexPath];
     if ([cell.detailTextLabel.text floatValue]<60) {
         cell.detailTextLabel.textColor = [UIColor redColor];
@@ -631,8 +601,6 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if (types==1)
-        return 32;
     return 1;
 }
 
@@ -649,8 +617,8 @@
 
 - (UIView *) tableView: (UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     if (types==1) {
-	NSString *headerTitle;
-        switch (section) {
+	NSString *headerTitle = nil;
+        /*switch (section) {
             case 0:
                 headerTitle = @"作業成績 (30%)：";
                 break;
@@ -663,7 +631,7 @@
             default:
                 headerTitle = @"目前實得總成績：";
                 break;
-        }
+        }*/
 
     UIFont *font = [UIFont boldSystemFontOfSize:STANDARD_CONTENT_FONT_SIZE];
 	CGSize size = [headerTitle sizeWithFont:font];

@@ -42,6 +42,9 @@
     classInfo = [[[ClassInfoViewController alloc] init]autorelease];
     classInfo.title = label.text;
     classInfo.tag = label.tag;
+    NSDictionary* courseInfo = [[ClassDataBase sharedData] loginCourseToGetCourseidAndClassid:label.text];
+    classInfo.courseId = [courseInfo objectForKey:courseIDKey];
+    classInfo.classId = [courseInfo objectForKey:classIDKey];
     [self.navigationController pushViewController:classInfo animated:YES];
 }
 
