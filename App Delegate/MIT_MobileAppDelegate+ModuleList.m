@@ -16,6 +16,7 @@
 #import "QRReaderModule.h"
 #import "FacilitiesModule.h"
 #import "LinksModule.h"
+#import "NTOU_LifeViewController.h"
 
 // #import your module's header here
 

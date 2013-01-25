@@ -214,6 +214,13 @@
 		91402E42163E749A00B04EE5 /* ClassAdd.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91402E3C163E749A00B04EE5 /* ClassAdd.xib */; };
 		91402E43163E749A00B04EE5 /* ClassDataBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 91402E3E163E749A00B04EE5 /* ClassDataBase.m */; };
 		91402E44163E749A00B04EE5 /* EditScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91402E40163E749A00B04EE5 /* EditScheduleViewController.m */; };
+		91906FBC16B0F650006FA62D /* PeopleModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 91906FAE16B0F650006FA62D /* PeopleModule.m */; };
+		919073E916B1128B006FA62D /* NTOU_LifeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 919073E716B1128B006FA62D /* NTOU_LifeViewController.m */; };
+		919073EB16B114F3006FA62D /* NTOU_Life.xib in Resources */ = {isa = PBXBuildFile; fileRef = 919073EA16B114F2006FA62D /* NTOU_Life.xib */; };
+		919073F016B119BD006FA62D /* beining.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 919073EC16B119BC006FA62D /* beining.jpg */; };
+		919073F116B119BD006FA62D /* jungjeng.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 919073ED16B119BC006FA62D /* jungjeng.jpg */; };
+		919073F216B119BD006FA62D /* shiangfeng.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 919073EE16B119BD006FA62D /* shiangfeng.jpg */; };
+		919073F316B119BD006FA62D /* shinfeng.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 919073EF16B119BD006FA62D /* shinfeng.jpg */; };
 		91EC3F121689791E0065BE43 /* Calendar.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 91EC3F0A1689791E0065BE43 /* Calendar.xcdatamodeld */; };
 		91EC3F131689791E0065BE43 /* CalendarActivities.m in Sources */ = {isa = PBXBuildFile; fileRef = 91EC3F0F1689791E0065BE43 /* CalendarActivities.m */; };
 		91EC3F141689791E0065BE43 /* CalendarSpeech.m in Sources */ = {isa = PBXBuildFile; fileRef = 91EC3F111689791E0065BE43 /* CalendarSpeech.m */; };
@@ -492,15 +499,8 @@
 		EB676032114A9316004596BB /* ShuttleRouteCache.m in Sources */ = {isa = PBXBuildFile; fileRef = EB67602F114A9316004596BB /* ShuttleRouteCache.m */; };
 		EB676033114A9316004596BB /* ShuttleStopLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = EB676031114A9316004596BB /* ShuttleStopLocation.m */; };
 		EB6DEE4111D246EA00B65CE3 /* MultiLineTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EB6DEE3F11D246EA00B65CE3 /* MultiLineTableViewCell.m */; };
-		EB6F2B6D10E9026200A29A2A /* PeopleDetailsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EB6F2B6C10E9026200A29A2A /* PeopleDetailsTableViewCell.m */; };
 		EB6FD1F910E19D7900D56BE1 /* SecondaryGroupedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EB6FD1F810E19D7900D56BE1 /* SecondaryGroupedTableViewCell.m */; };
 		EB74ED2F11924E7C006673F9 /* ShareDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB74ED2D11924E7C006673F9 /* ShareDetailViewController.m */; };
-		EB7F327F10CD6C5B00188BCD /* PeopleDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EB7F326A10CD6C5B00188BCD /* PeopleDataModel.xcdatamodeld */; };
-		EB7F328110CD6C5B00188BCD /* PersonDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = EB7F326F10CD6C5B00188BCD /* PersonDetails.m */; };
-		EB7F328210CD6C5B00188BCD /* PartialHighlightTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EB7F327110CD6C5B00188BCD /* PartialHighlightTableViewCell.m */; };
-		EB7F328310CD6C5B00188BCD /* PeopleDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB7F327310CD6C5B00188BCD /* PeopleDetailsViewController.m */; };
-		EB7F328410CD6C5B00188BCD /* PeopleModule.m in Sources */ = {isa = PBXBuildFile; fileRef = EB7F327510CD6C5B00188BCD /* PeopleModule.m */; };
-		EB7F328510CD6C5B00188BCD /* PeopleRecentsData.m in Sources */ = {isa = PBXBuildFile; fileRef = EB7F327710CD6C5B00188BCD /* PeopleRecentsData.m */; };
 		EB7F32AA10CD6CB100188BCD /* StellarCourseGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = EB7F329810CD6CB100188BCD /* StellarCourseGroup.m */; };
 		EB7F32AB10CD6CB100188BCD /* StellarCoursesTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB7F329A10CD6CB100188BCD /* StellarCoursesTableController.m */; };
 		EB7F32AC10CD6CB100188BCD /* StellarMainTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB7F329C10CD6CB100188BCD /* StellarMainTableController.m */; };
@@ -521,7 +521,6 @@
 		EB9FF4A6145A1D7500028A18 /* BookDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EB9FF4A5145A1D7500028A18 /* BookDetailTableViewCell.m */; };
 		EB9FF4E2145F495A00028A18 /* WorldCatHoldingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB9FF4E1145F495900028A18 /* WorldCatHoldingsViewController.m */; };
 		EBA0A46710D405F5005B0D96 /* Stellar.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EBA0A46610D405F5005B0D96 /* Stellar.xcdatamodeld */; };
-		EBA2865610E07E140003BA01 /* PeopleSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBA2865510E07E140003BA01 /* PeopleSearchViewController.m */; };
 		EBA2867910E082010003BA01 /* MITLoadingActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = EBA2867810E082010003BA01 /* MITLoadingActivityView.m */; };
 		EBAB15C411BE970900D481B5 /* DatePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBAB15C211BE970900D481B5 /* DatePickerViewController.m */; };
 		EBAB164211BEC3E800D481B5 /* MITSearchDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBAB164011BEC3E800D481B5 /* MITSearchDisplayController.m */; };
@@ -968,6 +967,15 @@
 		91402E3E163E749A00B04EE5 /* ClassDataBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassDataBase.m; sourceTree = "<group>"; };
 		91402E3F163E749A00B04EE5 /* EditScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditScheduleViewController.h; sourceTree = "<group>"; };
 		91402E40163E749A00B04EE5 /* EditScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditScheduleViewController.m; sourceTree = "<group>"; };
+		91906FAD16B0F650006FA62D /* PeopleModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleModule.h; sourceTree = "<group>"; };
+		91906FAE16B0F650006FA62D /* PeopleModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleModule.m; sourceTree = "<group>"; };
+		919073E716B1128B006FA62D /* NTOU_LifeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTOU_LifeViewController.m; sourceTree = "<group>"; };
+		919073E816B1128B006FA62D /* NTOU_LifeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTOU_LifeViewController.h; sourceTree = "<group>"; };
+		919073EA16B114F2006FA62D /* NTOU_Life.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NTOU_Life.xib; sourceTree = "<group>"; };
+		919073EC16B119BC006FA62D /* beining.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = beining.jpg; sourceTree = "<group>"; };
+		919073ED16B119BC006FA62D /* jungjeng.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = jungjeng.jpg; sourceTree = "<group>"; };
+		919073EE16B119BD006FA62D /* shiangfeng.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = shiangfeng.jpg; sourceTree = "<group>"; };
+		919073EF16B119BD006FA62D /* shinfeng.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = shinfeng.jpg; sourceTree = "<group>"; };
 		91EC3F0B1689791E0065BE43 /* Calendar 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Calendar 2.xcdatamodel"; sourceTree = "<group>"; };
 		91EC3F0C1689791E0065BE43 /* Calendar 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Calendar 3.xcdatamodel"; sourceTree = "<group>"; };
 		91EC3F0D1689791E0065BE43 /* Calendar.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Calendar.xcdatamodel; sourceTree = "<group>"; };
@@ -1426,22 +1434,10 @@
 		EB6DEE3E11D246EA00B65CE3 /* MultiLineTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiLineTableViewCell.h; sourceTree = "<group>"; };
 		EB6DEE3F11D246EA00B65CE3 /* MultiLineTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiLineTableViewCell.m; sourceTree = "<group>"; };
 		EB6F2B6910E9023300A29A2A /* MITUIConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MITUIConstants.h; sourceTree = "<group>"; };
-		EB6F2B6B10E9026200A29A2A /* PeopleDetailsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleDetailsTableViewCell.h; sourceTree = "<group>"; };
-		EB6F2B6C10E9026200A29A2A /* PeopleDetailsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleDetailsTableViewCell.m; sourceTree = "<group>"; };
 		EB6FD1F710E19D7900D56BE1 /* SecondaryGroupedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondaryGroupedTableViewCell.h; sourceTree = "<group>"; };
 		EB6FD1F810E19D7900D56BE1 /* SecondaryGroupedTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondaryGroupedTableViewCell.m; sourceTree = "<group>"; };
 		EB74ED2C11924E7C006673F9 /* ShareDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareDetailViewController.h; sourceTree = "<group>"; };
 		EB74ED2D11924E7C006673F9 /* ShareDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareDetailViewController.m; sourceTree = "<group>"; };
-		EB7F326E10CD6C5B00188BCD /* PersonDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonDetails.h; sourceTree = "<group>"; };
-		EB7F326F10CD6C5B00188BCD /* PersonDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonDetails.m; sourceTree = "<group>"; };
-		EB7F327010CD6C5B00188BCD /* PartialHighlightTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PartialHighlightTableViewCell.h; sourceTree = "<group>"; };
-		EB7F327110CD6C5B00188BCD /* PartialHighlightTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PartialHighlightTableViewCell.m; sourceTree = "<group>"; };
-		EB7F327210CD6C5B00188BCD /* PeopleDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleDetailsViewController.h; sourceTree = "<group>"; };
-		EB7F327310CD6C5B00188BCD /* PeopleDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleDetailsViewController.m; sourceTree = "<group>"; };
-		EB7F327410CD6C5B00188BCD /* PeopleModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleModule.h; sourceTree = "<group>"; };
-		EB7F327510CD6C5B00188BCD /* PeopleModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleModule.m; sourceTree = "<group>"; };
-		EB7F327610CD6C5B00188BCD /* PeopleRecentsData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleRecentsData.h; sourceTree = "<group>"; };
-		EB7F327710CD6C5B00188BCD /* PeopleRecentsData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleRecentsData.m; sourceTree = "<group>"; };
 		EB7F329710CD6CB100188BCD /* StellarCourseGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StellarCourseGroup.h; sourceTree = "<group>"; };
 		EB7F329810CD6CB100188BCD /* StellarCourseGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StellarCourseGroup.m; sourceTree = "<group>"; };
 		EB7F329910CD6CB100188BCD /* StellarCoursesTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StellarCoursesTableController.h; sourceTree = "<group>"; };
@@ -1478,10 +1474,8 @@
 		EB9FF4E0145F495900028A18 /* WorldCatHoldingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WorldCatHoldingsViewController.h; path = WorldCatSearch/WorldCatHoldingsViewController.h; sourceTree = "<group>"; };
 		EB9FF4E1145F495900028A18 /* WorldCatHoldingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WorldCatHoldingsViewController.m; path = WorldCatSearch/WorldCatHoldingsViewController.m; sourceTree = "<group>"; };
 		EBA0A46810D405F5005B0D96 /* Stellar 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Stellar 2.xcdatamodel"; sourceTree = "<group>"; };
-		EBA2865510E07E140003BA01 /* PeopleSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleSearchViewController.m; sourceTree = "<group>"; };
 		EBA2867710E082010003BA01 /* MITLoadingActivityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MITLoadingActivityView.h; sourceTree = "<group>"; };
 		EBA2867810E082010003BA01 /* MITLoadingActivityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MITLoadingActivityView.m; sourceTree = "<group>"; };
-		EBAA9F6210FFAB8B003379A5 /* PeopleDataModel 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "PeopleDataModel 5.xcdatamodel"; sourceTree = "<group>"; };
 		EBAB15C111BE970900D481B5 /* DatePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatePickerViewController.h; sourceTree = "<group>"; };
 		EBAB15C211BE970900D481B5 /* DatePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatePickerViewController.m; sourceTree = "<group>"; };
 		EBAB163F11BEC3E800D481B5 /* MITSearchDisplayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MITSearchDisplayController.h; sourceTree = "<group>"; };
@@ -1496,7 +1490,6 @@
 		EBBFAFD2129C403A009AAEE0 /* MapZoomLevel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapZoomLevel.m; sourceTree = "<group>"; };
 		EBBFB230129C7DED009AAEE0 /* TourSiteMapAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TourSiteMapAnnotation.h; sourceTree = "<group>"; };
 		EBBFB231129C7DED009AAEE0 /* TourSiteMapAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TourSiteMapAnnotation.m; sourceTree = "<group>"; };
-		EBCA123210CEF3C400577C5D /* PeopleSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleSearchViewController.h; sourceTree = "<group>"; };
 		EBDB0C4811484057008AAE42 /* ShuttleTrack.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = ShuttleTrack.xcdatamodel; sourceTree = "<group>"; };
 		EBF1120412A495170002D751 /* en.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = en.lproj; path = Resources/en.lproj; sourceTree = "<group>"; };
 		EBF114B012A6A7320002D751 /* AnniversaryModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnniversaryModule.h; sourceTree = "<group>"; };
@@ -3083,31 +3076,17 @@
 		EB7F326610CD6C5B00188BCD /* People */ = {
 			isa = PBXGroup;
 			children = (
-				EB7F326910CD6C5B00188BCD /* Model */,
-				EB7F327410CD6C5B00188BCD /* PeopleModule.h */,
-				EB7F327510CD6C5B00188BCD /* PeopleModule.m */,
-				EB7F327610CD6C5B00188BCD /* PeopleRecentsData.h */,
-				EB7F327710CD6C5B00188BCD /* PeopleRecentsData.m */,
-				EBCA123210CEF3C400577C5D /* PeopleSearchViewController.h */,
-				EBA2865510E07E140003BA01 /* PeopleSearchViewController.m */,
-				EB7F327210CD6C5B00188BCD /* PeopleDetailsViewController.h */,
-				EB7F327310CD6C5B00188BCD /* PeopleDetailsViewController.m */,
-				EB6F2B6B10E9026200A29A2A /* PeopleDetailsTableViewCell.h */,
-				EB6F2B6C10E9026200A29A2A /* PeopleDetailsTableViewCell.m */,
-				EB7F327010CD6C5B00188BCD /* PartialHighlightTableViewCell.h */,
-				EB7F327110CD6C5B00188BCD /* PartialHighlightTableViewCell.m */,
+				919073EC16B119BC006FA62D /* beining.jpg */,
+				919073ED16B119BC006FA62D /* jungjeng.jpg */,
+				919073EE16B119BD006FA62D /* shiangfeng.jpg */,
+				919073EF16B119BD006FA62D /* shinfeng.jpg */,
+				919073E716B1128B006FA62D /* NTOU_LifeViewController.m */,
+				919073E816B1128B006FA62D /* NTOU_LifeViewController.h */,
+				91906FAD16B0F650006FA62D /* PeopleModule.h */,
+				91906FAE16B0F650006FA62D /* PeopleModule.m */,
+				919073EA16B114F2006FA62D /* NTOU_Life.xib */,
 			);
 			path = People;
-			sourceTree = "<group>";
-		};
-		EB7F326910CD6C5B00188BCD /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				EB7F326A10CD6C5B00188BCD /* PeopleDataModel.xcdatamodeld */,
-				EB7F326E10CD6C5B00188BCD /* PersonDetails.h */,
-				EB7F326F10CD6C5B00188BCD /* PersonDetails.m */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		EB7F328910CD6CB100188BCD /* Model */ = {
@@ -3415,6 +3394,11 @@
 				91F017EF167F355600B4C5F0 /* Reader-Thumbs@2x.png in Resources */,
 				91F017FF167F355600B4C5F0 /* Syllabus.pdf in Resources */,
 				C7BF083E16884B4E00153F6F /* NTOU_ClassColorViewController.xib in Resources */,
+				919073EB16B114F3006FA62D /* NTOU_Life.xib in Resources */,
+				919073F016B119BD006FA62D /* beining.jpg in Resources */,
+				919073F116B119BD006FA62D /* jungjeng.jpg in Resources */,
+				919073F216B119BD006FA62D /* shiangfeng.jpg in Resources */,
+				919073F316B119BD006FA62D /* shinfeng.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3578,14 +3562,6 @@
 				DE81CF6210C6BC390085573D /* NewsModule.m in Sources */,
 				DE4AB0B410ED5148007476D9 /* NewsStory.m in Sources */,
 				4BB9C554134BA78200B7F135 /* OpenHouseTableView.m in Sources */,
-				EB7F328210CD6C5B00188BCD /* PartialHighlightTableViewCell.m in Sources */,
-				EB7F327F10CD6C5B00188BCD /* PeopleDataModel.xcdatamodeld in Sources */,
-				EB6F2B6D10E9026200A29A2A /* PeopleDetailsTableViewCell.m in Sources */,
-				EB7F328310CD6C5B00188BCD /* PeopleDetailsViewController.m in Sources */,
-				EB7F328410CD6C5B00188BCD /* PeopleModule.m in Sources */,
-				EB7F328510CD6C5B00188BCD /* PeopleRecentsData.m in Sources */,
-				EBA2865610E07E140003BA01 /* PeopleSearchViewController.m in Sources */,
-				EB7F328110CD6C5B00188BCD /* PersonDetails.m in Sources */,
 				2CED98F413534B5C0034F6F1 /* QRReaderDetailViewController.m in Sources */,
 				2CDF3022134E05EE007C6813 /* QRReaderHistoryData.m in Sources */,
 				2C0A336B1355CEF300786493 /* QRReaderImageTransformer.m in Sources */,
@@ -3828,6 +3804,8 @@
 				91364F9B16AFB224007CA25D /* SBJsonStreamWriterState.m in Sources */,
 				91364F9C16AFB224007CA25D /* SBJsonTokeniser.m in Sources */,
 				91364F9D16AFB224007CA25D /* SBJsonUTF8Stream.m in Sources */,
+				91906FBC16B0F650006FA62D /* PeopleModule.m in Sources */,
+				919073E916B1128B006FA62D /* NTOU_LifeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4154,16 +4132,6 @@
 			);
 			currentVersion = 4B1DC9EF1354E90F00FCD046 /* Tours 2.xcdatamodel */;
 			path = Tours.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-		EB7F326A10CD6C5B00188BCD /* PeopleDataModel.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				EBAA9F6210FFAB8B003379A5 /* PeopleDataModel 5.xcdatamodel */,
-			);
-			currentVersion = EBAA9F6210FFAB8B003379A5 /* PeopleDataModel 5.xcdatamodel */;
-			path = PeopleDataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

@@ -1,10 +1,11 @@
 #import "MITModule.h"
+#import "NTOU_LifeViewController.h"
 
 @class PeopleSearchViewController;
 
 @interface PeopleModule : MITModule {
 	
-	PeopleSearchViewController *viewController;
+	NTOU_LifeViewController *viewController;
 
 }
 

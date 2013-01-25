@@ -1,5 +1,4 @@
-#import "PersonDetails.h"
-#import "PeopleRecentsData.h"
+
 #import "CoreDataManager.h"
 
 @implementation PersonDetails
