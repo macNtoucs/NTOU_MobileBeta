@@ -383,43 +383,45 @@
         detailLabel.textAlignment = UITextAlignmentRight;
         [cell.contentView addSubview:label];
         [cell.contentView addSubview:detailLabel];
+        label.text = [self textLabeltext:indexPath];
+        detailLabel.text = [self subLabeltext:indexPath];
+        
+        if (types==1&&[detailLabel.text floatValue]<60) {
+            detailLabel.textColor = [UIColor redColor];
+        }
+        if (types==5) {
+            if (edit) {
+                textView.frame = CGRectMake(0, 0, 300, 160);
+            } else {
+                textView.frame = CGRectMake(0, 0, 300, 325);
+            }
+            [cell.contentView addSubview:self.textView];
+        }
+        else if (types==6||(types==1&&indexPath.section==3)) {
+            label.textAlignment = UITextAlignmentCenter;
+            if (types==1&&indexPath.section==3){
+                label.textColor = [UIColor blueColor];
+            }
+        }
+        
+        if (types == 4||(types == 2&&indexPath.row>0) ||(types == 6&&indexPath.row>0)) {
+            label.userInteractionEnabled = YES;
+            label.textColor = [UIColor blueColor];
+            UITapGestureRecognizer *gr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(myAction:)];
+            [label addGestureRecognizer:gr];
+            gr.numberOfTapsRequired = 1;
+            gr.cancelsTouchesInView = NO;
+        }
+        else if((types == 2&&indexPath.row==0) ||(types == 6&&indexPath.row==0))
+            label.font = [UIFont fontWithName:BOLD_FONT size:CELL_STANDARD_FONT_SIZE];
+        
+
     }
     else
     {
         label = (UILabel *)[cell.contentView viewWithTag:indexPath.row];
         detailLabel = (UILabel *)[cell.contentView viewWithTag:indexPath.row];
     }
-    label.text = [self textLabeltext:indexPath];
-    detailLabel.text = [self subLabeltext:indexPath];
-    if ([detailLabel.text floatValue]<60) {
-        detailLabel.textColor = [UIColor redColor];
-    }
-    if (types==5) {
-        if (edit) {
-            textView.frame = CGRectMake(0, 0, 300, 160);
-        } else {
-            textView.frame = CGRectMake(0, 0, 300, 325);
-        }
-        [cell.contentView addSubview:self.textView];
-    }
-    else if (types==6||(types==1&&indexPath.section==3)) {
-        label.textAlignment = UITextAlignmentCenter;
-        if (types==1&&indexPath.section==3){
-            label.textColor = [UIColor blueColor];
-        }
-    }
-
-    if (types == 4||(types == 2&&indexPath.row>0) ||(types == 6&&indexPath.row>0)) {
-        label.userInteractionEnabled = YES;
-        label.textColor = [UIColor blueColor];
-        UITapGestureRecognizer *gr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(myAction:)];
-        [label addGestureRecognizer:gr];
-        gr.numberOfTapsRequired = 1;
-        gr.cancelsTouchesInView = NO;
-    }
-    else if((types == 2&&indexPath.row==0) ||(types == 6&&indexPath.row==0))
-        label.font = [UIFont fontWithName:BOLD_FONT size:CELL_STANDARD_FONT_SIZE];
-    
     return cell;
 }
 
