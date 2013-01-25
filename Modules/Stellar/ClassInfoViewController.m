@@ -49,11 +49,13 @@
         view2 = [[ClassInfoView alloc] initWithStyle:UITableViewStyleGrouped];
         view2.title = type4;
         view2.delegatetype5 = self;
+        view2.moodleData = [Moodle_API GetMoodleInfo_AndUseToken:token courseID:[apiKey objectForKey:courseIDKey] classID:[apiKey objectForKey:classIDKey]];
         view2.view.frame = CGRectMake(0, 40, 320, 420);
         [viewController2.view addSubview:view2.tableView];
         
         view3 = [[ClassInfoView alloc] initWithStyle:UITableViewStyleGrouped];
         view3.title = type2;
+        view3.moodleData = [Moodle_API GetMoodleInfo_AndUseToken:token courseID:[apiKey objectForKey:courseIDKey] classID:[apiKey objectForKey:classIDKey]];
         view3.delegatetype5 = self;
         view3.view.frame = CGRectMake(0, 10, 320, 450);
         [viewController3.view addSubview:view3.tableView];
@@ -130,6 +132,9 @@
         classinfo.text = @"上課講義";
     }
     view.view.frame = CGRectMake(0, 40, 320, 330);
+    NSString *token = [[ClassDataBase sharedData] loginTokenWhenAccountFromUserDefault];
+    NSDictionary* apiKey = [[ClassDataBase sharedData] loginCourseToGetCourseidAndClassid:self.title];
+    view.moodleData = [Moodle_API GetMoodleInfo_AndUseToken:token courseID:[apiKey objectForKey:courseIDKey] classID:[apiKey objectForKey:classIDKey]];
     [viewController.view addSubview:view.tableView];
 }
 

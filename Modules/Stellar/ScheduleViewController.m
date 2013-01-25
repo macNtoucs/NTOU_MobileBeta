@@ -96,6 +96,8 @@
         [[ClassDataBase sharedData] UpdataClassroomLocationKey:[NSNumber numberWithInt:label.tag] Classroom:[array objectAtIndex:2]];
         
     }
+    [[ClassDataBase sharedData] moodleFromRecordForNewCourse:[array objectAtIndex:0] ForOldCourse:FirstTap.text];
+    [[ClassDataBase sharedData] deleteMoodleFromWhenCourseCountZero];
     [[ClassDataBase sharedData] UpdataColorFromFirstTap:[array objectAtIndex:0] ForOldCourse:FirstTap.text];
     [[ClassDataBase sharedData] deleteColorwhenCourseCountZero];
     [weekschedule.TapAddCourse removeAllObjects];

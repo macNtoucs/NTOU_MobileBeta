@@ -13,6 +13,7 @@
 @interface ClassInfoView (){
     int types;
     BOOL edit;
+    NSMutableArray* resource;
 }
 @end
 
@@ -73,7 +74,6 @@
     }
     else if (self.title == type6)
         types = 6;
-    
 }
 
 - (void)didReceiveMemoryWarning
@@ -105,32 +105,25 @@
     // Return the number of rows in the section.
     if (types == 1)
         return [[moodleData objectForKey:moodleListKey] count];
-        /*switch (section) {
-            case 0:
-                return 5;
-                break;
-            case 1:
-                return 2;
-                break;
-            case 2:
-                return 1;
-                break;
-            case 3:
-                return 1;
-                break;
-            default:
-                break;
-        }*/
-    else if (types == 2)
-        return 9;
+        
+    else if (types == 2||types == 4||types == 6){
+        NSArray* infos = [[[moodleData objectForKey:moodleListKey] objectAtIndex:0] objectForKey:moodleResourceInfoKey];
+        resource = [[NSMutableArray alloc] init];
+        for (NSDictionary* resourceInfo in infos) {
+            if (([[resourceInfo objectForKey:moodleResourceModuleKey] isEqualToString:moodleModuleAssignmentKey]&&types == 2)||
+                ([[resourceInfo objectForKey:moodleResourceModuleKey] isEqualToString:moodleModuleLectureKey]&&types == 4)||
+                ([[resourceInfo objectForKey:moodleResourceModuleKey] isEqualToString:moodleModuleExamKey]&&types == 6))
+                [resource addObject:resourceInfo];
+        }
+        if (types == 2||types == 6) {
+            return [resource count]+1;
+        }
+        return [resource count];
+    }
     else if (types == 3)
         return 1;
-    else if (types == 4)
-        return 9;
     else if (types == 5)
         return 1;
-    else if (types == 6)
-        return 5;
     return 1;
 }
 
@@ -182,7 +175,7 @@
 
 - (void) myAction: (UITapGestureRecognizer *) gr {
     NSURL *url = nil;
-
+    
     if (types==4) {
         if (gr.view.tag == 8) {
             [self handleSingle:@"Algorithm-Ch9.pdf"];
@@ -283,104 +276,26 @@
 
 -(NSString *)textLabeltext:(NSIndexPath *)indexPath
 {
-    if (types == 1)
-        switch (indexPath.section) {
-            case 0:{
-                NSDictionary* gradeInfo = [[moodleData objectForKey:moodleListKey] objectAtIndex:indexPath.row];
-                NSString *str = nil;
-                if ([gradeInfo objectForKey:moodleGradeCommentKey]) {
-                    str = [[gradeInfo objectForKey:moodleGradeNameKey] stringByAppendingFormat:@"  (%@)",[gradeInfo objectForKey:moodleGradeCommentKey]];
-                }
-                else
-                    str = [gradeInfo objectForKey:moodleGradeNameKey];
-                return str;
-            }
-               /* switch (indexPath.row) {
-                    case 0:
-                        return @"作業1";
-                        break;
-                    case 1:
-                        return @"作業2";
-                        break;
-                    case 2:
-                        return @"作業3";
-                        break;
-                    case 3:
-                        return @"作業4";
-                        break;
-                    case 4:
-                        return @"作業5";
-                        break;
-                    default:
-                        break;
-                }*/
-                break;
-            case 1:
-                switch (indexPath.row) {
-                    case 0:
-                        return @"小考1";
-                        break;
-                    case 1:
-                        return @"小考2";
-                        break;
-                    default:
-                        break;
-                }
-                break;
-            case 2:
-                switch (indexPath.row) {
-                    case 0:
-                        return @"期中考";
-                        break;
-                    default:
-                        break;
-                }
-                break;
-            case 3:
-                switch (indexPath.row) {
-                    case 0:
-                        return @"45";
-                        break;
-                    default:
-                        break;
-                }
-                break;
-                
-            default:
-                break;
+    if (types == 1){
+        NSDictionary* gradeInfo = [[moodleData objectForKey:moodleListKey] objectAtIndex:indexPath.row];
+        NSString *str = nil;
+        if ([gradeInfo objectForKey:moodleGradeCommentKey]) {
+            str = [[gradeInfo objectForKey:moodleGradeNameKey] stringByAppendingFormat:@"\n(%@)",[gradeInfo objectForKey:moodleGradeCommentKey]];
         }
-    else if (types == 2)
-        switch (indexPath.row) {
-            case 0:
-                return @"         作業                          繳交期限";
-                break; 
-            case 1:
-                return @"  Homework1                         10/11";
-                break;
-            case 2:
-                return @"  Homework2                         10/18";
-                break;
-            case 3:
-                return @"  Homework3                         10/25";
-                break;
-            case 4:
-                return @"  Homework4                         11/01";
-                break;
-            case 5:
-                return @"  Homework5                         11/08";
-                break;
-            case 6:
-                return @"  Homework6                         11/15";
-                break;
-            case 7:
-                return @"  Homework7                         11/29";
-                break;
-            case 8:
-                return @"  Homework8                         12/06";
-                break;
-            default:
-                break;
-        }
+        else
+            str = [gradeInfo objectForKey:moodleGradeNameKey];
+        return str;
+    }
+    else if (types == 2||types == 4||types == 6){
+        if (indexPath.row == 0&&types == 2)
+            return @"         作業                          繳交期限";
+        else if (indexPath.row == 0&&types == 6)
+            return @"考試名稱與範圍";
+        else if (types == 2||types == 6)
+            return [[resource objectAtIndex:indexPath.row-1] objectForKey:moodleResourceTitleKey];
+        else
+            return [[resource objectAtIndex:indexPath.row] objectForKey:moodleResourceTitleKey];
+    }
     else if (types == 3){
         /*if (indexPath.section == 0) {
             return @"11/09	作業7、各作業解答、小考解答已上傳\n各項紀錄以及成績皆已登錄，如果有問題請記得通知助教\n另外提醒，\n11/14(三)的課輔，由於期中考週的關係暫停一次\n11/15(四)要繳交作業6！！！\n作業7將會在11/21(三)的課輔講解，但繳交期限仍為11/22(四)\n期中考資訊如下:\n時間：11/15(四) 09:20~12:00\n地點：B10、B12\n範圍：老師教過的部分\n可攜帶 8分之1 A4 紙張！！！\n另外提醒~請記得攜帶學生證！！！\n祝各位 期中考順利！！！";
@@ -428,54 +343,6 @@
             return @"9/24	Syllabus講義已經上傳。";
         }
     }
-    else if (types == 4){
-        if (indexPath.row == 8) {
-            return @"Ch9  Medians and Order Statistics";
-        }
-        else if (indexPath.row == 7) {
-            return @"Ch8  Sorting in Linear Time";
-        }
-        else if (indexPath.row == 6) {
-            return @"Ch7  Quicksort";
-        }
-        else if (indexPath.row == 5) {
-            return @"Ch6  Heapsort";
-        }
-        else if (indexPath.row == 4) {
-            return @"Ch4  Recurrences";
-        }
-        else if (indexPath.row == 3) {
-            return @"Ch3  Growth of Functions";
-        }
-        else if (indexPath.row == 2) {
-            return @"Ch2  Getting Started";
-        }
-        else if (indexPath.row == 1) {
-            return @"Ch1  Preliminaries";
-        }
-        else if (indexPath.row == 0) {
-            return @"Syllabus";
-        }
-
-    }
-    else if (types == 6){
-        if (indexPath.row == 4) {
-            return @"2010期末考";
-        }
-        else if (indexPath.row == 3) {
-            return @"2010期中考";
-        }
-        else if (indexPath.row == 2) {
-            return @"2011期末考";
-        }
-        else if (indexPath.row == 1) {
-            return @"2011期中考";
-        }
-        else if (indexPath.row == 0) {
-            return @"考試名稱與範圍";
-        }
-        
-    }
     return nil;
 }
 
@@ -483,29 +350,50 @@
 {
     NSString *CellIdentifier = [NSString stringWithFormat:@"Cell%d%d",indexPath.section,indexPath.row];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    UILabel *label = nil;
+    UILabel *detailLabel = nil;
     if (cell == nil)
     {
+        CGSize constraintSize = CGSizeMake(270.0f, 2009.0f);
+        UIFont *cellFont = [UIFont fontWithName:@"Helvetica" size:CELL_STANDARD_FONT_SIZE];
+        CGSize labelSize = [[self textLabeltext:indexPath] sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
+        CGFloat rowHeight = labelSize.height + 20.0f;
+        label = [[UILabel alloc] init];
+        detailLabel = [[UILabel alloc] init];
         if (types==1&&indexPath.section<3){
             cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
+            label.frame = CGRectMake(5, 0,220, rowHeight);
+            detailLabel.frame = CGRectMake(270, 0,20, rowHeight);
         }
-        else
+        else{
             cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+            label.frame = CGRectMake(5, 0,295, rowHeight);
+            detailLabel.frame = CGRectMake(280, 0,20, rowHeight);
+        }
+        cell.backgroundColor = SECONDARY_GROUP_BACKGROUND_COLOR;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        label.tag=indexPath.row;
+        label.lineBreakMode = UILineBreakModeWordWrap;
+        label.numberOfLines = 0;
+        label.font = [UIFont fontWithName:STANDARD_FONT size:CELL_STANDARD_FONT_SIZE];
+        label.textColor = CELL_STANDARD_FONT_COLOR;
+        label.backgroundColor = [UIColor clearColor];
+        detailLabel.tag=indexPath.row;
+        detailLabel.backgroundColor = [UIColor clearColor];
+        detailLabel.textAlignment = UITextAlignmentRight;
+        [cell.contentView addSubview:label];
+        [cell.contentView addSubview:detailLabel];
     }
-    cell.textLabel.text = [self textLabeltext:indexPath];
-    
-    cell.detailTextLabel.text = [self subLabeltext:indexPath];
-    if ([cell.detailTextLabel.text floatValue]<60) {
-        cell.detailTextLabel.textColor = [UIColor redColor];
+    else
+    {
+        label = (UILabel *)[cell.contentView viewWithTag:indexPath.row];
+        detailLabel = (UILabel *)[cell.contentView viewWithTag:indexPath.row];
     }
-    cell.detailTextLabel.backgroundColor = [UIColor clearColor];
-    cell.textLabel.lineBreakMode = UILineBreakModeWordWrap;
-    cell.textLabel.numberOfLines = 0;
-    cell.textLabel.tag = indexPath.row;
-    cell.backgroundColor = SECONDARY_GROUP_BACKGROUND_COLOR;
-	cell.textLabel.font = [UIFont fontWithName:STANDARD_FONT size:CELL_STANDARD_FONT_SIZE];
-	cell.textLabel.textColor = CELL_STANDARD_FONT_COLOR;
-	cell.textLabel.backgroundColor = [UIColor clearColor];
+    label.text = [self textLabeltext:indexPath];
+    detailLabel.text = [self subLabeltext:indexPath];
+    if ([detailLabel.text floatValue]<60) {
+        detailLabel.textColor = [UIColor redColor];
+    }
     if (types==5) {
         if (edit) {
             textView.frame = CGRectMake(0, 0, 300, 160);
@@ -515,22 +403,22 @@
         [cell.contentView addSubview:self.textView];
     }
     else if (types==6||(types==1&&indexPath.section==3)) {
-        cell.textLabel.textAlignment = UITextAlignmentCenter;
+        label.textAlignment = UITextAlignmentCenter;
         if (types==1&&indexPath.section==3){
-            cell.textLabel.textColor = [UIColor blueColor];
+            label.textColor = [UIColor blueColor];
         }
     }
 
     if (types == 4||(types == 2&&indexPath.row>0) ||(types == 6&&indexPath.row>0)) {
-        cell.textLabel.userInteractionEnabled = YES;
-        cell.textLabel.textColor = [UIColor blueColor];
+        label.userInteractionEnabled = YES;
+        label.textColor = [UIColor blueColor];
         UITapGestureRecognizer *gr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(myAction:)];
-        [cell.textLabel addGestureRecognizer:gr];
+        [label addGestureRecognizer:gr];
         gr.numberOfTapsRequired = 1;
         gr.cancelsTouchesInView = NO;
     }
     else if((types == 2&&indexPath.row==0) ||(types == 6&&indexPath.row==0))
-        cell.textLabel.font = [UIFont fontWithName:BOLD_FONT size:CELL_STANDARD_FONT_SIZE];
+        label.font = [UIFont fontWithName:BOLD_FONT size:CELL_STANDARD_FONT_SIZE];
     
     return cell;
 }
@@ -618,20 +506,6 @@
 - (UIView *) tableView: (UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     if (types==1) {
 	NSString *headerTitle = nil;
-        /*switch (section) {
-            case 0:
-                headerTitle = @"作業成績 (30%)：";
-                break;
-            case 1:
-                headerTitle = @"平時考成績 (30%)：";
-                break;
-            case 2:
-                headerTitle = @"期中、期末成績 (40%)：";
-                break;
-            default:
-                headerTitle = @"目前實得總成績：";
-                break;
-        }*/
 
     UIFont *font = [UIFont boldSystemFontOfSize:STANDARD_CONTENT_FONT_SIZE];
 	CGSize size = [headerTitle sizeWithFont:font];

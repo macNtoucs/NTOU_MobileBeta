@@ -319,10 +319,19 @@ static ClassDataBase *sharedData = nil;
     
 }
 
+-(void)deleteMoodleFromWhenCourseCountZero
+{
+    for (NSString* Moodle in [moodleTempFrom allKeys]) {
+        if (![courseTempCount objectForKey:Moodle]) {
+            [moodleTempFrom removeObjectForKey:Moodle];
+        }
+    }
+    
+}
+
 -(void)whenCourseCountZeroForDeleteCourse:(NSString *)oldCourse
 {
     [courseTempCount removeObjectForKey:oldCourse];
-    [moodleTempFrom removeObjectForKey:oldCourse];
 }
 
 
@@ -345,14 +354,11 @@ static ClassDataBase *sharedData = nil;
 
 -(void)moodleFromRecordForNewCourse:(NSString *)newCourse ForOldCourse:(NSString *)oldCourse
 {
-    if (![[moodleTempFrom objectForKey:newCourse] boolValue]) {
-        if ([oldCourse isEqualToString:@" "]) {
-            [moodleTempFrom setValue:[NSNumber numberWithBool:0] forKey:newCourse];
-        }
-        else
-            [moodleTempFrom setValue:[moodleTempFrom objectForKey:oldCourse] forKey:newCourse];
+    if ([oldCourse isEqualToString:@" "]) {
+        [moodleTempFrom setValue:[NSNumber numberWithBool:0] forKey:newCourse];
     }
-
+    else
+        [moodleTempFrom setValue:[moodleTempFrom objectForKey:oldCourse] forKey:newCourse];
 }
 
 
@@ -375,7 +381,6 @@ static ClassDataBase *sharedData = nil;
     for (int i=0; i < range.length; i++) {
         NSString* replaceCourse =[[self ScheduleInfoKeyToWeek:Key] objectAtIndex:range.location+i];
         [self courseCountReplaceForNewCourse:Name ForOldCourse:replaceCourse];
-        [self moodleFromRecordForNewCourse:Name ForOldCourse:replaceCourse];
         [[self ScheduleInfoKeyToWeek:Key] replaceObjectAtIndex:range.location+i  withObject:Name];
     }
     

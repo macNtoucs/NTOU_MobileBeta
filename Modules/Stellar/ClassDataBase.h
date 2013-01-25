@@ -35,6 +35,15 @@
 #define moodleGradeKey @"grade"
 #define moodleGradeCommentKey @"comment"
 
+#define moodleResourceInfoKey @"infos"
+#define moodleResourceModuleKey @"module"
+#define moodleResourceTitleKey @"title"
+#define moodleResourceUrlKey @"url"
+
+#define moodleModuleLectureKey @"resource"
+#define moodleModuleAssignmentKey @"assignment"
+#define moodleModuleExamKey @" "
+
 #define WeekTimesKey @"WeekTimesKey"
 #define ClassSessionTimesKey @"ClassSessionTimesKey"
 #define showClassTimesKey @"showClassTimesKey"
@@ -51,6 +60,7 @@
 #import <Foundation/Foundation.h>
 #import "DefinePixel.h"
 #import "Moodle_API.h"
+typedef enum {clean,modify,move}ButtonType;
 typedef enum {Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday } ColumnName;
 @interface ClassDataBase : NSObject<NSCoding>{
     int WeekTimes;
@@ -134,5 +144,8 @@ typedef enum {Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday } ColumnN
 -(void)loginAccount:(NSString *)account Password:(NSString *)password;
 -(NSString *)loginTokenWhenAccountFromUserDefault;
 -(NSDictionary *)loginCourseToGetCourseidAndClassid:(NSString *)courseName;
+
+-(void)deleteMoodleFromWhenCourseCountZero;
+-(void)moodleFromRecordForNewCourse:(NSString *)newCourse ForOldCourse:(NSString *)oldCourse;
 
 @end
