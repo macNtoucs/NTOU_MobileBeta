@@ -91,8 +91,10 @@
         return 1;
     else if (types == 2)
         return 1;
-    else if (types == 3)
-        return 14;
+    else if (types == 3){
+        resource = [[[moodleData objectForKey:moodleListKey] objectAtIndex:0] objectForKey:moodleResourceInfoKey];
+        return [resource count];
+    }
     else if (types == 4)
         return 1;
     else if (types == 5)
@@ -297,9 +299,6 @@
             return [[resource objectAtIndex:indexPath.row] objectForKey:moodleResourceTitleKey];
     }
     else if (types == 3){
-        /*if (indexPath.section == 0) {
-            return @"11/09	作業7、各作業解答、小考解答已上傳\n各項紀錄以及成績皆已登錄，如果有問題請記得通知助教\n另外提醒，\n11/14(三)的課輔，由於期中考週的關係暫停一次\n11/15(四)要繳交作業6！！！\n作業7將會在11/21(三)的課輔講解，但繳交期限仍為11/22(四)\n期中考資訊如下:\n時間：11/15(四) 09:20~12:00\n地點：B10、B12\n範圍：老師教過的部分\n可攜帶 8分之1 A4 紙張！！！\n另外提醒~請記得攜帶學生證！！！\n祝各位 期中考順利！！！";
-        }*/
         if (indexPath.section == 0) {
             return @"11/02	作業6、第8章講義-Quicksort 已上傳\n11/07(三)之前助教會將小考成績、作業成績、解答以及補強有到的名單放上\n小考及作業也會在當週發回\n另外提醒，11/07(三)晚上的補強記得將小考題目卷帶來，助教會講解";
         }
@@ -389,15 +388,7 @@
         if (types==1&&[detailLabel.text floatValue]<60) {
             detailLabel.textColor = [UIColor redColor];
         }
-        if (types==5) {
-            if (edit) {
-                textView.frame = CGRectMake(0, 0, 300, 160);
-            } else {
-                textView.frame = CGRectMake(0, 0, 300, 325);
-            }
-            [cell.contentView addSubview:self.textView];
-        }
-        else if (types==6||(types==1&&indexPath.section==3)) {
+        if (types==6||(types==1&&indexPath.section==3)) {
             label.textAlignment = UITextAlignmentCenter;
             if (types==1&&indexPath.section==3){
                 label.textColor = [UIColor blueColor];
@@ -421,6 +412,15 @@
     {
         label = (UILabel *)[cell.contentView viewWithTag:indexPath.row];
         detailLabel = (UILabel *)[cell.contentView viewWithTag:indexPath.row];
+    }
+    
+    if (types==5) {
+        if (edit) {
+            textView.frame = CGRectMake(0, 0, 300, [[UIScreen mainScreen] bounds].size.height-320);
+        } else {
+            textView.frame = CGRectMake(0, 0, 300, [[UIScreen mainScreen] bounds].size.height-55);
+        }
+        [cell.contentView addSubview:self.textView];
     }
     return cell;
 }
@@ -491,6 +491,17 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
+    if (types==3) {
+        CGFloat rowHeight = 0;
+        UIFont *cellFont = [UIFont fontWithName:@"Helvetica" size:14.0];
+        CGSize constraintSize = CGSizeMake(270.0f, 2009.0f);
+        NSString *cellText = nil;
+        
+        cellText = [[resource objectAtIndex:section] objectForKey:moodleResourceTitleKey];        CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
+        rowHeight = labelSize.height + 20.0f;
+        
+        return rowHeight;
+    }
     return 1;
 }
 
@@ -498,7 +509,7 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     NSString *sectionName=nil;
-    if (types==1) {
+    if (types==3) {
         sectionName= @" ";
     }
     return sectionName;
@@ -506,8 +517,8 @@
 
 
 - (UIView *) tableView: (UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    if (types==1) {
-	NSString *headerTitle = nil;
+    if (types==3) {
+	NSString *headerTitle = [[resource objectAtIndex:section] objectForKey:moodleResourceTitleKey];
 
     UIFont *font = [UIFont boldSystemFontOfSize:STANDARD_CONTENT_FONT_SIZE];
 	CGSize size = [headerTitle sizeWithFont:font];
@@ -526,6 +537,7 @@
 	[label release];
 	return labelContainer;
     }
+    //return [[resource objectAtIndex:section] objectForKey:moodleResourceTitleKey];
     return nil;
 }
 
@@ -540,10 +552,10 @@
     CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
     rowHeight = labelSize.height + 20.0f;
     if (edit) {
-        return 160;
+        return [[UIScreen mainScreen] bounds].size.height-320;
     }
     else if (types==5) {
-        return 325;
+        return [[UIScreen mainScreen] bounds].size.height-155;
     }
     else
     return rowHeight;

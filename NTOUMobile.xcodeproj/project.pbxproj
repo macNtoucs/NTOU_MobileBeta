@@ -211,7 +211,7 @@
 		91364F9C16AFB224007CA25D /* SBJsonTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = 91364F9216AFB224007CA25D /* SBJsonTokeniser.m */; };
 		91364F9D16AFB224007CA25D /* SBJsonUTF8Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = 91364F9416AFB224007CA25D /* SBJsonUTF8Stream.m */; };
 		91402E41163E749A00B04EE5 /* ClassAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 91402E3B163E749A00B04EE5 /* ClassAdd.m */; };
-		91402E42163E749A00B04EE5 /* ClassAdd.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91402E3C163E749A00B04EE5 /* ClassAdd.xib */; };
+		91402E42163E749A00B04EE5 /* ClassAddRetina3.5.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91402E3C163E749A00B04EE5 /* ClassAddRetina3.5.xib */; };
 		91402E43163E749A00B04EE5 /* ClassDataBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 91402E3E163E749A00B04EE5 /* ClassDataBase.m */; };
 		91402E44163E749A00B04EE5 /* EditScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91402E40163E749A00B04EE5 /* EditScheduleViewController.m */; };
 		91EC3F121689791E0065BE43 /* Calendar.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 91EC3F0A1689791E0065BE43 /* Calendar.xcdatamodeld */; };
@@ -310,6 +310,7 @@
 		A6930566144CEBFC0012EEFA /* ThankYouViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6930564144CEBFC0012EEFA /* ThankYouViewController.m */; };
 		A69826E51354A488004A8258 /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A69826E41354A488004A8258 /* EventKitUI.framework */; };
 		A6A82E38145624F20075EB28 /* LibraryTextElementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A82E37145624F20075EB28 /* LibraryTextElementViewController.m */; };
+		A6B4E1B016B51B180039AA50 /* ClassAddRetina4.xib in Resources */ = {isa = PBXBuildFile; fileRef = A6B4E1AF16B51B180039AA50 /* ClassAddRetina4.xib */; };
 		A6CB9E5F16ADA27D008DD61C /* NSData+DES.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CB9E5D16ADA27D008DD61C /* NSData+DES.m */; };
 		A6CD75F5164820D500D1209C /* ClassInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CD75F1164820D500D1209C /* ClassInfoView.m */; };
 		A6CD75F6164820D500D1209C /* ClassInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CD75F3164820D500D1209C /* ClassInfoViewController.m */; };
@@ -382,7 +383,6 @@
 		C7AFEE0E1659EC0A005FF1DB /* Kuo_Data.m in Sources */ = {isa = PBXBuildFile; fileRef = C7AFEE001659EC0A005FF1DB /* Kuo_Data.m */; };
 		C7AFEE0F1659EC0A005FF1DB /* KUO_Data_Bra2.m in Sources */ = {isa = PBXBuildFile; fileRef = C7AFEE021659EC0A005FF1DB /* KUO_Data_Bra2.m */; };
 		C7AFEE101659EC0A005FF1DB /* K_TimeView.m in Sources */ = {isa = PBXBuildFile; fileRef = C7AFEE041659EC0A005FF1DB /* K_TimeView.m */; };
-		C7AFEE111659EC0A005FF1DB /* K_RouteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7AFEE061659EC0A005FF1DB /* K_RouteViewController.m */; };
 		C7AFEE121659EC0A005FF1DB /* K_data.plist in Resources */ = {isa = PBXBuildFile; fileRef = C7AFEE081659EC0A005FF1DB /* K_data.plist */; };
 		C7AFEE131659EC0A005FF1DB /* Info.png in Resources */ = {isa = PBXBuildFile; fileRef = C7AFEE091659EC0A005FF1DB /* Info.png */; };
 		C7AFEE1D165B4648005FF1DB /* Time.png in Resources */ = {isa = PBXBuildFile; fileRef = C7AFEE1C165B4647005FF1DB /* Time.png */; };
@@ -969,7 +969,7 @@
 		91364F9416AFB224007CA25D /* SBJsonUTF8Stream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonUTF8Stream.m; sourceTree = "<group>"; };
 		91402E3A163E749A00B04EE5 /* ClassAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassAdd.h; sourceTree = "<group>"; };
 		91402E3B163E749A00B04EE5 /* ClassAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassAdd.m; sourceTree = "<group>"; };
-		91402E3C163E749A00B04EE5 /* ClassAdd.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClassAdd.xib; sourceTree = "<group>"; };
+		91402E3C163E749A00B04EE5 /* ClassAddRetina3.5.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClassAddRetina3.5.xib; sourceTree = "<group>"; };
 		91402E3D163E749A00B04EE5 /* ClassDataBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassDataBase.h; sourceTree = "<group>"; };
 		91402E3E163E749A00B04EE5 /* ClassDataBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassDataBase.m; sourceTree = "<group>"; };
 		91402E3F163E749A00B04EE5 /* EditScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditScheduleViewController.h; sourceTree = "<group>"; };
@@ -1088,6 +1088,7 @@
 		A69826E41354A488004A8258 /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = System/Library/Frameworks/EventKitUI.framework; sourceTree = SDKROOT; };
 		A6A82E36145624F20075EB28 /* LibraryTextElementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryTextElementViewController.h; sourceTree = "<group>"; };
 		A6A82E37145624F20075EB28 /* LibraryTextElementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryTextElementViewController.m; sourceTree = "<group>"; };
+		A6B4E1AF16B51B180039AA50 /* ClassAddRetina4.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClassAddRetina4.xib; sourceTree = "<group>"; };
 		A6CB9E5C16ADA27D008DD61C /* NSData+DES.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSData+DES.h"; path = "Classes/NSData+DES.h"; sourceTree = "<group>"; };
 		A6CB9E5D16ADA27D008DD61C /* NSData+DES.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSData+DES.m"; path = "Classes/NSData+DES.m"; sourceTree = "<group>"; };
 		A6CB9E6416ADA3A0008DD61C /* CommonCryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonCryptor.h; sourceTree = "<group>"; };
@@ -1206,8 +1207,6 @@
 		C7AFEE031659EC0A005FF1DB /* KUO_Data_Bra2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KUO_Data_Bra2.h; sourceTree = "<group>"; };
 		C7AFEE041659EC0A005FF1DB /* K_TimeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = K_TimeView.m; sourceTree = "<group>"; };
 		C7AFEE051659EC0A005FF1DB /* K_TimeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = K_TimeView.h; sourceTree = "<group>"; };
-		C7AFEE061659EC0A005FF1DB /* K_RouteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = K_RouteViewController.m; sourceTree = "<group>"; };
-		C7AFEE071659EC0A005FF1DB /* K_RouteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = K_RouteViewController.h; sourceTree = "<group>"; };
 		C7AFEE081659EC0A005FF1DB /* K_data.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = K_data.plist; sourceTree = "<group>"; };
 		C7AFEE091659EC0A005FF1DB /* Info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Info.png; sourceTree = "<group>"; };
 		C7AFEE1C165B4647005FF1DB /* Time.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Time.png; sourceTree = "<group>"; };
@@ -2716,8 +2715,6 @@
 				C7AFEE031659EC0A005FF1DB /* KUO_Data_Bra2.h */,
 				C7AFEE041659EC0A005FF1DB /* K_TimeView.m */,
 				C7AFEE051659EC0A005FF1DB /* K_TimeView.h */,
-				C7AFEE061659EC0A005FF1DB /* K_RouteViewController.m */,
-				C7AFEE071659EC0A005FF1DB /* K_RouteViewController.h */,
 				C7AFEE081659EC0A005FF1DB /* K_data.plist */,
 				C7AFEE091659EC0A005FF1DB /* Info.png */,
 				C7AFEDF51659EBDD005FF1DB /* OtherTrafficTrapViewController.m */,
@@ -2808,7 +2805,8 @@
 				A6218832164586CD003FC7EE /* ClassLabelBasis.m */,
 				91402E3A163E749A00B04EE5 /* ClassAdd.h */,
 				91402E3B163E749A00B04EE5 /* ClassAdd.m */,
-				91402E3C163E749A00B04EE5 /* ClassAdd.xib */,
+				91402E3C163E749A00B04EE5 /* ClassAddRetina3.5.xib */,
+				A6B4E1AF16B51B180039AA50 /* ClassAddRetina4.xib */,
 				91402E3D163E749A00B04EE5 /* ClassDataBase.h */,
 				91402E3E163E749A00B04EE5 /* ClassDataBase.m */,
 				91402E3F163E749A00B04EE5 /* EditScheduleViewController.h */,
@@ -3370,7 +3368,7 @@
 				C74878BA162D2989001D3390 /* Default.png in Resources */,
 				C74878BB162D2996001D3390 /* Default@2x.png in Resources */,
 				C74878BD162D299C001D3390 /* Default-568h@2x.png in Resources */,
-				91402E42163E749A00B04EE5 /* ClassAdd.xib in Resources */,
+				91402E42163E749A00B04EE5 /* ClassAddRetina3.5.xib in Resources */,
 				A6CD75F7164820D500D1209C /* ClassInfoViewController.xib in Resources */,
 				A6CD75FE164820FB00D1209C /* TabBarNipple.png in Resources */,
 				A6CD75FF164820FB00D1209C /* TabBarNipple@2x.png in Resources */,
@@ -3439,6 +3437,7 @@
 				C784C89A16B0F65B000978FE /* CourseInfo in Resources */,
 				C784C89C16B0F694000978FE /* Grade in Resources */,
 				C784C89E16B0F6CA000978FE /* MoodleInfo in Resources */,
+				A6B4E1B016B51B180039AA50 /* ClassAddRetina4.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3808,7 +3807,6 @@
 				C7AFEE0E1659EC0A005FF1DB /* Kuo_Data.m in Sources */,
 				C7AFEE0F1659EC0A005FF1DB /* KUO_Data_Bra2.m in Sources */,
 				C7AFEE101659EC0A005FF1DB /* K_TimeView.m in Sources */,
-				C7AFEE111659EC0A005FF1DB /* K_RouteViewController.m in Sources */,
 				A6CE2913165C86C200C3FE81 /* DownloadingView.m in Sources */,
 				91EC76C81663616500E4E134 /* setHTOriginAndTerminalViewController.m in Sources */,
 				A6DE9DC21663AD10009EECE6 /* HTSearchResultViewController.m in Sources */,

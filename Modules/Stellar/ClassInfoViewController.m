@@ -42,35 +42,36 @@
         ClassInfoView *view1, *view2, *view3, *view4;
         view1 = [[ClassInfoView alloc] initWithStyle:UITableViewStyleGrouped];
         view1.title = type3;
+        view1.moodleData = [Moodle_API GetMoodleInfo_AndUseToken:token courseID:[apiKey objectForKey:courseIDKey] classID:[apiKey objectForKey:classIDKey]];
         view1.delegatetype5 = self;
-        view1.view.frame = CGRectMake(0, 40, 320, 420);
+        view1.view.frame = CGRectMake(0, 40, 320, [[UIScreen mainScreen] bounds].size.height-60);
         [viewController1.view addSubview:view1.tableView];
         
         view2 = [[ClassInfoView alloc] initWithStyle:UITableViewStyleGrouped];
         view2.title = type4;
         view2.delegatetype5 = self;
         view2.moodleData = [Moodle_API GetMoodleInfo_AndUseToken:token courseID:[apiKey objectForKey:courseIDKey] classID:[apiKey objectForKey:classIDKey]];
-        view2.view.frame = CGRectMake(0, 40, 320, 420);
+        view2.view.frame = CGRectMake(0, 40, 320, [[UIScreen mainScreen] bounds].size.height-60);
         [viewController2.view addSubview:view2.tableView];
         
         view3 = [[ClassInfoView alloc] initWithStyle:UITableViewStyleGrouped];
         view3.title = type2;
         view3.moodleData = [Moodle_API GetMoodleInfo_AndUseToken:token courseID:[apiKey objectForKey:courseIDKey] classID:[apiKey objectForKey:classIDKey]];
         view3.delegatetype5 = self;
-        view3.view.frame = CGRectMake(0, 10, 320, 450);
+        view3.view.frame = CGRectMake(0, 10, 320, [[UIScreen mainScreen] bounds].size.height-30);
         [viewController3.view addSubview:view3.tableView];
         
         view4 = [[ClassInfoView alloc] initWithStyle:UITableViewStyleGrouped];
         view4.title = type1;
         view4.moodleData = [Moodle_API GetGrade_AndUseToken:token courseID:[apiKey objectForKey:courseIDKey] classID:[apiKey objectForKey:classIDKey]];
         view4.delegatetype5 = self;
-        view4.view.frame = CGRectMake(0, 10, 320, 450);
+        view4.view.frame = CGRectMake(0, 10, 320, [[UIScreen mainScreen] bounds].size.height-30);
         [viewController4.view addSubview:view4.tableView];
         
         view5 = [[ClassInfoView alloc] initWithStyle:UITableViewStyleGrouped];
         view5.delegatetype5 = self;
         view5.title = type5;
-        view5.view.frame = CGRectMake(0, 10, 320, 450);
+        view5.view.frame = CGRectMake(0, 10, 320, [[UIScreen mainScreen] bounds].size.height-30);
         [viewController5.view addSubview:view5.tableView];
         
         [self setViewControllers:[NSArray arrayWithObjects:viewController1, viewController2,viewController3,viewController4,viewController5, nil] animated:YES];
@@ -109,7 +110,7 @@
     UIImage* tabBarArrowImage = [UIImage imageNamed:@"TabBarNipple@2x.png"];
     self.tabBarArrow = [[[UIImageView alloc] initWithImage:tabBarArrowImage] autorelease];
     // To get the vertical location we start at the bottom of the window, go up by height of the tab bar, go up again by the height of arrow and then come back down 2 pixels so the arrow is slightly on top of the tab bar.
-    CGFloat verticalLocation = 357;
+    CGFloat verticalLocation = [[UIScreen mainScreen] bounds].size.height-tabBarArrowImage.size.height-self.tabBar.frame.size.height-[[UIApplication sharedApplication] statusBarFrame].size.height-44+5;;
     tabBarArrow.frame = CGRectMake([self horizontalLocationFor:0], verticalLocation, tabBarArrowImage.size.width, tabBarArrowImage.size.height);
     
     [self.view addSubview:tabBarArrow];
@@ -184,11 +185,11 @@
     UIBarButtonItem *done =    [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(leaveEditMode)] autorelease];
     
     self.navigationItem.rightBarButtonItem = done;
-    view5.view.frame = CGRectMake(0, 10, 320, 200);
+    view5.view.frame = CGRectMake(0, 10, 320, [[UIScreen mainScreen] bounds].size.height-280);
 }
 -(void)rightBarButtonItemOff{
     self.navigationItem.rightBarButtonItem = nil;
-    view5.view.frame = CGRectMake(0, 10, 320, 450);
+    view5.view.frame = CGRectMake(0, 10, 320, [[UIScreen mainScreen] bounds].size.height-30);
 }
 
 - (void)viewDidLoad

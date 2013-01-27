@@ -31,6 +31,8 @@
 #define moodleCourseClassKey @"open_clsid"
 #define moodleCourseDayKey @"day"
 
+#define moodleCourseTeacherKey @"teacher"
+
 #define moodleGradeNameKey @"name"
 #define moodleGradeKey @"grade"
 #define moodleGradeCommentKey @"comment"

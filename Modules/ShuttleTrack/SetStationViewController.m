@@ -34,7 +34,7 @@
         startStaion = [[NSString alloc]initWithString:@"基隆"];
         DepatureStation = [[NSString alloc]initWithString:@"臺北"];
         view1 = [[SetOriginAndStationViewController alloc] initWithStyle:UITableViewStyleGrouped];
-        view1.view.frame = CGRectMake(0, 0, 320, 440);
+        view1.view.frame = CGRectMake(0, 0, 320, [[UIScreen mainScreen] bounds].size.height-self.tabBar.frame.size.height);
         [setStartStationController.view addSubview:view1.view];
         [setStartStationController.view addSubview:bg];
         setStartStationController.tabBarItem.tag=0;
@@ -42,7 +42,7 @@
         setStartStationController.tabBarItem.image = [UIImage imageNamed:@"bank.png"];
         ///////////////////////////////////////////////////////////
         view2 = [[SetOriginAndStationViewController alloc] initWithStyle:UITableViewStyleGrouped];
-        view2.view.frame = CGRectMake(0, 0, 320, 440);
+        view2.view.frame = CGRectMake(0, 0, 320, [[UIScreen mainScreen] bounds].size.height-self.tabBar.frame.size.height);
         [setdepatureStationviewController.view addSubview:view2.view];
         [setdepatureStationviewController.view addSubview:bg];
         view2.delegate = self;
@@ -54,7 +54,7 @@
         startStaion = [[NSString alloc]initWithString:@"台北"];
         DepatureStation = [[NSString alloc]initWithString:@"左營"];
         HTView_origin = [[setHTOriginAndTerminalViewController alloc] initWithStyle:UITableViewStyleGrouped];
-        HTView_origin.view.frame = CGRectMake(0, 0, 320, 440);
+        HTView_origin.view.frame = CGRectMake(0, 0, 320, [[UIScreen mainScreen] bounds].size.height-self.tabBar.frame.size.height);
         [setStartStationController.view addSubview:HTView_origin.view];
         [setStartStationController.view addSubview:bg];
         setStartStationController.tabBarItem.tag=0;
@@ -62,7 +62,7 @@
         setStartStationController.tabBarItem.image = [UIImage imageNamed:@"bank.png"];
         ///////////////////////////////////////////////////////////
         HTView_terminal = [[setHTOriginAndTerminalViewController alloc] initWithStyle:UITableViewStyleGrouped];
-        HTView_terminal.view.frame = CGRectMake(0, 0, 320, 440);
+        HTView_terminal.view.frame = CGRectMake(0, 0, 320, [[UIScreen mainScreen] bounds].size.height-self.tabBar.frame.size.height);
         [setdepatureStationviewController.view addSubview:HTView_terminal.view];
         [setdepatureStationviewController.view addSubview:bg];
         HTView_terminal.delegate = self;
@@ -72,14 +72,14 @@
     }
     
     calendar = [[CKViewController alloc]init];
-    calendar.view.frame = CGRectMake(0, 3, 320, 440);
+    calendar.view.frame = CGRectMake(0, 3, 320, [[UIScreen mainScreen] bounds].size.height-self.tabBar.frame.size.height);
     [setTimeviewController.view addSubview:calendar.view];
     setTimeviewController.tabBarItem.image = [UIImage imageNamed:@"TimeDrive.png"];
     //////////////////////////////////////////////////////////
     if (!isHighSpeedTrain){ 
     view4 = [[TrainStyleViewController alloc] initWithStyle:UITableViewStyleGrouped];
     view4.title = type4;
-    view4.view.frame = CGRectMake(0, 10, 320, 420);
+    view4.view.frame = CGRectMake(0, 10, 320, [[UIScreen mainScreen] bounds].size.height-self.tabBar.frame.size.height);
     [setTrainTypeviewController.view addSubview:view4.tableView];
     view4.delegate = self;
     setTrainTypeviewController.tabBarItem.tag=3;
@@ -87,7 +87,7 @@
     }
     else {
     HTTime =[[SetTimeViewController alloc] initWithStyle:UITableViewStyleGrouped];
-    HTTime.view.frame = CGRectMake(0, 10, 320, 420);
+    HTTime.view.frame = CGRectMake(0, 10, 320, [[UIScreen mainScreen] bounds].size.height-self.tabBar.frame.size.height);
     HTTime.delegate = self;
     [HTTime initialTime];
     [setHTTimeviewController.view addSubview:HTTime.view];
@@ -103,8 +103,8 @@
         view5 = [[StaionInfoTableViewController alloc] init];
         view5.dataSource = self;
         view5.title = type5;
-        view5.view.frame = CGRectMake(0, 10, 320, 425);
-        resultViewController.view.frame= CGRectMake(0, 10, 320, 425);
+        view5.view.frame = CGRectMake(0, 10, 320, [[UIScreen mainScreen] bounds].size.height-self.tabBar.frame.size.height);
+        resultViewController.view.frame= CGRectMake(0, 10, 320, [[UIScreen mainScreen] bounds].size.height-self.tabBar.frame.size.height);
         [resultViewController.view addSubview:view5.tableView];
         resultViewController.tabBarItem.tag=4;
         resultViewController.tabBarItem.image = [UIImage imageNamed:@"magnify.png"];
@@ -113,8 +113,8 @@
     else {
         ht_searchResult = [[HTSearchResultViewController alloc]init];
         ht_searchResult.dataSource = self;
-        ht_searchResult.view.frame = CGRectMake(0, 10, 320, 425);
-        resultViewController.view.frame= CGRectMake(0, 10, 320, 425);
+        ht_searchResult.view.frame = CGRectMake(0, 10, 320, [[UIScreen mainScreen] bounds].size.height-self.tabBar.frame.size.height);
+        resultViewController.view.frame= CGRectMake(0, 10, 320, [[UIScreen mainScreen] bounds].size.height-self.tabBar.frame.size.height);
         [resultViewController.view addSubview:ht_searchResult.tableView];
         resultViewController.tabBarItem.tag=4;
         resultViewController.tabBarItem.image = [UIImage imageNamed:@"magnify.png"];
@@ -132,7 +132,7 @@
     self.delegate=self;
     
     
-    self.tabBar.frame = CGRectMake(0, 480-self.tabBar.frame.size.height-20, self.tabBar.frame.size.width, self.tabBar.frame.size.height+20);
+    self.tabBar.frame = CGRectMake(0, [[UIScreen mainScreen] bounds].size.height-self.tabBar.frame.size.height-20, self.tabBar.frame.size.width, self.tabBar.frame.size.height+20);
     
     [self addTabBarArrow];
     [self navAddRightButton];
@@ -194,7 +194,7 @@
 {
     UIImage* tabBarArrowImage = [UIImage imageNamed:@"TabBarNipple@2x.png"];
     self.tabBarArrow = [[UIImageView alloc] initWithImage:tabBarArrowImage] ;
-    CGFloat verticalLocation = 340;
+    CGFloat verticalLocation = [[UIScreen mainScreen] bounds].size.height-tabBarArrowImage.size.height-self.tabBar.frame.size.height-[[UIApplication sharedApplication] statusBarFrame].size.height-44+5;;
     tabBarArrow.frame = CGRectMake([self horizontalLocationFor:0], verticalLocation, tabBarArrowImage.size.width, tabBarArrowImage.size.height);
     
     [self.view addSubview:tabBarArrow];

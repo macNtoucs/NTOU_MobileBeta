@@ -225,7 +225,7 @@ static ClassDataBase *sharedData = nil;
             Tag = anotherTag+Tag%100;
         }
     }
-    if (([Key intValue]%10000)/100!=14) { //向下檢查是否連堂
+    if (([Key intValue]%10000)/100+[Key intValue]%100!=14) { //向下檢查是否連堂
         if ([[self ScheduleInfoKeyToWeek:Key] objectAtIndex:([Key intValue]%10000)/100+1+([Key intValue]%100-1)]
             ==[[self ScheduleInfoKeyToWeek:Key] objectAtIndex:([Key intValue]%10000)/100]) {
             int anotherTag = ([Key intValue]/100)*100+below+([Key intValue]%100-1)*100;
@@ -534,8 +534,11 @@ static ClassDataBase *sharedData = nil;
 -(void)updataScheduleFromMoodle:(NSDictionary *)dictionary
 {
     for (NSDictionary * courseDic in [dictionary objectForKey:moodleListKey]) {
+        
         NSMutableArray* daySched = [self ScheduleInfoFromMoodleKeyToWeek:[courseDic objectForKey:moodleCourseDayKey]];
         NSMutableArray* classroomArray = [NSMutableArray array];
+        NSMutableArray* professorArray = [NSMutableArray array];
+        
         for (NSDictionary* couses in [courseDic objectForKey:moodleCourseKey]) {
             NSString* replaceCourse=[daySched objectAtIndex:[[couses objectForKey:moodleCourseTimeKey] intValue]];
             [self courseCountReplaceForNewCourse:[couses objectForKey:moodleCourseNameKey] ForOldCourse:replaceCourse];
@@ -543,20 +546,27 @@ static ClassDataBase *sharedData = nil;
             [daySched replaceObjectAtIndex:[[couses objectForKey:moodleCourseTimeKey] intValue]-1 withObject:[couses objectForKey:moodleCourseNameKey]];
             
             [classroomArray addObject:[couses objectForKey:moodleCourseClassroomKey]];
+            [professorArray addObject:[Moodle_API GetCourseInfo_AndUseToken:token courseID:[couses objectForKey:moodleCourseIdKey] classID:[couses objectForKey:moodleCourseClassKey]]];
         }
+        
         for (int i=0,j=0;i<[daySched count] && i < [[ClassDataBase sharedData] FetchClassSessionTimes];i++) {
+            
             while ([[daySched objectAtIndex:i]isEqualToString:@" "]&&i+1<[daySched count])
                 i++;
+            
             if (!(i+1<[daySched count])) {
                 break;
             }
+            
             int sameClass=i;
             while (i<[daySched count]&&[[daySched objectAtIndex:i+1] isEqualToString:[daySched objectAtIndex:i]])
                 i++;
+            
             NSNumber* tag = [NSNumber numberWithInt:([self ScheduleInfoFromMoodleKeyToNumber:[courseDic objectForKey:moodleCourseDayKey]]*100+sameClass)*100+i-sameClass+1];
+            
             if (![[classroomTempLocation allKeys] containsObject:tag]) {
                 [self UpdataClassroomLocationKey:tag Classroom:[classroomArray objectAtIndex:j]];
-                [self UpdataProfessorNameKey:tag ProfessorName:@" "];
+                [self UpdataProfessorNameKey:tag ProfessorName:[[professorArray objectAtIndex:j] objectForKey:moodleCourseTeacherKey]];
                 for (;j+1<[classroomArray count]&&[[classroomArray objectAtIndex:j] isEqualToString:[classroomArray objectAtIndex:j+1]];)
                     if ([[classroomArray objectAtIndex:j] isEqualToString:[classroomArray objectAtIndex:j+1]]) {
                         j++;

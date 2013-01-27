@@ -110,7 +110,7 @@
     return self;
 }
 -(void)viewWillAppear:(BOOL)animated{
-    self.toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 436, 320, 44)];
+    self.toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, [[UIScreen mainScreen] bounds].size.height-44, 320, 44)];
     self.toolbar.barStyle = UIBarButtonItemStyleBordered;
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 20.0f)];
     label.text = [self LabelText];

@@ -81,7 +81,7 @@
 -(IBAction)ConfirmOrCancel:(id)sender{
     UIButton* button = (UIButton*)sender;
     CGRect basketTopFrame = CGRectMake(_topView.frame.origin.x, -_topView.frame.origin.y, _topView.frame.size.width, _topView.frame.size.height);
-    CGRect basketBottomFrame = CGRectMake(_bottomView.frame.origin.x, self.view.bounds.size.height+22, _bottomView.frame.size.width, _bottomView.frame.size.height);
+    CGRect basketBottomFrame = CGRectMake(_bottomView.frame.origin.x,[[UIScreen mainScreen] bounds].size.height, _bottomView.frame.size.width, _bottomView.frame.size.height);
     [UIView animateWithDuration:0.25
                           delay:0
                         options: UIViewAnimationCurveEaseOut
@@ -160,8 +160,9 @@
     
     CGRect basketTopFrame = _topView.frame;
     _topView.frame = CGRectMake(basketTopFrame.origin.x, -28, basketTopFrame.size.width, basketTopFrame.size.height);
+    _bottomView.frame = CGRectMake(_bottomView.frame.origin.x,[[UIScreen mainScreen] bounds].size.height-_bottomView.frame.size.height, _bottomView.frame.size.width, _bottomView.frame.size.height);
     CGRect basketBottomFrame = _bottomView.frame;
-    _bottomView.frame = CGRectMake(basketBottomFrame.origin.x, self.view.bounds.size.height+22, basketBottomFrame.size.width, basketTopFrame.size.height);
+    _bottomView.frame = CGRectMake(basketBottomFrame.origin.x,[[UIScreen mainScreen] bounds].size.height, basketBottomFrame.size.width, basketBottomFrame.size.height);
     [super viewDidLoad];
     [_topView addSubview:_cancelButton];
     [_topView addSubview:_addButton];
@@ -175,7 +176,7 @@
                         options: UIViewAnimationCurveEaseOut
                      animations:^{
                          _topView.frame = basketTopFrame;
-                         _bottomView.frame = basketBottomFrame;
+                         _bottomView.frame = CGRectMake(_bottomView.frame.origin.x,_bottomView.frame.origin.y-_bottomView.frame.size.height, _bottomView.frame.size.width, _bottomView.frame.size.height);
                      } 
                      completion:^(BOOL finished){
                      }];

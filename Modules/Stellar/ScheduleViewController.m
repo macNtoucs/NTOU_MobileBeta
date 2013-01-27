@@ -8,6 +8,9 @@
 
 #import "ScheduleViewController.h"
 #import "ClassDataBase.h"
+
+#define iPhone5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
+
 @interface ScheduleViewController ()
 
 @end
@@ -50,12 +53,12 @@
 
 -(void) buttonDidFinish:(int)FinishType StringData:(NSArray *)array
 {
-    ClassLabelBasis* FirstTap = [weekschedule.TapAddCourse objectAtIndex:0];
     if (FinishType == clean||(FinishType == move&&[weekschedule.TapAddCourse count]==1)) {
         [weekschedule restorTheOriginalColor];
         [weekschedule removeAllcourselabel];
         return;
     }
+    ClassLabelBasis* FirstTap = [weekschedule.TapAddCourse objectAtIndex:0];
     if (FinishType == move||[[array objectAtIndex:0] isEqualToString:[NSString string]]) {
         NSNumber* deleteCourseTag = [NSNumber numberWithInt:[[weekschedule.TapAddCourse objectAtIndex:0]tag]];
         [[ClassDataBase sharedData] UpdataScheduleInfo:deleteCourseTag ScheduleInfo:@" "];
@@ -82,8 +85,8 @@
             [weekschedule.TapAddCourse addObject:label];
         else{
             ClassLabelBasis* sortedlabel = [weekschedule.TapAddCourse objectAtIndex:i];
-            if (label.tag==sortedlabel.tag+100)
-                sortedlabel.tag++;
+            if (sortedlabel.tag%10000/100+sortedlabel.tag%100==label.tag%10000/100)
+                sortedlabel.tag+=label.tag%100;
             else{
                 [weekschedule.TapAddCourse addObject:label];
                 i++;
@@ -157,7 +160,10 @@
 }
 
 -(IBAction)Add:(id)sender{
-    addView = [[ClassAdd alloc] initWithNibName:@"ClassAdd" bundle:nil];
+    if (iPhone5)
+        addView = [[ClassAdd alloc] initWithNibName:@"ClassAddRetina4" bundle:nil];
+    else
+        addView = [[ClassAdd alloc] initWithNibName:@"ClassAddRetina3.5" bundle:nil];
     addView.delegate = self;
     [self.navigationController.view addSubview:addView.view];
     [self.navigationController setNavigationBarHidden:YES animated:NO];
