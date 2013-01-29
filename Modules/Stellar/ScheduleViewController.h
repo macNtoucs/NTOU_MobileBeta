@@ -12,8 +12,8 @@
 #import "LessonTimeView.h"
 #import "EditScheduleViewController.h"
 #import "ClassAdd.h"
-
-@interface ScheduleViewController : UIViewController<UIScrollViewDelegate,UIGestureRecognizerDelegate,ClassAdddelegate,ClassDataBaseDelegate,WeekScheduleViewDelegate>{
+#import "MBProgressHUD.h"
+@interface ScheduleViewController : UIViewController<UIScrollViewDelegate,UIGestureRecognizerDelegate,ClassAdddelegate,ClassDataBaseDelegate,WeekScheduleViewDelegate,MBProgressHUDDelegate>{
     EditScheduleViewController *editSchedule;
     WeekNameView *TopWeekcontroller;
     LessonTimeView *LeftViewController;
@@ -26,7 +26,7 @@
     CGFloat lastScale;
     bool isWeekScheduleInScrowView; //if 3days then set to be false
     bool isScrollingUp;
-    
+    MBProgressHUD *HUD;
 }
 -(void) showClassInfo:(ClassLabelBasis *)label;
 

@@ -246,7 +246,6 @@
 		91F017DE167F355600B4C5F0 /* AppIcon-114.png in Resources */ = {isa = PBXBuildFile; fileRef = 91F01790167F355600B4C5F0 /* AppIcon-114.png */; };
 		91F017DF167F355600B4C5F0 /* AppIcon-144.png in Resources */ = {isa = PBXBuildFile; fileRef = 91F01791167F355600B4C5F0 /* AppIcon-144.png */; };
 		91F017E0167F355600B4C5F0 /* CGPDFDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F01793167F355600B4C5F0 /* CGPDFDocument.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		91F017E1167F355600B4C5F0 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 91F01794167F355600B4C5F0 /* Default-568h@2x.png */; };
 		91F017E2167F355600B4C5F0 /* Reader-Button-H.png in Resources */ = {isa = PBXBuildFile; fileRef = 91F01795167F355600B4C5F0 /* Reader-Button-H.png */; };
 		91F017E3167F355600B4C5F0 /* Reader-Button-H@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 91F01796167F355600B4C5F0 /* Reader-Button-H@2x.png */; };
 		91F017E4167F355600B4C5F0 /* Reader-Button-N.png in Resources */ = {isa = PBXBuildFile; fileRef = 91F01797167F355600B4C5F0 /* Reader-Button-N.png */; };
@@ -371,6 +370,8 @@
 		C784C89A16B0F65B000978FE /* CourseInfo in Resources */ = {isa = PBXBuildFile; fileRef = C784C89916B0F65B000978FE /* CourseInfo */; };
 		C784C89C16B0F694000978FE /* Grade in Resources */ = {isa = PBXBuildFile; fileRef = C784C89B16B0F694000978FE /* Grade */; };
 		C784C89E16B0F6CA000978FE /* MoodleInfo in Resources */ = {isa = PBXBuildFile; fileRef = C784C89D16B0F6CA000978FE /* MoodleInfo */; };
+		C795602216B77F6B0001EB64 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = C795602016B77F6B0001EB64 /* MBProgressHUD.m */; };
+		C795602716B7A8DE0001EB64 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 91F01794167F355600B4C5F0 /* Default-568h@2x.png */; };
 		C79A9B9E1638FDC4001FAF48 /* ScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C79A9B9D1638FDC4001FAF48 /* ScheduleViewController.m */; };
 		C79A9BA216390494001FAF48 /* WeekScheduleView.m in Sources */ = {isa = PBXBuildFile; fileRef = C79A9BA116390494001FAF48 /* WeekScheduleView.m */; };
 		C79A9BAD1639464C001FAF48 /* WeekNameView.m in Sources */ = {isa = PBXBuildFile; fileRef = C79A9BAC1639464C001FAF48 /* WeekNameView.m */; };
@@ -1184,6 +1185,8 @@
 		C784C89916B0F65B000978FE /* CourseInfo */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CourseInfo; sourceTree = "<group>"; };
 		C784C89B16B0F694000978FE /* Grade */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Grade; sourceTree = "<group>"; };
 		C784C89D16B0F6CA000978FE /* MoodleInfo */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MoodleInfo; sourceTree = "<group>"; };
+		C795602016B77F6B0001EB64 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		C795602116B77F6B0001EB64 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		C79A9B9C1638FDC4001FAF48 /* ScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleViewController.h; sourceTree = "<group>"; };
 		C79A9B9D1638FDC4001FAF48 /* ScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleViewController.m; sourceTree = "<group>"; };
 		C79A9BA016390494001FAF48 /* WeekScheduleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeekScheduleView.h; sourceTree = "<group>"; };
@@ -2441,6 +2444,15 @@
 			path = JSON;
 			sourceTree = "<group>";
 		};
+		C795601E16B77EF80001EB64 /* HudAPI */ = {
+			isa = PBXGroup;
+			children = (
+				C795602116B77F6B0001EB64 /* MBProgressHUD.h */,
+				C795602016B77F6B0001EB64 /* MBProgressHUD.m */,
+			);
+			name = HudAPI;
+			sourceTree = "<group>";
+		};
 		C7BF082316802EBF00153F6F /* PDFSources */ = {
 			isa = PBXGroup;
 			children = (
@@ -2788,6 +2800,7 @@
 				C7BF082316802EBF00153F6F /* PDFSources */,
 				C7BF082516802EDB00153F6F /* PDF_API */,
 				A6CB9B1616ADA062008DD61C /* Moodle_API */,
+				C795601E16B77EF80001EB64 /* HudAPI */,
 				A6CD75F9164820FB00D1209C /* SetWeekTimesViewController.h */,
 				A6CD75FA164820FB00D1209C /* SetWeekTimesViewController.m */,
 				A6CD75FB164820FB00D1209C /* TabBarNipple.png */,
@@ -3414,7 +3427,6 @@
 				91F017DD167F355600B4C5F0 /* AppIcon-072.png in Resources */,
 				91F017DE167F355600B4C5F0 /* AppIcon-114.png in Resources */,
 				91F017DF167F355600B4C5F0 /* AppIcon-144.png in Resources */,
-				91F017E1167F355600B4C5F0 /* Default-568h@2x.png in Resources */,
 				91F017E2167F355600B4C5F0 /* Reader-Button-H.png in Resources */,
 				91F017E3167F355600B4C5F0 /* Reader-Button-H@2x.png in Resources */,
 				91F017E4167F355600B4C5F0 /* Reader-Button-N.png in Resources */,
@@ -3438,6 +3450,7 @@
 				C784C89C16B0F694000978FE /* Grade in Resources */,
 				C784C89E16B0F6CA000978FE /* MoodleInfo in Resources */,
 				A6B4E1B016B51B180039AA50 /* ClassAddRetina4.xib in Resources */,
+				C795602716B7A8DE0001EB64 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3850,6 +3863,7 @@
 				91364F9B16AFB224007CA25D /* SBJsonStreamWriterState.m in Sources */,
 				91364F9C16AFB224007CA25D /* SBJsonTokeniser.m in Sources */,
 				91364F9D16AFB224007CA25D /* SBJsonUTF8Stream.m in Sources */,
+				C795602216B77F6B0001EB64 /* MBProgressHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

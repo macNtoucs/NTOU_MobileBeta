@@ -20,12 +20,12 @@
 @synthesize courseId;
 @synthesize tag;
 @synthesize tabBarArrow;
+@synthesize token;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        NSString *token = [[ClassDataBase sharedData] loginTokenWhenAccountFromUserDefault];
         NSDictionary* apiKey = [[ClassDataBase sharedData] loginCourseToGetCourseidAndClassid:self.title];
         UIViewController *viewController1, *viewController2, *viewController3, *viewController4, *viewController5;
         viewController1 = [[UIViewController alloc] init];
@@ -76,8 +76,9 @@
         
         [self setViewControllers:[NSArray arrayWithObjects:viewController1, viewController2,viewController3,viewController4,viewController5, nil] animated:YES];
         self.delegate=self;
+        
         [self addTabBarArrow];
-    }
+        }
     
     return self;
 }
@@ -133,7 +134,7 @@
         classinfo.text = @"上課講義";
     }
     view.view.frame = CGRectMake(0, 40, 320, 330);
-    NSString *token = [[ClassDataBase sharedData] loginTokenWhenAccountFromUserDefault];
+    token = [[ClassDataBase sharedData] loginTokenWhenAccountFromUserDefault];
     NSDictionary* apiKey = [[ClassDataBase sharedData] loginCourseToGetCourseidAndClassid:self.title];
     view.moodleData = [Moodle_API GetMoodleInfo_AndUseToken:token courseID:[apiKey objectForKey:courseIDKey] classID:[apiKey objectForKey:classIDKey]];
     [viewController.view addSubview:view.tableView];
@@ -202,6 +203,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+        
     if (!classinfo) {
         classinfo = [[[ClassLabelBasis alloc] initWithFrame:CGRectMake(0, 0, 320, 40)] autorelease];
         classinfo.backgroundColor = [UIColor clearColor];

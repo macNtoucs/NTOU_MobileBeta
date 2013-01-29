@@ -23,7 +23,6 @@
 @synthesize weekschedule;
 @synthesize classInfo;
 
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -41,14 +40,46 @@
     return self;
 }
 
+-(void)Task:(ClassLabelBasis *)label
+{
+    NSString* token = [[ClassDataBase sharedData] loginTokenWhenAccountFromUserDefault];
+    if (token) {
+        classInfo = [[[ClassInfoViewController alloc] init]autorelease];
+        classInfo.title = label.text;
+        classInfo.tag = label.tag;
+        classInfo.token = token;
+        NSDictionary* courseInfo = [[ClassDataBase sharedData] loginCourseToGetCourseidAndClassid:label.text];
+        classInfo.courseId = [courseInfo objectForKey:courseIDKey];
+        classInfo.classId = [courseInfo objectForKey:classIDKey];
+        [self.navigationController pushViewController:classInfo animated:YES];
+    }
+    else
+    {
+        UIAlertView *loadingAlertView = [[UIAlertView alloc]
+                                         initWithTitle:nil message:@"帳號、密碼錯誤"
+                                         delegate:self cancelButtonTitle:@"確定"
+                                         otherButtonTitles:nil];
+        [loadingAlertView show];
+        [loadingAlertView release];
+
+    }
+        
+}
+
 -(void) showClassInfo:(ClassLabelBasis *)label{
-    classInfo = [[[ClassInfoViewController alloc] init]autorelease];
-    classInfo.title = label.text;
-    classInfo.tag = label.tag;
-    NSDictionary* courseInfo = [[ClassDataBase sharedData] loginCourseToGetCourseidAndClassid:label.text];
-    classInfo.courseId = [courseInfo objectForKey:courseIDKey];
-    classInfo.classId = [courseInfo objectForKey:classIDKey];
-    [self.navigationController pushViewController:classInfo animated:YES];
+    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+	
+    // Add HUD to screen
+    [self.navigationController.view addSubview:HUD];
+	
+    // Regisete for HUD callbacks so we can remove it from the window at the right time
+    HUD.delegate = self;
+	
+    HUD.labelText = @"Loading";
+	
+    // Show the HUD while the provided method executes in a new thread
+    [HUD showWhileExecuting:@selector(Task:) onTarget:self withObject:label animated:YES];
+    
 }
 
 -(void) buttonDidFinish:(int)FinishType StringData:(NSArray *)array
@@ -353,6 +384,15 @@
     //isScrollingUp=true;
     [self determineMove];
     
+}
+
+#pragma mark -
+#pragma mark MBProgressHUDDelegate methods
+
+- (void)hudWasHidden {
+    // Remove HUD from screen when the HUD was hidded
+    [HUD removeFromSuperview];
+    [HUD release];
 }
 
 

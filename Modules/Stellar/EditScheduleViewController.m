@@ -291,19 +291,46 @@
 - (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     
     switch (buttonIndex) {
-        case 1:
-            [[ClassDataBase sharedData] ClearAllCourses];
-            [[ClassDataBase sharedData] loginAccount:[(UITextField*)accountDelegate text]
-                                            Password:[(UITextField*)passwordDelegate text]];
+        case 1:{
+            dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+                // Show the HUD in the main tread
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    // No need to hod onto (retain)
+                    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+                    hud.labelText = @"Loading";
+                });
+
+                [[ClassDataBase sharedData] loginAccount:[(UITextField*)accountDelegate text]
+                                            Password:[(UITextField*)passwordDelegate text]
+                                            ClearAllCourses:YES];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+                });
+            });
+        }
             break;
-        case 2:
-            [[ClassDataBase sharedData] loginAccount:[(UITextField*)accountDelegate text]
-                                            Password:[(UITextField*)passwordDelegate text]];
+        case 2:{
+            dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+                // Show the HUD in the main tread
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    // No need to hod onto (retain)
+                    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+                    hud.labelText = @"Loading";
+                });
+                
+                [[ClassDataBase sharedData] loginAccount:[(UITextField*)accountDelegate text]
+                                                Password:[(UITextField*)passwordDelegate text]
+                                         ClearAllCourses:NO];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+                });
+            });
+            [self.navigationController popViewControllerAnimated:YES];
+        }
             break;
         default:
             break;
     }
-    
 }
 
 #pragma mark - Table view delegate
@@ -328,6 +355,12 @@
         [loadingAlertView show];
         [loadingAlertView release];
     }
+}
+
+- (void)hudWasHidden {
+    // Remove HUD from screen when the HUD was hidded
+    [HUD removeFromSuperview];
+    [HUD release];
 }
 
 @end

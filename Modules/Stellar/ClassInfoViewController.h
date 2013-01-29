@@ -14,9 +14,11 @@
     UIImageView* tabBarArrow;
     NSString* courseId;
     NSString* classId;
+    NSString *token;
 }
 @property int tag;
 @property (nonatomic, retain) UIImageView* tabBarArrow;
 @property (nonatomic, retain) NSString* courseId;
 @property (nonatomic, retain) NSString* classId;
+@property (nonatomic, retain) NSString *token;
 @end

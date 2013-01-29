@@ -611,17 +611,29 @@ static ClassDataBase *sharedData = nil;
     
 }
 
--(void)loginAccount:(NSString *)account Password:(NSString *)password
+-(void)loginAccount:(NSString *)account Password:(NSString *)password ClearAllCourses:(BOOL)clear
 {
     NSDictionary* info = [Moodle_API Login:account andPassword:password];
-    NSLog(@"%@",[info objectForKey:moodleLoginResultKey]);
+    //NSLog(@"%@",[info objectForKey:moodleLoginResultKey]);
     if([[info objectForKey:moodleLoginResultKey] intValue]==1){
+        if (clear) {
+            [self ClearAllCourses];
+        }
         token = [info objectForKey:moodleLoginTokenKey];
         NSDictionary *schedule = [Moodle_API GetCourse_AndUseToken:token];
         [self deleteFromMoodle];
         [self updataScheduleFromMoodle:schedule];
         [self ClassAddDecide];
         [[ScheduleViewDelegate weekschedule] drawRect:CGRectZero];
+    }
+    else
+    {
+        UIAlertView *loadingAlertView = [[UIAlertView alloc]
+                                         initWithTitle:nil message:@"帳號、密碼錯誤"
+                                         delegate:self cancelButtonTitle:@"確定"
+                                         otherButtonTitles:nil];
+        [loadingAlertView show];
+        [loadingAlertView release];
     }
 }
 

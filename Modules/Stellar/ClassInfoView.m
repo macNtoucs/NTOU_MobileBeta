@@ -32,15 +32,18 @@
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
-        self.textView = [[UITextView alloc] init];
-        self.textView.textColor = CELL_STANDARD_FONT_COLOR;
-        self.textView.font = [UIFont fontWithName:STANDARD_FONT size:CELL_STANDARD_FONT_SIZE];
-        self.textView.delegate = self;
-        self.textView.backgroundColor = [UIColor clearColor];
-        self.textView.text = [[NSUserDefaults standardUserDefaults] objectForKey:type5];
-        self.textView.returnKeyType = UIReturnKeyDefault;
-        self.textView.keyboardType = UIKeyboardTypeDefault;
-        self.textView.scrollEnabled = YES;
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            self.textView = [[UITextView alloc] init];
+            self.textView.textColor = CELL_STANDARD_FONT_COLOR;
+            self.textView.font = [UIFont fontWithName:STANDARD_FONT size:CELL_STANDARD_FONT_SIZE];
+            self.textView.delegate = self;
+            self.textView.backgroundColor = [UIColor clearColor];
+            self.textView.text = [[NSUserDefaults standardUserDefaults] objectForKey:type5];
+            self.textView.returnKeyType = UIReturnKeyDefault;
+            self.textView.keyboardType = UIKeyboardTypeDefault;
+            self.textView.scrollEnabled = YES;
+            
+        });
         
         edit = NO;
     }
@@ -571,5 +574,6 @@
      [detailViewController release];
      */
 }
+
 
 @end
