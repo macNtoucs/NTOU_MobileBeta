@@ -74,6 +74,8 @@ static Byte iv[] = {1,2,3,4,5,6,7,8};
     else false;
 }
 
+
+/*
 +(NSDictionary *)Login:(NSString *)username andPassword:(NSString*)password{
     // NSDictionary *dictionary = [self queryFunctionType:@"login" PostString:finailPost];
     NSDictionary *dictionary;
@@ -155,8 +157,8 @@ static Byte iv[] = {1,2,3,4,5,6,7,8};
     NSDictionary *dictionary = [self queryFunctionType:@"getMoodleID" PostString:finailPost];
     return dictionary;
 }
+*/
 
-/*
 
 +(NSDictionary *)Login:(NSString *)username andPassword:(NSString*)password{
  
@@ -213,5 +215,15 @@ static Byte iv[] = {1,2,3,4,5,6,7,8};
     NSDictionary *dic = [NSJSONSerialization JSONObjectWithData: responseData options: 0 error: &e];
     return dic;
 }
-*/
+
++(NSDictionary*)GetMoodleInfo_AndUseToken:(NSString *)token module:(NSString *)module mid:(NSString *)mid courseID:(NSString *)cosID classID:(NSString *)clsID
+{
+    NSString *path =  [[[NSBundle mainBundle] bundlePath]stringByAppendingPathComponent:@"MoodleInfo2"];
+    NSString*responseString = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+    NSData *responseData = [responseString dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *e = nil;
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData: responseData options: 0 error: &e];
+    return dic; 
+}
+
 @end

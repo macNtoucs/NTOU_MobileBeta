@@ -86,4 +86,10 @@
                                  classID:(NSString *)clsID;
 
 
++(NSDictionary *)GetMoodleInfo_AndUseToken:(NSString *)token
+                                    module:(NSString *)module
+                                       mid:(NSString *)mid
+                                  courseID:(NSString *)cosID
+                                   classID:(NSString *)clsID;
+
 @end

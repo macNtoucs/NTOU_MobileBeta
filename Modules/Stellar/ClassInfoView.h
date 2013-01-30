@@ -33,8 +33,11 @@
     UITextView *textView;
     NSDictionary* moodleData;
     id delegatetype5;
+    NSMutableArray* resource;
 }
+
 @property (nonatomic, retain) UITextView *textView;
 @property (nonatomic, retain) NSDictionary* moodleData;
+@property (nonatomic, retain) NSMutableArray* resource;
 @property (nonatomic,assign) id delegatetype5;
 @end

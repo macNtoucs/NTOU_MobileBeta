@@ -42,8 +42,19 @@
         ClassInfoView *view1, *view2, *view3, *view4;
         view1 = [[ClassInfoView alloc] initWithStyle:UITableViewStyleGrouped];
         view1.title = type3;
-        view1.moodleData = [Moodle_API GetMoodleInfo_AndUseToken:token courseID:[apiKey objectForKey:courseIDKey] classID:[apiKey objectForKey:classIDKey]];
+        NSArray* data = [[[[Moodle_API GetMoodleInfo_AndUseToken:token courseID:[apiKey objectForKey:courseIDKey] classID:[apiKey objectForKey:classIDKey]] objectForKey:moodleListKey] objectAtIndex:0] objectForKey:moodleResourceInfoKey];
+        data = [[data reverseObjectEnumerator] allObjects];
+        NSMutableArray* resource = [[NSMutableArray alloc] init];
+        for (NSDictionary* info in data) {
+           [resource addObject:[Moodle_API GetMoodleInfo_AndUseToken:token
+                                           module:[info objectForKey:moodleResourceModuleKey]
+                                              mid:@" "
+                                         courseID:[apiKey objectForKey:courseIDKey]
+                                          classID:[apiKey objectForKey:classIDKey]]];
+        }
+        
         view1.delegatetype5 = self;
+        view1.resource = resource;
         view1.view.frame = CGRectMake(0, 40, 320, [[UIScreen mainScreen] bounds].size.height-60);
         [viewController1.view addSubview:view1.tableView];
         
@@ -56,7 +67,7 @@
         
         view3 = [[ClassInfoView alloc] initWithStyle:UITableViewStyleGrouped];
         view3.title = type2;
-        view3.moodleData = [Moodle_API GetMoodleInfo_AndUseToken:token courseID:[apiKey objectForKey:courseIDKey] classID:[apiKey objectForKey:classIDKey]];
+        view3.moodleData = [Moodle_API GetGrade_AndUseToken:token courseID:[apiKey objectForKey:courseIDKey] classID:[apiKey objectForKey:classIDKey]];
         view3.delegatetype5 = self;
         view3.view.frame = CGRectMake(0, 10, 320, [[UIScreen mainScreen] bounds].size.height-30);
         [viewController3.view addSubview:view3.tableView];
@@ -117,7 +128,8 @@
     [self.view addSubview:tabBarArrow];
 }
 
--(void)changeType{
+-(void)Task
+{
     UIViewController *viewController = [self.viewControllers objectAtIndex:1];
     [viewController.view removeAllSubviews];
     ClassInfoView *view = [[ClassInfoView alloc] initWithStyle:UITableViewStyleGrouped];
@@ -134,10 +146,29 @@
         classinfo.text = @"上課講義";
     }
     view.view.frame = CGRectMake(0, 40, 320, 330);
-    token = [[ClassDataBase sharedData] loginTokenWhenAccountFromUserDefault];
     NSDictionary* apiKey = [[ClassDataBase sharedData] loginCourseToGetCourseidAndClassid:self.title];
     view.moodleData = [Moodle_API GetMoodleInfo_AndUseToken:token courseID:[apiKey objectForKey:courseIDKey] classID:[apiKey objectForKey:classIDKey]];
+    if (!view.moodleData) {
+        token = [[ClassDataBase sharedData] loginTokenWhenAccountFromUserDefault];
+        view.moodleData = [Moodle_API GetMoodleInfo_AndUseToken:token courseID:[apiKey objectForKey:courseIDKey] classID:[apiKey objectForKey:classIDKey]];
+        if (!view.moodleData) {
+            UIAlertView *loadingAlertView = [[UIAlertView alloc]
+                                             initWithTitle:nil message:@"網路連線失敗"
+                                             delegate:self cancelButtonTitle:@"確定"
+                                             otherButtonTitles:nil];
+            [loadingAlertView show];
+            [loadingAlertView release];
+        }
+    }
     [viewController.view addSubview:view.tableView];
+}
+
+-(void)changeType{
+    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+    [self.navigationController.view addSubview:HUD];
+    HUD.delegate = self;
+    HUD.labelText = @"Loading";
+    [HUD showWhileExecuting:@selector(Task) onTarget:self withObject:nil animated:YES];
 }
 
 - (void)tabBarController:(UITabBarController *)theTabBarController didSelectViewController:(UIViewController *)viewController
@@ -222,5 +253,15 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark -
+#pragma mark MBProgressHUDDelegate methods
+
+- (void)hudWasHidden {
+    // Remove HUD from screen when the HUD was hidded
+    [HUD removeFromSuperview];
+    [HUD release];
+}
+
 
 @end

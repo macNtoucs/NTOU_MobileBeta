@@ -33,9 +33,16 @@
 
 #define moodleCourseTeacherKey @"teacher"
 
+#define moodleInfoCourseIdKey @"cosid"
+#define moodleInfoClassIdKey @"clsid"
+#define moodleInfoCourseNameKey @"course_name"
+#define moodleInfoDescriptionKey @"description"
+#define moodleInfoTitleKey @"title"
+
 #define moodleGradeNameKey @"name"
 #define moodleGradeKey @"grade"
 #define moodleGradeCommentKey @"comment"
+#define moodleGradeEndKey @"end"
 
 #define moodleResourceInfoKey @"infos"
 #define moodleResourceModuleKey @"module"
@@ -44,7 +51,6 @@
 
 #define moodleModuleLectureKey @"resource"
 #define moodleModuleAssignmentKey @"assignment"
-#define moodleModuleExamKey @" "
 
 #define WeekTimesKey @"WeekTimesKey"
 #define ClassSessionTimesKey @"ClassSessionTimesKey"
@@ -111,6 +117,8 @@ typedef enum {Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday } ColumnN
 @property (nonatomic,assign) id EditScheduleDelegate;
 
 + (ClassDataBase *)sharedData;
+-(void)storeUserDefaults;
+
 -(NSMutableDictionary*) FetchColorDic;
 -(void)UpdataColorDic:(NSString*)Key ColorDic:(UIColor*)RGB;
 -(int)FetchWeekTimes;

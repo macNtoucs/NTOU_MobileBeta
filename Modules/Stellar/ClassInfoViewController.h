@@ -9,12 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "ClassLabelBasis.h"
 #import "ClassInfoView.h"
-@interface ClassInfoViewController : UITabBarController<UITabBarControllerDelegate,ClassInfoViewDelegate>
+#import "MBProgressHUD.h"
+@interface ClassInfoViewController : UITabBarController<UITabBarControllerDelegate,ClassInfoViewDelegate,MBProgressHUDDelegate>
 {
     UIImageView* tabBarArrow;
     NSString* courseId;
     NSString* classId;
     NSString *token;
+    MBProgressHUD *HUD;
 }
 @property int tag;
 @property (nonatomic, retain) UIImageView* tabBarArrow;

@@ -60,6 +60,15 @@ static ClassDataBase *sharedData = nil;
     return self;
 }
 
+-(void)storeUserDefaults
+{
+    NSData *myEncodedObject = [NSKeyedArchiver archivedDataWithRootObject:sharedData];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:myEncodedObject forKey:ClassDataBaseKey];
+    [defaults synchronize];
+
+}
+
 - (void)encodeWithCoder:(NSCoder *)aCoder {
     [aCoder encodeInt:WeekTimes forKey:WeekTimesKey];
     [aCoder encodeInt:ClassSessionTimes forKey:ClassSessionTimesKey];
@@ -277,6 +286,7 @@ static ClassDataBase *sharedData = nil;
     courseID = [[NSMutableDictionary dictionaryWithDictionary:courseTempID] retain];
     [classID release];
     classID = [[NSMutableDictionary dictionaryWithDictionary:classTempID] retain];
+    [[ClassDataBase sharedData] storeUserDefaults];
 }
 
 -(NSDictionary*) FetchScheduleInfo{

@@ -124,11 +124,10 @@
 
 -(void) finishSetting {
     [self dismissModalViewControllerAnimated:YES];
-    NSData *myEncodedObject = [NSKeyedArchiver archivedDataWithRootObject:[ClassDataBase sharedData]];
+    [[ClassDataBase sharedData] storeUserDefaults];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:[accountDelegate text] forKey:accountKey];
     [defaults setObject:[passwordDelegate text] forKey:passwordKey];
-    [defaults setObject:myEncodedObject forKey:ClassDataBaseKey];
     [defaults synchronize];
 }
 
