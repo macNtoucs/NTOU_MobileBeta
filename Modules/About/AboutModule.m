@@ -18,8 +18,8 @@
 
 - (void)loadModuleHomeController
 {
-    //self.moduleHomeController = [[[AboutTableViewController alloc] initWithStyle:UITableViewStyleGrouped] autorelease];
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"HUD123://"]];
+    self.moduleHomeController = [[[AboutTableViewController alloc] initWithStyle:UITableViewStyleGrouped] autorelease];
+    //[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"HUD123://"]];
 }
 
 @end

@@ -16,57 +16,8 @@
 -(void)ReloadSetWeek;
 @end
 
-#define accountKey @"accountKey"
-#define passwordKey @"passwordKey"
-
-#define moodleLoginTokenKey @"token"
-#define moodleLoginResultKey @"result"
-#define moodleListKey @"list"
-
-#define moodleCourseKey @"course"
-#define moodleCourseIdKey @"id"
-#define moodleCourseClassroomKey @"classroom"
-#define moodleCourseTimeKey @"time"
-#define moodleCourseNameKey @"name"
-#define moodleCourseClassKey @"open_clsid"
-#define moodleCourseDayKey @"day"
-
-#define moodleCourseTeacherKey @"teacher"
-
-#define moodleInfoCourseIdKey @"cosid"
-#define moodleInfoClassIdKey @"clsid"
-#define moodleInfoCourseNameKey @"course_name"
-#define moodleInfoDescriptionKey @"description"
-#define moodleInfoTitleKey @"title"
-
-#define moodleGradeNameKey @"name"
-#define moodleGradeKey @"grade"
-#define moodleGradeCommentKey @"comment"
-#define moodleGradeEndKey @"end"
-
-#define moodleResourceInfoKey @"infos"
-#define moodleResourceModuleKey @"module"
-#define moodleResourceTitleKey @"title"
-#define moodleResourceUrlKey @"url"
-
-#define moodleModuleLectureKey @"resource"
-#define moodleModuleAssignmentKey @"assignment"
-
-#define WeekTimesKey @"WeekTimesKey"
-#define ClassSessionTimesKey @"ClassSessionTimesKey"
-#define showClassTimesKey @"showClassTimesKey"
-#define ScheduleInfoKey @"ScheduleInfoKey"
-#define WeekDaysKey @"WeekDaysKey"
-#define ClassDataBaseKey @"classDataBaseKey"
-#define ColorDicKey @"ColorDicKey"
-#define professorNameKey @"professorNameKey"
-#define classroomLocationKey @"classroomLocationKey"
-#define courseCountKey @"courseCountKey"
-#define moodleFromKey @"moodleFromKey"
-#define courseIDKey @"courseIDKey"
-#define classIDKey @"classIDKey"
 #import <Foundation/Foundation.h>
-#import "DefinePixel.h"
+#import "DefineConstant.h"
 #import "Moodle_API.h"
 typedef enum {clean,modify,move}ButtonType;
 typedef enum {Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday } ColumnName;

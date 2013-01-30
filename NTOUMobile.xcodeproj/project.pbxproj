@@ -949,7 +949,7 @@
 		6DEB40CC1692D71400BCACBC /* RequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestOperation.h; sourceTree = "<group>"; };
 		6DEB40CD1692D71400BCACBC /* RequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestOperation.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* MIT_Mobile-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MIT_Mobile-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
-		910662EF163BCFD700D01C81 /* DefinePixel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefinePixel.h; sourceTree = "<group>"; };
+		910662EF163BCFD700D01C81 /* DefineConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefineConstant.h; sourceTree = "<group>"; };
 		910E7337168C166F00360762 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		91364F8316AFB224007CA25D /* SBJsonStreamParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamParser.h; sourceTree = "<group>"; };
 		91364F8416AFB224007CA25D /* SBJsonStreamParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamParser.m; sourceTree = "<group>"; };
@@ -2823,6 +2823,7 @@
 				91402E3B163E749A00B04EE5 /* ClassAdd.m */,
 				91402E3C163E749A00B04EE5 /* ClassAddRetina3.5.xib */,
 				A6B4E1AF16B51B180039AA50 /* ClassAddRetina4.xib */,
+				910662EF163BCFD700D01C81 /* DefineConstant.h */,
 				91402E3D163E749A00B04EE5 /* ClassDataBase.h */,
 				91402E3E163E749A00B04EE5 /* ClassDataBase.m */,
 				91402E3F163E749A00B04EE5 /* EditScheduleViewController.h */,
@@ -2832,7 +2833,6 @@
 				C7BF083A16884B4E00153F6F /* NTOU_ClassColorViewController.h */,
 				C7BF083B16884B4E00153F6F /* NTOU_ClassColorViewController.m */,
 				C7BF083C16884B4E00153F6F /* NTOU_ClassColorViewController.xib */,
-				910662EF163BCFD700D01C81 /* DefinePixel.h */,
 				C79A9BB6163A4E7E001FAF48 /* LessonTimeView.h */,
 				C79A9BB7163A4E80001FAF48 /* LessonTimeView.m */,
 				C79A9BA016390494001FAF48 /* WeekScheduleView.h */,

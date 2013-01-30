@@ -5,7 +5,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor clearColor];
-    self.navigationItem.title = @"Credits";
+    self.navigationItem.title = @"開發成員";
     
     NSURL *baseURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath] isDirectory:YES];
     NSURL *fileURL = [NSURL URLWithString:@"credits.html" relativeToURL:baseURL];
