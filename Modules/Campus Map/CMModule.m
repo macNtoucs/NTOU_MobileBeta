@@ -2,7 +2,7 @@
 #import "CampusMapViewController.h"
 #import "MITMapDetailViewController.h"
 #import "MITMapSearchResultAnnotation.h"
-
+#import "NTOUGuideViewController.h"
 #import "MITModule+Protected.h"
 
 @implementation CMModule
@@ -23,10 +23,9 @@
 
 - (void)loadModuleHomeController
 {
-    CampusMapViewController *controller = [[[CampusMapViewController alloc] init] autorelease];
-    controller.campusMapModule = self;
+    [self setModuleHomeController:[[[NTOUGuideViewController alloc] initWithStyle:UITableViewStyleGrouped] autorelease]];
     
-    self.moduleHomeController = controller;
+   
 }
 
 - (CampusMapViewController*)campusMapVC

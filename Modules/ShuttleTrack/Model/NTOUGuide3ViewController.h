@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface NTOUGuide3ViewController : UITableViewController
-
+#import "NTOUGuideSetViewController.h"
+@interface NTOUGuide3ViewController : UITableViewController{
+    int WhatRoute;
+}
+-(void) SetRoute:(int)RouteNumber;
 @end

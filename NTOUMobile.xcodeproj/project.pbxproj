@@ -323,6 +323,11 @@
 		A6DCE6E01657ECA6009290D9 /* stationNumber.plist in Resources */ = {isa = PBXBuildFile; fileRef = A6DCE6DF1657ECA6009290D9 /* stationNumber.plist */; };
 		A6DE9DC21663AD10009EECE6 /* HTSearchResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6DE9DC11663AD10009EECE6 /* HTSearchResultViewController.m */; };
 		B64B47081288502E002E2F1D /* DummyRotatingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B64B47061288502E002E2F1D /* DummyRotatingViewController.m */; };
+		BA8FC72516B11E81005CF9B3 /* NTOUGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA8FC72416B11E81005CF9B3 /* NTOUGuideViewController.m */; };
+		BA8FC72816B11E9C005CF9B3 /* NTOUGuide2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA8FC72716B11E9C005CF9B3 /* NTOUGuide2ViewController.m */; };
+		BA8FC73816BA1DAE005CF9B3 /* NTOUGuide3ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA8FC73716BA1DAE005CF9B3 /* NTOUGuide3ViewController.m */; };
+		BA8FC73B16BA37C5005CF9B3 /* NTOUGuide4ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA8FC73A16BA37C5005CF9B3 /* NTOUGuide4ViewController.m */; };
+		BA8FC74116BA3F6A005CF9B3 /* NTOUGuideSetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA8FC74016BA3F69005CF9B3 /* NTOUGuideSetViewController.m */; };
 		BD1E9309103B5D60004429AA /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = BD1E92F6103B5D60004429AA /* NSObject+SBJSON.m */; };
 		BD1E930A103B5D60004429AA /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = BD1E92F8103B5D60004429AA /* NSString+SBJSON.m */; };
 		BD1E930B103B5D60004429AA /* SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = BD1E92FA103B5D60004429AA /* SBJSON.m */; };
@@ -1086,6 +1091,16 @@
 		A6DE9DC11663AD10009EECE6 /* HTSearchResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTSearchResultViewController.m; sourceTree = "<group>"; };
 		B64B47051288502E002E2F1D /* DummyRotatingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DummyRotatingViewController.h; sourceTree = "<group>"; };
 		B64B47061288502E002E2F1D /* DummyRotatingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DummyRotatingViewController.m; sourceTree = "<group>"; };
+		BA8FC72316B11E81005CF9B3 /* NTOUGuideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NTOUGuideViewController.h; path = ShuttleTrack/NTOUGuideViewController.h; sourceTree = "<group>"; };
+		BA8FC72416B11E81005CF9B3 /* NTOUGuideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NTOUGuideViewController.m; path = ShuttleTrack/NTOUGuideViewController.m; sourceTree = "<group>"; };
+		BA8FC72616B11E9C005CF9B3 /* NTOUGuide2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NTOUGuide2ViewController.h; path = ShuttleTrack/NTOUGuide2ViewController.h; sourceTree = "<group>"; };
+		BA8FC72716B11E9C005CF9B3 /* NTOUGuide2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NTOUGuide2ViewController.m; path = ShuttleTrack/NTOUGuide2ViewController.m; sourceTree = "<group>"; };
+		BA8FC73616BA1DAD005CF9B3 /* NTOUGuide3ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NTOUGuide3ViewController.h; path = ShuttleTrack/Model/NTOUGuide3ViewController.h; sourceTree = "<group>"; };
+		BA8FC73716BA1DAE005CF9B3 /* NTOUGuide3ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NTOUGuide3ViewController.m; path = ShuttleTrack/Model/NTOUGuide3ViewController.m; sourceTree = "<group>"; };
+		BA8FC73916BA37C4005CF9B3 /* NTOUGuide4ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NTOUGuide4ViewController.h; path = ShuttleTrack/Model/NTOUGuide4ViewController.h; sourceTree = "<group>"; };
+		BA8FC73A16BA37C5005CF9B3 /* NTOUGuide4ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NTOUGuide4ViewController.m; path = ShuttleTrack/Model/NTOUGuide4ViewController.m; sourceTree = "<group>"; };
+		BA8FC73F16BA3F68005CF9B3 /* NTOUGuideSetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTOUGuideSetViewController.h; sourceTree = "<group>"; };
+		BA8FC74016BA3F69005CF9B3 /* NTOUGuideSetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTOUGuideSetViewController.m; sourceTree = "<group>"; };
 		BD1E92F4103B5D60004429AA /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
 		BD1E92F5103B5D60004429AA /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJSON.h"; sourceTree = "<group>"; };
 		BD1E92F6103B5D60004429AA /* NSObject+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJSON.m"; sourceTree = "<group>"; };
@@ -2132,6 +2147,7 @@
 				48B8129915E42B1700E791F9 /* LinksModule.m */,
 			);
 			name = Links;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		4B0D8A55142CF8430083AC66 /* WorldCatSearch */ = {
@@ -2346,6 +2362,23 @@
 			name = train;
 			sourceTree = "<group>";
 		};
+		BA8FC72916B12277005CF9B3 /* NTOUGuide */ = {
+			isa = PBXGroup;
+			children = (
+				BA8FC72316B11E81005CF9B3 /* NTOUGuideViewController.h */,
+				BA8FC72416B11E81005CF9B3 /* NTOUGuideViewController.m */,
+				BA8FC72616B11E9C005CF9B3 /* NTOUGuide2ViewController.h */,
+				BA8FC72716B11E9C005CF9B3 /* NTOUGuide2ViewController.m */,
+				BA8FC73616BA1DAD005CF9B3 /* NTOUGuide3ViewController.h */,
+				BA8FC73716BA1DAE005CF9B3 /* NTOUGuide3ViewController.m */,
+				BA8FC73916BA37C4005CF9B3 /* NTOUGuide4ViewController.h */,
+				BA8FC73A16BA37C5005CF9B3 /* NTOUGuide4ViewController.m */,
+				BA8FC73F16BA3F68005CF9B3 /* NTOUGuideSetViewController.h */,
+				BA8FC74016BA3F69005CF9B3 /* NTOUGuideSetViewController.m */,
+			);
+			name = NTOUGuide;
+			sourceTree = "<group>";
+		};
 		BD1E92F3103B5D60004429AA /* JSON */ = {
 			isa = PBXGroup;
 			children = (
@@ -2541,7 +2574,6 @@
 		DE715445102FE468005E6111 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				48B8129315E428DA00E791F9 /* Links */,
 				4B66705F1403304300714C6A /* Libraries */,
 				DE81CF5E10C6BC390085573D /* About */,
 				EB4C225D1278AD3E00058748 /* Anniversary */,
@@ -2554,6 +2586,7 @@
 				EB7F326610CD6C5B00188BCD /* People */,
 				2CB6459C134CAF1A00E85E64 /* Scanner */,
 				DE9EFBCE10FE7D3200F5F07E /* Settings */,
+				BA8FC72916B12277005CF9B3 /* NTOUGuide */,
 				DE715449102FE468005E6111 /* ShuttleTrack */,
 				DE71544A102FE468005E6111 /* Stellar */,
 				EB4C1E97127723B700058748 /* Tours */,
@@ -3002,6 +3035,7 @@
 		EB4C225D1278AD3E00058748 /* Anniversary */ = {
 			isa = PBXGroup;
 			children = (
+				48B8129315E428DA00E791F9 /* Links */,
 				EBF8A52812AEB6F600D39AE6 /* Model */,
 				EBF114B012A6A7320002D751 /* AnniversaryModule.h */,
 				EBF114B112A6A7320002D751 /* AnniversaryModule.m */,
@@ -3762,6 +3796,11 @@
 				91EC3F131689791E0065BE43 /* CalendarActivities.m in Sources */,
 				91EC3F141689791E0065BE43 /* CalendarSpeech.m in Sources */,
 				6DEB40CE1692D71500BCACBC /* RequestOperation.m in Sources */,
+				BA8FC72516B11E81005CF9B3 /* NTOUGuideViewController.m in Sources */,
+				BA8FC72816B11E9C005CF9B3 /* NTOUGuide2ViewController.m in Sources */,
+				BA8FC73816BA1DAE005CF9B3 /* NTOUGuide3ViewController.m in Sources */,
+				BA8FC73B16BA37C5005CF9B3 /* NTOUGuide4ViewController.m in Sources */,
+				BA8FC74116BA3F6A005CF9B3 /* NTOUGuideSetViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
