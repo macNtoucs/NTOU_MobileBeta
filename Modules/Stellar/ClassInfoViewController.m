@@ -25,70 +25,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
-        NSDictionary* apiKey = [[ClassDataBase sharedData] loginCourseToGetCourseidAndClassid:self.title];
-        UIViewController *viewController1, *viewController2, *viewController3, *viewController4, *viewController5;
-        viewController1 = [[UIViewController alloc] init];
-        viewController1.title = type3;
-        viewController2 = [[UIViewController alloc] init];
-        viewController2.title = type4;
-        viewController3 = [[UIViewController alloc] init];
-        viewController3.title = type2;
-        viewController4 = [[UIViewController alloc] init];
-        viewController4.title = type1;
-        viewController5 = [[UIViewController alloc] init];
-        viewController5.title = type5;
-        
-        ClassInfoView *view1, *view2, *view3, *view4;
-        view1 = [[ClassInfoView alloc] initWithStyle:UITableViewStyleGrouped];
-        view1.title = type3;
-        NSArray* data = [[[[Moodle_API GetMoodleInfo_AndUseToken:token courseID:[apiKey objectForKey:courseIDKey] classID:[apiKey objectForKey:classIDKey]] objectForKey:moodleListKey] objectAtIndex:0] objectForKey:moodleResourceInfoKey];
-        data = [[data reverseObjectEnumerator] allObjects];
-        NSMutableArray* resource = [[NSMutableArray alloc] init];
-        for (NSDictionary* info in data) {
-           [resource addObject:[Moodle_API GetMoodleInfo_AndUseToken:token
-                                           module:[info objectForKey:moodleResourceModuleKey]
-                                              mid:@" "
-                                         courseID:[apiKey objectForKey:courseIDKey]
-                                          classID:[apiKey objectForKey:classIDKey]]];
-        }
-        
-        view1.delegatetype5 = self;
-        view1.resource = resource;
-        view1.view.frame = CGRectMake(0, 40, 320, [[UIScreen mainScreen] bounds].size.height-60);
-        [viewController1.view addSubview:view1.tableView];
-        
-        view2 = [[ClassInfoView alloc] initWithStyle:UITableViewStyleGrouped];
-        view2.title = type4;
-        view2.delegatetype5 = self;
-        view2.moodleData = [Moodle_API GetMoodleInfo_AndUseToken:token courseID:[apiKey objectForKey:courseIDKey] classID:[apiKey objectForKey:classIDKey]];
-        view2.view.frame = CGRectMake(0, 40, 320, [[UIScreen mainScreen] bounds].size.height-60);
-        [viewController2.view addSubview:view2.tableView];
-        
-        view3 = [[ClassInfoView alloc] initWithStyle:UITableViewStyleGrouped];
-        view3.title = type2;
-        view3.moodleData = [Moodle_API GetGrade_AndUseToken:token courseID:[apiKey objectForKey:courseIDKey] classID:[apiKey objectForKey:classIDKey]];
-        view3.delegatetype5 = self;
-        view3.view.frame = CGRectMake(0, 10, 320, [[UIScreen mainScreen] bounds].size.height-30);
-        [viewController3.view addSubview:view3.tableView];
-        
-        view4 = [[ClassInfoView alloc] initWithStyle:UITableViewStyleGrouped];
-        view4.title = type1;
-        view4.moodleData = [Moodle_API GetGrade_AndUseToken:token courseID:[apiKey objectForKey:courseIDKey] classID:[apiKey objectForKey:classIDKey]];
-        view4.delegatetype5 = self;
-        view4.view.frame = CGRectMake(0, 10, 320, [[UIScreen mainScreen] bounds].size.height-30);
-        [viewController4.view addSubview:view4.tableView];
-        
-        view5 = [[ClassInfoView alloc] initWithStyle:UITableViewStyleGrouped];
-        view5.delegatetype5 = self;
-        view5.title = type5;
-        view5.view.frame = CGRectMake(0, 10, 320, [[UIScreen mainScreen] bounds].size.height-30);
-        [viewController5.view addSubview:view5.tableView];
-        
-        [self setViewControllers:[NSArray arrayWithObjects:viewController1, viewController2,viewController3,viewController4,viewController5, nil] animated:YES];
-        self.delegate=self;
-        
-        [self addTabBarArrow];
+        // Custom initialization        
         }
     
     return self;
@@ -227,14 +164,79 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor clearColor];
     // Do any additional setup after loading the view from its nib.
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    if (!self.viewControllers) {
+        NSDictionary* apiKey = [[ClassDataBase sharedData] loginCourseToGetCourseidAndClassid:self.title];
+        UIViewController *viewController1, *viewController2, *viewController3, *viewController4, *viewController5;
+        viewController1 = [[UIViewController alloc] init];
+        viewController1.title = type3;
+        viewController2 = [[UIViewController alloc] init];
+        viewController2.title = type4;
+        viewController3 = [[UIViewController alloc] init];
+        viewController3.title = type2;
+        viewController4 = [[UIViewController alloc] init];
+        viewController4.title = type1;
+        viewController5 = [[UIViewController alloc] init];
+        viewController5.title = type5;
         
+        ClassInfoView *view1, *view2, *view3, *view4;
+        view1 = [[ClassInfoView alloc] initWithStyle:UITableViewStyleGrouped];
+        view1.title = type3;
+        NSArray* data = [[[[Moodle_API GetMoodleInfo_AndUseToken:token courseID:[apiKey objectForKey:courseIDKey] classID:[apiKey objectForKey:classIDKey]] objectForKey:moodleListKey] objectAtIndex:0] objectForKey:moodleResourceInfoKey];
+        data = [[data reverseObjectEnumerator] allObjects];
+        NSMutableArray* resource = [[NSMutableArray alloc] init];
+        for (NSDictionary* info in data) {
+            [resource addObject:[Moodle_API GetMoodleInfo_AndUseToken:token
+                                                               module:[info objectForKey:moodleResourceModuleKey]
+                                                                  mid:@" "
+                                                             courseID:[apiKey objectForKey:courseIDKey]
+                                                              classID:[apiKey objectForKey:classIDKey]]];
+        }
+        
+        view1.delegatetype5 = self;
+        view1.resource = resource;
+        view1.view.frame = CGRectMake(0, 40, 320, [[UIScreen mainScreen] bounds].size.height-60);
+        [viewController1.view addSubview:view1.tableView];
+        
+        view2 = [[ClassInfoView alloc] initWithStyle:UITableViewStyleGrouped];
+        view2.title = type4;
+        view2.delegatetype5 = self;
+        view2.moodleData = [Moodle_API GetMoodleInfo_AndUseToken:token courseID:[apiKey objectForKey:courseIDKey] classID:[apiKey objectForKey:classIDKey]];
+        view2.view.frame = CGRectMake(0, 40, 320, [[UIScreen mainScreen] bounds].size.height-60);
+        [viewController2.view addSubview:view2.tableView];
+        
+        view3 = [[ClassInfoView alloc] initWithStyle:UITableViewStyleGrouped];
+        view3.title = type2;
+        view3.moodleData = [Moodle_API GetGrade_AndUseToken:token courseID:[apiKey objectForKey:courseIDKey] classID:[apiKey objectForKey:classIDKey]];
+        view3.delegatetype5 = self;
+        view3.view.frame = CGRectMake(0, 10, 320, [[UIScreen mainScreen] bounds].size.height-30);
+        [viewController3.view addSubview:view3.tableView];
+        
+        view4 = [[ClassInfoView alloc] initWithStyle:UITableViewStyleGrouped];
+        view4.title = type1;
+        view4.moodleData = [Moodle_API GetGrade_AndUseToken:token courseID:[apiKey objectForKey:courseIDKey] classID:[apiKey objectForKey:classIDKey]];
+        view4.delegatetype5 = self;
+        view4.view.frame = CGRectMake(0, 10, 320, [[UIScreen mainScreen] bounds].size.height-30);
+        [viewController4.view addSubview:view4.tableView];
+        
+        view5 = [[ClassInfoView alloc] initWithStyle:UITableViewStyleGrouped];
+        view5.delegatetype5 = self;
+        view5.moodleData = apiKey;
+        view5.title = type5;
+        view5.view.frame = CGRectMake(0, 10, 320, [[UIScreen mainScreen] bounds].size.height-30);
+        [viewController5.view addSubview:view5.tableView];
+        
+        [self setViewControllers:[NSArray arrayWithObjects:viewController1, viewController2,viewController3,viewController4,viewController5, nil] animated:YES];
+        self.delegate=self;
+        self.view.backgroundColor = [UIColor clearColor];
+        [self addTabBarArrow];
+    }
+    
     if (!classinfo) {
         classinfo = [[[ClassLabelBasis alloc] initWithFrame:CGRectMake(0, 0, 320, 40)] autorelease];
         classinfo.backgroundColor = [UIColor clearColor];

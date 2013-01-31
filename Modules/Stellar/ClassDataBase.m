@@ -127,9 +127,9 @@ static ClassDataBase *sharedData = nil;
             classroomTempLocation = [[NSMutableDictionary dictionaryWithDictionary:classroomLocation] retain];
             moodleTempFrom = [[NSMutableDictionary dictionaryWithDictionary:moodleFrom] retain];
             courseTempCount = [[NSMutableDictionary dictionaryWithDictionary:courseCount] retain];
-            courseID = [[NSMutableDictionary alloc] init];
+            courseID = [[NSMutableDictionary alloc]initWithObjectsAndKeys:[NSNumber numberWithInt:1],[NSString stringWithFormat:@"資料庫"],[NSNumber numberWithInt:2],[NSString stringWithFormat:@"演算法"],[NSNumber numberWithInt:3],[NSString stringWithFormat:@"程式語言"],[NSNumber numberWithInt:4],[NSString stringWithFormat:@"日文"],[NSNumber numberWithInt:5],[NSString stringWithFormat:@"性別平等與就業歧視"],[NSNumber numberWithInt:6],[NSString stringWithFormat:@"現代藝術賞析"],[NSNumber numberWithInt:7],[NSString stringWithFormat:@"作業系統"], nil];
             courseTempID = [[NSMutableDictionary dictionaryWithDictionary:courseID] retain];
-            classID = [[NSMutableDictionary alloc] init];
+            classID = [[NSMutableDictionary alloc]initWithObjectsAndKeys:[NSNumber numberWithBool:1],[NSString stringWithFormat:@"資料庫"],[NSNumber numberWithBool:1],[NSString stringWithFormat:@"演算法"],[NSNumber numberWithBool:1],[NSString stringWithFormat:@"程式語言"],[NSNumber numberWithBool:1],[NSString stringWithFormat:@"日文"],[NSNumber numberWithBool:1],[NSString stringWithFormat:@"性別平等與就業歧視"],[NSNumber numberWithBool:1],[NSString stringWithFormat:@"現代藝術賞析"],[NSNumber numberWithBool:1],[NSString stringWithFormat:@"作業系統"], nil];
             classTempID = [[NSMutableDictionary dictionaryWithDictionary:classID] retain];
         }
         else
@@ -464,6 +464,10 @@ static ClassDataBase *sharedData = nil;
     [moodleTempFrom removeAllObjects];
     [courseCount removeAllObjects];
     [ColorTempDic removeAllObjects];
+    for (NSString* deleteUserDefault in [courseID allValues]) {
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:deleteUserDefault];
+    }
+    [[NSUserDefaults standardUserDefaults]synchronize];
     [courseID removeAllObjects];
     [courseTempID removeAllObjects];
     [classID removeAllObjects];
@@ -534,6 +538,8 @@ static ClassDataBase *sharedData = nil;
 
 -(void)classPropertyDelete:(NSString *)course
 {
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:[courseTempID objectForKey:course]];
+    [[NSUserDefaults standardUserDefaults]synchronize];
     [ColorTempDic removeObjectForKey:course];
     [courseTempCount removeObjectForKey:course];
     [moodleTempFrom removeObjectForKey:course];

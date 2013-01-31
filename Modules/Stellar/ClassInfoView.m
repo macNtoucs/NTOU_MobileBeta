@@ -38,7 +38,6 @@
             self.textView.font = [UIFont fontWithName:STANDARD_FONT size:CELL_STANDARD_FONT_SIZE];
             self.textView.delegate = self;
             self.textView.backgroundColor = [UIColor clearColor];
-            self.textView.text = [[NSUserDefaults standardUserDefaults] objectForKey:type5];
             self.textView.returnKeyType = UIReturnKeyDefault;
             self.textView.keyboardType = UIKeyboardTypeDefault;
             self.textView.scrollEnabled = YES;
@@ -74,6 +73,9 @@
     else if (self.title == type5){
         types = 5;
         self.tableView.scrollEnabled = NO;
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            self.textView.text = [[NSUserDefaults standardUserDefaults] objectForKey:[moodleData objectForKey:courseIDKey]];
+        });
     }
     else if (self.title == type6)
         types = 6;
@@ -448,9 +450,9 @@
 
 - (void)textViewDidEndEditing:(UITextView *)textView {
     [delegatetype5 rightBarButtonItemOff];
-    NSUserDefaults *userPrefs = [NSUserDefaults standardUserDefaults];
-    [userPrefs setObject:self.textView.text forKey:type5];
-    [userPrefs synchronize];
+        NSUserDefaults *userPrefs = [NSUserDefaults standardUserDefaults];
+        [userPrefs setObject:self.textView.text forKey:[moodleData objectForKey:courseIDKey]];
+        [userPrefs synchronize];
     edit = NO;
     [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:[NSIndexPath indexPathForRow:0 inSection:0], nil] withRowAnimation:UITableViewRowAnimationLeft];
 }
