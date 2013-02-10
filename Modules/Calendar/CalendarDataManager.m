@@ -382,20 +382,21 @@ static CalendarDataManager *s_sharedManager = nil;
 
 + (NSString *)dateStringForEventType:(MITEventList *)listType forDate:(NSDate *)aDate
 {
-	NSDate *now = [NSDate date];
+	/*NSDate *now = [NSDate date];
 	if ([[CalendarDataManager sharedManager] isDailyEvent:listType]
 		&& [now compare:aDate] != NSOrderedAscending
 		&& [now timeIntervalSinceDate:aDate] < [CalendarDataManager intervalForEventType:listType fromDate:aDate forward:YES]) {
 		return @"Today";
-	}
+	}*/
 	
 	NSString *dateString = nil;
 	NSDateFormatter *df = [[NSDateFormatter alloc] init];
-     [df setLocale:[[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"] autorelease]];
-	if ([listType.listID isEqualToString:@"Activities"]) {
-		[df setDateFormat:@"MMMM yyyy"];
+     //[df setLocale:[[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"] autorelease]];
+	//if ([listType.listID isEqualToString:@"Activities"]) {
+		[df setDateFormat:@"yyyy MMMM"];
 		dateString = [df stringFromDate:aDate];
-	} /*else if ([listType.listID isEqualToString:@"holidays"]) {
+	//}
+    /*else if ([listType.listID isEqualToString:@"holidays"]) {
 		// Find which Academic Year / Fiscal Year `aDate` falls under.
         // MIT's calendar starts July 1st and ends June 30th. 
         // e.g. 5/10/2012 would be in FY12 and comes out as the @"2011-2012" year.
@@ -413,10 +414,10 @@ static CalendarDataManager *s_sharedManager = nil;
         dateString = [NSString stringWithFormat:@"%@-%@", [df stringFromDate:startDate], [df stringFromDate:endDate]];
         [calendar release];
 	}*/
-    else {
+    /*else {
 		[df setDateStyle:kCFDateFormatterMediumStyle];
 		dateString = [df stringFromDate:aDate];
-    }
+    }*/
     [df release];
 	
 	return dateString;
@@ -426,14 +427,14 @@ static CalendarDataManager *s_sharedManager = nil;
 {
 	NSInteger sign = forward ? 1 : -1;
 	//if ([listType.listID isEqualToString:@"academic"]) {
-    if ([listType.listID isEqualToString:@"Activities"]) {
+    //if ([listType.listID isEqualToString:@"Activities"]) {
 		NSCalendar *calendar = [NSCalendar currentCalendar];
 		NSDateComponents *comps = [[NSDateComponents alloc] init];
 		[comps setMonth:sign];
 		NSDate *targetDate = [calendar dateByAddingComponents:comps toDate:aDate options:0];
 		[comps release];
 		return [targetDate timeIntervalSinceDate:aDate];
-	}
+	//}
 	/*else if ([listType.listID isEqualToString:@"holidays"]) {
 		NSCalendar *calendar = [NSCalendar currentCalendar];
 		NSDateComponents *comps = [[NSDateComponents alloc] init];
@@ -441,10 +442,10 @@ static CalendarDataManager *s_sharedManager = nil;
 		NSDate *targetDate = [calendar dateByAddingComponents:comps toDate:aDate options:0];
 		[comps release];
 		return [targetDate timeIntervalSinceDate:aDate];
-	}*/
+	}
     else {
 		return 86400.0 * sign;
-	}
+	}*/
 }
 
 - (EventCategory *)openHouseCategoryWithTitle:(NSString *)title catId:(NSInteger)catId {

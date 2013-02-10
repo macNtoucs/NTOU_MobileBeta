@@ -153,7 +153,7 @@
         dataTableView.dataSource = self;
         dataTableView.delegate = self;
         dataTableView.scrollEnabled = NO;
-        textView = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, 320, 420)];
+        textView = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, 320, [[UIScreen mainScreen] bounds].size.height-60)];
         textView.editable = NO;
         textView.scrollEnabled = YES;
         
@@ -301,8 +301,8 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         if (indexPath.row == 0) {
             self.button = [UIButton buttonWithType:UIButtonTypeCustom];
-            self.button.frame = CGRectMake(200, 15, 80, 25);
-            if (buttonDisplay == false)
+            self.button.frame = CGRectMake(225, 15, 80, 25);
+            if (buttonDisplay == true)
                 [self.button setTitle:@"隱藏詳細資訊" forState:UIControlStateNormal];
             else
                 [self.button setTitle:@"顯示詳細資訊" forState:UIControlStateNormal];

@@ -28,9 +28,9 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.title = @"功課表";
-        TopWeekcontroller = [[WeekNameView alloc] initWithFrame:CGRectMake(LeftBaseline, NavigationAndStatusHeight, UpperViewWidth*[[ClassDataBase sharedData] FetchWeekTimes], UpperBaseline)];
-        LeftViewController  = [[LessonTimeView alloc]initWithFrame:CGRectMake(0, NavigationAndStatusHeight+UpperBaseline, LeftBaseline,(LeftViewHeight-TextLabelborderWidth)*[[ClassDataBase sharedData] FetchClassSessionTimes])];
-        UpperleftView = [[UIView alloc] initWithFrame:CGRectMake(0,NavigationAndStatusHeight, LeftBaseline, UpperBaseline)];
+        TopWeekcontroller = [[WeekNameView alloc] initWithFrame:CGRectMake(LeftBaseline, [[UIApplication sharedApplication] statusBarFrame].size.height+NavigationHight, UpperViewWidth*[[ClassDataBase sharedData] FetchWeekTimes], UpperBaseline)];
+        LeftViewController  = [[LessonTimeView alloc]initWithFrame:CGRectMake(0, [[UIApplication sharedApplication] statusBarFrame].size.height+NavigationHight+UpperBaseline, LeftBaseline,(LeftViewHeight-TextLabelborderWidth)*[[ClassDataBase sharedData] FetchClassSessionTimes])];
+        UpperleftView = [[UIView alloc] initWithFrame:CGRectMake(0,[[UIApplication sharedApplication] statusBarFrame].size.height+NavigationHight, LeftBaseline, UpperBaseline)];
         UpperleftView.backgroundColor = [UIColor colorWithRed:105.0/255 green:105.0/255 blue:105.0/255 alpha:1];
         UpperleftView.layer.borderWidth = TextLabelborderWidth;
         UpperleftView.layer.borderColor = [UIColor blackColor].CGColor;
@@ -247,12 +247,12 @@
 
 -(CGSize)scrollContentSize
 {
-    return CGSizeMake(LeftBaseline+(UpperViewWidth-TextLabelborderWidth)*[[ClassDataBase sharedData] FetchWeekTimes], NavigationAndStatusHeight+UpperBaseline+(LeftViewHeight-TextLabelborderWidth)*[[ClassDataBase sharedData] FetchClassSessionTimes]);
+    return CGSizeMake(LeftBaseline+(UpperViewWidth-TextLabelborderWidth)*[[ClassDataBase sharedData] FetchWeekTimes], [[UIApplication sharedApplication] statusBarFrame].size.height+NavigationHight+UpperBaseline+(LeftViewHeight-TextLabelborderWidth)*[[ClassDataBase sharedData] FetchClassSessionTimes]);
 }
 
 - (void)viewDidLoad
 {
-    weekschedule = [[[WeekScheduleView alloc]initWithFrame:CGRectMake(0, 0, LeftBaseline+(UpperViewWidth-TextLabelborderWidth)*[[ClassDataBase sharedData] FetchWeekTimes], NavigationAndStatusHeight+UpperBaseline+(LeftViewHeight-TextLabelborderWidth)*[[ClassDataBase sharedData] FetchClassSessionTimes])] autorelease];
+    weekschedule = [[[WeekScheduleView alloc]initWithFrame:CGRectMake(0, 0, LeftBaseline+(UpperViewWidth-TextLabelborderWidth)*[[ClassDataBase sharedData] FetchWeekTimes], [[UIApplication sharedApplication] statusBarFrame].size.height+NavigationHight+UpperBaseline+(LeftViewHeight-TextLabelborderWidth)*[[ClassDataBase sharedData] FetchClassSessionTimes])] autorelease];
     [weekschedule getParent_ViewController:self];
     [self addNavRightButton]; 
     scrollView = [[UIScrollView alloc] init];

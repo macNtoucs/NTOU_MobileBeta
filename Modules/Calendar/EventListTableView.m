@@ -4,6 +4,7 @@
 #import "CalendarDetailViewController.h"
 #import "MITUIConstants.h"
 #import "MultiLineTableViewCell.h"
+#import "StoryDetailViewController.h"
 
 @interface MyTableViewCell : UITableViewCell
 
@@ -77,8 +78,27 @@
 }*/
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if([[parentViewController.activeEventList listID] isEqual:@"Speech"]){
+        CalendarSpeech *speech = [events objectAtIndex:indexPath.row];
+        
+        return [self textRowHeight:speech.title FontSize:16.5]+[self textRowHeight:[self detailText:speech] FontSize:12]+10;
+    }
     CGFloat height = 65.0;
     return height;
+}
+
+-(CGFloat)textRowHeight:(NSString *)string FontSize:(CGFloat) size
+{
+    CGSize constraintSize = CGSizeMake(310.0f, 2009.0f);
+    UIFont *cellFont = [UIFont fontWithName:@"Helvetica" size:size];
+    CGSize labelSize = [string sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
+    CGFloat rowHeight = labelSize.height;
+    return rowHeight;
+}
+
+-(NSString *)detailText:(CalendarSpeech *)speech
+{
+    return [[NSString alloc] initWithFormat:@"時間：%@    %@\n演講者:%@    %@\n演講地點：%@    %@",speech.date,speech.time,speech.speaker,speech.serviceOrgan,speech.location,speech.organizers];
 }
 
 - (MyTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -139,24 +159,56 @@
     }
 	*/
     
-    static NSString *CellIdentifier = @"Cell";
-    
+    NSString *CellIdentifier = [NSString stringWithFormat:@"Cell%@%d%d",[parentViewController.activeEventList listID],indexPath.section,indexPath.row];
+    UILabel *label = nil;
+    UILabel *detailLabel = nil;
     MyTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[MyTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-    }
-    cell.textLabel.numberOfLines = 2;
-    cell.textLabel.font = [UIFont boldSystemFontOfSize:16.5];
-    
-    if([[parentViewController.activeEventList listID] isEqual:@"Speech"])
-    {
-        cell.textLabel.text = [[events objectAtIndex:indexPath.row] title];
-        cell.detailTextLabel.text = [[[[events objectAtIndex:indexPath.row] time] stringByAppendingString:@" "] stringByAppendingString:[[events objectAtIndex:indexPath.row] speaker]];
-    }
-    else
-    {
-        cell.textLabel.text = [[events objectAtIndex:indexPath.row] title];
-        cell.detailTextLabel.text = [[events objectAtIndex:indexPath.row] period];
+        
+        cell.textLabel.numberOfLines = 2;
+        cell.textLabel.font = [UIFont boldSystemFontOfSize:16.5];
+        
+        if([[parentViewController.activeEventList listID] isEqual:@"Speech"])
+        {
+            CalendarSpeech *speech = [events objectAtIndex:indexPath.row];
+            
+            label = [[UILabel alloc] init];
+            detailLabel = [[UILabel alloc] init];
+            
+            NSString* detailText =[self detailText:speech];
+            
+            label.frame = CGRectMake(5, 5,310, [self textRowHeight:speech.title FontSize:16.5]);
+            detailLabel.frame = CGRectMake(5, [self textRowHeight:speech.title FontSize:16.5]+5,310, [self textRowHeight:detailText FontSize:12]);
+            
+            label.tag=indexPath.row;
+            label.numberOfLines = 0;
+            label.lineBreakMode = UILineBreakModeWordWrap;
+            label.font = [UIFont boldSystemFontOfSize:16.5];
+            label.backgroundColor = [UIColor clearColor];
+            
+            detailLabel.lineBreakMode = UILineBreakModeWordWrap;
+            detailLabel.numberOfLines = 0;
+            detailLabel.font = [UIFont fontWithName:STANDARD_FONT size:12];
+            detailLabel.textColor = CELL_DETAIL_FONT_COLOR;
+            detailLabel.tag=indexPath.row;
+            detailLabel.backgroundColor = [UIColor clearColor];
+            
+            [cell.contentView addSubview:label];
+            [cell.contentView addSubview:detailLabel];
+            
+            label.text = speech.title;
+            detailLabel.text = detailText;
+            
+            
+        }
+        else
+        {
+            cell.textLabel.numberOfLines = 2;
+            cell.textLabel.font = [UIFont boldSystemFontOfSize:16.5];
+            cell.textLabel.text = [[events objectAtIndex:indexPath.row] title];
+            cell.detailTextLabel.text = [[events objectAtIndex:indexPath.row] period];
+        }
     }
     
     return cell;
@@ -197,22 +249,15 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	
-	CalendarDetailViewController *detailVC = [[CalendarDetailViewController alloc] initWithNibName:nil bundle:nil];//initWithStyle:UITableViewStylePlain];
-	detailVC.events = self.events;
-    
     if([[parentViewController.activeEventList listID] isEqual:@"Speech"])
-    {
-        CalendarSpeech * speechEvent = [events objectAtIndex:indexPath.row];
-        detailVC.speechEvent = speechEvent;
-        detailVC.numRows = 4;
-    }
+        return;
     
-    else
-    {
-        CalendarActivities * activitiesEvent = [self.events objectAtIndex:indexPath.row];
-        detailVC.activitiesEvent = activitiesEvent;
-        detailVC.numRows = 5;
-    }
+	StoryDetailViewController *detailVC = [[StoryDetailViewController alloc] initWithNibName:nil bundle:nil];//initWithStyle:UITableViewStylePlain];
+      
+    CalendarActivities * activitiesEvent = [self.events objectAtIndex:indexPath.row];
+
+    detailVC.type = @"藝文活動";
+    detailVC.story = [[NSArray alloc] initWithObjects:activitiesEvent.period,activitiesEvent.undertaker,activitiesEvent.phone,activitiesEvent.title,activitiesEvent.content,activitiesEvent.email, nil];
 
 	[self.parentViewController.navigationController pushViewController:detailVC animated:YES];
 	[detailVC release];

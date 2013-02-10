@@ -418,7 +418,13 @@
 			((EventListTableView *)self.tableView).parentViewController = self;
             
             CalendarSpeech * tmp1_1226= [CalendarSpeech new];
-            [tmp1_1226 setDate:@"2012/12/26 (星期三)" time:@" 下午 02:00	下午 04:00" title:@" 行動寬頻應用" speaker:@" 林紹威 先生" serviceOrgan:@" 大眾電腦董事長特助" location:@" 資工系館101室" oranizers:@" E0.電機資訊學院"];
+            [tmp1_1226 setDate:@"2012/12/26" time:@" 下午 02:00	下午 04:00" title:@" 行動寬頻應用" speaker:@" 林紹威 先生" serviceOrgan:@" 大眾電腦董事長特助" location:@" 資工系館101室" oranizers:@" E0.電機資訊學院"];
+            
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateFormat:@"yyyy/MM/dd"];
+            NSDate *date = [dateFormatter dateFromString:tmp1_1226.date];
+            NSLog(@"%@", date);
+            [dateFormatter release];
             
             CalendarSpeech * tmp2_1226= [CalendarSpeech new];
             [tmp2_1226 setDate:@" 2012/12/26 (星期三)" time:@" 下午 03:10	下午 05:00 " title:@" LNG-清潔能源" speaker:@" 王思遠 先生" serviceOrgan:@" 經管 4艘 LNG船" location:@" 延平大樓109遠距多媒體教室" oranizers:@" A4.輪機工程學系(2) "];
@@ -493,13 +499,13 @@
             
             
             CalendarActivities * tmp1_Dec = [CalendarActivities new];
-            [tmp1_Dec setDate:@"101/12/18" period:@"101/12/18～101/12/27" undertaker:@"林佩珊" email:nil phone:@"2121" title:@"舉辦「型衍形」吳建松石雕個展藝術家導覽。" content:@"時間：\n12/27　Thu\n13:10-14:30　卓越大師講座\n地點:人文社會科學院2樓　遠距教室\n\n14:30　藝術家導覽\n地點:圖書館一樓展示空間\n\n相關活動資訊請上藝文中心網站查詢\nhttp://www.art.ntou.edu.tw/"];
+            [tmp1_Dec setDate:@"101/12/18" period:@"101/12/18～101/12/27" undertaker:@"林佩珊" email:@"無" phone:@"2121" title:@"舉辦「型衍形」吳建松石雕個展藝術家導覽。" content:@"時間：\n12/27　Thu\n13:10-14:30　卓越大師講座\n地點:人文社會科學院2樓　遠距教室\n\n14:30　藝術家導覽\n地點:圖書館一樓展示空間\n\n相關活動資訊請上藝文中心網站查詢\nhttp://www.art.ntou.edu.tw/"];
             CalendarActivities * tmp2_Dec = [CalendarActivities new];
-            [tmp2_Dec setDate:@"101/12/18" period:@"101/12/18～101/12/31" undertaker:@"林令華" email:nil phone:@"24622192-2130" title:@"本期藝文Live　Show-12/12正港德意志-張正傑大提琴獨奏會演出片段" content:@"本期藝文Live　Show-12/12正港德意志-張正傑大提琴獨奏會演出片段\n\n可點以下連結觀賞：\n藝文中心http://www.art.ntou.edu.tw/\n播客行動學習系統http://podcast.ntou.edu.tw/podcast/show_channel/107"];
+            [tmp2_Dec setDate:@"101/12/18" period:@"101/12/18～101/12/31" undertaker:@"林令華" email:@"無" phone:@"24622192-2130" title:@"本期藝文Live　Show-12/12正港德意志-張正傑大提琴獨奏會演出片段" content:@"本期藝文Live　Show-12/12正港德意志-張正傑大提琴獨奏會演出片段\n\n可點以下連結觀賞：\n藝文中心http://www.art.ntou.edu.tw/\n播客行動學習系統http://podcast.ntou.edu.tw/podcast/show_channel/107"];
             CalendarActivities * tmp3_Dec = [CalendarActivities new];
-            [tmp3_Dec setDate:@"101/12/14" period:@"101/11/30～101/1/25" undertaker:@"林佩珊" email:nil phone:@"2121" title:@"型衍形-吳建松石雕個展" content:@"<型衍形-吳建松石雕個展>\n2012.12.05Wed-2013.01.25Fri\n圖書館一樓展示空間\n\n12月27日下午1點10分，吳建松老師於海大開講\n地點：人社院2F遠距教室\n詳細演講內容請參卓越大師網站，\nhttp://www.art.ntou.edu.tw/masters/"];
+            [tmp3_Dec setDate:@"101/12/14" period:@"101/11/30～101/1/25" undertaker:@"林佩珊" email:@"無" phone:@"2121" title:@"型衍形-吳建松石雕個展" content:@"<型衍形-吳建松石雕個展>\n2012.12.05Wed-2013.01.25Fri\n圖書館一樓展示空間\n\n12月27日下午1點10分，吳建松老師於海大開講\n地點：人社院2F遠距教室\n詳細演講內容請參卓越大師網站，\nhttp://www.art.ntou.edu.tw/masters/"];
             CalendarActivities * tmp4_Dec = [CalendarActivities new];
-            [tmp4_Dec setDate:@" 101/12/24" period:@"101/12/24~102/01/01" undertaker:@" 林佩珊" email:nil phone:@" 2121" title:@" 配合圖書館年度館舍打蠟作業，吳建松石雕個展暫停展覽兩日。" content:@" 民國101年12月31日及102年1月1日，，吳建松石雕個展暫停兩日，不便之處敬請見諒。"];
+            [tmp4_Dec setDate:@" 101/12/24" period:@"101/12/24~102/01/01" undertaker:@" 林佩珊" email:@"無" phone:@" 2121" title:@" 配合圖書館年度館舍打蠟作業，吳建松石雕個展暫停展覽兩日。" content:@" 民國101年12月31日及102年1月1日，，吳建松石雕個展暫停兩日，不便之處敬請見諒。"];
             
             NSArray * December = [[NSArray alloc] initWithObjects:tmp1_Dec, tmp2_Dec, tmp3_Dec, tmp4_Dec, nil];
             
@@ -508,6 +514,8 @@
             
             if([activeEventList.listID isEqual:@"Speech"])
             {
+                ((EventListTableView *)self.tableView).events = Jan03;
+                
                 if([[dateText objectAtIndex:0] isEqual:@"Today"])
                 {
                     ((EventListTableView *)self.tableView).events = Jan03;
@@ -557,11 +565,7 @@
             
             else
             {
-                NSArray * month_year = [[dateText objectAtIndex:0] componentsSeparatedByString:@" "];
-                if([[month_year objectAtIndex:0] isEqual:@"December"] && [[month_year objectAtIndex:1] isEqual:@"2012"])
-                {
-                    ((EventListTableView *)self.tableView).events = December;
-                }
+                ((EventListTableView *)self.tableView).events = December;
             }
             
                         

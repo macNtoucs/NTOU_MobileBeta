@@ -158,6 +158,7 @@
 - (void)viewDidLoad
 {
     
+    _topView.frame = CGRectMake(_topView.frame.origin.x, [[UIApplication sharedApplication] statusBarFrame].size.height, _topView.frame.size.width, _topView.frame.size.height);
     CGRect basketTopFrame = _topView.frame;
     _topView.frame = CGRectMake(basketTopFrame.origin.x, -28, basketTopFrame.size.width, basketTopFrame.size.height);
     _bottomView.frame = CGRectMake(_bottomView.frame.origin.x,[[UIScreen mainScreen] bounds].size.height-_bottomView.frame.size.height, _bottomView.frame.size.width, _bottomView.frame.size.height);
@@ -179,6 +180,7 @@
                          _bottomView.frame = CGRectMake(_bottomView.frame.origin.x,_bottomView.frame.origin.y-_bottomView.frame.size.height, _bottomView.frame.size.width, _bottomView.frame.size.height);
                      } 
                      completion:^(BOOL finished){
+                         _topView.frame = basketTopFrame;
                      }];
     [delegate changeTapEnable];
     _modifyInfo.hidden = YES;

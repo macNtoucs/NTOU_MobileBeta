@@ -8,6 +8,7 @@
 #define LeftViewHeight 46
 
 #define NavigationAndStatusHeight 64
+#define NavigationHight 44
 
 #define TextLabelborderWidth 2
 //------moodleApiKey---------------------------------
