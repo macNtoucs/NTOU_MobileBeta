@@ -307,6 +307,12 @@
 		A63DEE281353CF37001C52BF /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A63DEE271353CF37001C52BF /* EventKit.framework */; };
 		A65E3A0416498D56000E6782 /* ThroughTap.m in Sources */ = {isa = PBXBuildFile; fileRef = A65E3A0316498D56000E6782 /* ThroughTap.m */; };
 		A6930566144CEBFC0012EEFA /* ThankYouViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6930564144CEBFC0012EEFA /* ThankYouViewController.m */; };
+		A69451C616CBF18C004E26C8 /* beining.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A69451BF16CBF18C004E26C8 /* beining.jpg */; };
+		A69451C716CBF18C004E26C8 /* jungjeng.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A69451C016CBF18C004E26C8 /* jungjeng.jpg */; };
+		A69451C816CBF18C004E26C8 /* NTOU_Life.xib in Resources */ = {isa = PBXBuildFile; fileRef = A69451C116CBF18C004E26C8 /* NTOU_Life.xib */; };
+		A69451C916CBF18C004E26C8 /* NTOU_LifeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A69451C316CBF18C004E26C8 /* NTOU_LifeViewController.m */; };
+		A69451CA16CBF18C004E26C8 /* shiangfeng.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A69451C416CBF18C004E26C8 /* shiangfeng.jpg */; };
+		A69451CB16CBF18C004E26C8 /* shinfeng.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A69451C516CBF18C004E26C8 /* shinfeng.jpg */; };
 		A69826E51354A488004A8258 /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A69826E41354A488004A8258 /* EventKitUI.framework */; };
 		A6A82E38145624F20075EB28 /* LibraryTextElementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A82E37145624F20075EB28 /* LibraryTextElementViewController.m */; };
 		A6B4E1B016B51B180039AA50 /* ClassAddRetina4.xib in Resources */ = {isa = PBXBuildFile; fileRef = A6B4E1AF16B51B180039AA50 /* ClassAddRetina4.xib */; };
@@ -1087,6 +1093,13 @@
 		A65E3A0316498D56000E6782 /* ThroughTap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThroughTap.m; sourceTree = "<group>"; };
 		A6930563144CEBFC0012EEFA /* ThankYouViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThankYouViewController.h; sourceTree = "<group>"; };
 		A6930564144CEBFC0012EEFA /* ThankYouViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThankYouViewController.m; sourceTree = "<group>"; };
+		A69451BF16CBF18C004E26C8 /* beining.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = beining.jpg; sourceTree = "<group>"; };
+		A69451C016CBF18C004E26C8 /* jungjeng.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = jungjeng.jpg; sourceTree = "<group>"; };
+		A69451C116CBF18C004E26C8 /* NTOU_Life.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NTOU_Life.xib; sourceTree = "<group>"; };
+		A69451C216CBF18C004E26C8 /* NTOU_LifeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTOU_LifeViewController.h; sourceTree = "<group>"; };
+		A69451C316CBF18C004E26C8 /* NTOU_LifeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTOU_LifeViewController.m; sourceTree = "<group>"; };
+		A69451C416CBF18C004E26C8 /* shiangfeng.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = shiangfeng.jpg; sourceTree = "<group>"; };
+		A69451C516CBF18C004E26C8 /* shinfeng.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = shinfeng.jpg; sourceTree = "<group>"; };
 		A69826E41354A488004A8258 /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = System/Library/Frameworks/EventKitUI.framework; sourceTree = SDKROOT; };
 		A6A82E36145624F20075EB28 /* LibraryTextElementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryTextElementViewController.h; sourceTree = "<group>"; };
 		A6A82E37145624F20075EB28 /* LibraryTextElementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryTextElementViewController.m; sourceTree = "<group>"; };
@@ -3120,6 +3133,13 @@
 				EB7F327510CD6C5B00188BCD /* PeopleModule.m */,
 				EB7F327610CD6C5B00188BCD /* PeopleRecentsData.h */,
 				EB7F327710CD6C5B00188BCD /* PeopleRecentsData.m */,
+				A69451BF16CBF18C004E26C8 /* beining.jpg */,
+				A69451C016CBF18C004E26C8 /* jungjeng.jpg */,
+				A69451C116CBF18C004E26C8 /* NTOU_Life.xib */,
+				A69451C216CBF18C004E26C8 /* NTOU_LifeViewController.h */,
+				A69451C316CBF18C004E26C8 /* NTOU_LifeViewController.m */,
+				A69451C416CBF18C004E26C8 /* shiangfeng.jpg */,
+				A69451C516CBF18C004E26C8 /* shinfeng.jpg */,
 				EBCA123210CEF3C400577C5D /* PeopleSearchViewController.h */,
 				EBA2865510E07E140003BA01 /* PeopleSearchViewController.m */,
 				EB7F327210CD6C5B00188BCD /* PeopleDetailsViewController.h */,
@@ -3455,6 +3475,11 @@
 				A6B4E1B016B51B180039AA50 /* ClassAddRetina4.xib in Resources */,
 				C795602716B7A8DE0001EB64 /* Default-568h@2x.png in Resources */,
 				C769D47316B8E3020048F0A3 /* MoodleInfo2 in Resources */,
+				A69451C616CBF18C004E26C8 /* beining.jpg in Resources */,
+				A69451C716CBF18C004E26C8 /* jungjeng.jpg in Resources */,
+				A69451C816CBF18C004E26C8 /* NTOU_Life.xib in Resources */,
+				A69451CA16CBF18C004E26C8 /* shiangfeng.jpg in Resources */,
+				A69451CB16CBF18C004E26C8 /* shinfeng.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3868,6 +3893,7 @@
 				91364F9C16AFB224007CA25D /* SBJsonTokeniser.m in Sources */,
 				91364F9D16AFB224007CA25D /* SBJsonUTF8Stream.m in Sources */,
 				C795602216B77F6B0001EB64 /* MBProgressHUD.m in Sources */,
+				A69451C916CBF18C004E26C8 /* NTOU_LifeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
