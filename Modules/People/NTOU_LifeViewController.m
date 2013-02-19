@@ -25,7 +25,7 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
+    [super viewDidLoad];/*
     pageControl = [UIPageControl new];
     scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0,0, 320, 480)];
     [pageControl setNumberOfPages:4];
@@ -65,7 +65,7 @@
 
                
         
-    [self.view addSubview:scrollView];
+    [self.view addSubview:scrollView];*/
 }
 - (void)scrollViewDidScroll:(UIScrollView *)sender {
     CGFloat width = scrollView.frame.size.width;
@@ -84,12 +84,53 @@
     [scrollView scrollRectToVisible:frame animated:YES];
 }
 
+//页面控制方法
+-(IBAction) pageChanged{
+    
+    switch ([pageControl currentPage]) {
+			
+		case 0:
+			[shinfeng removeFromSuperview];
+			[shiangfeng removeFromSuperview];
+            [beining removeFromSuperview];
+			[[self view] addSubview:jungjeng];
+			break;
+			
+		case 1:
+			[jungjeng removeFromSuperview];
+			[shiangfeng removeFromSuperview];
+            [beining removeFromSuperview];
+			[[self view] addSubview:shinfeng];
+			break;
+			
+		case 2:
+			[shinfeng removeFromSuperview];
+			[jungjeng removeFromSuperview];
+            [beining removeFromSuperview];
+			[[self view] addSubview:shiangfeng];
+			break;
+        
+        case 3:
+			[shinfeng removeFromSuperview];
+			[shiangfeng removeFromSuperview];
+            [jungjeng removeFromSuperview];
+			[[self view] addSubview:beining];
+			break;
+
+			
+		default:
+			break;
+	}
+    
+}
+
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+/*
 - (void)dealloc {
     [beining release];
     [pageControl release];
@@ -98,7 +139,7 @@
     [shiangfeng release];
     [jungjeng release];
     [super dealloc];
-}
+}*/
 - (void)viewDidUnload {
     [beining release];
     beining = nil;

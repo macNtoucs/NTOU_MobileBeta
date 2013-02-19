@@ -25,8 +25,11 @@
 
 - (void)loadModuleHomeController
 {
-    NTOU_LifeViewController *controller = [[[NTOU_LifeViewController alloc] init] autorelease];
-    self.moduleHomeController = controller;
+    UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+    UIViewController* initialHelpView = [storyboard instantiateInitialViewController];
+    
+    //NTOU_LifeViewController *controller = [[[NTOU_LifeViewController alloc] init] autorelease];
+    self.moduleHomeController = initialHelpView;
 }
 
 
