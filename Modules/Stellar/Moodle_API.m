@@ -75,7 +75,7 @@ static Byte iv[] = {1,2,3,4,5,6,7,8};
 }
 
 
-/*
+
 +(NSDictionary *)Login:(NSString *)username andPassword:(NSString*)password{
     // NSDictionary *dictionary = [self queryFunctionType:@"login" PostString:finailPost];
     NSDictionary *dictionary;
@@ -84,8 +84,8 @@ static Byte iv[] = {1,2,3,4,5,6,7,8};
     do{
         struct timeval t;
         gettimeofday(&t, NULL);
-        long msec = (t.tv_sec * 1000 + t.tv_usec / 1000);
-        long forEncrpt = msec%100000000;
+        unsigned long msec = (t.tv_sec * 1000 + t.tv_usec / 1000);
+        unsigned long forEncrpt = msec%100000000;
         // setup post string
         NSString * encrypt_username =  [Moodle_API encryptUseDES:username key:[NSString stringWithFormat:@"%ld",forEncrpt]];
         NSString * encrypt_password =  [Moodle_API encryptUseDES:password key:[NSString stringWithFormat:@"%ld",forEncrpt]];
@@ -94,7 +94,7 @@ static Byte iv[] = {1,2,3,4,5,6,7,8};
         postDic1 =[[NSDictionary alloc]initWithObjectsAndKeys:
                    encrypt_username,@"username",
                    encrypt_password,@"password",
-                   [NSString stringWithFormat:@"%ld",msec],@"now", nil];
+                   [NSString stringWithFormat:@"%lu",msec],@"now", nil];
         
         //NSLog(@"加密username=>%@",encrypt_username );
         //NSLog(@"加密password=>%@",encrypt_password );
@@ -157,7 +157,7 @@ static Byte iv[] = {1,2,3,4,5,6,7,8};
     NSDictionary *dictionary = [self queryFunctionType:@"getMoodleID" PostString:finailPost];
     return dictionary;
 }
-*/
+/*
 
 
 +(NSDictionary *)Login:(NSString *)username andPassword:(NSString*)password{
@@ -225,5 +225,5 @@ static Byte iv[] = {1,2,3,4,5,6,7,8};
     NSDictionary *dic = [NSJSONSerialization JSONObjectWithData: responseData options: 0 error: &e];
     return dic; 
 }
-
+*/
 @end
