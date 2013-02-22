@@ -27,7 +27,7 @@
 {
     UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
     UIViewController* initialHelpView = [storyboard instantiateInitialViewController];
-    
+    initialHelpView.title = @"海大生活圈";
     //NTOU_LifeViewController *controller = [[[NTOU_LifeViewController alloc] init] autorelease];
     self.moduleHomeController = initialHelpView;
 }
