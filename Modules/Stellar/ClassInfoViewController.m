@@ -187,11 +187,7 @@
         ClassInfoView *view1, *view2, *view3, *view4;
         view1 = [[ClassInfoView alloc] initWithStyle:UITableViewStyleGrouped];
         view1.title = type3;
-        NSArray* listData = [[Moodle_API GetMoodleInfo_AndUseToken:token courseID:[apiKey objectForKey:courseIDKey] classID:[apiKey objectForKey:classIDKey]] objectForKey:moodleListKey];
-        NSArray* data = [[NSArray alloc] init];
-        if ([listData count]) {
-            data = [[listData objectAtIndex:0] objectForKey:moodleResourceInfoKey];
-        }
+        NSArray* data = [[[[Moodle_API GetMoodleInfo_AndUseToken:token courseID:[apiKey objectForKey:courseIDKey] classID:[apiKey objectForKey:classIDKey]] objectForKey:moodleListKey] objectAtIndex:0] objectForKey:moodleResourceInfoKey];
         data = [[data reverseObjectEnumerator] allObjects];
         NSMutableArray* resource = [[NSMutableArray alloc] init];
         for (NSDictionary* info in data) {

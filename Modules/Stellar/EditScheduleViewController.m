@@ -304,7 +304,6 @@
                                             ClearAllCourses:YES];
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
-                    [self dismissModalViewControllerAnimated:YES];
                 });
             });
         }
@@ -323,9 +322,9 @@
                                          ClearAllCourses:NO];
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
-                    [self dismissModalViewControllerAnimated:YES];
                 });
             });
+            [self.navigationController popViewControllerAnimated:YES];
         }
             break;
         default:

@@ -460,7 +460,6 @@ static ClassDataBase *sharedData = nil;
     [classroomLocation removeAllObjects];
     [classroomTempLocation removeAllObjects];
     [courseCount removeAllObjects];
-    [courseTempCount removeAllObjects];
     [moodleFrom removeAllObjects];
     [moodleTempFrom removeAllObjects];
     [courseCount removeAllObjects];
@@ -556,15 +555,7 @@ static ClassDataBase *sharedData = nil;
         NSMutableArray* classroomArray = [NSMutableArray array];
         NSMutableArray* professorArray = [NSMutableArray array];
         
-        NSSortDescriptor * CourseTimeDescriptor =
-        [[[NSSortDescriptor alloc] initWithKey:moodleCourseTimeKey
-                                     ascending:YES] autorelease];
-                
-        NSArray * descriptors =[NSArray arrayWithObjects:CourseTimeDescriptor, nil];
-        NSArray * sortedArray =[[courseDic objectForKey:moodleCourseKey] sortedArrayUsingDescriptors:descriptors];
-        
-        
-        for (NSDictionary* couses in sortedArray) {
+        for (NSDictionary* couses in [courseDic objectForKey:moodleCourseKey]) {
             NSString* replaceCourse=[daySched objectAtIndex:[[couses objectForKey:moodleCourseTimeKey] intValue]];
             [self courseCountReplaceForNewCourse:[couses objectForKey:moodleCourseNameKey] ForOldCourse:replaceCourse];
             [self classPropertyAdd:couses];
