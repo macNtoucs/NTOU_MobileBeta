@@ -43,7 +43,7 @@
 						"</body>"
 						"</html>" retain];
 	
-	self.htmlString = [NSString stringWithFormat:htmlFormatString, @"工學院院館前北寧路發生落石"];
+	self.htmlString = [NSString stringWithFormat:htmlFormatString, @"目前無緊急事件"];
     
 	[self.tableView applyStandardColors];
 }
