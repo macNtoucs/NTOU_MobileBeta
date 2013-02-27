@@ -397,6 +397,13 @@
 		C7BC48DE16DDD664002CB05B /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7BC48DB16DDD664002CB05B /* MainStoryboard.storyboard */; };
 		C7BC48DF16DDD664002CB05B /* CustomPagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7BC48DC16DDD664002CB05B /* CustomPagerViewController.m */; };
 		C7BC48E016DDD664002CB05B /* PagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7BC48DD16DDD664002CB05B /* PagerViewController.m */; };
+		C7BC48ED16DDD94A002CB05B /* K_RouteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7BC48E916DDD94A002CB05B /* K_RouteViewController.m */; };
+		C7BC48EE16DDD94A002CB05B /* NTOUGuide2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7BC48EA16DDD94A002CB05B /* NTOUGuide2ViewController.m */; };
+		C7BC48EF16DDD94A002CB05B /* NTOUGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7BC48EB16DDD94A002CB05B /* NTOUGuideViewController.m */; };
+		C7BC48F216DDD9EE002CB05B /* NTOUGuideSetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7BC48F116DDD9EE002CB05B /* NTOUGuideSetViewController.m */; };
+		C7BC48F916DDDA27002CB05B /* NTOUGuide3ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7BC48F516DDDA27002CB05B /* NTOUGuide3ViewController.m */; };
+		C7BC48FA16DDDA27002CB05B /* NTOUGuide4ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7BC48F616DDDA27002CB05B /* NTOUGuide4ViewController.m */; };
+		C7BC48FB16DDDA27002CB05B /* ShuttleTrack.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C7BC48F716DDDA27002CB05B /* ShuttleTrack.xcdatamodeld */; };
 		C7BF082816806C3000153F6F /* Rotation.m in Sources */ = {isa = PBXBuildFile; fileRef = C7BF082716806C2F00153F6F /* Rotation.m */; };
 		C7BF083D16884B4E00153F6F /* NTOU_ClassColorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7BF083B16884B4E00153F6F /* NTOU_ClassColorViewController.m */; };
 		C7BF083E16884B4E00153F6F /* NTOU_ClassColorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7BF083C16884B4E00153F6F /* NTOU_ClassColorViewController.xib */; };
@@ -1229,6 +1236,19 @@
 		C7BC48DB16DDD664002CB05B /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
 		C7BC48DC16DDD664002CB05B /* CustomPagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomPagerViewController.m; sourceTree = "<group>"; };
 		C7BC48DD16DDD664002CB05B /* PagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PagerViewController.m; sourceTree = "<group>"; };
+		C7BC48E516DDD94A002CB05B /* K_RouteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = K_RouteViewController.h; sourceTree = "<group>"; };
+		C7BC48E616DDD94A002CB05B /* NTOUGuide2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTOUGuide2ViewController.h; sourceTree = "<group>"; };
+		C7BC48E716DDD94A002CB05B /* NTOUGuideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTOUGuideViewController.h; sourceTree = "<group>"; };
+		C7BC48E916DDD94A002CB05B /* K_RouteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = K_RouteViewController.m; sourceTree = "<group>"; };
+		C7BC48EA16DDD94A002CB05B /* NTOUGuide2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTOUGuide2ViewController.m; sourceTree = "<group>"; };
+		C7BC48EB16DDD94A002CB05B /* NTOUGuideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTOUGuideViewController.m; sourceTree = "<group>"; };
+		C7BC48F016DDD9EE002CB05B /* NTOUGuideSetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTOUGuideSetViewController.h; sourceTree = "<group>"; };
+		C7BC48F116DDD9EE002CB05B /* NTOUGuideSetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTOUGuideSetViewController.m; sourceTree = "<group>"; };
+		C7BC48F316DDDA27002CB05B /* NTOUGuide3ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NTOUGuide3ViewController.h; path = Model/NTOUGuide3ViewController.h; sourceTree = "<group>"; };
+		C7BC48F416DDDA27002CB05B /* NTOUGuide4ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NTOUGuide4ViewController.h; path = Model/NTOUGuide4ViewController.h; sourceTree = "<group>"; };
+		C7BC48F516DDDA27002CB05B /* NTOUGuide3ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NTOUGuide3ViewController.m; path = Model/NTOUGuide3ViewController.m; sourceTree = "<group>"; };
+		C7BC48F616DDDA27002CB05B /* NTOUGuide4ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NTOUGuide4ViewController.m; path = Model/NTOUGuide4ViewController.m; sourceTree = "<group>"; };
+		C7BC48F816DDDA27002CB05B /* ShuttleTrack.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ShuttleTrack.xcdatamodel; sourceTree = "<group>"; };
 		C7BF082616806C2F00153F6F /* Rotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Rotation.h; path = "App Delegate/Rotation.h"; sourceTree = "<group>"; };
 		C7BF082716806C2F00153F6F /* Rotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Rotation.m; path = "App Delegate/Rotation.m"; sourceTree = "<group>"; };
 		C7BF083A16884B4E00153F6F /* NTOU_ClassColorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NTOU_ClassColorViewController.h; path = ../../NTOU_ClassColorViewController.h; sourceTree = "<group>"; };
@@ -2722,6 +2742,19 @@
 				C7AFEDFA1659EC09005FF1DB /* KUO_TimeViewController.m */,
 				C7AFEDFB1659EC09005FF1DB /* KUO_TimeViewController.h */,
 				C7AFEDFC1659EC09005FF1DB /* KUO_RouteViewController_Bra2.m */,
+				C7BC48E516DDD94A002CB05B /* K_RouteViewController.h */,
+				C7BC48E616DDD94A002CB05B /* NTOUGuide2ViewController.h */,
+				C7BC48E716DDD94A002CB05B /* NTOUGuideViewController.h */,
+				C7BC48F016DDD9EE002CB05B /* NTOUGuideSetViewController.h */,
+				C7BC48F116DDD9EE002CB05B /* NTOUGuideSetViewController.m */,
+				C7BC48F316DDDA27002CB05B /* NTOUGuide3ViewController.h */,
+				C7BC48F416DDDA27002CB05B /* NTOUGuide4ViewController.h */,
+				C7BC48F516DDDA27002CB05B /* NTOUGuide3ViewController.m */,
+				C7BC48F616DDDA27002CB05B /* NTOUGuide4ViewController.m */,
+				C7BC48F716DDDA27002CB05B /* ShuttleTrack.xcdatamodeld */,
+				C7BC48E916DDD94A002CB05B /* K_RouteViewController.m */,
+				C7BC48EA16DDD94A002CB05B /* NTOUGuide2ViewController.m */,
+				C7BC48EB16DDD94A002CB05B /* NTOUGuideViewController.m */,
 				C7AFEDFD1659EC09005FF1DB /* KUO_RouteViewController_Bra2.h */,
 				C7AFEDFE1659EC09005FF1DB /* KUO_KUANGViewController.m */,
 				C7AFEDFF1659EC0A005FF1DB /* KUO_KUANGViewController.h */,
@@ -3862,6 +3895,13 @@
 				A69451C916CBF18C004E26C8 /* NTOU_LifeViewController.m in Sources */,
 				C7BC48DF16DDD664002CB05B /* CustomPagerViewController.m in Sources */,
 				C7BC48E016DDD664002CB05B /* PagerViewController.m in Sources */,
+				C7BC48ED16DDD94A002CB05B /* K_RouteViewController.m in Sources */,
+				C7BC48EE16DDD94A002CB05B /* NTOUGuide2ViewController.m in Sources */,
+				C7BC48EF16DDD94A002CB05B /* NTOUGuideViewController.m in Sources */,
+				C7BC48F216DDD9EE002CB05B /* NTOUGuideSetViewController.m in Sources */,
+				C7BC48F916DDDA27002CB05B /* NTOUGuide3ViewController.m in Sources */,
+				C7BC48FA16DDDA27002CB05B /* NTOUGuide4ViewController.m in Sources */,
+				C7BC48FB16DDDA27002CB05B /* ShuttleTrack.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4166,6 +4206,17 @@
 			);
 			currentVersion = C748788D1627D3DA001D3390 /* Emergency.xcdatamodel */;
 			path = Emergency.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		C7BC48F716DDDA27002CB05B /* ShuttleTrack.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				C7BC48F816DDDA27002CB05B /* ShuttleTrack.xcdatamodel */,
+			);
+			currentVersion = C7BC48F816DDDA27002CB05B /* ShuttleTrack.xcdatamodel */;
+			name = ShuttleTrack.xcdatamodeld;
+			path = Model/ShuttleTrack.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
