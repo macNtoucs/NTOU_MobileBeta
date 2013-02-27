@@ -62,9 +62,9 @@
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
      if (go)
-         return 4;
-    else
          return 5;
+    else
+         return 6;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -88,6 +88,9 @@
         case 3:
             cell.textLabel.text = @"中正校門";
             break;
+        case 4:
+            cell.textLabel.text = @"二信中學";
+            break;
         default:
             break;
       }
@@ -107,6 +110,9 @@
                 cell.textLabel.text = @"中正校門";
                 break;
             case 4:
+                cell.textLabel.text = @"二信中學";
+                break;
+            case 5:
                 cell.textLabel.text = @"火車站";
                 break;
         }
@@ -188,12 +194,20 @@
                              and: @"http://ebus.klcba.gov.tw/KLBusWeb/pda/estimate_result.jsp?rid=104102&sid=122"
              ];
         }
-        else{
+        else if (indexPath.row ==3){
         //中正校門
             [detail addRoutesURL:@"http://ebus.klcba.gov.tw/KLBusWeb/pda/estimate_result.jsp?rid=103101&sid=65"
                              and: nil
                              and: @"http://ebus.klcba.gov.tw/KLBusWeb/pda/estimate_result.jsp?rid=104101&sid=65"
                              and: nil
+             ];
+        }
+        else if (indexPath.row ==4){
+        //二信中學
+            [detail addRoutesURL:nil
+                         and: @"http://ebus.klcba.gov.tw/KLBusWeb/pda/estimate_result.jsp?rid=103102&sid=69"
+                         and: nil
+                         and: @"http://ebus.klcba.gov.tw/KLBusWeb/pda/estimate_result.jsp?rid=104102&sid=69"
              ];
         }
     }
@@ -230,7 +244,14 @@
                              and: nil
              ];
         }
-    
+        else if (indexPath.row ==4){
+            //二信中學
+            [detail addRoutesURL:nil
+                             and: @"http://ebus.klcba.gov.tw/KLBusWeb/pda/estimate_result.jsp?rid=103202&sid=98"
+                             and: nil
+                             and: @"http://ebus.klcba.gov.tw/KLBusWeb/pda/estimate_result.jsp?rid=104202&sid=98"
+             ];
+        }
     
         else {
             //火車站
