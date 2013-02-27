@@ -30,7 +30,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>3.3.4</string>
+	<string>1.0</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -43,25 +43,28 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>3.3.4</string>
+	<string>1.0</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.education</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>MITAboutAppText</key>
-	<string>MIT Mobile for iPhone has been collaboratively designed and developed by MIT students and staff to extend the Institute’s mobile framework to the iOS platform. If you have ideas for improvements or new functionality, we’d love to hear them.</string>
+	<string>NTOU Mobile for iPhone是海大資工系學生合作設計和開發的。
+如果你有想法的改進或新的功能，我們很樂意聽到你的聲音。</string>
 	<key>MITAboutMITText</key>
-	<string>The Massachusetts Institute of Technology, a co-educational privately endowed research university, is dedicated to advancing knowledge and educating students in science, technology, and other areas of scholarship to serve the nation and world. The Institute has more than 900 faculty and 10,000 undergraduate and graduate students.
-
-MIT's commitment to innovation has led to a host of scientific breakthroughs and technological advances. Achievements include the first chemical synthesis of penicillin and vitamin A, the development of inertial guidance systems, modern technologies for artificial limbs, and the magnetic core memory that led to the development of digital computers. Sixty-three alumni, faculty, researchers and staff have won the Nobel Prizes.</string>
+	<string>本校自1953年創校以來，在歷任校長卓越領導及全體師生積極努力下，從臺灣省立海事專科學校、臺灣省立海洋學院、國立臺灣海洋學院到國立臺灣海洋大學，逐步發展成為一所具有海洋專業特色，教學、研究並重的重點大學。
+歷年來，在教學、研究與服務等各方面的表現屢屢獲得肯定，自94年起海大連續獲選為教育部「獎勵大學教學卓越計畫」重點大學；95年起也持續獲教育部「五年五百億發展國際一流大學及頂尖研究計劃」補助；另外，高等教育評鑑中心100年校務評鑑五大評鑑項目也全數通過；本校「海洋學刊」也順利成為國內大學第一個雙I（SCI與EI）引用之期刊，這些肯定，都是外界對海洋大學在教學、研究、服務等各個面向的肯定。
+未來我們將傾聽校內外的意見，建立同仁間互信與共識基礎，尊重教師的多元價值，凝聚師生職工的向心力。積極推動有效的招生策略、強化通識教育、培育具有海洋人文素養與競爭力的學生。同時延攬人才，擴大學術能量，推動具有優勢之海洋特色領域之研究，強化產學研發，推動國內外學術合作與結盟，成立「海洋中心」積極爭取研發計畫。擴展學生國際觀，促進校園國際化，並與相關學校及研究機構與重要產業形成策略聯盟，形成「海洋園區」，擦亮我們「海洋特色」的招牌。
+另外，將整合並改善校內各項學術資源，連結校友，並爭取外部資源，妥善運用校務基金以擴大可運用之經費來源，「結合學校、校友與產業」的資源，擴大學校對社會的貢獻與影響力。
+海大未來的發展不是以漸進成長為策略，而是要以躍進的方式來推展海洋特色。持續「培育兼具人文素之基礎與應用能力之人才」與「致力於海洋相關領域之學術與應用發展」，達成「加強海洋特色、提升學校競爭力」、「培養兼具人文關懷、專業創新、國際視野的人才」與「發展世界的海洋教育及研究」的目標，讓海大成為一所具有活力與高度榮譽感之「卓越教學與特色研究兼具的海洋頂尖大學」。</string>
 	<key>MITBuildDescription</key>
 	<string></string>
 	<key>MITBuildRevision</key>
-	<string></string>
+	<string>v1.00</string>
 	<key>MITCopyright</key>
 	<string></string>
 	<key>MITFeedbackAddress</key>
-	<string>iphone-app-feedback@mit.edu</string>
+	<string>mac.ntoucs@gmail.com</string>
 	<key>MITNavigationParadigm</key>
 	<string>MITSpringboard</string>
 	<key>NSMainNibFile</key>

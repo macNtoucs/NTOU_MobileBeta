@@ -1,7 +1,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 #import "StoryDetailViewController.h"
-
+#import "UIKit+MITAdditions.h"
 #import "MITConstants.h"
 #import "ConnectionDetector.h"
 #import "CoreDataManager.h"
@@ -23,6 +23,7 @@
 {
 	StoryListViewController *newsController;
     NSArray *story;
+    bool buttonDisplay;
 }
 
 @synthesize newsController;
@@ -35,14 +36,14 @@
 @synthesize textView;
 @synthesize textSubView;
 @synthesize dataTableView;
-
+@synthesize button;
 - (void)dealloc
 {
     self.newsController = nil;
     self.storyView = nil;
     self.story = nil;
     self.storyPager = nil;
-    
+    self.button =nil;
     [super dealloc];
 }
 
@@ -103,7 +104,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	
+	buttonDisplay = false;
 	//self.shareDelegate = self;
 	
     
@@ -142,19 +143,29 @@
     }
     else
     {
-        CGRect dataFrame = CGRectMake(0, 0, 320, 180);
+        CGRect dataFrame;
+        if (buttonDisplay) {
+            dataFrame = CGRectMake(0, 0, 320, 180);
+        } else {
+            dataFrame = CGRectMake(0, 0, 320, 45);
+        }
         dataTableView = [[UITableView alloc] initWithFrame:dataFrame style:UITableViewStylePlain];
         dataTableView.dataSource = self;
         dataTableView.delegate = self;
         dataTableView.scrollEnabled = NO;
-        textView = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, 320, 420)];
+        textView = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, 320, [[UIScreen mainScreen] bounds].size.height-60)];
         textView.editable = NO;
         textView.scrollEnabled = YES;
         
         // 一行大約20個中文字
         NSInteger lineNum = [[story objectAtIndex:3] length] / 20 + 1;
-        textSubView = [[UITextView alloc] initWithFrame:CGRectMake(0, 181, 320, lineNum*50)];
+        if (buttonDisplay) {
+            textSubView = [[UITextView alloc] initWithFrame:CGRectMake(0, 181, 320, lineNum*50)];
+        } else {
+            textSubView = [[UITextView alloc] initWithFrame:CGRectMake(0, 46, 320, lineNum*50)];
+        }
         textSubView.text = [story objectAtIndex:3];
+        textSubView.editable = NO;
         [textSubView setFont:[UIFont boldSystemFontOfSize:20.0]];
         
         [dataTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
@@ -163,7 +174,12 @@
         NSInteger newLineHeight = lineNum * 50 / 20;
         //NSLog(@"newLineHeight = %i", newLineHeight);
         
-        NSString * newLine = [[NSString alloc] initWithString:@"\n\n\n\n\n\n\n\n\n\n"];
+        NSString * newLine;
+        if (buttonDisplay) {
+            newLine = [[NSString alloc] initWithString:@"\n\n\n\n\n\n\n\n\n\n"];
+        } else {
+            newLine = [[NSString alloc] initWithString:@"\n\n\n"];
+        }
         for (NSInteger i = 0; i < newLineHeight; i ++)
         {
             newLine = [newLine stringByAppendingString:@"\n"];
@@ -240,7 +256,12 @@
  
  - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-     return 4;
+    if (buttonDisplay) {
+        return 4;
+    }
+    else
+        return 1;
+    return 0;
 }
 
 /*- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -259,13 +280,38 @@
     return indexPath;
 }*/
 
+-(void)buttonClicked
+{
+    if (buttonDisplay == false)
+        buttonDisplay = true;
+    else
+        buttonDisplay = false;
+    [self.dataTableView reloadData];
+    [self.view removeAllSubviews];
+    [self displayStory:self.story];
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
- 
+    NSString *CellIdentifier = [NSString stringWithFormat:@"Cell%d%d",indexPath.section,indexPath.row];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        if (indexPath.row == 0) {
+            self.button = [UIButton buttonWithType:UIButtonTypeCustom];
+            self.button.frame = CGRectMake(225, 15, 80, 25);
+            if (buttonDisplay == true)
+                [self.button setTitle:@"隱藏詳細資訊" forState:UIControlStateNormal];
+            else
+                [self.button setTitle:@"顯示詳細資訊" forState:UIControlStateNormal];
+            [self.button setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];//设置标题颜色
+            [self.button setTitleShadowColor:[UIColor grayColor] forState:UIControlStateNormal ];//阴影
+            self.button.titleLabel.font = [UIFont fontWithName:@"Helvetica" size:13];
+            [self.button addTarget:self action:@selector(buttonClicked)forControlEvents:UIControlEventTouchUpInside];
+            [cell.contentView addSubview:self.button];
+        }
     }
     /*NSString * tmpDate = @"公告日期：";
     NSString * tmpUndertaker = @"承辦人員：";

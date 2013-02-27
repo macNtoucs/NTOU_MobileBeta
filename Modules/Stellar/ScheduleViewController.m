@@ -8,6 +8,9 @@
 
 #import "ScheduleViewController.h"
 #import "ClassDataBase.h"
+
+#define iPhone5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
+
 @interface ScheduleViewController ()
 
 @end
@@ -20,15 +23,14 @@
 @synthesize weekschedule;
 @synthesize classInfo;
 
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.title = @"功課表";
-        TopWeekcontroller = [[WeekNameView alloc] initWithFrame:CGRectMake(LeftBaseline, NavigationAndStatusHeight, UpperViewWidth*[[ClassDataBase sharedData] FetchWeekTimes], UpperBaseline)];
-        LeftViewController  = [[LessonTimeView alloc]initWithFrame:CGRectMake(0, NavigationAndStatusHeight+UpperBaseline, LeftBaseline,(LeftViewHeight-TextLabelborderWidth)*[[ClassDataBase sharedData] FetchClassSessionTimes])];
-        UpperleftView = [[UIView alloc] initWithFrame:CGRectMake(0,NavigationAndStatusHeight, LeftBaseline, UpperBaseline)];
+        TopWeekcontroller = [[WeekNameView alloc] initWithFrame:CGRectMake(LeftBaseline, [[UIApplication sharedApplication] statusBarFrame].size.height+NavigationHight, UpperViewWidth*[[ClassDataBase sharedData] FetchWeekTimes], UpperBaseline)];
+        LeftViewController  = [[LessonTimeView alloc]initWithFrame:CGRectMake(0, [[UIApplication sharedApplication] statusBarFrame].size.height+NavigationHight+UpperBaseline, LeftBaseline,(LeftViewHeight-TextLabelborderWidth)*[[ClassDataBase sharedData] FetchClassSessionTimes])];
+        UpperleftView = [[UIView alloc] initWithFrame:CGRectMake(0,[[UIApplication sharedApplication] statusBarFrame].size.height+NavigationHight, LeftBaseline, UpperBaseline)];
         UpperleftView.backgroundColor = [UIColor colorWithRed:105.0/255 green:105.0/255 blue:105.0/255 alpha:1];
         UpperleftView.layer.borderWidth = TextLabelborderWidth;
         UpperleftView.layer.borderColor = [UIColor blackColor].CGColor;
@@ -38,11 +40,46 @@
     return self;
 }
 
+-(void)Task:(ClassLabelBasis *)label
+{
+    NSString* token = [[ClassDataBase sharedData] loginTokenWhenAccountFromUserDefault];
+    if (token) {
+        classInfo = [[[ClassInfoViewController alloc] init]autorelease];
+        classInfo.title = label.text;
+        classInfo.tag = label.tag;
+        classInfo.token = token;
+        NSDictionary* courseInfo = [[ClassDataBase sharedData] loginCourseToGetCourseidAndClassid:label.text];
+        classInfo.courseId = [courseInfo objectForKey:courseIDKey];
+        classInfo.classId = [courseInfo objectForKey:classIDKey];
+        [self.navigationController pushViewController:classInfo animated:YES];
+    }
+    else
+    {
+        UIAlertView *loadingAlertView = [[UIAlertView alloc]
+                                         initWithTitle:nil message:@"帳號、密碼錯誤"
+                                         delegate:self cancelButtonTitle:@"確定"
+                                         otherButtonTitles:nil];
+        [loadingAlertView show];
+        [loadingAlertView release];
+
+    }
+        
+}
+
 -(void) showClassInfo:(ClassLabelBasis *)label{
-    classInfo = [[[ClassInfoViewController alloc] init]autorelease];
-    classInfo.title = label.text;
-    classInfo.tag = label.tag;
-    [self.navigationController pushViewController:classInfo animated:YES];
+    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+	
+    // Add HUD to screen
+    [self.navigationController.view addSubview:HUD];
+	
+    // Regisete for HUD callbacks so we can remove it from the window at the right time
+    HUD.delegate = self;
+	
+    HUD.labelText = @"Loading";
+	
+    // Show the HUD while the provided method executes in a new thread
+    [HUD showWhileExecuting:@selector(Task:) onTarget:self withObject:label animated:YES];
+    
 }
 
 -(void) buttonDidFinish:(int)FinishType StringData:(NSArray *)array
@@ -52,10 +89,15 @@
         [weekschedule removeAllcourselabel];
         return;
     }
+    ClassLabelBasis* FirstTap = [weekschedule.TapAddCourse objectAtIndex:0];
     if (FinishType == move||[[array objectAtIndex:0] isEqualToString:[NSString string]]) {
-        [[ClassDataBase sharedData] UpdataScheduleInfo:[NSNumber numberWithInt:[[weekschedule.TapAddCourse objectAtIndex:0]tag]] ScheduleInfo:@" "];
+        NSNumber* deleteCourseTag = [NSNumber numberWithInt:[[weekschedule.TapAddCourse objectAtIndex:0]tag]];
+        [[ClassDataBase sharedData] UpdataScheduleInfo:deleteCourseTag ScheduleInfo:@" "];
+        [[ClassDataBase sharedData] deleteClassroomLocation:deleteCourseTag];
+        [[ClassDataBase sharedData] deleteProfessorName:deleteCourseTag];
         [weekschedule.TapAddCourse removeObjectAtIndex:0];
         if ([[array objectAtIndex:0] isEqualToString:[NSString string]]) {
+            [[ClassDataBase sharedData] deleteColorwhenCourseCountZero];
             [weekschedule restorTheOriginalColor];
             [weekschedule removeAllcourselabel];
             [weekschedule drawRect:CGRectZero];
@@ -74,8 +116,8 @@
             [weekschedule.TapAddCourse addObject:label];
         else{
             ClassLabelBasis* sortedlabel = [weekschedule.TapAddCourse objectAtIndex:i];
-            if (label.tag==sortedlabel.tag+100)
-                sortedlabel.tag++;
+            if (sortedlabel.tag%10000/100+sortedlabel.tag%100==label.tag%10000/100)
+                sortedlabel.tag+=label.tag%100;
             else{
                 [weekschedule.TapAddCourse addObject:label];
                 i++;
@@ -85,8 +127,13 @@
     for (ClassLabelBasis* label in weekschedule.TapAddCourse) {
         [[ClassDataBase sharedData] UpdataScheduleInfo:[NSNumber numberWithInt:label.tag] ScheduleInfo:[array objectAtIndex:0]];
         [[ClassDataBase sharedData] UpdataProfessorNameKey:[NSNumber numberWithInt:label.tag] ProfessorName:[array objectAtIndex:1]];
-        [[ClassDataBase sharedData] UpdataClassroomLocationKey:[NSNumber numberWithInt:label.tag] ColorDic:[array objectAtIndex:2]];
+        [[ClassDataBase sharedData] UpdataClassroomLocationKey:[NSNumber numberWithInt:label.tag] Classroom:[array objectAtIndex:2]];
+        
     }
+    [[ClassDataBase sharedData] moodleFromRecordForNewCourse:[array objectAtIndex:0] ForOldCourse:FirstTap.text];
+    [[ClassDataBase sharedData] deleteMoodleFromWhenCourseCountZero];
+    [[ClassDataBase sharedData] UpdataColorFromFirstTap:[array objectAtIndex:0] ForOldCourse:FirstTap.text];
+    [[ClassDataBase sharedData] deleteColorwhenCourseCountZero];
     [weekschedule.TapAddCourse removeAllObjects];
     [weekschedule drawRect:CGRectZero];
 }
@@ -144,7 +191,10 @@
 }
 
 -(IBAction)Add:(id)sender{
-    addView = [[ClassAdd alloc] initWithNibName:@"ClassAdd" bundle:nil];
+    if (iPhone5)
+        addView = [[ClassAdd alloc] initWithNibName:@"ClassAddRetina4" bundle:nil];
+    else
+        addView = [[ClassAdd alloc] initWithNibName:@"ClassAddRetina3.5" bundle:nil];
     addView.delegate = self;
     [self.navigationController.view addSubview:addView.view];
     [self.navigationController setNavigationBarHidden:YES animated:NO];
@@ -197,12 +247,12 @@
 
 -(CGSize)scrollContentSize
 {
-    return CGSizeMake(LeftBaseline+(UpperViewWidth-TextLabelborderWidth)*[[ClassDataBase sharedData] FetchWeekTimes], NavigationAndStatusHeight+UpperBaseline+(LeftViewHeight-TextLabelborderWidth)*[[ClassDataBase sharedData] FetchClassSessionTimes]);
+    return CGSizeMake(LeftBaseline+(UpperViewWidth-TextLabelborderWidth)*[[ClassDataBase sharedData] FetchWeekTimes], [[UIApplication sharedApplication] statusBarFrame].size.height+NavigationHight+UpperBaseline+(LeftViewHeight-TextLabelborderWidth)*[[ClassDataBase sharedData] FetchClassSessionTimes]);
 }
 
 - (void)viewDidLoad
 {
-    weekschedule = [[[WeekScheduleView alloc]initWithFrame:CGRectMake(0, 0, LeftBaseline+(UpperViewWidth-TextLabelborderWidth)*[[ClassDataBase sharedData] FetchWeekTimes], NavigationAndStatusHeight+UpperBaseline+(LeftViewHeight-TextLabelborderWidth)*[[ClassDataBase sharedData] FetchClassSessionTimes])] autorelease];
+    weekschedule = [[[WeekScheduleView alloc]initWithFrame:CGRectMake(0, 0, LeftBaseline+(UpperViewWidth-TextLabelborderWidth)*[[ClassDataBase sharedData] FetchWeekTimes], [[UIApplication sharedApplication] statusBarFrame].size.height+NavigationHight+UpperBaseline+(LeftViewHeight-TextLabelborderWidth)*[[ClassDataBase sharedData] FetchClassSessionTimes])] autorelease];
     [weekschedule getParent_ViewController:self];
     [self addNavRightButton]; 
     scrollView = [[UIScrollView alloc] init];
@@ -334,6 +384,15 @@
     //isScrollingUp=true;
     [self determineMove];
     
+}
+
+#pragma mark -
+#pragma mark MBProgressHUDDelegate methods
+
+- (void)hudWasHidden {
+    // Remove HUD from screen when the HUD was hidded
+    [HUD removeFromSuperview];
+    [HUD release];
 }
 
 

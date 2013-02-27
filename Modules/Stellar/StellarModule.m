@@ -17,7 +17,7 @@
 	self = [super init];
     if (self != nil) {
         self.tag = StellarTag;
-        self.shortName = @"功課表";
+        self.shortName = @"個人課程";
         self.longName = @"MIT Stellar";
         self.iconName = @"stellar";
         self.pushNotificationSupported = YES;

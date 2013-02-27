@@ -6,6 +6,7 @@ build/
 ~/project.pbxproj
 *.perspective
 *.perspectivev3
+
 xcuserdata/
 project.xcworkspace/
 
@@ -13,3 +14,4 @@ project.xcworkspace/
 Resources/mit150/*.mp4
 
 .idea/
+

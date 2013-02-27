@@ -1227,7 +1227,6 @@ NSString *titleForCategoryId(NewsCategoryId category_id) {
     StoryDetailViewController *detailViewController = [[StoryDetailViewController alloc] init];
     detailViewController.newsController = self;
     
-    
     //NSLog(@"story ele: %@", [self.stories objectAtIndex:indexPath.row]);
     
     if (self.activeCategoryId == NewsCategoryIdTopNews)

@@ -25,11 +25,11 @@
     CGPoint x1,x2;
     if (statment) {
         x1=CGPointMake(0, 60);
-        x2=CGPointMake(320, 150);
+        x2=CGPointMake(320, [[UIScreen mainScreen] bounds].size.height-330);
     }
     else{
         x1=CGPointMake(0, 60);
-        x2=CGPointMake(320, 370);
+        x2=CGPointMake(320, [[UIScreen mainScreen] bounds].size.height-110);
     }
     if (x1.x<point.x&&x1.y<point.y&&point.x<x2.x&&point.y<x2.y) {
         return nil;

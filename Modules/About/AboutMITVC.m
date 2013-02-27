@@ -7,7 +7,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.tableView applyStandardColors];
-    self.navigationItem.title = @"About MIT";
+    self.navigationItem.title = @"關於海大";
 }
 
 #pragma mark Table view methods

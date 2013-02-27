@@ -1,5 +1,4 @@
 #import "CorridorListViewController.h"
-#import "MITJSON.h"
 #import "CorridorStory.h"
 #import "CoreDataManager.h"
 #import "CorridorDetailViewController.h"

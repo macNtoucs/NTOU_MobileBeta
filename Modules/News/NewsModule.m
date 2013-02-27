@@ -11,7 +11,7 @@
     self = [super init];
     if (self != nil) {
         self.tag = NewsOfficeTag;
-        self.shortName = @"新聞";
+        self.shortName = @"最新消息";
         self.longName = @"News Office";
         self.iconName = @"news";
     }

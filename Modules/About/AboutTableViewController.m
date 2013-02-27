@@ -14,7 +14,7 @@
 
 - (void)viewDidLoad {
     [self.tableView applyStandardColors];
-    self.title = @"About";
+    self.title = @"關於我";
     
     showBuildNumber = NO;
 }
@@ -72,22 +72,8 @@
                     cell.textLabel.font = [UIFont boldSystemFontOfSize:17.0];
         			cell.textLabel.textColor = CELL_STANDARD_FONT_COLOR;
                     NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];
-                    if (!showBuildNumber) {
-                        cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", [infoDict objectForKey:@"CFBundleDisplayName"], [infoDict objectForKey:@"CFBundleVersion"]];
-                    } else {
-                        cell.textLabel.text = [MITBuildInfo description];
-                        
-                        CGImageRef hashImage = [MITBuildInfo newHashImage];
-                        
-                        // turn off smooth scaling because hashImage starts as tiny pixel art
-                        [[cell.imageView layer] setMagnificationFilter:kCAFilterNearest];
-                        CGFloat imageWidth = (CGFloat)CGImageGetWidth(hashImage);
-                        CGFloat desiredWidth = 30.0;
-                        cell.imageView.image = [UIImage imageWithCGImage:hashImage 
-                                                                   scale:imageWidth / desiredWidth 
-                                                             orientation:UIImageOrientationUp];
-                        CGImageRelease(hashImage);
-                    }
+                    cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", [infoDict objectForKey:@"CFBundleDisplayName"], [infoDict objectForKey:@"CFBundleVersion"]];
+                
                 }
                     break;
                 case 1:
@@ -110,19 +96,19 @@
         case 1:
             switch (indexPath.row) {
                 case 0:
-                    cell.textLabel.text = @"Credits";
+                    cell.textLabel.text = @"開發成員";
                     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
                     cell.selectionStyle = UITableViewCellSelectionStyleBlue;
                     cell.textLabel.textColor = CELL_STANDARD_FONT_COLOR;
                     break;
                 case 1:
-                    cell.textLabel.text = @"About MIT";
+                    cell.textLabel.text = @"關於海大";
                     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
                     cell.selectionStyle = UITableViewCellSelectionStyleBlue;
                     cell.textLabel.textColor = CELL_STANDARD_FONT_COLOR;
                     break;
                 case 2:
-                    cell.textLabel.text = @"Send Feedback";
+                    cell.textLabel.text = @"意見回饋";
                     cell.accessoryView = [UIImageView accessoryViewWithMITType:MITAccessoryViewEmail];
                     cell.selectionStyle = UITableViewCellSelectionStyleBlue;
                     break;
@@ -138,11 +124,7 @@
 #pragma mark - UITableView Delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 0 && indexPath.row == 0) {
-        showBuildNumber = !showBuildNumber;
-        [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }
-    else if (indexPath.section == 1) {
+    if (indexPath.section == 1) {
         switch (indexPath.row) {
             case 0: {
                 AboutCreditsVC *aboutCreditsVC = [[AboutCreditsVC alloc] init];
@@ -158,7 +140,7 @@
             }
             case 2: {
                 NSString *email = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"MITFeedbackAddress"];
-                NSString *subject = [NSString stringWithFormat:@"Feedback for MIT Mobile %@ (%@) on %@ %@", [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"], [MITBuildInfo description], [[UIDevice currentDevice] systemName], [[UIDevice currentDevice] systemVersion]];
+                NSString *subject = [NSString stringWithFormat:@"NTOU Mobile 回饋 %@ on %@ %@", [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"], [[UIDevice currentDevice] systemName], [[UIDevice currentDevice] systemVersion]];
                 
                 if ([MFMailComposeViewController canSendMail]) {
                     MFMailComposeViewController *mailView = [[MFMailComposeViewController alloc] init];

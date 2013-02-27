@@ -94,7 +94,7 @@
     NSString *CellIdentifier = [NSString stringWithFormat:@"Cell%d%d",indexPath.section,indexPath.row];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     UILabel *label = nil;
-    UILabel *detailLabel;
+    UILabel *detailLabel = nil;
     
     if (cell == nil)
     {
@@ -170,6 +170,8 @@
     if (type==1||type==3) {
         label.textAlignment = UITextAlignmentCenter;
     }
+    
+    
     return cell;
 }
 

@@ -13,7 +13,7 @@
 @end
 
 #import <UIKit/UIKit.h>
-typedef enum {clean,modify,move}ButtonType;
+#import "ClassDataBase.h"
 @interface ClassAdd : UIViewController{
     id delegate;
 }

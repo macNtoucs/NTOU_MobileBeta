@@ -114,21 +114,23 @@
         return 4;
     }
     else if (section==1) {
-        return 3;
+        return 2;
     }
     else if (section==2) {
         return 1;
     }
-
     return 0;
 }
+
 -(void) finishSetting {
     [self dismissModalViewControllerAnimated:YES];
-    NSData *myEncodedObject = [NSKeyedArchiver archivedDataWithRootObject:[ClassDataBase sharedData]];
+    [[ClassDataBase sharedData] storeUserDefaults];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:myEncodedObject forKey:ClassDataBaseKey];
+    [defaults setObject:[accountDelegate text] forKey:accountKey];
+    [defaults setObject:[passwordDelegate text] forKey:passwordKey];
     [defaults synchronize];
 }
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
@@ -138,7 +140,7 @@
     if (indexPath.section==1&&(indexPath.row==0||indexPath.row==1)) {
         cell  = [[[SecondaryGroupedTableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:CellIdentifier] autorelease];
     }
-    else if ((indexPath.section==1&&indexPath.row==2)||(indexPath.section==2&&indexPath.row==0))
+    else if ((indexPath.section==2&&indexPath.row==0))
         cell  = [[[SecondaryGroupedTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     else
         cell  = [[[SecondaryGroupedTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
@@ -191,6 +193,7 @@
                 contactNameTextField.backgroundColor = [UIColor clearColor];
                 contactNameTextField.font = [UIFont boldSystemFontOfSize:15];
                 contactNameTextField.keyboardType = UIKeyboardTypeDefault;
+                contactNameTextField.text =[[NSUserDefaults standardUserDefaults] objectForKey:accountKey];
                 [cell addSubview:contactNameTextField];
                 break;
             case 1:
@@ -199,21 +202,20 @@
                 contactNameTextField.backgroundColor = [UIColor clearColor];
                 contactNameTextField.font = [UIFont boldSystemFontOfSize:15];
                 contactNameTextField.keyboardType = UIKeyboardTypeDefault;
+                contactNameTextField.text =[[NSUserDefaults standardUserDefaults] objectForKey:passwordKey];
                 contactNameTextField.secureTextEntry = YES;
                 [cell addSubview:contactNameTextField];
                 break;
-            case 2:
-                cell.textLabel.text = @"與當學期同步課表";
-                cell.textLabel.textAlignment = UITextAlignmentCenter;
-                break;
         }
+        
      
     }
-    else if (indexPath.section==2) {
+    else if (indexPath.section==2)
+    {
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         switch (indexPath.row) {
             case 0:
-                cell.textLabel.text = @"重置課表";
+                cell.textLabel.text = @"與當學期同步課表";
                 cell.textLabel.textAlignment = UITextAlignmentCenter;
                 break;
         }
@@ -285,6 +287,51 @@
 }
 */
 
+- (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    switch (buttonIndex) {
+        case 1:{
+            dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+                // Show the HUD in the main tread
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    // No need to hod onto (retain)
+                    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+                    hud.labelText = @"Loading";
+                });
+
+                [[ClassDataBase sharedData] loginAccount:[(UITextField*)accountDelegate text]
+                                            Password:[(UITextField*)passwordDelegate text]
+                                            ClearAllCourses:YES];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+                });
+            });
+        }
+            break;
+        case 2:{
+            dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+                // Show the HUD in the main tread
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    // No need to hod onto (retain)
+                    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+                    hud.labelText = @"Loading";
+                });
+                
+                [[ClassDataBase sharedData] loginAccount:[(UITextField*)accountDelegate text]
+                                                Password:[(UITextField*)passwordDelegate text]
+                                         ClearAllCourses:NO];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+                });
+            });
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+            break;
+        default:
+            break;
+    }
+}
+
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -299,23 +346,20 @@
         classColor.title = @"設定課堂顏色";
         [self.navigationController pushViewController:classColor animated:YES];
     }
-    else if (indexPath.section==1&&indexPath.row==2){
-        UIAlertView *loadingAlertView = [[UIAlertView alloc]
-                                         initWithTitle:@"警告" message:@"將會覆蓋相同位置課堂"
-                                         delegate:nil cancelButtonTitle:@"取消"
-                                         otherButtonTitles:@"確定", nil];
-        [loadingAlertView show];
-        [loadingAlertView release];
-    }
     else if (indexPath.section==2&&indexPath.row==0){
         UIAlertView *loadingAlertView = [[UIAlertView alloc]
-                                         initWithTitle:@"警告" message:@"將會清空當前課表"
-                                         delegate:nil cancelButtonTitle:@"取消"
-                                         otherButtonTitles:@"確定", nil];
+                                         initWithTitle:@"警告" message:@"將會覆蓋相同位置課堂"
+                                         delegate:self cancelButtonTitle:@"取消"
+                                         otherButtonTitles:@"重置",@"僅更新當學期課堂", nil];
         [loadingAlertView show];
         [loadingAlertView release];
     }
-        
+}
+
+- (void)hudWasHidden {
+    // Remove HUD from screen when the HUD was hidded
+    [HUD removeFromSuperview];
+    [HUD release];
 }
 
 @end
