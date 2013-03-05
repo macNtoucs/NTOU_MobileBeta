@@ -249,6 +249,202 @@
         case 10:
             return @"加油站";
             break;
+        case 11:
+            return @"全聯福利中心";
+            break;
+        case 12:
+            return @"海洋診所";
+            break;
+        case 13:
+            return @"仁人診所";
+            break;
+        case 14:
+            return @"OK便利商店";
+            break;
+        case 15:
+            return @"哈樂百貨買場";
+            break;
+        case 16:
+            return @"阿玉炒飯";
+            break;
+        case 17:
+            return @"佬地方牛排";
+            break;
+        case 18:
+            return @"清新福全";
+            break;
+        case 19:
+            return @"新嘉村用品行";
+            break;
+        case 20:
+            return @"隆成機車";
+            break;
+        case 21:
+            return @"中正區衛生所";
+            break;
+        case 22:
+            return @"鴨香寶燒臘";
+            break;
+        case 23:
+            return @"奶鍋的店";
+            break;
+        case 24:
+            return @"鼎乃鮮小火鍋";
+            break;
+        case 25:
+            return @"全德眼鏡";
+            break;
+        case 26:
+            return @"煎茶水記";
+            break;
+        case 27:
+            return @"合成便當";
+            break;
+        case 28:
+            return @"超大杯甜品屋";
+            break;
+        case 29:
+            return @"星翔快餐店";
+            break;
+        case 30:
+            return @"2d水飲品";
+            break;
+        case 31:
+            return @"三媽臭臭鍋";
+            break;
+        case 32:
+            return @"ComeBuy";
+            break;
+        case 33:
+            return @"捌壹捌麵館";
+            break;
+        case 34:
+            return @"加油站";
+            break;
+        case 35:
+            return @"超級雞車";
+            break;
+        case 36:
+            return @"港式燒臘";
+            break;
+        case 37:
+            return @"食神涮涮鍋";
+            break;
+        case 38:
+            return @"7-11便利商店";
+            break;
+        case 39:
+            return @"全家便利商店";
+            break;
+        case 40:
+            return @"弘揚電腦維修";
+            break;
+        case 41:
+            return @"海洋麵店";
+            break;
+        case 42:
+            return @"陽光早餐店";
+            break;
+        case 43:
+            return @"富而美早餐店";
+            break;
+        case 44:
+            return @"20元麵店";
+            break;
+        case 45:
+            return @"北海影印";
+            break;
+        case 46:
+            return @"早安媽美食館";
+            break;
+        case 47:
+            return @"光泰影印";
+            break;
+        case 48:
+            return @"早午餐專賣";
+            break;
+        case 49:
+            return @"阿邦燒臘";
+            break;
+        case 50:
+            return @"泰式酸辣麵";
+            break;
+        case 51:
+            return @"微笑11炭烤";
+            break;
+        case 52:
+            return @"正老店鹽酥雞/炭烤";
+            break;
+        case 53:
+            return @"專業麵疙瘩";
+            break;
+        case 54:
+            return @"好了啦紅茶冰";
+            break;
+        case 55:
+            return @"超羣滷味/鹽酥雞";
+            break;
+        case 56:
+            return @"瑞麟美而美";
+            break;
+        case 57:
+            return @"早安美芝城";
+            break;
+        case 58:
+            return @"益文影印/文具";
+            break;
+        case 59:
+            return @"切仔麵";
+            break;
+        case 60:
+            return @"愛買";
+            break;
+        case 61:
+            return @"屈臣氏";
+            break;
+        case 62:
+            return @"QQ滷肉飯";
+            break;
+        case 63:
+            return @"饕客便當";
+            break;
+        case 64:
+            return @"康是美";
+            break;
+        case 65:
+            return @"7-11便利商店";
+            break;
+        case 66:
+            return @"大麥穗法式烘培坊";
+            break;
+        case 67:
+            return @"張師傅專業烘培";
+            break;
+        case 68:
+            return @"ComeBuy";
+            break;
+        case 69:
+            return @"樂氣球桌遊";
+            break;
+        case 70:
+            return @"全家便利商店";
+            break;
+        case 71:
+            return @"十三鼎風味小火鍋";
+            break;
+        case 72:
+            return @"新豐郵局";
+            break;
+        case 73:
+            return @"頂好超市";
+            break;
+        case 74:
+            return @"董娘精緻水餃";
+            break;
+        case 75:
+            return @"八方雲集";
+            break;
+
         default:
             break;
     }
@@ -262,7 +458,7 @@
         UIAlertView *loadingAlertView = [[UIAlertView alloc]
                                          initWithTitle:[self displayTitle:button.tag]message:[self displayContent:button.tag]
                                          delegate:self cancelButtonTitle:@"確定"
-                                         otherButtonTitles:nil];
+                                         otherButtonTitles:@"撥號"];
         [loadingAlertView show];
         [loadingAlertView release];
     }

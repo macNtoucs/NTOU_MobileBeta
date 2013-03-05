@@ -34,7 +34,7 @@
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(infoDidLoad:) name:EmergencyInfoDidLoadNotification object:nil];
 		
         // check for new emergency info on app launch
-        [[EmergencyData sharedData] checkForEmergencies];
+       // [[EmergencyData sharedData] checkForEmergencies];
     }
     return self;
 }

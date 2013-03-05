@@ -82,24 +82,26 @@ static Byte iv[] = {1,2,3,4,5,6,7,8};
     bool validString=false;
     NSDictionary *postDic1;
     do{
-        struct timeval t;
-        gettimeofday(&t, NULL);
-        unsigned long msec = (t.tv_sec * 1000 + t.tv_usec / 1000);
-        unsigned long forEncrpt = msec%100000000;
+        //struct timeval t;
+        //gettimeofday(&t, NULL);
+        //long long unsigned msec = (t.tv_sec * 1000 + t.tv_usec / 1000);
+        long long unsigned a = rand()%10000+10000;
+        long long unsigned b = rand()%10000+10000;
+        long long unsigned msec = ( a * b ) + 1430000000000;
+        long long unsigned forEncrpt = msec%100000000;
         // setup post string
-        NSString * encrypt_username =  [Moodle_API encryptUseDES:username key:[NSString stringWithFormat:@"%ld",forEncrpt]];
-        NSString * encrypt_password =  [Moodle_API encryptUseDES:password key:[NSString stringWithFormat:@"%ld",forEncrpt]];
+        NSString * encrypt_username =  [Moodle_API encryptUseDES:username key:[NSString stringWithFormat:@"%lld",forEncrpt]];
+        NSString * encrypt_password =  [Moodle_API encryptUseDES:password key:[NSString stringWithFormat:@"%lld",forEncrpt]];
         
         
         postDic1 =[[NSDictionary alloc]initWithObjectsAndKeys:
                    encrypt_username,@"username",
                    encrypt_password,@"password",
-                   [NSString stringWithFormat:@"%lu",msec],@"now", nil];
+                   [NSString stringWithFormat:@"%lld",msec],@"now", nil];
         
         //NSLog(@"加密username=>%@",encrypt_username );
         //NSLog(@"加密password=>%@",encrypt_password );
         if ( ![self checkIsStringIncludePulseSymbol:encrypt_username] &&  ![self checkIsStringIncludePulseSymbol:encrypt_password]) validString = true;
-        
         
     }while (!validString);
     NSString *jsonRequest = [postDic1 JSONRepresentation];
