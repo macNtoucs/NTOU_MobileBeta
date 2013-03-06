@@ -458,11 +458,20 @@
         UIAlertView *loadingAlertView = [[UIAlertView alloc]
                                          initWithTitle:[self displayTitle:button.tag]message:[self displayContent:button.tag]
                                          delegate:self cancelButtonTitle:@"確定"
-                                         otherButtonTitles:@"撥號"];
+                                         otherButtonTitles:@"撥號",nil];
         [loadingAlertView show];
         [loadingAlertView release];
     }
     
+}
+
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex==1) {
+        NSURL* url = [[NSURL alloc] initWithString:[NSString stringWithFormat:@"tel:%@",alertView.message]];
+        [[ UIApplication sharedApplication]openURL:url];
+    }
 }
 
 #pragma mark -
