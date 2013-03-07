@@ -7,7 +7,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PagerViewController : UIViewController <UIScrollViewDelegate>
+@interface PagerViewController : UIViewController <UIScrollViewDelegate,UIAlertViewDelegate>
 {
     CGFloat offset;
 }

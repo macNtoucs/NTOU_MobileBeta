@@ -18,7 +18,7 @@
     if (self) {
 		refreshButtonPressed = NO;
         infoWebView = nil;
-        
+        self.tableView.scrollEnabled = NO;
         self.title = @"緊急聯絡";
     }
     return self;
@@ -26,7 +26,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refreshInfo:)] autorelease];
+    //self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refreshInfo:)] autorelease];
 	
 	infoWebView = [[UIWebView alloc] initWithFrame:CGRectMake(10, 10, self.view.frame.size.width - 20 - 20, 90)];
 	infoWebView.delegate = self;
@@ -51,12 +51,12 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     // register for emergencydata notifications
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(infoDidLoad:) name:EmergencyInfoDidLoadNotification object:nil];
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(infoDidFailToLoad:) name:EmergencyInfoDidFailToLoadNotification object:nil];
+    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(infoDidLoad:) name:EmergencyInfoDidLoadNotification object:nil];
+	//[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(infoDidFailToLoad:) name:EmergencyInfoDidFailToLoadNotification object:nil];
     
-	if ([[[EmergencyData sharedData] lastUpdated] compare:[NSDate distantPast]] == NSOrderedDescending) {
-		[self infoDidLoad:nil];
-	}
+	//if ([[[EmergencyData sharedData] lastUpdated] compare:[NSDate distantPast]] == NSOrderedDescending) {
+	//	[self infoDidLoad:nil];
+	//}
 }
 
 
@@ -118,7 +118,7 @@
 - (void)infoDidFailToLoad:(NSNotification *)aNotification {
 	if ([[EmergencyData sharedData] hasNeverLoaded]) {
 		// Since emergency has never loaded successfully report failure
-		self.htmlString = [NSString stringWithFormat:htmlFormatString, @"工學院院館前北寧路發生落石"];
+		self.htmlString = [NSString stringWithFormat:htmlFormatString, @"目前無緊急事件"];
 		[self.infoWebView loadHTMLString:self.htmlString baseURL:nil];
 	}
 	
