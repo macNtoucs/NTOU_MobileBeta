@@ -257,7 +257,7 @@
     [super viewDidLoad];
     
     self.navigationItem.title = @"Home";
-    UIImage *logoView = [UIImage imageNamed:@"global/navbar_mit_logo.png"];
+    UIImage *logoView = [UIImage imageNamed:@"global/navbar_ntou_logo.png"];
     self.navigationItem.titleView = [[[UIImageView alloc] initWithImage:logoView] autorelease];
 
     self.grid = [[[IconGrid alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)] autorelease];
