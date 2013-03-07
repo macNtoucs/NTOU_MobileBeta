@@ -18,7 +18,7 @@
     if (self) {
 		refreshButtonPressed = NO;
         infoWebView = nil;
-        
+        self.tableView.scrollEnabled = NO;
         self.title = @"緊急聯絡";
     }
     return self;
